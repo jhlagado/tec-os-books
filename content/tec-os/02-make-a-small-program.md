@@ -72,13 +72,13 @@ repair before creating BANNER.COM: type `BROKEN` at line 14 and press
 Return. The cursor moves to `L15 C1`. `^S` saves BANNER.ASM and displays
 `Saved` on the status row. A saved text file can still contain errors.
 
-`^T B` saves the source and runs TAS for an `.ASM` file. The keys form a
-sequence: press Ctrl and T together, release Ctrl and then press B.
-Chapter 3 uses the same sequence to build BASIC source with BAZC. This
+F9 saves the source and builds it, with TAS for an `.ASM` file. On the
+matrix keyboard F9 is Fn with 9: hold Fn and press 9. Chapter 3 uses the
+same key to compile BASIC source with BAZC. This
 excerpt shows the rejected build before TED redraws its screen. The initial
 screen-clear controls, leading blank line and final editor redraw are omitted:
 
-<!-- TEC-OS 57a8c38: node tools/capture.mjs --card banner-broken.img --board pico --screen '@start A:TED B:BANNER.ASM' $'@press \x14B' '@run 400'. Console excerpt; terminal controls and editor redraw outside the selected span omitted. -->
+<!-- TEC-OS 1e35854, ROM bb429d10, TED b2f98bc: node tools/capture.mjs with @fn D for Fn held with digit D and @arrow for the matrix arrows (the books' copy, scripts/capture-fn.mjs) --card banner-broken.img --board pico --screen '@start A:TED B:BANNER.ASM' '@fn 9' '@run 400'. Console excerpt; terminal controls and editor redraw outside the selected span omitted. -->
 ```text
 A:SYSTEM>A:TAS B:BANNER.ASM
 BANNER.ASM:14:1: unknown instruction or directive
@@ -92,10 +92,8 @@ instruction or directive. This first rejected build creates no BANNER.COM. TED r
 
 Left clears the message and moves the cursor to the end of the preceding
 line. The status now reads `L13 C38`. Down moves to the end of `BROKEN` at
-`L14 C7`. Six Backspaces remove its six letters. The cursor is then at
-`L14 C1` on the extra blank line. `^G` deletes forwards and removes that
-extra line too. It supplies the Delete action on the matrix keyboard, which
-has no separate Delete key. The source is now the complete listing above.
+`L14 C7`. `^Y` deletes the cursor's whole line, and the cursor is at
+`L14 C1`, the end of the file. The source is now the complete listing above.
 
 `^S` saves the repaired text. Wait for `Saved` before `^Q` quits TED and
 returns to `A:SYSTEM>`. The prompt's read attempts pending writes. After
@@ -110,14 +108,15 @@ has survived quitting TED because it was saved on the card.
 
 ## The first successful run
 
-`^T B` now assembles the corrected source into BANNER.COM. TED then
+F9 now assembles the corrected source into BANNER.COM. TED then
 reopens the source for further editing.
 
-`^T R` builds the source and runs the resulting program. The initial run
+F5, Fn with 5, runs the program. It builds the source first if the program
+is out of date. The initial run
 produced this complete console text before the editor redraw. The initial
 clear-screen controls and leading blank line are omitted:
 
-<!-- TEC-OS 57a8c38: node tools/capture.mjs --card banner-plain.img --board pico --screen '@start A:TED B:BANNER.ASM' $'@press \x14R' '@run 400'. Console excerpt; terminal controls and editor redraw outside the selected span omitted. -->
+<!-- TEC-OS 1e35854, ROM bb429d10, TED b2f98bc: node tools/capture.mjs with @fn D for Fn held with digit D and @arrow for the matrix arrows (the books' copy, scripts/capture-fn.mjs) --card banner-plain.img --board pico --screen '@start A:TED B:BANNER.ASM' '@fn 5' '@run 400'. Console excerpt; terminal controls and editor redraw outside the selected span omitted. -->
 ```text
 A:SYSTEM>A:TAS B:BANNER.ASM
 BANNER.COM written
@@ -138,8 +137,9 @@ shell executes in order. Each command has its own prompt. Chapter 13
 explains this command chaining. At `Press a key` the output remains
 visible until Space returns you to the source at `L1 C1`.
 
-TAS also writes debugger information to BANNER.DBG beside the other files
-on B. Keep the three BANNER files together. This exercise uses the `.ASM`
+TAS also writes BANNER.TBG beside the other files on B. It holds the
+program's labels, which the TBUG debugger reads. Keep the three BANNER
+files together. This exercise uses the `.ASM`
 file for editing and the `.COM` file for running.
 
 ![TED saves the source. TAS creates BANNER.COM and the CCP loads it at 0100h when you run it.](/images/tec-os/edit-build-run.svg)
@@ -191,13 +191,13 @@ and the `*` returns. Only this line changes:
 MSG: db "Hello from TEC-OS!",13,10,"$"
 ```
 
-`^S` saves the new text. `^T B` then rebuilds BANNER.COM from that text.
+`^S` saves the new text. F9 then rebuilds BANNER.COM from that text.
 
-`^T R` builds and runs the changed program. Its new greeting appears in
+F5 builds and runs the changed program. Its new greeting appears in
 this separate capture. The initial clear-screen controls and leading
 blank line are omitted:
 
-<!-- TEC-OS 57a8c38: node tools/capture.mjs --card banner-edited.img --board pico --screen '@start A:TED B:BANNER.ASM' $'@press \x14R' '@run 400'. Console excerpt; terminal controls and editor redraw outside the selected span omitted. -->
+<!-- TEC-OS 1e35854, ROM bb429d10, TED b2f98bc: node tools/capture.mjs with @fn D for Fn held with digit D and @arrow for the matrix arrows (the books' copy, scripts/capture-fn.mjs) --card banner-edited.img --board pico --screen '@start A:TED B:BANNER.ASM' '@fn 5' '@run 400'. Console excerpt; terminal controls and editor redraw outside the selected span omitted. -->
 ```text
 A:SYSTEM>A:TAS B:BANNER.ASM
 BANNER.COM written
@@ -232,14 +232,13 @@ empty-prompt `^C`. `B:BANNER` runs it from B while A remains current,
 without opening TED or assembling source. The final excerpt includes
 the quit's preservation step, the standalone run and a final `^C`:
 
-<!-- TEC-OS 57a8c38: node tools/capture.mjs --card banner-edited.img 'A:TAS B:BANNER.ASM' '^C' B:BANNER '^C'. Complete captured console transcript. -->
+<!-- TEC-OS 1e35854, ROM bb429d10, starter card 24801956: node tools/capture.mjs --card banner-edited.img 'A:TAS B:BANNER.ASM' '^C' B:BANNER '^C'. Complete captured console transcript. -->
 ```text
 TEC-OS 0.1 for TEC-1G
 A: SYSTEM
 B: WORK
-C: PROJECTS
 
-A>SHELL.SVC
+A:SYSTEM>SHELL.SVC
 
 A:SYSTEM>GLCD.SVC
 
@@ -296,3 +295,5 @@ blanks included. A longer line is rejected, normally as `line too long` at
 column 129, whether it holds one statement or several. A line much longer
 than that can be cut by TAS's source window first and then gives the error of
 its cut text, but it is rejected either way. A comment may be any length.
+
+_Screens checked against TEC-OS `1e35854` with TED `b2f98bc`, on the starter card in the emulated TEC-1G, 27 November 2026._
