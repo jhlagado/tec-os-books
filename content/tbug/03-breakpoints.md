@@ -23,22 +23,22 @@ That single habit makes jumping past a loop effortless: scroll `>` to the instru
 
 When you want to stop at the same line on every pass through a loop or every call to a routine, set a persistent breakpoint with `Space`.
 
-Start `TBUG.SVC STEP` from `B:WORK>` and press `C` to open Code. `>` and `→` sit together on `0100 LD HL,1234`. Move `>` down twice to `0104 POP DE`, leaving `→` back at `0100`:
+Start `TBUG.SVC STEP` from `B:WORK>`. The stop opens in Code, with `>` and `→` together on `0100 LD HL,1234`. Move `>` down twice to `0104 POP DE`, leaving `→` back at `0100`:
 
 ```text
+START:
  →0100 LD HL,1234
   0103 PUSH HL
 > 0104 POP DE
-  0105 RET
 ```
 
-Press `Space`. A hollow box `□` appears in column 2 beside `0104`, and the bottom row flashes `BP SET 0104`:
+Press `Space`. A hollow box `□` appears in column 2 beside `0104`, and the top row reports `BP SET 0104` in place of the label:
 
 ```text
+BP SET 0104
  →0100 LD HL,1234
   0103 PUSH HL
 >□0104 POP DE
-BP SET 0104
 ```
 
 `Space` toggles breakpoints in Code and in Symbols. Elsewhere, TBUG prints `Select in Code first`. Pressing `Space` a second time on a marked row clears the breakpoint and prints `BP REMOVED 0104`.
@@ -46,13 +46,13 @@ BP SET 0104
 Jump back to Registers with `R` and press `F5`. The Z80 runs `LD HL,$1234` and `PUSH HL` at full speed and halts right before `POP DE`:
 
 ```text
->PC 0104  SP 98FC BP
+>PC 0104  SP 96FC BP
  AF 0000  BC 0000 SY
  DE 0000  HL 1234 ..
  IX 0000  IY 0000 ..
 ```
 
-`BP` on row 1 confirms a breakpoint hit. `HL` already holds `1234` and `SP` has already dropped to `98FC`, proving `PUSH HL` ran while `POP DE` is still waiting. Press `C` to view Code and column 2 on `0104` now shows a solid block `█`, meaning `PC` is stopped on a user breakpoint.
+`BP` on row 1 confirms a breakpoint hit. `HL` already holds `1234` and `SP` has already dropped to `96FC`, proving `PUSH HL` ran while `POP DE` is still waiting. Press `C` to view Code and column 2 on `0104` now shows a solid block `█`, meaning `PC` is stopped on a user breakpoint.
 
 ## Patching and restoring with `RST 30h`
 
@@ -97,3 +97,5 @@ A few details keep `ARM` predictable:
 - Typing `TBUG.SVC` alone prints `Next launch: armed` on row 2 of the ready screen so you can check whether the trap is set.
 - Putting `TBUG.SVC ARM` in `STARTUP.CMD` arms every cold boot automatically.
 - On a ROM older than ABI 5.3, `TBUG.SVC ARM` prints `ARM needs ABI 5.3` and arms nothing. Update the ROM to use `ARM`.
+
+_Checked against TEC-OS `b5af505` with TBUG `a4d1da8`, on the starter card in the emulated TEC-1G, 27 November 2026._

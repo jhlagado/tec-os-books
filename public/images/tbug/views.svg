@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="720" height="434" viewBox="0 0 720 434" role="img" aria-labelledby="figTitle figDesc">
   <title id="figTitle">Switching views and stepping with F6 to F8</title>
-  <desc id="figDesc">R, C, S, M and Y jump straight to Registers, Code, Stack, Memory and Symbols, and Tab cycles through them. Enter opens the target of a register, stack slot or branch, Esc steps back and Q quits. F8 steps into, F7 steps over and F6 steps out (Fn+8, Fn+7 and Fn+6 on the TEC-1G).</desc>
+  <desc id="figDesc">C, R, Y, S and M jump straight to Code, Registers, Symbols, Stack and Memory, and Tab cycles through them in that order. Every stop opens in Code. Enter opens the target of a register, stack slot or branch, Esc steps back and Q quits. F8 steps into, F7 steps over and F6 steps out (Fn+8, Fn+7 and Fn+6 on the TEC-1G).</desc>
   <defs>
     <style>
       :root {
@@ -64,34 +64,34 @@
   <text class="cap" x="40" y="30" text-anchor="start" xml:space="preserve">FIVE VIEWS · PRESS KEY TO JUMP OR TAB / SHIFT+TAB TO CYCLE</text>
   <rect class="bxs" x="40" y="48" width="198" height="86" rx="5"/>
   <rect class="pill-s" x="58" y="62" width="24" height="22" rx="3"/>
-  <text class="pill-ts" x="70" y="77" text-anchor="middle" xml:space="preserve">R</text>
-  <text class="nb on-sig" x="92" y="77.5" text-anchor="start" xml:space="preserve">Registers</text>
-  <text class="ns" x="58" y="102" text-anchor="start" xml:space="preserve">PC, SP and pairs</text>
-  <text class="ns" x="58" y="121" text-anchor="start" xml:space="preserve">Flags and stop reason</text>
+  <text class="pill-ts" x="70" y="77" text-anchor="middle" xml:space="preserve">C</text>
+  <text class="nb on-sig" x="92" y="77.5" text-anchor="start" xml:space="preserve">Code</text>
+  <text class="ns" x="58" y="102" text-anchor="start" xml:space="preserve">Live disassembly</text>
+  <text class="ns" x="58" y="121" text-anchor="start" xml:space="preserve">Marks: &gt;  →  □  █</text>
   <rect class="bx" x="261" y="48" width="198" height="86" rx="5"/>
   <rect class="pill" x="279" y="62" width="24" height="22" rx="3"/>
-  <text class="pill-t" x="291" y="77" text-anchor="middle" xml:space="preserve">C</text>
-  <text class="nb" x="313" y="77.5" text-anchor="start" xml:space="preserve">Code</text>
-  <text class="ns" x="279" y="102" text-anchor="start" xml:space="preserve">Live disassembly</text>
-  <text class="ns" x="279" y="121" text-anchor="start" xml:space="preserve">Marks: &gt;  →  □  █</text>
+  <text class="pill-t" x="291" y="77" text-anchor="middle" xml:space="preserve">R</text>
+  <text class="nb" x="313" y="77.5" text-anchor="start" xml:space="preserve">Registers</text>
+  <text class="ns" x="279" y="102" text-anchor="start" xml:space="preserve">PC, SP and pairs</text>
+  <text class="ns" x="279" y="121" text-anchor="start" xml:space="preserve">Flags and stop reason</text>
   <rect class="bx" x="482" y="48" width="198" height="86" rx="5"/>
   <rect class="pill" x="500" y="62" width="24" height="22" rx="3"/>
-  <text class="pill-t" x="512" y="77" text-anchor="middle" xml:space="preserve">S</text>
-  <text class="nb" x="534" y="77.5" text-anchor="start" xml:space="preserve">Stack</text>
-  <text class="ns" x="500" y="102" text-anchor="start" xml:space="preserve">Four 16-bit words</text>
-  <text class="ns" x="500" y="121" text-anchor="start" xml:space="preserve">From SP downward</text>
+  <text class="pill-t" x="512" y="77" text-anchor="middle" xml:space="preserve">Y</text>
+  <text class="nb" x="534" y="77.5" text-anchor="start" xml:space="preserve">Symbols</text>
+  <text class="ns" x="500" y="102" text-anchor="start" xml:space="preserve">Global labels</text>
+  <text class="ns" x="500" y="121" text-anchor="start" xml:space="preserve">Loaded from .TBG</text>
   <rect class="bx" x="126" y="154" width="220" height="86" rx="5"/>
   <rect class="pill" x="144" y="168" width="24" height="22" rx="3"/>
-  <text class="pill-t" x="156" y="183" text-anchor="middle" xml:space="preserve">M</text>
-  <text class="nb" x="178" y="183.5" text-anchor="start" xml:space="preserve">Memory</text>
-  <text class="ns" x="144" y="208" text-anchor="start" xml:space="preserve">16-byte hex window</text>
-  <text class="ns" x="144" y="227" text-anchor="start" xml:space="preserve">FIX or register follow</text>
+  <text class="pill-t" x="156" y="183" text-anchor="middle" xml:space="preserve">S</text>
+  <text class="nb" x="178" y="183.5" text-anchor="start" xml:space="preserve">Stack</text>
+  <text class="ns" x="144" y="208" text-anchor="start" xml:space="preserve">Four 16-bit words</text>
+  <text class="ns" x="144" y="227" text-anchor="start" xml:space="preserve">From SP downward</text>
   <rect class="bx" x="374" y="154" width="220" height="86" rx="5"/>
   <rect class="pill" x="392" y="168" width="24" height="22" rx="3"/>
-  <text class="pill-t" x="404" y="183" text-anchor="middle" xml:space="preserve">Y</text>
-  <text class="nb" x="426" y="183.5" text-anchor="start" xml:space="preserve">Symbols</text>
-  <text class="ns" x="392" y="208" text-anchor="start" xml:space="preserve">Global labels</text>
-  <text class="ns" x="392" y="227" text-anchor="start" xml:space="preserve">Loaded from .TBG</text>
+  <text class="pill-t" x="404" y="183" text-anchor="middle" xml:space="preserve">M</text>
+  <text class="nb" x="426" y="183.5" text-anchor="start" xml:space="preserve">Memory</text>
+  <text class="ns" x="392" y="208" text-anchor="start" xml:space="preserve">16-byte hex window</text>
+  <text class="ns" x="392" y="227" text-anchor="start" xml:space="preserve">FIX or register follow</text>
   <line class="rule" x1="40" y1="264" x2="680" y2="264"/>
   <text class="cap" x="40" y="290" text-anchor="start" xml:space="preserve">STEPPING KEYS · F8, F7 AND F6 (FN+8, FN+7, FN+6 ON TEC-1G)</text>
   <rect class="bx" x="40" y="308" width="198" height="86" rx="5"/>

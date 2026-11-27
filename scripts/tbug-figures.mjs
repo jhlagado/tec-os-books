@@ -286,7 +286,7 @@ add(
       title: '20 × 4 LCD',
       lines: [
         'Matrix keyboard · debugger UI',
-        { text: '>PC 0100  SP 98FE ST', mono: true },
+        { text: '>→0100 LD DE,0109', mono: true },
       ],
       hi: true,
     }),
@@ -314,7 +314,7 @@ add(
 add(
   'views',
   'Switching views and stepping with F6 to F8',
-  'R, C, S, M and Y jump straight to Registers, Code, Stack, Memory and Symbols, and Tab cycles through them. Enter opens the target of a register, stack slot or branch, Esc steps back and Q quits. F8 steps into, F7 steps over and F6 steps out (Fn+8, Fn+7 and Fn+6 on the TEC-1G).',
+  'C, R, Y, S and M jump straight to Code, Registers, Symbols, Stack and Memory, and Tab cycles through them in that order. Every stop opens in Code. Enter opens the target of a register, stack slot or branch, Esc steps back and Q quits. F8 steps into, F7 steps over and F6 steps out (Fn+8, Fn+7 and Fn+6 on the TEC-1G).',
   434,
   [
     eyebrow(40, 30, 'Five views · press key to jump or Tab / Shift+Tab to cycle'),
@@ -325,9 +325,9 @@ add(
       y: 48,
       w: 198,
       h: 86,
-      key: 'R',
-      title: 'Registers',
-      lines: ['PC, SP and pairs', 'Flags and stop reason'],
+      key: 'C',
+      title: 'Code',
+      lines: ['Live disassembly', 'Marks: >  →  □  █'],
       hi: true,
     }),
     card({
@@ -335,18 +335,18 @@ add(
       y: 48,
       w: 198,
       h: 86,
-      key: 'C',
-      title: 'Code',
-      lines: ['Live disassembly', 'Marks: >  →  □  █'],
+      key: 'R',
+      title: 'Registers',
+      lines: ['PC, SP and pairs', 'Flags and stop reason'],
     }),
     card({
       x: 482,
       y: 48,
       w: 198,
       h: 86,
-      key: 'S',
-      title: 'Stack',
-      lines: ['Four 16-bit words', 'From SP downward'],
+      key: 'Y',
+      title: 'Symbols',
+      lines: ['Global labels', 'Loaded from .TBG'],
     }),
 
     // Row 2: 2 cards centred neatly below (w=220, gap=28 => 126, 374 .. 594)
@@ -355,18 +355,18 @@ add(
       y: 154,
       w: 220,
       h: 86,
-      key: 'M',
-      title: 'Memory',
-      lines: ['16-byte hex window', 'FIX or register follow'],
+      key: 'S',
+      title: 'Stack',
+      lines: ['Four 16-bit words', 'From SP downward'],
     }),
     card({
       x: 374,
       y: 154,
       w: 220,
       h: 86,
-      key: 'Y',
-      title: 'Symbols',
-      lines: ['Global labels', 'Loaded from .TBG'],
+      key: 'M',
+      title: 'Memory',
+      lines: ['16-byte hex window', 'FIX or register follow'],
     }),
 
     hrule(264),
@@ -417,7 +417,7 @@ add(
 add(
   'stack-step',
   'PUSH HL in Stack view and in little-endian Memory',
-  'In STEP.COM, LD HL,$1234 loads HL, then PUSH HL moves SP down by two bytes from 98FEh to 98FCh and stores 34h at 98FCh and 12h at 98FDh. Stack view shows the word 1234 while Memory shows the bytes in address order as 34 12.',
+  'In STEP.COM, LD HL,$1234 loads HL, then PUSH HL moves SP down by two bytes from 96FEh to 96FCh and stores 34h at 96FCh and 12h at 96FDh. Stack view shows the word 1234 while Memory shows the bytes in address order as 34 12.',
   354,
   [
     eyebrow(40, 30, 'STEP.COM · three consecutive states'),
@@ -431,7 +431,7 @@ add(
       title: 'Before PUSH HL',
       lines: [
         { text: 'PC 0103 · HL 1234', mono: true },
-        { text: 'SP = 98FEh', mono: true },
+        { text: 'SP = 96FEh', mono: true },
       ],
     }),
     line('ln', 230, 87, 261, 87, 'ar'),
@@ -443,7 +443,7 @@ add(
       h: 82,
       title: 'After PUSH HL',
       lines: [
-        { text: 'PC 0104 · SP 98FCh', mono: true },
+        { text: 'PC 0104 · SP 96FCh', mono: true },
         { text: 'Top word = 1234', mono: true },
       ],
       hi: true,
@@ -458,7 +458,7 @@ add(
       title: 'After POP DE',
       lines: [
         { text: 'PC 0105 · DE 1234', mono: true },
-        { text: 'SP = 98FEh', mono: true },
+        { text: 'SP = 96FEh', mono: true },
       ],
     }),
 
@@ -474,11 +474,11 @@ add(
     line('sline', 64, 234, 98, 234, 'arS'),
 
     rect('bx', 102, 254, 190, 40, 0),
-    text('dim', 120, 278, '98FE'),
-    text('t', 274, 278.5, '9C51', 'end'),
+    text('dim', 120, 278, '96FE'),
+    text('t', 274, 278.5, '99FC', 'end'),
 
     rect('bxs', 102, 214, 190, 40, 0),
-    text('dim on-sig', 120, 238, '98FC'),
+    text('dim on-sig', 120, 238, '96FC'),
     text('tb on-sig', 274, 238.5, '1234', 'end'),
 
     text('dimn', 102, 312, 'High byte paired with low'),
@@ -493,10 +493,10 @@ add(
       cw: 76,
       ch: 40,
       cells: [
-        { addr: '98FC', val: '34', hi: true, sub: 'low byte' },
-        { addr: '98FD', val: '12', hi: true, sub: 'high byte' },
-        { addr: '98FE', val: '51', hi: false },
-        { addr: '98FF', val: '9C', hi: false },
+        { addr: '96FC', val: '34', hi: true, sub: 'low byte' },
+        { addr: '96FD', val: '12', hi: true, sub: 'high byte' },
+        { addr: '96FE', val: 'FC', hi: false },
+        { addr: '96FF', val: '99', hi: false },
       ],
     }),
 

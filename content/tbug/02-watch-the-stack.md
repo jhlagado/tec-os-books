@@ -29,27 +29,36 @@ Launch it under TBUG (if you rebooted since Chapter 1, unload `SHELL.SVC` and ru
 B:WORK>TBUG.SVC STEP
 ```
 
-Registers opens on the LCD with `>PC 0100  SP 98FE ST` and all six register pairs zeroed.
+TBUG stops before the first instruction and opens Code, with `>→0100 LD HL,1234` under the `START:` label.
 
 ## Five views and direct jumps
 
 Eighty character cells cannot fit registers, disassembly, stack, memory and symbols at once, so TBUG splits them into five views:
 
-1. **`R` · Registers** shows `PC`, `SP`, the six 16-bit pairs, flags and the stop code.
-2. **`C` · Code** disassembles instructions around `PC`.
-3. **`S` · Stack** lists four 16-bit words starting at `SP`.
-4. **`M` · Memory** displays sixteen raw bytes as four rows of four.
-5. **`Y` · Symbols** lists the program's global labels whenever a matching `.TBG` file is present.
+1. **`C` · Code** disassembles instructions around `PC`. Every stop opens here.
+2. **`R` · Registers** shows `PC`, `SP`, the six 16-bit pairs, flags and the stop code.
+3. **`Y` · Symbols** lists the program's global labels whenever a matching `.TBG` file is present.
+4. **`S` · Stack** lists four 16-bit words starting at `SP`.
+5. **`M` · Memory** displays sixteen raw bytes as four rows of four.
 
-Pressing `R`, `C`, `S`, `M` or `Y` jumps directly to that view from any inspection screen. `Tab` also cycles forward around the ring and `Shift+Tab` cycles backward. Each switch flashes the view's name (`CODE`, `STACK`, `MEMORY`) on the bottom row for about half a second before its real fourth row returns. Any key pressed during that flash clears the title immediately and acts at once, so you never wait on the banner once you know the layout.
+Pressing `C`, `R`, `Y`, `S` or `M` jumps directly to that view from any inspection screen. `Tab` also cycles forward in that order, from Memory back round to Code, and `Shift+Tab` cycles backward. Without a matching `.TBG` file, `Tab` passes Symbols by. Each switch flashes the view's name (`CODE`, `STACK`, `MEMORY`) on the bottom row for about half a second before its real fourth row returns. Any key pressed during that flash clears the title immediately and acts at once, so you never wait on the banner once you know the layout.
 
-![R, C, S, M and Y jump directly to Registers, Code, Stack, Memory and Symbols while Tab and Shift+Tab cycle through them. F8 steps into, F7 steps over and F6 steps out.](/images/tbug/views.svg)
+![C, R, Y, S and M jump directly to Code, Registers, Symbols, Stack and Memory while Tab and Shift+Tab cycle through them in that order. F8 steps into, F7 steps over and F6 steps out.](/images/tbug/views.svg)
 
 You can also drill straight into a related view. In Registers, the arrow keys move `>` across the grid. Hit `Enter` on `PC` to open Code at the stopped instruction, or `Enter` on `SP` to open Stack. `Esc` steps back one level to where you came from. To leave TBUG at any time, press `Q` and confirm `Quit TBUG? Y/N` with `Y` or `Q`.
 
 ## Reading disassembled code
 
-From the entry stop of `STEP`, tap `F8` (`Fn+8`) once. `LD HL,$1234` runs, moving `PC` to `0103` and loading `1234` into `HL`. Now press `C` (or `Tab`) to open Code:
+From the entry stop of `STEP`, still in Code, tap `F8` (`Fn+8`) once. `LD HL,$1234` runs and `PC` moves to `0103`. Code keeps its window while `PC` stays inside it, so `>→` simply moves down a row:
+
+```text
+START:
+  0100 LD HL,1234
+>→0103 PUSH HL
+  0104 POP DE
+```
+
+`STEP.TBG` also names `0104` as `TAKE:`, but a label row never takes the bottom row, so it waits until the window scrolls. Press `Left`, which snaps the window back to `PC`, and `TAKE:` appears right above `0104`:
 
 ```text
 >→0103 PUSH HL
@@ -58,7 +67,7 @@ TAKE:
   0105 RET
 ```
 
-Because `STEP.TBG` sits beside `STEP.COM`, `TAKE:` appears right above `0104` (without a `.TBG` file, `0104 POP DE` sits directly below `0103 PUSH HL`). Numbers in Code are hexadecimal with no `$` prefix. Two dedicated marker columns keep selection and execution separate so neither ever hides the other: `>` in column 1 marks the row you are browsing, and `→` in column 2 marks `PC`. On `0103`, both sit together as `>→0103 PUSH HL`.
+Without a `.TBG` file, `0104 POP DE` sits directly below `0103 PUSH HL`. Numbers in Code are hexadecimal with no `$` prefix. Two dedicated marker columns keep selection and execution separate so neither ever hides the other: `>` in column 1 marks the row you are browsing, and `→` in column 2 marks `PC`. On `0103`, both sit together as `>→0103 PUSH HL`.
 
 `Up` and `Down` move `>` through decoded instructions and scroll freely before or after `PC` without changing where the program stopped. Near `PC`, stepping backwards lands cleanly on instruction starts. Farther back, TBUG works out instruction boundaries from the preceding bytes. Whenever you have scrolled away and want to snap straight back to `PC`, press `Left`.
 
@@ -68,42 +77,42 @@ Scroll one row past `0105 RET` and you will see `0106 NOP`. A Z80 keeps code and
 
 ## Watching the stack move
 
-With `PUSH HL` lined up at `0103h`, press `S` (or `Tab` from Code) to open Stack:
+With `PUSH HL` lined up at `0103h`, press `S` to open Stack:
 
 ```text
->SP 98FE  9C51
-    9900  16C3
-    9902  01E4
-    9904  003D
+>SP 96FE  99FC
+    9700  39C3
+    9702  01E6
+    9704  003D
 ```
 
-Stack displays four 16-bit words starting at `SP`. That top word, `9C51` at `98FEh`, is the exit address TBUG pushed before starting `STEP.COM` so `RET` lands back inside TBUG. Your exact address depends on the build and resident services, so keep an eye on your own starting `SP`.
+Stack displays four 16-bit words starting at `SP`. That top word, `99FC` at `96FEh`, is the exit address TBUG pushed before starting `STEP.COM` so `RET` lands back inside TBUG. Your exact address depends on the build and resident services, so keep an eye on your own starting `SP`.
 
 You do not need to switch back to Registers to step. Tap `F8` right here in Stack and watch `PUSH HL` execute in place:
 
 ```text
->SP 98FC  1234
-    98FE  9C51
-    9900  16C3
-    9902  01E4
+>SP 96FC  1234
+    96FE  99FC
+    9700  39C3
+    9702  01E6
 ```
 
-On a Z80, the stack grows downwards. Pushing a 16-bit pair subtracts two from `SP` and stores the value at the new lower address. `SP` dropped from `98FE` to `98FC`, `1234` appeared on row 1 and TBUG's return address `9C51` slid down to row 2. Whenever `SP` moves, Stack resets `>` to the top slot so pushes and pops jump out at you.
+On a Z80, the stack grows downwards. Pushing a 16-bit pair subtracts two from `SP` and stores the value at the new lower address. `SP` dropped from `96FE` to `96FC`, `1234` appeared on row 1 and TBUG's return address `99FC` slid down to row 2. Whenever `SP` moves, Stack resets `>` to the top slot so pushes and pops jump out at you.
 
-Now hit `Enter` on that top slot to open Memory at `98FCh`:
+Now hit `Enter` on that top slot to open Memory at `96FCh`:
 
 ```text
-98FC>34 12 51 9C FIX
-9900 C3 16 E4 01
-9904 3D 00 00 00
-9908 00 00 00 00
+96FC>34 12 FC 99 FIX
+9700 C3 39 E6 01
+9704 3D 00 4F BB
+9708 00 00 DE 03
 ```
 
-The first two bytes read `34 12`, not `12 34`. Because the Z80 is little-endian, the low byte (`34h`) sits at the lower address (`98FCh`) and the high byte (`12h`) sits above it (`98FDh`). Stack pairs those bytes back into 16-bit words because `PUSH`, `POP`, `CALL` and `RET` work on words. Memory shows raw bytes in ascending address order. Both views read the exact same RAM through two different lenses.
+The first two bytes read `34 12`, not `12 34`. Because the Z80 is little-endian, the low byte (`34h`) sits at the lower address (`96FCh`) and the high byte (`12h`) sits above it (`96FDh`). Stack pairs those bytes back into 16-bit words because `PUSH`, `POP`, `CALL` and `RET` work on words. Memory shows raw bytes in ascending address order. Both views read the exact same RAM through two different lenses.
 
-![F8 executes PUSH HL, moving SP down two bytes from 98FEh to 98FCh. Stack displays the word 1234 while Memory displays the bytes in address order as 34 12.](/images/tbug/stack-step.svg)
+![F8 executes PUSH HL, moving SP down two bytes from 96FEh to 96FCh. Stack displays the word 1234 while Memory displays the bytes in address order as 34 12.](/images/tbug/stack-step.svg)
 
-Hit `Esc` to step back to Stack, then press `C` to return to Code, where `→` now sits on `0104 POP DE`. Tap `F8` to execute the pop, then press `R` to return to Registers. `DE` holds `1234`, `HL` still holds `1234` and `SP` has returned to `98FE`. Press `F5` to let `RET` end `STEP.COM` (`PC ----`, `SP 9900`, `EX`), then `Q` and `Y` to return to `B:WORK>`.
+Hit `Esc` to step back to Stack, then press `C` to return to Code, where `→` now sits on `0104 POP DE`. Tap `F8` to execute the pop, then press `R` to return to Registers. `DE` holds `1234`, `HL` still holds `1234` and `SP` has returned to `96FE`. Press `F5` to let `RET` end `STEP.COM` (`PC ----`, `SP 9700`, `EX`), then `Q` and `Y` to return to `B:WORK>`.
 
 ## Stepping into, over and out of calls
 
@@ -114,3 +123,5 @@ Tapping `F8` one instruction at a time works on six bytes, not when your code ca
 - **`F6` (Step Out):** Steps over nested calls until a `RET` lifts `SP` above its starting value, counting steps along the bottom row. If a routine loops for a long time before returning, any key interrupts the trace and hands control back.
 
 `F5` to `F8` all wait for every key to be released before resuming the CPU. That release guard prevents a debugger keypress from leaking into a program polling the matrix keyboard.
+
+_Checked against TEC-OS `b5af505` with TBUG `a4d1da8`, on the starter card in the emulated TEC-1G, 27 November 2026._

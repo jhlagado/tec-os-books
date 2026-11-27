@@ -15,8 +15,8 @@ On the TEC-1G matrix keyboard, `Fn+5` through `Fn+8` send `F5` through `F8`.
 
 | Key | Action |
 | --- | --- |
-| `R` / `C` / `S` / `M` / `Y` | Jump straight to Registers, Code, Stack, Memory or Symbols. |
-| `Tab` / `Shift+Tab` | Cycle forward or backward through the views. |
+| `C` / `R` / `Y` / `S` / `M` | Jump straight to Code, Registers, Symbols, Stack or Memory. |
+| `Tab` / `Shift+Tab` | Cycle forward or backward through the views: Code, Registers, Symbols (with a matching `.TBG`), Stack, Memory, then back to Code. Every stop opens in Code. |
 | `F5` (`Fn+5`) | Run until exit or a breakpoint. In Code with `>` off `PC`, run once to the selected line with no breakpoint left behind. |
 | `F6` (`Fn+6`) | Step Out: trace over calls until `RET` lifts `SP` above its starting value. Row 4 counts steps and any key stops it. |
 | `F7` (`Fn+7`) | Step Over: run a `CALL` to the instruction after it as one step. |
@@ -30,7 +30,7 @@ On the TEC-1G matrix keyboard, `Fn+5` through `Fn+8` send `F5` through `F8`.
 | `Q` | Prompt `Quit TBUG? Y/N`. Press `Y` or `Q` to quit and return to CP/M. |
 | `H` | Open context-sensitive help from `TBUG.HLP`. `Left`/`Right` turn pages and `Esc` or `H` returns. |
 
-`F5` to `F8` all wait for every key to be released before resuming the program so the keypress never reaches the program, while arrow keys repeat when held. Each view switch flashes the view's name briefly on the bottom row.
+`F5` to `F8` all wait for every key to be released before resuming the program so the keypress never reaches the program. No key repeats: each press, arrows included, acts once however long it is held. Each view switch flashes the view's name briefly on the bottom row.
 
 ## Arrow keys by view
 
@@ -87,3 +87,5 @@ Copy both files to your TEC-OS disk. `TBUG.SVC ARM` and `TBUG.SVC NAME` require 
 
 [TBUG source](https://github.com/jhlagado/tbug) ·
 [Origo P8 test evidence](https://github.com/jhlagado/origo/tree/main/studies/p8-tbg/evidence)
+
+_Checked against TEC-OS `b5af505` with TBUG `a4d1da8`, on the starter card in the emulated TEC-1G, 27 November 2026._

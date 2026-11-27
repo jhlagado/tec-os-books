@@ -42,7 +42,7 @@ Memory shows sixteen bytes as four rows of four. Each row starts with its four-d
 - **A register pair (`HL`, `DE`, `BC`, `IX` or `IY`)** locks Memory to that register. Whenever an instruction changes the pair, the window moves with it.
 - **A pair with `+` (`HL+`)** means Memory still tracks that register, but you have scrolled away from offset zero. That offset stays locked as the register advances.
 
-Try it on `FILL`. At the entry stop (`PC 0100`), tap `F8` (`Fn+8`) once to run `LD HL,BUF`. `PC` moves to `0103` and `HL` becomes `010A`, the address of `BUF`.
+Try it on `FILL`. At the entry stop (`PC 0100`), press `R` for Registers and tap `F8` (`Fn+8`) once to run `LD HL,BUF`. `PC` moves to `0103` and `HL` becomes `010A`, the address of `BUF`.
 
 In Registers, move `>` onto `HL` (`Down` twice, `Right` once) and hit `Enter`. Memory opens straight at `010Ah` with `HL` in the top right corner:
 
@@ -109,3 +109,5 @@ In **Memory**, put `>` on a byte and press `E`. The top right tag switches to `E
 `Esc` drops any unfinished first digit and leaves edit mode while keeping every completed byte you wrote.
 
 One safety fence guards `EDT` mode: TBUG only writes inside program memory, from `0100h` up to the lowest resident service. Page zero (`0000h–00FFh`), TBUG itself and ROM are off limits. Trying to write there prints `Not writable` or `End of range` and leaves the byte alone so a stray hex digit cannot knock the debugger out from under you.
+
+_Checked against TEC-OS `b5af505` with TBUG `a4d1da8`, on the starter card in the emulated TEC-1G, 27 November 2026._

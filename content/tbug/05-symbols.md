@@ -22,7 +22,7 @@ Each time TBUG stops a program at launch, it checks for a `NAME.TBG` file beside
 When both match, symbols turn on and `SY` lights up at the right end of row 2 in Registers:
 
 ```text
->PC 0100  SP 98FE ST
+>PC 0100  SP 96FE ST
  AF 0000  BC 0000 SY
  DE 0000  HL 0000 ..
  IX 0000  IY 0000 ..
@@ -32,7 +32,7 @@ When the `.TBG` file is absent or stale, TBUG ignores it quietly, `SY` stays off
 
 ## Labels in Code
 
-Start `TBUG.SVC FILL` from `B:WORK>` and tap `F8` (`Fn+8`) four times (`LD HL,BUF`, `LD B,4`, `LD (HL),B`, `INC HL`) so `PC` lands on `0107h`. Press `C` to jump to Code:
+Start `TBUG.SVC FILL` from `B:WORK>`, press `R` and tap `F8` (`Fn+8`) four times (`LD HL,BUF`, `LD B,4`, `LD (HL),B`, `INC HL`) so `PC` lands on `0107h`. Press `C` to jump to Code:
 
 ```text
 >→0107 DJNZ FILL
@@ -49,7 +49,7 @@ Three details jump out on those four lines:
 
 ## The fifth view: Symbols
 
-Whenever TBUG matches a `.TBG` file, a fifth view called **Symbols** becomes active. Jump straight to it with `Y` (or cycle to it with `Tab` after Memory) on `FILL`:
+Whenever TBUG matches a `.TBG` file, a fifth view called **Symbols** becomes active. Jump straight to it with `Y` (or with `Tab` from Registers) on `FILL`:
 
 ```text
 >0100 START
@@ -58,3 +58,5 @@ Whenever TBUG matches a `.TBG` file, a fifth view called **Symbols** becomes act
 ```
 
 Symbols lists global labels in ascending address order. `Up` and `Down` move `>` through the list. Hit `Enter` to open Code at that label without disturbing `PC` (`Esc` brings you back to Symbols), or press `Space` to toggle a breakpoint straight on that label's address without visiting Code first.
+
+_Checked against TEC-OS `b5af505` with TBUG `a4d1da8`, on the starter card in the emulated TEC-1G, 27 November 2026._
