@@ -213,7 +213,7 @@ Inserting `95 PRINT (` before file line 10 places it between BASIC lines
 the broken copy is on B. After F9 saved the file, BAZC printed this message
 over the last progress mark:
 
-<!-- TEC-OS 1e35854, ROM bb429d10, BAZC from Baza 3f31488: node scripts/capture-fn.mjs (tools/capture.mjs with @fn for Fn and a digit) --card times-broken.img --board pico --screen B: '@start TED TIMES.BAS' '@fn 9' '@run 600', where times-broken.img holds TIMES.BAS with 95 PRINT ( as file line 10 on B. Console excerpt, the spinner's marks taken out. -->
+<!-- TEC-OS a738e2d, ROM bb429d10, BAZC from Baza 3f31488: node tools/capture.mjs --card times-broken.img --board pico --screen B: '@start TED TIMES.BAS' '@fn 9' '@run 600', where times-broken.img holds TIMES.BAS with 95 PRINT ( as file line 10 on B. Console excerpt, the spinner's marks taken out. -->
 ```text
 B:WORK>A:BAZC TIMES.BAS
 ?SYNTAX ERROR IN 95

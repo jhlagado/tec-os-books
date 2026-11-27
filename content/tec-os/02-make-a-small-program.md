@@ -78,7 +78,7 @@ same key to compile BASIC source with BAZC. This
 excerpt shows the rejected build before TED redraws its screen. The initial
 screen-clear controls, leading blank line and final editor redraw are omitted:
 
-<!-- TEC-OS 1e35854, ROM bb429d10, TED b2f98bc: node tools/capture.mjs with @fn D for Fn held with digit D and @arrow for the matrix arrows (the books' copy, scripts/capture-fn.mjs) --card banner-broken.img --board pico --screen '@start A:TED B:BANNER.ASM' '@fn 9' '@run 400'. Console excerpt; terminal controls and editor redraw outside the selected span omitted. -->
+<!-- TEC-OS a738e2d, ROM bb429d10, TED b2f98bc: node tools/capture.mjs --card banner-broken.img --board pico --screen '@start A:TED B:BANNER.ASM' '@fn 9' '@run 400'. Console excerpt; terminal controls and editor redraw outside the selected span omitted. -->
 ```text
 A:SYSTEM>A:TAS B:BANNER.ASM
 BANNER.ASM:14:1: unknown instruction or directive
@@ -116,7 +116,7 @@ is out of date. The initial run
 produced this complete console text before the editor redraw. The initial
 clear-screen controls and leading blank line are omitted:
 
-<!-- TEC-OS 1e35854, ROM bb429d10, TED b2f98bc: node tools/capture.mjs with @fn D for Fn held with digit D and @arrow for the matrix arrows (the books' copy, scripts/capture-fn.mjs) --card banner-plain.img --board pico --screen '@start A:TED B:BANNER.ASM' '@fn 5' '@run 400'. Console excerpt; terminal controls and editor redraw outside the selected span omitted. -->
+<!-- TEC-OS a738e2d, ROM bb429d10, TED b2f98bc: node tools/capture.mjs --card banner-plain.img --board pico --screen '@start A:TED B:BANNER.ASM' '@fn 5' '@run 400'. Console excerpt; terminal controls and editor redraw outside the selected span omitted. -->
 ```text
 A:SYSTEM>A:TAS B:BANNER.ASM
 BANNER.COM written
@@ -197,7 +197,7 @@ F5 builds and runs the changed program. Its new greeting appears in
 this separate capture. The initial clear-screen controls and leading
 blank line are omitted:
 
-<!-- TEC-OS 1e35854, ROM bb429d10, TED b2f98bc: node tools/capture.mjs with @fn D for Fn held with digit D and @arrow for the matrix arrows (the books' copy, scripts/capture-fn.mjs) --card banner-edited.img --board pico --screen '@start A:TED B:BANNER.ASM' '@fn 5' '@run 400'. Console excerpt; terminal controls and editor redraw outside the selected span omitted. -->
+<!-- TEC-OS a738e2d, ROM bb429d10, TED b2f98bc: node tools/capture.mjs --card banner-edited.img --board pico --screen '@start A:TED B:BANNER.ASM' '@fn 5' '@run 400'. Console excerpt; terminal controls and editor redraw outside the selected span omitted. -->
 ```text
 A:SYSTEM>A:TAS B:BANNER.ASM
 BANNER.COM written

@@ -84,16 +84,17 @@ The existing image preview supports a larger view.
 
 Screens and transcripts in the books are captured from TEC-OS's host model,
 never typed by hand. Each block's comment gives its recipe and the commits it
-was taken on. Most recipes are TEC-OS's own `tools/capture.mjs`, run in a
+was taken on. The recipes are TEC-OS's own `tools/capture.mjs`, run in a
 TEC-OS checkout built with `npm run build && npm run media`.
 
-A recipe that presses a function key or an arrow key uses
-`scripts/capture-fn.mjs`, a copy of `capture.mjs` with `@fn D` (Fn held with
-digit D, as F1 to F10 are on the matrix keyboard) and `@arrow` (the matrix
-arrows). It runs the machine model of the checkout named by `TECOS`:
+A recipe that presses a function key or an arrow key uses `capture.mjs`'s
+`@fn D` (Fn held with digit D, as F1 to F10 are on the matrix keyboard) and
+`@arrow` (the matrix arrows), from TEC-OS a738e2d on. Both need
+`--board pico` or `--board glcd`. On those boards `^C` to `^F` are typed as
+arrow keys, so a recipe that needs them uses the serial board, the default.
 
 ```sh
-TECOS=../tec-os node scripts/capture-fn.mjs --board pico --screen '@start A:TED B:BANNER.ASM' '@fn 9' '@run 400'
+node tools/capture.mjs --board pico --screen '@start A:TED B:BANNER.ASM' '@fn 9' '@run 400'
 ```
 
 A recipe's `--card NAME.img` is the checkout's `dist/starter.img` with the
