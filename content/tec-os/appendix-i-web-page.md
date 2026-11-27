@@ -16,7 +16,9 @@ nav_group: "Reference"
      studies/p3-tec-os/evidence/book-recovery-host/.
      The tool inputs are the pinned TAS host 3d16b30 and TED 02b63d8;
      Baza is the qualified 5f6b58d payload. Source-derived excerpts are
-     labelled separately from console captures. -->
+     labelled separately from console captures.
+     The section on the current Viewer was checked against Viewer 8d7e623
+     (src/main.mjs, README.md) and the TEC-OS 1e35854 starter recipe. -->
 
 The browser page lets you use a software TEC-1G and exchange files with
 your PC. The machine's working card and the browser's saved copy are
@@ -29,24 +31,34 @@ limits. [Chapter 8](08-commands-at-startup.md) explains STARTUP.CMD and
 
 ## The current standalone Viewer
 
-The previous separately qualified [live standalone Viewer](https://jhlagado.github.io/tec-os-viewer/) was
-qualified at Viewer `210d939` with TEC-OS `b95b2a9` for this update. Its
+The [TEC-OS Viewer](https://jhlagado.github.io/tec-os-viewer/) is the page
+most readers use. Its
 [build details](https://jhlagado.github.io/tec-os-viewer/build-info.json)
-identify the deployed commits. A new session defaults to 40 columns; valid
-saved 32-, 40- or 80-column choices are retained. That deployment had a
-sixteen-file starter including a precompiled BASIC Caverns game.
+name the Viewer and TEC-OS commits it is running. A new session uses 40
+columns, and a saved choice of 32, 40 or 80 columns is kept.
 
-The current repository starter has fifteen files and supplies Caverns as source.
-Choose PICO9918 at 80 columns, compile with `BAZC CAVERNS`, then run
-`CAVERNS`; read `CAVERNS.TXT` for instructions. A merge into main is not
-evidence that the live site has been redeployed. The live build details
-identify the version actually running there.
+The starter card has six volumes. A: holds SYSTEM and B: holds WORK, your
+work disk. ASM, BASIC, MON3 and GAMES wait on the card for `CD`, and C: is a
+spare drive. GAMES carries Caverns ready to play: `CD A:GAMES`, then
+`CAVERNS`, and `TYPE CAVERNS.TXT` for the instructions.
 
-The standalone project is built from the separate `tec-os-viewer` repository;
-its README gives the build commands. The `b95b2a9:web/` source references and
-`npm run web` instructions below describe the embedded development page in
-the TEC-OS repository, including that page's 80-column preference default.
-They are not the standalone Viewer's source locations or default setting.
+The Viewer has one keyboard, as the TEC-1G has one matrix. A key typed
+anywhere on the page goes to the matrix with its Shift or Ctrl. You need not
+click a display first. The serial
+pane, the phone keyboard and the page's own controls keep their keys. F1 to
+F10 reach the machine as Fn with a digit, F10 as Fn with 0. On a Mac, press
+fn with the F-key unless the keyboard sends standard function keys. The
+matrix does not repeat: a key held down is one press.
+
+The Viewer is built from its own repository, `tec-os-viewer`, whose README
+gives the build commands. A merge into its main does not redeploy the live
+page; the build details show what is running there.
+
+The `b95b2a9:web/` source references and `npm run web` instructions below
+describe a different page: the development page in the TEC-OS repository.
+That page defaults to 80 columns and routes keys by focus, as
+[Typing](#typing) describes.
+
 Both pages save card-image bytes separately from TEC-OS's pending RAM data;
 a browser save is not confirmation that a failed guest write reached the card.
 
@@ -129,8 +141,10 @@ a second and reports the achieved rate, not a guaranteed board speed
 
 ## Typing
 
-Keyboard routing follows the focused element. Clicking a video display gives
-it focus. The serial terminal becomes the console after `CON TTY`.
+On the Viewer, keys reach the matrix from anywhere on the page, as
+[above](#the-current-standalone-viewer). On the TEC-OS development page,
+keyboard routing follows the focused element, and clicking a video display
+gives it focus. The serial terminal becomes the console after `CON TTY`.
 `CON CRT` selects the PICO9918 and `CON UC1` selects the graphics LCD when
 available (`b95b2a9:web/index.html:35-49`, `b95b2a9:web/src/main.mjs:399-438`).
 
