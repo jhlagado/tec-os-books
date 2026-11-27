@@ -20,8 +20,9 @@ nav_group: "Using the machine"
 
 BASIC provides another way to write programs on the TEC-1G. The card's
 TIMES.BAS reads a name and number, then prints a multiplication table.
-You compile it with BAZC and run the resulting program. Changing it in
-TED uses the same edit, build and run cycle as BANNER.
+You compile it with BAZC and run the resulting program. In TED you can
+also run the source at once in BAZ, the BASIC interpreter, and compile it
+when it works.
 
 These results use the same software TEC-1G host model as Chapters 1 and 2.
 BAZC and TED's BASIC build keys still need a recorded physical-board run.
@@ -110,13 +111,10 @@ A:SYSTEM>
 The marks go only to the console, and the compiled program is the same
 with or without them (`Baza 5f6b58d:README.md:26-30`).
 
-The command `TIMES` runs TIMES.COM. This 40-column output is checked by
-the TEC-OS host-model test with answers `TEC`, 13 and then 7. The starting
-`A:SYSTEM>TIMES` line is omitted:
+The command `TIMES` runs TIMES.COM. This 40-column screen answers `TEC`,
+13 and then 7. The starting `A:SYSTEM>TIMES` line is omitted:
 
-<!-- TEC-OS de6216f test/times.test.mjs:28-40, the asserted output, with
-     the screen check at :120-122: answers TEC, 13 and 7, trailing spaces
-     removed. Not a separate capture. -->
+<!-- TEC-OS 1e35854, ROM bb429d10, starter card 24801956: node tools/capture.mjs --board pico --screen 'BAZC TIMES' '@start TIMES' '@press TEC' $'@press \r' '@run 100' $'@press 13\r' '@run 100' $'@press 7\r' '@run 300'. The PICO9918's screen from the program's first line; trailing empty rows omitted. -->
 ```text
 HELLO FROM BASIC ON TEC-OS.
 WHAT IS YOUR NAME? TEC
@@ -153,27 +151,26 @@ finishes the program and returns to the prompt.
 ## TIMES in TED
 
 `TED TIMES.BAS` opens the source for editing. Arrow keys, Backspace and
-`^G` work as they did in BANNER.ASM. `^S` saves and `^Q` quits. The file
-type selects the build tool: TAS for `.ASM` and BAZC for `.BAS`. The
-`^T` sequences are otherwise the same:
+`^Y` work as they did in BANNER.ASM. `^S` saves and `^Q` quits. The file
+type selects the tools:
 
-| Keys | `.ASM` file | `.BAS` file |
+| Key | `.ASM` file | `.BAS` file |
 | --- | --- | --- |
-| `^T B` | Saves and builds with `TAS` | Saves and builds with `BAZC` |
-| `^T R` | Builds with `TAS`, then runs the program | Builds with `BAZC`, then runs the program |
-| `^T D` | Chains `TDB`, which the starter card does not contain, so the CCP prints `A:TDB?` and TED returns | Shows `No debugger` and runs nothing |
+| F9 | Saves and builds with `TAS` | Saves and compiles with `BAZC` |
+| F5 | Builds with `TAS` if the program is out of date, then runs it | Saves and runs the source in `BAZ`, the interpreter |
 
-`^T B` saves TIMES.BAS and runs `A:BAZC TIMES.BAS`. The A prefix is the
+F9 saves TIMES.BAS and runs `A:BAZC TIMES.BAS`. The A prefix is the
 drive that supplied TED. The console displays this command and
 `COM written` before TED reopens the source at your previous position.
 After the first successful build, `TED.PRJ: TIMES.BAS` appears on the
 status row. TED has recorded TIMES.BAS as the build source in its project
 file.
 
-`^T R` rebuilds and runs TIMES. TED waits at `Press a key` after the
-program ends, leaving its output visible. A keypress restores the source
-at the same position. `^T D` instead displays `No debugger` in the editor.
-It performs no external command or file write.
+F5 runs `A:BAZ TIMES.BAS`. BAZ reads the source and runs it straight
+away, with no compile, so F5 is the quick way to try a change. TED waits
+at `Press a key` after the program ends, leaving its output visible. A
+keypress restores the source at the same position. F5 never runs the
+compiled TIMES.COM: quit TED and type `TIMES` for that.
 
 The same build works with a source file on B. From `B:WORK>`, TED and
 BAZC load from A and BAZC reads A's `BAZC.RTL`. The result, TIMES.COM,
@@ -198,11 +195,9 @@ and both quotes:
 40 PRINT "HELLO FROM MY FIRST BASIC."
 ```
 
-`^S` saves the change and `^T B` compiles it with A's BAZC, writing
-TIMES.COM on B. `^T R` builds and runs it with the new greeting. Answering
+`^S` saves the change. F5 runs it in BAZ with the new greeting. Answering
 the questions completes the program and a further key returns to TED.
-The host-model tests cover `^T R` with TIMES.BAS on A and a build with it
-on B.
+F9 then compiles it with A's BAZC, writing TIMES.COM on B.
 
 `^Q` quits TED and returns to `B:WORK>`. Wait for that prompt before a
 reset or power-off. Its read attempts pending writes, but a prompt after
@@ -213,16 +208,14 @@ reset or power-off. Its read attempts pending writes, but a prompt after
 ## A failed compile
 
 A syntax error stops compilation and returns TED to the faulty line.
-In the model test, inserting `95 PRINT (` before file line 10 placed it
-between BASIC lines 90 and 100. Its number is in order but its expression
-is unfinished. After `^T B` saved the file, BAZC printed this message
+Inserting `95 PRINT (` before file line 10 places it between BASIC lines
+90 and 100. Its number is in order but its expression is unfinished. Here
+the broken copy is on B. After F9 saved the file, BAZC printed this message
 over the last progress mark:
 
-<!-- TEC-OS de6216f test/ted-baza.test.mjs:94-101, the asserted console
-     text with the spinner's marks taken out (:29-31). Not a separate
-     capture. -->
+<!-- TEC-OS 1e35854, ROM bb429d10, BAZC from Baza 3f31488: node scripts/capture-fn.mjs (tools/capture.mjs with @fn for Fn and a digit) --card times-broken.img --board pico --screen B: '@start TED TIMES.BAS' '@fn 9' '@run 600', where times-broken.img holds TIMES.BAS with 95 PRINT ( as file line 10 on B. Console excerpt, the spinner's marks taken out. -->
 ```text
-A:SYSTEM>A:BAZC TIMES.BAS
+B:WORK>A:BAZC TIMES.BAS
 ?SYNTAX ERROR IN 95
 ```
 
@@ -374,11 +367,15 @@ printing, so the message shows at the prompt. The host-model test checks
 this with a program that claims the display and then divides by zero
 (`Baza 5f6b58d:docs/call.md:66-70`, `57a8c38:test/times.test.mjs:213-233`).
 
-On the card, `BAZC BOUNCE` compiles it and `BOUNCE` runs it on
-the PICO9918, which it needs. Tap W, A, S and D, or the arrow keys, to steer
+On the card, BOUNCE.BAS is on the BASIC volume, where `BAZC BOUNCE`
+compiles it. The GAMES volume carries the compiled game: `CD A:GAMES`, then
+`BOUNCE`, runs it on the PICO9918, which it needs. Tap W, A, S and D, or the arrow keys, to steer
 the ship. The matrix arrows send Esc, `[` and a letter from `A` to `D`.
 Lines 950 to 999 translate these sequences to W, S, D or A. Q ends the
-game, restores the display console and prints the score at `A:SYSTEM>`.
+game, restores the display console and prints the score, as
+`THANKS FOR PLAYING. SCORE 5`, at the prompt.
 The host-model test checks each of these steps
 (`57a8c38:tools/media.mjs:218-221`, `57a8c38:test/starter.test.mjs:103-184`,
 `Baza 5f6b58d:examples/BOUNCE.BAS:84`, `103-115`).
+
+_Screens checked against TEC-OS `1e35854` with TED `b2f98bc` and BAZ and BAZC from Baza `3f31488`, on the starter card in the emulated TEC-1G, 27 November 2026._
