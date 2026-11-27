@@ -58,14 +58,16 @@ START:
   0104 POP DE
 ```
 
-`STEP.TBG` also names `0104` as `TAKE:`, but a label row never takes the bottom row, so it waits until the window scrolls. Press `Left`, which snaps the window back to `PC`, and `TAKE:` appears right above `0104`:
+`STEP.TBG` also names `0104` as `TAKE:`, but a label row never takes the bottom row, so it waits until the window scrolls. Press `Down` twice. The first moves `>` onto `0104`; the second scrolls, and `TAKE:` appears right above `0104`:
 
 ```text
->→0103 PUSH HL
+ →0103 PUSH HL
 TAKE:
   0104 POP DE
-  0105 RET
+> 0105 RET
 ```
+
+`>` has moved on to `0105` while `→` stays on `0103`, because browsing never moves `PC`.
 
 Without a `.TBG` file, `0104 POP DE` sits directly below `0103 PUSH HL`. Numbers in Code are hexadecimal with no `$` prefix. Two dedicated marker columns keep selection and execution separate so neither ever hides the other: `>` in column 1 marks the row you are browsing, and `→` in column 2 marks `PC`. On `0103`, both sit together as `>→0103 PUSH HL`.
 
