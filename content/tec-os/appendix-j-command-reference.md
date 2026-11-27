@@ -476,9 +476,11 @@ and HELLO3.BIN is built from HELLO3.ASM before loading it at `MON3>`
 | File | Use |
 | --- | --- |
 | `TED.COM` | `TED [NAME.EXT [LINE]]` edits a text file, opening it at `LINE` when one is given. With no name it opens the project's file |
-| `TAS.COM` | `TAS NAME [OUT.TYP]` assembles `NAME.ASM` to `NAME.COM` and `NAME.DBG`, or to `OUT.TYP`, where a type of `SVC` makes a service and an explicit `HEX` writes genuine Intel HEX. A line may hold several statements with `\` between them |
+| `TAS.COM` | `TAS INPUT.ASM [OUTPUT.TYP]`, or `TAS NAME`, assembles `NAME.ASM` to `NAME.COM` and `NAME.TBG`, TBUG's symbols, or to `OUTPUT.TYP`, where a type of `SVC` makes a service and an explicit `HEX` writes genuine Intel HEX. A line may hold several statements with `\` between them |
+| `BAZ.COM` | `BAZ [d:]NAME` runs `NAME.BAS` in the BASIC interpreter |
 | `BAZC.COM` | `BAZC NAME` compiles `NAME.BAS` to `NAME.COM` on the same drive; `BAZC NAME.TYP` compiles that file as named |
 | `BAZC.RTL` | BAZC's runtime library, read from the current drive or from the drive `BAZC.COM` was loaded from |
+| `TBUG.SVC`, `TBUG.HLP` | `TBUG.SVC NAME` installs the debugger and stops `NAME.COM` at its first instruction; the [TBUG book](../tbug/index.md) explains it |
 | `SAMPLE.ASM` | Assembly source for `TAS SAMPLE`, then `SAMPLE` |
 | `TIMES.BAS` | BASIC source for `BAZC TIMES`, then `TIMES` |
 | `BOUNCE.BAS` | A sprite game for the PICO9918, which it needs. `BAZC BOUNCE`, then `BOUNCE`. Tap W, A, S and D, or the arrow keys, to steer and Q to quit |
@@ -500,15 +502,15 @@ relocate embedded addresses. `GO ADDR` remains a one-run entry override
 (`Thorium 7a217f96c76f11641af3fa0b22d0b34be6e2a467:docs/language.md:167-185`,
 `TEC-OS 54f1b102f7031d563c13c465747bc92157c803da:test/tas-hex.test.mjs:105-137`).
 
-TED's `^T B` and `^T R` build an `.ASM` file with `TAS NAME.ASM` and a
-`.BAS` file with `BAZC NAME.BAS`. `^T D` chains `TDB NAME` for an `.ASM`
-file, which fails with `A:TDB?` on the starter card, and shows
-`No debugger` for a `.BAS` file
-(`Thorium 02b63d8:README.md:14-41`, `57a8c38:docs/compatibility.md:223`).
+TED's F9 builds an `.ASM` file with `TAS NAME.ASM` and compiles a `.BAS`
+file with `BAZC NAME.BAS`. F5 runs an `.ASM` program, building it first if
+it is out of date, and runs a `.BAS` file in BAZ with `BAZ NAME.BAS`.
+On the matrix keyboard F5 and F9 are Fn with 5 and Fn with 9
+(`TED b2f98bc:README.md:22-27`, `TED b2f98bc:README.md:61-66`).
 A file name and `TED.PRJ`'s `ARGS` end at `!` or at `&` after a blank.
 Those are the shell's line separators. `ARGS X &Y` therefore gives the
 program the tail ` X` and runs nothing after it
-(`Thorium 02b63d8:README.md:51-58`).
+(`TED b2f98bc:README.md:79-84`).
 `TAS` and `BAZC` both set the failure return code `FF00h` when a build
 fails. A failed BAZC compile leaves an existing `NAME.COM` unchanged, and a
 failed TAS build normally keeps its earlier outputs

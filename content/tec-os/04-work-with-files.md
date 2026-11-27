@@ -207,7 +207,7 @@ a named file or prints `NO FILE` for an absent one. The shell's DEL
 command invokes ERA with the same arguments.
 
 The following complete example begins on a separate starter card with
-B empty. It does not contain BANNER.ASM, BANNER.COM or BANNER.DBG. Read it as
+B empty. It does not contain BANNER.ASM, BANNER.COM or BANNER.TBG. Read it as
 that separate session, not as a sequence to repeat on your current card. It
 copies A's STARTUP.CMD under two names, renames one copy and erases only
 NOTES.TXT. The listings and free-space figures belong to that card:
@@ -265,7 +265,7 @@ because NOTES.TXT already exists. ERA then removes NOTES.TXT and its
 repetition reports `NO FILE`. STARTUP.CMD remains on B and the original
 on A is unchanged.
 
-On your working card, retain BANNER.ASM, BANNER.COM and BANNER.DBG. Use an exact
+On your working card, retain BANNER.ASM, BANNER.COM and BANNER.TBG. Use an exact
 name when erasing a disposable copy. A selective pattern such as `*.TXT` is
 erased without a confirmation question so it can remove more than one file.
 Checking it with DIR first helps you avoid erasing a file you meant to keep. The

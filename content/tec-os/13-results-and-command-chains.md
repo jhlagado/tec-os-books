@@ -464,33 +464,33 @@ reaches the shell.
 
 ## TED's build and return
 
-TED uses function 47 after its `^T` prefix. A build saves the editor state and
+TED uses function 47 for its function keys. A build saves the editor state and
 supplies a line that runs the build tool followed by TED. The `!` separator
 reopens TED whether the build succeeds or fails. The new invocation restores
 the file and position. `.ASM` selects TAS and `.BAS` selects BAZC. For another
-type the build keys use the source named by `TED.PRJ`, if present. The prefix
-commands include the build and run operations from Chapters 2 and 3:
+type the build keys use the source named by `TED.PRJ`, if present. The
+function keys include the build and run operations from Chapters 2 and 3.
+On the matrix keyboard each is Fn with its digit:
 
-| Keys | Effect |
+| Key | Effect |
 | --- | --- |
-| `^T B` | Saves the file and builds it with `TAS` or `BAZC`. A failed build opens at the error |
-| `^T R` | Builds the program as `^T B` does, then runs it |
-| `^T D` | For an `.ASM` file, runs the program under `TDB`, a debugger the starter card does not contain. For a `.BAS` file, shows `No debugger` and runs nothing |
-| `^T O` | Opens another file, named at a prompt |
-| `^T F` | Opens the previous file again |
+| F1 | Help on the status row, ten pages in turn |
+| F3 | Opens another file, named at a prompt. Return at the prompt goes back to the previous file at its place |
+| F5 | Runs the program. An `.ASM` file is built with `TAS` first if the program is out of date. A `.BAS` file runs in `BAZ`, the interpreter |
+| F9 | Saves the file and builds it with `TAS` or `BAZC`. A failed build opens at the error |
 
-The starter card has no TDB. On an `.ASM` file `^T D` therefore produces
-`A:TDB?`, then the chained `A:TED` restores the editor's place.
+Debugging is TBUG's, outside TED; the [TBUG book](../tbug/index.md)
+covers it. TED's old `^T` prefix is retired: `^T` only rings the bell.
 
-These sequences require the shell. Without it the ROM passes the entire rest
+These keys require the shell. Without it the ROM passes the entire rest
 of the line as the build tool's tail. The tool still builds but the prompt
 returns instead of TED.
 
 TED places file names and `TED.PRJ`'s `ARGS` value on the command line. It
 truncates either at a shell separator: any `!` or an `&` following a blank.
-Thus `ARGS X &Y` makes `^T R` run once with tail ` X` and nothing afterwards.
+Thus `ARGS X &Y` makes F5 run the program once with tail ` X` and nothing afterwards.
 An embedded `&` in `/M:&HE000` remains literal
-(`Thorium 02b63d8:README.md:51-58`, `b95b2a9:docs/compatibility.md:231`,
+(`TED b2f98bc:README.md:39-46`, `TED b2f98bc:README.md:79-84`, `b95b2a9:docs/compatibility.md:231`,
 `b95b2a9:test/ted.test.mjs:305-333`).
 
 The load-drive byte at `0050h`, explained in Chapter 11, identifies TED's tool
@@ -499,7 +499,7 @@ drive. With tools loaded from A and source on current drive B, TED supplies
 drives and each return to the editor is a new invocation through the command
 processor.
 
-TAS writes `.DBG` and `.COM` beside the source, giving `HELLO.DBG` and
+TAS writes `.TBG` and `.COM` beside the source, giving `HELLO.TBG` and
 `HELLO.COM` for Chapter 27's example. In this setup TED also stores `TED.PRJ`
 and `TED.SES` there. After the first successful compilation and project
 update TED.PRJ identifies the source for later build keys. TED.SES retains

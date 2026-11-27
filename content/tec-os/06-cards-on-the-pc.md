@@ -105,7 +105,7 @@ BANNER can be extracted in two forms: raw records or editable PC text.
 This example uses `saved-banner-card.img`, saved after the edited source,
 TED exit and successful prompt flush in Chapter 2. That run began with a
 fresh starter card, separately from Chapter 1's SAMPLE run. Your A may
-also contain SAMPLE.COM and SAMPLE.DBG if you continued on the same card.
+also contain SAMPLE.COM and SAMPLE.TBG if you continued on the same card.
 
 A fresh starter image has no BANNER. Use new destinations for the backup and
 extracted files. Neither `card.img` nor the `recovered/` directory may already
