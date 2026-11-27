@@ -80,6 +80,27 @@ Edit `scripts/tec-os-figures.mjs` and regenerate the files in
 screens these figures scroll inside their plates so labels stay readable.
 The existing image preview supports a larger view.
 
+## Capturing screens
+
+Screens and transcripts in the books are captured from TEC-OS's host model,
+never typed by hand. Each block's comment gives its recipe and the commits it
+was taken on. Most recipes are TEC-OS's own `tools/capture.mjs`, run in a
+TEC-OS checkout built with `npm run build && npm run media`.
+
+A recipe that presses a function key or an arrow key uses
+`scripts/capture-fn.mjs`, a copy of `capture.mjs` with `@fn D` (Fn held with
+digit D, as F1 to F10 are on the matrix keyboard) and `@arrow` (the matrix
+arrows). It runs the machine model of the checkout named by `TECOS`:
+
+```sh
+TECOS=../tec-os node scripts/capture-fn.mjs --board pico --screen '@start A:TED B:BANNER.ASM' '@fn 9' '@run 400'
+```
+
+A recipe's `--card NAME.img` is the checkout's `dist/starter.img` with the
+chapter's files added by TEC-OS's `tecvol`. For example, the BANNER cards in
+chapter 2 hold that chapter's listing on B:, put there with
+`tecvol put banner-plain.img B BANNER.ASM --text`.
+
 ## GitHub Pages
 
 `.github/workflows/books.yml` installs from this package's lockfile,
