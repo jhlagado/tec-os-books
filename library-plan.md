@@ -1,7 +1,7 @@
 # The TEC-OS library: plan
 
-This is the plan for the books published at tec-os.org. It lives outside
-`content/`, so it is not published. It records what the library holds, the
+This is the plan for the books published at tec-os.org, in the TEC-OS books
+repository. It lives outside `content/`, so it is not published. It records what the library holds, the
 order the books are written in and the rules every tutorial follows.
 
 ## The products
@@ -109,7 +109,7 @@ In the order they are written:
 The books draw on the design notes kept beside each product. They are
 sources for the books, not reading for users:
 
-- TEC-OS: `docs/` in this repository, including `shell.md`, `mon3.md`,
+- TEC-OS: `docs/` in the TEC-OS repository, including `shell.md`, `mon3.md`,
   `console.md`, `services.md` and `rom-services.md`.
 - TED: `docs/` in the TED repository.
 - TAS: `docs/language.md` and the other TAS notes.

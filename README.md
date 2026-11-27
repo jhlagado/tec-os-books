@@ -1,8 +1,10 @@
-# TEC-OS documentation publishing
+# The TEC-OS books
 
-The website is a separate VitePress package in this directory. Its output is
-`.vitepress/dist`. The operating system package and its build commands are
-unchanged.
+The books published at [tec-os.org](https://tec-os.org/). The site is a
+VitePress package at the root of this repository, and its output is
+`.vitepress/dist`. The books were kept in TEC-OS's `documentation/` folder until
+27 November 2026; this repository carries that history. TEC-OS itself, its
+design notes in `docs/` and its build are in jhlagado/tec-os.
 
 ## Local use
 
@@ -12,7 +14,6 @@ The package keeps VitePress 1.6.4 from the reference template and pins its Vite
 dependency to 6.4.6 for the published development-server security fixes.
 
 ```sh
-cd documentation
 npm ci
 npm run check
 npm test
@@ -81,9 +82,9 @@ The existing image preview supports a larger view.
 
 ## GitHub Pages
 
-`.github/workflows/documentation.yml` installs from this package's lockfile,
+`.github/workflows/books.yml` installs from this package's lockfile,
 checks the source, runs the publishing controls and builds the site. It uploads
-**only `documentation/.vitepress/dist`**. Pull requests validate without
+**only `.vitepress/dist`**. Pull requests validate without
 deploying. Every push to `main`, or a manual dispatch on `main`,
 publishes through the `github-pages` environment after Pages is enabled.
 
