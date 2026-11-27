@@ -51,8 +51,8 @@ nav_group: Using the machine
 A new book needs an `index.md`, chapter files and a catalogue entry. Navigation
 is generated during configuration, ordered by `nav_order` and grouped by
 `nav_group`. It supplies a separate sidebar and previous/next sequence for
-each book. No theme changes are required. The Thorium page links the actual
-TAS, TED and TDB manuals until books on those subjects are available.
+each book. No theme changes are required. The Tools page, `content/tools/`, says
+where the library teaches each tool until books on them are available.
 
 The original-import check is intentionally separate from the build. Later
 authored revisions can change the book without falsifying the historical

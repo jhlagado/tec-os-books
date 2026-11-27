@@ -13,10 +13,11 @@ sidebar: false
 
 <BookShelf />
 
-## Thorium tools
+## The tools
 
-[Thorium](thorium/index.md) contains TAS, TED and TDB. The existing manuals
-are linked there. Future books on the tools will appear alongside the TEC-OS book.
+TEC-OS comes with TED, the editor, TAS, the assembler, and TBUG, the
+debugger, on every A: volume. [The tools](tools/index.md) says what each
+does and where this library teaches it.
 
 ## Software and source
 
@@ -24,5 +25,4 @@ The [TEC-OS Viewer](https://jhlagado.github.io/tec-os-viewer/) runs a software
 TEC-1G in a browser. The book identifies software-machine evidence separately
 from physical-board results.
 
-Source: [TEC-OS](https://github.com/jhlagado/tec-os) and
-[Thorium](https://github.com/jhlagado/thorium).
+Source: [TEC-OS](https://github.com/jhlagado/tec-os).
