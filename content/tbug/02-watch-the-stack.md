@@ -58,20 +58,21 @@ START:
   0104 POP DE
 ```
 
-`STEP.TBG` also names `0104` as `TAKE:`, but a label row never takes the bottom row, so it waits until the window scrolls. Press `Down` twice. The first moves `>` onto `0104`; the second scrolls, and `TAKE:` appears right above `0104`:
+`STEP.TBG` also names `0104` as `TAKE:`, but a label row never takes the bottom row, so it waits until the window scrolls. Press `Left`. It puts `PC` on Code's top row, and `TAKE:` appears right above `0104`:
 
+<!-- TEC-OS 0160b48 with TBUG f31249a, starter card c9352a42: TEC-OS's TBUG book capture (build/book/tbug-capture.mjs) with this chapter's STEP.ASM on B: UNLOAD, TBUG.SVC, B:, TAS STEP, TBUG.SVC STEP, then F8 and Left. The LCD's four rows, 2 s after the key. -->
 ```text
- →0103 PUSH HL
+>→0103 PUSH HL
 TAKE:
   0104 POP DE
-> 0105 RET
+  0105 RET
 ```
 
-`>` has moved on to `0105` while `→` stays on `0103`, because browsing never moves `PC`.
+Press `Down` twice and `>` moves on to `0105` while `→` stays on `0103`, because browsing never moves `PC`.
 
 Without a `.TBG` file, `0104 POP DE` sits directly below `0103 PUSH HL`. Numbers in Code are hexadecimal with no `$` prefix. Two dedicated marker columns keep selection and execution separate so neither ever hides the other: `>` in column 1 marks the row you are browsing, and `→` in column 2 marks `PC`. On `0103`, both sit together as `>→0103 PUSH HL`.
 
-`Up` and `Down` move `>` through decoded instructions and scroll freely before or after `PC` without changing where the program stopped. Near `PC`, stepping backwards lands cleanly on instruction starts. Farther back, TBUG works out instruction boundaries from the preceding bytes. Whenever you have scrolled away and want to snap straight back to `PC`, press `Left`.
+`Up` and `Down` move `>` through decoded instructions and scroll freely before or after `PC` without changing where the program stopped. Near `PC`, stepping backwards lands cleanly on instruction starts. Farther back, TBUG works out instruction boundaries from the preceding bytes. Whenever you have scrolled away and want to snap straight back to `PC`, press `Left`: it brings `>` back to `PC` and puts `PC` on the top row.
 
 Long instructions that run past twenty columns end with `>` at the right edge. `Shift+Right` pans the text sideways to reveal the rest (marking the left edge with `<`), and `Shift+Left` pans back. `Up` and `Down` carry that sideways offset from line to line while any other key resets it.
 
@@ -126,4 +127,4 @@ Tapping `F8` one instruction at a time works on six bytes, not when your code ca
 
 `F5` to `F8` all wait for every key to be released before resuming the CPU. That release guard prevents a debugger keypress from leaking into a program polling the matrix keyboard.
 
-_Checked against TEC-OS `b5af505` with TBUG `a4d1da8`, on the starter card in the emulated TEC-1G, 27 November 2026._
+_Checked against TEC-OS `b5af505` with TBUG `a4d1da8`, and the Code screens after `Left` against TEC-OS `0160b48` with TBUG `f31249a`, on the starter card in the emulated TEC-1G, 27 November 2026._

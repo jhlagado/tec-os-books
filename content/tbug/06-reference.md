@@ -37,7 +37,7 @@ On the TEC-1G matrix keyboard, `Fn+5` through `Fn+8` send `F5` through `F8`.
 | View | Arrow behaviour |
 | --- | --- |
 | Registers | Arrows move `>` around the register grid. |
-| Code | `Up`/`Down` move `>` through decoded instructions and scroll freely before or after `PC`. `Left` snaps `>` back to `PC`. Long rows end with `>`. `Shift+Right` and `Shift+Left` pan sideways (`Up`/`Down` keep the offset, any other key resets it). |
+| Code | `Up`/`Down` move `>` through decoded instructions and scroll freely before or after `PC`. `Left` brings `>` back to `PC` and puts `PC` on the top row. Long rows end with `>`. `Shift+Right` and `Shift+Left` pan sideways (`Up`/`Down` keep the offset, any other key resets it). |
 | Stack | `Up`/`Down` select one of the four slots. Whenever `SP` moves, selection returns to the top slot. |
 | Memory | `Up`/`Down` move `>` by one four-byte row, scrolling at the top and bottom edges (`Ctrl+Up`/`Ctrl+Down` jump sixteen bytes). `Left`/`Right` move the byte cursor. Clamps at `0000h` and `FFFFh`. |
 | Symbols | `Up`/`Down` select a label in ascending address order. |
@@ -64,7 +64,7 @@ On the TEC-1G matrix keyboard, `Fn+5` through `Fn+8` send `F5` through `F8`.
 | CP/M prints `TBUG.SVC?` | Install `TBUG.SVC` from drive A, or free RAM above `8000h` by unloading `SHELL.SVC` or other services. |
 | `H` prints `No help: TBUG.HLP` | Copy `TBUG.HLP` beside `TBUG.SVC` or onto drive A. |
 | `Space` prints `Select in Code first` | Press `C` (or `Y`), move `>` onto an instruction or label and press `Space`. |
-| Code does not show the stopped instruction | Press `Left` in Code to snap `>` back to `PC`. |
+| Code does not show the stopped instruction | Press `Left` in Code: it brings `>` back to `PC` on the top row. |
 | `F5` stopped unexpectedly early | In Code, `F5` runs to the selected row when `>` is off `PC`. Press `Left` first to run freely. |
 | `Space` prints `Not in the COM` | Breakpoints and one-shot `F5` targets must lie inside the loaded `.COM` image. |
 | `Space` prints `BP FULL (8)` | Eight breakpoints are active. Toggle an existing one off with `Space` first. |
@@ -88,4 +88,4 @@ Copy both files to your TEC-OS disk. `TBUG.SVC ARM` and `TBUG.SVC NAME` require 
 [TBUG source](https://github.com/jhlagado/tbug) ·
 [Origo P8 test evidence](https://github.com/jhlagado/origo/tree/main/studies/p8-tbg/evidence)
 
-_Checked against TEC-OS `b5af505` with TBUG `a4d1da8`, on the starter card in the emulated TEC-1G, 27 November 2026._
+_Checked against TEC-OS `b5af505` with TBUG `a4d1da8`, and `Left` in Code against TEC-OS `0160b48` with TBUG `f31249a`, on the starter card in the emulated TEC-1G, 27 November 2026._
