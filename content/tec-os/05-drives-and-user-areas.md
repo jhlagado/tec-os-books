@@ -69,14 +69,13 @@ drive can be named explicitly, as in `DIR B:` or `TYPE A:SAMPLE.ASM`.
 Selecting an empty drive or naming a file on it gives `Select`. This
 starter-card run selects B and then uses empty drive D:
 
-<!-- TEC-OS 57a8c38: node tools/capture.mjs B: '@start D:' '@key x' '@start DIR D:' '@key x'. Complete captured console transcript. -->
+<!-- TEC-OS 1e35854, ROM bb429d10, starter card 24801956: node tools/capture.mjs B: '@start D:' '@key x' '@start DIR D:' '@key x'. Complete captured console transcript. -->
 ```text
 TEC-OS 0.1 for TEC-1G
 A: SYSTEM
 B: WORK
-C: PROJECTS
 
-A>SHELL.SVC
+A:SYSTEM>SHELL.SVC
 
 A:SYSTEM>GLCD.SVC
 

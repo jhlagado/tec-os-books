@@ -59,14 +59,13 @@ contains the two automatic startup commands from Chapter 1. This serial
 terminal run is separate from both your BANNER session and the later
 40-column capture:
 
-<!-- TEC-OS 57a8c38: node tools/capture.mjs 'TYPE STARTUP.CMD'. Complete captured console transcript. -->
+<!-- TEC-OS 1e35854, ROM bb429d10, starter card 24801956: node tools/capture.mjs 'TYPE STARTUP.CMD'. Complete captured console transcript. -->
 ```text
 TEC-OS 0.1 for TEC-1G
 A: SYSTEM
 B: WORK
-C: PROJECTS
 
-A>SHELL.SVC
+A:SYSTEM>SHELL.SVC
 
 A:SYSTEM>GLCD.SVC
 
@@ -94,7 +93,7 @@ pausing.
 The first paused screen contains these 24 rows. The typed command has
 already scrolled off the display:
 
-<!-- TEC-OS 57a8c38: node tools/capture.mjs --board pico --screen 'TYPE A:SAMPLE.ASM'. Full screen; trailing empty rows omitted. -->
+<!-- TEC-OS 1e35854, ROM bb429d10, starter card 24801956: node tools/capture.mjs --board pico --screen 'TYPE A:SAMPLE.ASM'. Full screen; trailing empty rows omitted. -->
 ```text
 ; A first program for TEC-OS. Build it
 ; with TAS SAMPLE. Run it with SAMPLE.
@@ -125,7 +124,7 @@ ABICALL   EQU   $C008
 Space clears the pause and displays the next rows. The complete next
 paused screen is:
 
-<!-- TEC-OS 57a8c38: node tools/capture.mjs --board pico --screen 'TYPE A:SAMPLE.ASM' '@key  '. Full screen; trailing empty rows omitted. -->
+<!-- TEC-OS 1e35854, ROM bb429d10, starter card 24801956: node tools/capture.mjs --board pico --screen 'TYPE A:SAMPLE.ASM' '@key  '. Full screen; trailing empty rows omitted. -->
 ```text
 
 TNINFO    EQU   0
@@ -179,15 +178,14 @@ This capture uses a fresh starter card with B empty. It is separate
 from the BANNER session. The command writes only B:SAMPLE.ASM, whose
 name differs from the BANNER files on your working card:
 
-<!-- TEC-OS 57a8c38: node tools/capture.mjs --board pico --screen 'COPY A:SAMPLE.ASM B:SAMPLE.ASM'. Full screen; trailing empty rows omitted. -->
+<!-- TEC-OS 1e35854, ROM bb429d10, starter card 24801956: node tools/capture.mjs --board pico --screen 'COPY A:SAMPLE.ASM B:SAMPLE.ASM'. Full screen; trailing empty rows omitted. -->
 ```text
 
 TEC-OS 0.1 for TEC-1G
 A: SYSTEM
 B: WORK
-C: PROJECTS
 
-A>SHELL.SVC
+A:SYSTEM>SHELL.SVC
 
 A:SYSTEM>GLCD.SVC
 
@@ -214,14 +212,13 @@ that separate session, not as a sequence to repeat on your current card. It
 copies A's STARTUP.CMD under two names, renames one copy and erases only
 NOTES.TXT. The listings and free-space figures belong to that card:
 
-<!-- TEC-OS with the sized DIR (ROM c9586263, starter card 1cdc614e): node tools/capture.mjs 'COPY STARTUP.CMD B:' 'COPY STARTUP.CMD B:COPY.TXT' B: DIR 'REN NOTES.TXT=COPY.TXT' 'REN NOTES.TXT=STARTUP.CMD' DIR 'ERA NOTES.TXT' 'ERA NOTES.TXT' DIR. Complete captured console transcript. -->
+<!-- TEC-OS 1e35854, ROM bb429d10, starter card 24801956: node tools/capture.mjs 'COPY STARTUP.CMD B:' 'COPY STARTUP.CMD B:COPY.TXT' B: DIR 'REN NOTES.TXT=COPY.TXT' 'REN NOTES.TXT=STARTUP.CMD' DIR 'ERA NOTES.TXT' 'ERA NOTES.TXT' DIR. Complete captured console transcript. -->
 ```text
 TEC-OS 0.1 for TEC-1G
 A: SYSTEM
 B: WORK
-C: PROJECTS
 
-A>SHELL.SVC
+A:SYSTEM>SHELL.SVC
 
 A:SYSTEM>GLCD.SVC
 

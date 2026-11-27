@@ -543,14 +543,13 @@ path passes quietly. A separated width becomes the error word while a joined
 form names the whole token (`57a8c38:src/cpm/ccpcmd.asm:105-180`). This PICO capture
 shows both:
 
-<!-- TEC-OS 57a8c38: node tools/capture.mjs --board pico 'CON PICO 40' 'CON CRT80' 'CON PICO 50' 'CON TTY 80' 'CON CRT: 32'. Complete captured console transcript. -->
+<!-- TEC-OS 1e35854, ROM bb429d10, starter card 24801956: node tools/capture.mjs --board pico 'CON PICO 40' 'CON CRT80' 'CON PICO 50' 'CON TTY 80' 'CON CRT: 32'. Complete captured console transcript. -->
 ```text
 TEC-OS 0.1 for TEC-1G
 A: SYSTEM
 B: WORK
-C: PROJECTS
 
-A>SHELL.SVC
+A:SYSTEM>SHELL.SVC
 
 A:SYSTEM>GLCD.SVC
 

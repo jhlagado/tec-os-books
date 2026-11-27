@@ -48,14 +48,13 @@ writes but run no SDINIT and authorise no replay onto an inserted stranger
 
 The starter card's file has two lines:
 
-<!-- TEC-OS 57a8c38: node tools/capture.mjs 'TYPE STARTUP.CMD'. Complete captured console transcript. -->
+<!-- TEC-OS 1e35854, ROM bb429d10, starter card 24801956: node tools/capture.mjs 'TYPE STARTUP.CMD'. Complete captured console transcript. -->
 ```text
 TEC-OS 0.1 for TEC-1G
 A: SYSTEM
 B: WORK
-C: PROJECTS
 
-A>SHELL.SVC
+A:SYSTEM>SHELL.SVC
 
 A:SYSTEM>GLCD.SVC
 

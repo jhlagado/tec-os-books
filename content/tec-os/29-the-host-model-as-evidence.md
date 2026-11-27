@@ -116,14 +116,13 @@ The distinction is visible when output switches to GLCD. These captures
 use matrix input and graphics LCD without PICO9918. Console bytes include
 boot and later CON output after GLCD selection:
 
-<!-- TEC-OS 57a8c38: node tools/capture.mjs --board glcd CON. Complete captured console transcript. -->
+<!-- TEC-OS 1e35854, ROM bb429d10, starter card 24801956: node tools/capture.mjs --board glcd CON. Complete captured console transcript. -->
 ```text
 TEC-OS 0.1 for TEC-1G
 A: SYSTEM
 B: WORK
-C: PROJECTS
 
-A>SHELL.SVC
+A:SYSTEM>SHELL.SVC
 
 A:SYSTEM>GLCD.SVC
 
@@ -134,14 +133,13 @@ A:SYSTEM>
 
 Serial bytes stop at the console switch, before the later command:
 
-<!-- TEC-OS 57a8c38: node tools/capture.mjs --board glcd --serial CON. Complete serial transcript. -->
+<!-- TEC-OS 1e35854, ROM bb429d10, starter card 24801956: node tools/capture.mjs --board glcd --serial CON. Complete serial transcript. -->
 ```text
 TEC-OS 0.1 for TEC-1G
 A: SYSTEM
 B: WORK
-C: PROJECTS
 
-A>SHELL.SVC
+A:SYSTEM>SHELL.SVC
 
 A:SYSTEM>GLCD.SVC
 ```
@@ -149,7 +147,7 @@ A:SYSTEM>GLCD.SVC
 The decoded GLCD screen instead contains only the later command. Driver
 startup cleared the earlier display contents:
 
-<!-- TEC-OS 57a8c38: node tools/capture.mjs --board glcd --screen CON. Full screen; trailing empty rows omitted. -->
+<!-- TEC-OS 1e35854, ROM bb429d10, starter card 24801956: node tools/capture.mjs --board glcd --screen CON. Full screen; trailing empty rows omitted. -->
 ```text
 
 A:SYSTEM>CON

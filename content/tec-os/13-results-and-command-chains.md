@@ -69,14 +69,13 @@ before capitalising them. The displayed `dir b:` therefore executes as
 Each piece executes as a complete command. A drive change carries
 into later pieces. Here `B:` makes B current before COPY creates `NOTES.TXT`:
 
-<!-- TEC-OS with the sized DIR (ROM c9586263, starter card 1cdc614e): node tools/capture.mjs 'B:!COPY A:STARTUP.CMD NOTES.TXT!DIR'. Complete captured console transcript. -->
+<!-- TEC-OS 1e35854, ROM bb429d10, starter card 24801956: node tools/capture.mjs 'B:!COPY A:STARTUP.CMD NOTES.TXT!DIR'. Complete captured console transcript. -->
 ```text
 TEC-OS 0.1 for TEC-1G
 A: SYSTEM
 B: WORK
-C: PROJECTS
 
-A>SHELL.SVC
+A:SYSTEM>SHELL.SVC
 
 A:SYSTEM>GLCD.SVC
 
@@ -161,14 +160,13 @@ A new line starts independently of the preceding result. It cannot begin with
 full. TEC-OS also omits CP/M 3's `:` conditional prefix and rejects a first
 piece beginning with `:` as a bad name:
 
-<!-- TEC-OS 57a8c38: node tools/capture.mjs '&DIR *.CMD' ':DIR *.CMD'. Complete captured console transcript. -->
+<!-- TEC-OS 1e35854, ROM bb429d10, starter card 24801956: node tools/capture.mjs '&DIR *.CMD' ':DIR *.CMD'. Complete captured console transcript. -->
 ```text
 TEC-OS 0.1 for TEC-1G
 A: SYSTEM
 B: WORK
-C: PROJECTS
 
-A>SHELL.SVC
+A:SYSTEM>SHELL.SVC
 
 A:SYSTEM>GLCD.SVC
 
@@ -339,14 +337,13 @@ lines available.
 Here D has no mounted volume. The key `x` ends the default BDOS error and the
 following CD is cancelled:
 
-<!-- TEC-OS 57a8c38: node tools/capture.mjs '@start DIR D:!CD' '@key x'. Complete captured console transcript. -->
+<!-- TEC-OS 1e35854, ROM bb429d10, starter card 24801956: node tools/capture.mjs '@start DIR D:!CD' '@key x'. Complete captured console transcript. -->
 ```text
 TEC-OS 0.1 for TEC-1G
 A: SYSTEM
 B: WORK
-C: PROJECTS
 
-A>SHELL.SVC
+A:SYSTEM>SHELL.SVC
 
 A:SYSTEM>GLCD.SVC
 

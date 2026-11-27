@@ -90,15 +90,14 @@ returns. The shell folds command pieces afterwards (`57a8c38:src/cpm/bdos.asm:65
 `57a8c38:drivers/shell.asm:426-429`, `57a8c38:drivers/shell.asm:498-518`). Recalling `con`
 in this PICO9918 capture therefore retains lowercase text:
 
-<!-- TEC-OS 57a8c38: node tools/capture.mjs --board pico --screen con $'@start \x17'. Full screen; trailing empty rows omitted. -->
+<!-- TEC-OS 1e35854, ROM bb429d10, starter card 24801956: node tools/capture.mjs --board pico --screen con $'@start \x17'. Full screen; trailing empty rows omitted. -->
 ```text
 
 TEC-OS 0.1 for TEC-1G
 A: SYSTEM
 B: WORK
-C: PROJECTS
 
-A>SHELL.SVC
+A:SYSTEM>SHELL.SVC
 
 A:SYSTEM>GLCD.SVC
 
@@ -220,15 +219,14 @@ text, advancing pointer and count until zero or capacity
 After two typed commands, two `^W` presses and Return select CON in this
 capture:
 
-<!-- TEC-OS 57a8c38: node tools/capture.mjs --board pico --screen CON 'TYPE STARTUP.CMD' $'@start \x17\x17'. Full screen; trailing empty rows omitted. -->
+<!-- TEC-OS 1e35854, ROM bb429d10, starter card 24801956: node tools/capture.mjs --board pico --screen CON 'TYPE STARTUP.CMD' $'@start \x17\x17'. Full screen; trailing empty rows omitted. -->
 ```text
 
 TEC-OS 0.1 for TEC-1G
 A: SYSTEM
 B: WORK
-C: PROJECTS
 
-A>SHELL.SVC
+A:SYSTEM>SHELL.SVC
 
 A:SYSTEM>GLCD.SVC
 
@@ -260,14 +258,13 @@ Normal exit, function 0 and `^C` at an empty prompt all use warm boot
 (`57a8c38:src/cpm/bdos.asm:216-221`, `57a8c38:src/cpm/bdos.asm:521-533`). Here, `^W` after
 `^C` still recalls CON:
 
-<!-- TEC-OS 57a8c38: node tools/capture.mjs CON '^C' $'@start \x17'. Complete captured console transcript. -->
+<!-- TEC-OS 1e35854, ROM bb429d10, starter card 24801956: node tools/capture.mjs CON '^C' $'@start \x17'. Complete captured console transcript. -->
 ```text
 TEC-OS 0.1 for TEC-1G
 A: SYSTEM
 B: WORK
-C: PROJECTS
 
-A>SHELL.SVC
+A:SYSTEM>SHELL.SVC
 
 A:SYSTEM>GLCD.SVC
 
@@ -286,14 +283,13 @@ establishing the empty boundary preserved by insertion. Recognised reset
 retains only drive selection, so history is still lost. In this capture,
 `^W` and Return after reset produce empty input:
 
-<!-- TEC-OS 57a8c38: node tools/capture.mjs CON @reset $'@start \x17'. Complete captured console transcript. -->
+<!-- TEC-OS 1e35854, ROM bb429d10, starter card 24801956: node tools/capture.mjs CON @reset $'@start \x17'. Complete captured console transcript. -->
 ```text
 TEC-OS 0.1 for TEC-1G
 A: SYSTEM
 B: WORK
-C: PROJECTS
 
-A>SHELL.SVC
+A:SYSTEM>SHELL.SVC
 
 A:SYSTEM>GLCD.SVC
 
@@ -303,9 +299,8 @@ A:SYSTEM>
 TEC-OS 0.1 for TEC-1G
 A: SYSTEM
 B: WORK
-C: PROJECTS
 
-A>SHELL.SVC
+A:SYSTEM>SHELL.SVC
 
 A:SYSTEM>GLCD.SVC
 
