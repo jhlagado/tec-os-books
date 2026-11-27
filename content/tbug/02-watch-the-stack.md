@@ -60,7 +60,7 @@ START:
 
 `STEP.TBG` also names `0104` as `TAKE:`, but a label row never takes the bottom row, so it waits until the window scrolls. Press `Left`. It puts `PC` on Code's top row, and `TAKE:` appears right above `0104`:
 
-<!-- TEC-OS 0160b48 with TBUG f31249a, starter card c9352a42: TEC-OS's TBUG book capture (build/book/tbug-capture.mjs) with this chapter's STEP.ASM on B: UNLOAD, TBUG.SVC, B:, TAS STEP, TBUG.SVC STEP, then F8 and Left. The LCD's four rows, 2 s after the key. -->
+<!-- TEC-OS b8dcb8f with TBUG f31249a, starter card c9352a42: node tools/capture.mjs --card step.img --board pico --lcd UNLOAD TBUG.SVC B: 'TAS STEP' '@start TBUG.SVC STEP' '@run 20' '@fn 8' '@run 10' '@arrow L' '@run 10', where step.img holds this chapter's STEP.ASM on B. The LCD's four rows; the LCD shows → as 7Eh. -->
 ```text
 >→0103 PUSH HL
 TAKE:
