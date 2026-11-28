@@ -7,7 +7,7 @@ nav_group: "Writing programs"
 
 # 12. Use the board's devices
 
-<!-- Checked against TEC-OS 57a8c38b7f341433285e39c4bec14ecc486ffe26 (retained recovery baseline),
+<!-- Checked against Tecos 57a8c38b7f341433285e39c4bec14ecc486ffe26 (retained recovery baseline),
      ROM SHA-256 ac86ad233696d22a46b4f98a4119c53b718bfe89881952a08e9f92223f3fa1c3.
      Unprefixed source citations use this revision. Explicit historical
      prefixes retain their stated revisions. Host-model capture recipes and
@@ -152,7 +152,7 @@ digits unchanged.
 ; HWLIB.ASM: routines this chapter's programs share. It goes after a
 ; program's own code, since it makes bytes where it is included.
 
-; Test for TEC-OS with ABI 5. Returns Z if the table's four bytes match,
+; Test for Tecos with ABI 5. Returns Z if the table's four bytes match,
 ; NZ if not. Changes AF, B, DE and HL.
 CHKHW:	LD	HL,ABITAB	; signature, then the major version
 	LD	DE,TAG		; what they must be
@@ -204,7 +204,7 @@ NIBB1:	LD	E,A		; BDOS console output
 	JP	BDOS		; its RET is this routine's
 
 TAG:	DB	"TNA",5
-NOTMSG:	DB	"not TEC-OS with ABI 5",13,10,"$"
+NOTMSG:	DB	"not Tecos with ABI 5",13,10,"$"
 ```
 
 
@@ -297,7 +297,7 @@ The later examples use the same copy operation for their sources. On B,
 TAS.COM on A. In this serial-model run INFO reported clock bit 3 and zero
 console dimensions:
 
-<!-- TEC-OS 57a8c38: node tools/capture.mjs --card hw.img B: 'TAS BOARD' BOARD. Complete captured console transcript. -->
+<!-- Tecos 57a8c38: node tools/capture.mjs --card hw.img B: 'TAS BOARD' BOARD. Complete captured console transcript. -->
 ```text
 TEC-OS 0.1 for TEC-1G
 A: SYSTEM
@@ -328,7 +328,7 @@ dimensions `28h` by `18h`, or 40 by 24. Startup's GLCD.SVC installed nothing
 while PICO was selected. This is a host-model capture rather than a browser
 observation:
 
-<!-- TEC-OS 57a8c38: node tools/capture.mjs --card hw.img --board pico B: 'TAS BOARD' BOARD. Complete captured console transcript. -->
+<!-- Tecos 57a8c38: node tools/capture.mjs --card hw.img --board pico B: 'TAS BOARD' BOARD. Complete captured console transcript. -->
 ```text
 TEC-OS 0.1 for TEC-1G
 A: SYSTEM
@@ -371,7 +371,7 @@ returns status 1 before writing. LCDMSG writes row 1 and sounds a beep through
 TONE, service 4:
 
 ```asm
-; LCDMSG: write a row of the 20 x 4 LCD and beep, on TEC-OS only.
+; LCDMSG: write a row of the 20 x 4 LCD and beep, on Tecos only.
 BDOS	EQU	$0005
 %INCLUDE "ABI.INC"
 
@@ -396,7 +396,7 @@ DONE:	DB	"Written and beeped",13,10,"$"
 
 The capture's `--lcd` option includes the character-LCD rows:
 
-<!-- TEC-OS 57a8c38: node tools/capture.mjs --card hw.img --lcd B: 'TAS LCDMSG' LCDMSG. Complete captured console transcript and LCD rows. -->
+<!-- Tecos 57a8c38: node tools/capture.mjs --card hw.img --lcd B: 'TAS LCDMSG' LCDMSG. Complete captured console transcript and LCD rows. -->
 ```text
 TEC-OS 0.1 for TEC-1G
 A: SYSTEM
@@ -424,7 +424,7 @@ B: WORK
 The LCD portion shows the message on the second row. Cold-boot text remains on
 the other rows:
 
-<!-- TEC-OS 57a8c38: node tools/capture.mjs --card hw.img --lcd B: 'TAS LCDMSG' LCDMSG. LCD rows only; trailing empty rows omitted. -->
+<!-- Tecos 57a8c38: node tools/capture.mjs --card hw.img --lcd B: 'TAS LCDMSG' LCDMSG. LCD rows only; trailing empty rows omitted. -->
 ```text
 TEC-OS 0.1  TEC-1G
 Hello on the LCD
@@ -432,7 +432,7 @@ B: WORK
 ```
 
 The LCD text survives program exit. On another ABI major the check instead
-branches to NOTHW, prints `not TEC-OS with ABI 5` and leaves the LCD
+branches to NOTHW, prints `not Tecos with ABI 5` and leaves the LCD
 unchanged.
 
 Tecos tracks its `GLCD?` message on row 3 with a separate mark. GLCD.SVC
@@ -606,7 +606,7 @@ PLAN pairs each buffer offset with an output separator. NOW selects the BCD
 byte at that offset, prints it through HEX and prints the separator. The
 captured build and run produced:
 
-<!-- TEC-OS 57a8c38: node tools/capture.mjs --card hw.img B: 'TAS NOW' NOW. Complete captured console transcript. -->
+<!-- Tecos 57a8c38: node tools/capture.mjs --card hw.img B: 'TAS NOW' NOW. Complete captured console transcript. -->
 ```text
 TEC-OS 0.1 for TEC-1G
 A: SYSTEM
@@ -707,7 +707,7 @@ STICK:	DS	1		; JOY's byte
 
 In the `--board pico` model the `@key` operation held `x`, located in row 7:
 
-<!-- TEC-OS 57a8c38: node tools/capture.mjs --card hw.img --board pico B: 'TAS ROWS' '@start ROWS' '@key x'. Complete captured console transcript. -->
+<!-- Tecos 57a8c38: node tools/capture.mjs --card hw.img --board pico B: 'TAS ROWS' '@start ROWS' '@key x'. Complete captured console transcript. -->
 ```text
 TEC-OS 0.1 for TEC-1G
 A: SYSTEM
@@ -728,7 +728,7 @@ B:WORK>ROWS
 B:WORK>
 ```
 
-<!-- TEC-OS de6216f, the same run with "@key 5": node tools/capture.mjs --card hw.img
+<!-- Tecos de6216f, the same run with "@key 5": node tools/capture.mjs --card hw.img
      --board pico B: "TAS ROWS" "@start ROWS" "@key 5" -->
 The joystick and matrix share inputs. JOY reads port `FEh` with address line
 11 low, the same selection as KEYS row 3. The alternate `5` run therefore
@@ -836,7 +836,7 @@ eight bits. PUTAT can therefore select reverse characters without escapes. The
 text decoder used for this PICO capture omits attributes so both copies appear
 alike:
 
-<!-- TEC-OS 57a8c38: node tools/capture.mjs --card hw.img --board pico --screen B: 'TAS PLACE' PLACE. Full screen; trailing empty rows omitted. -->
+<!-- Tecos 57a8c38: node tools/capture.mjs --card hw.img --board pico --screen B: 'TAS PLACE' PLACE. Full screen; trailing empty rows omitted. -->
 ```text
 
 TEC-OS 0.1 for TEC-1G
@@ -893,7 +893,7 @@ source rather than DEMO.COM. `TAS DEMO` builds the executable on the card and
 `57a8c38:tools/media.mjs:273-274`, `57a8c38:test/demo.test.mjs:1-4`,
 `57a8c38:test/starter.test.mjs:186-211`). This capture builds and runs it there:
 
-<!-- TEC-OS 57a8c38: node tools/capture.mjs --board pico --screen 'TAS DEMO' '@start DEMO' '@key x'. Complete console transcript; the separate trailing raw screen is omitted. -->
+<!-- Tecos 57a8c38: node tools/capture.mjs --board pico --screen 'TAS DEMO' '@start DEMO' '@key x'. Complete console transcript; the separate trailing raw screen is omitted. -->
 ```text
 TEC-OS 0.1 for TEC-1G
 A: SYSTEM
@@ -924,7 +924,7 @@ Startup installed no GLCD service because PICO was selected. The transcript
 records console bytes, including lines printed before the claim. After release
 the same run's text-screen dump contained:
 
-<!-- TEC-OS 57a8c38: node tools/capture.mjs --board pico --screen 'TAS DEMO' '@start DEMO' '@key x'. Full screen; trailing empty rows omitted. -->
+<!-- Tecos 57a8c38: node tools/capture.mjs --board pico --screen 'TAS DEMO' '@start DEMO' '@key x'. Full screen; trailing empty rows omitted. -->
 ```text
 
 Demo stopped.

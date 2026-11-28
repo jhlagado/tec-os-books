@@ -7,7 +7,7 @@ nav_group: "Inside Tecos"
 
 # 21. From prompt to program
 
-<!-- Checked against TEC-OS 57a8c38b7f341433285e39c4bec14ecc486ffe26 (retained recovery baseline),
+<!-- Checked against Tecos 57a8c38b7f341433285e39c4bec14ecc486ffe26 (retained recovery baseline),
      ROM SHA-256 ac86ad233696d22a46b4f98a4119c53b718bfe89881952a08e9f92223f3fa1c3.
      Unprefixed source citations use this revision. Explicit historical
      prefixes retain their stated revisions. Host-model capture recipes and
@@ -205,7 +205,7 @@ An explicit drive suppresses that drive-A fallback. In this starter-card
 capture, plain TAS finds A's tool and prints its usage line. `B:TAS`
 searches B alone:
 
-<!-- TEC-OS 57a8c38: node tools/capture.mjs B: TAS B:TAS. Complete captured console transcript. -->
+<!-- Tecos 57a8c38: node tools/capture.mjs B: TAS B:TAS. Complete captured console transcript. -->
 ```text
 TEC-OS 0.1 for TEC-1G
 A: SYSTEM
@@ -279,7 +279,7 @@ node tools/tecvol.mjs put build/ccp.img B build/big.com
 TAS writes the 76-byte ARGS.COM. FITS returned to the prompt and BIG was
 rejected:
 
-<!-- TEC-OS with the sized DIR (ROM c9586263, starter card 1cdc614e): node tools/capture.mjs --card build/ccp.img B: FITS BIG. Complete captured console transcript. -->
+<!-- Tecos with the sized DIR (ROM c9586263, starter card 1cdc614e): node tools/capture.mjs --card build/ccp.img B: FITS BIG. Complete captured console transcript. -->
 ```text
 TEC-OS 0.1 for TEC-1G
 A: SYSTEM
@@ -376,7 +376,7 @@ buffers. `PUT` saves BC and HL around function 2. `SHOWFCB` prints eleven
 name/type bytes and `TAIL` follows the length at `0080h`. The capture
 therefore exposes padded FCB names alongside spaces retained in the tail:
 
-<!-- TEC-OS with the sized DIR (ROM c9586263, starter card 1cdc614e): node tools/capture.mjs --card build/ccp.img B: 'args one.txt a:*.c' 'ARGS X Y ! ARGS'. Complete captured console transcript. -->
+<!-- Tecos with the sized DIR (ROM c9586263, starter card 1cdc614e): node tools/capture.mjs --card build/ccp.img B: 'args one.txt a:*.c' 'ARGS X Y ! ARGS'. Complete captured console transcript. -->
 ```text
 TEC-OS 0.1 for TEC-1G
 A: SYSTEM
@@ -543,9 +543,9 @@ path passes quietly. A separated width becomes the error word while a joined
 form names the whole token (`57a8c38:src/cpm/ccpcmd.asm:105-180`). This PICO capture
 shows both:
 
-<!-- TEC-OS 1e35854, ROM bb429d10, starter card 24801956: node tools/capture.mjs --board pico 'CON PICO 40' 'CON CRT80' 'CON PICO 50' 'CON TTY 80' 'CON CRT: 32'. Complete captured console transcript. -->
+<!-- Tecos 8c12c9f, ROM 04ab62be, starter card e2f124e9: node tools/capture.mjs --board pico 'CON PICO 40' 'CON CRT80' 'CON PICO 50' 'CON TTY 80' 'CON CRT: 32'. Complete captured console transcript. -->
 ```text
-TEC-OS 0.1 for TEC-1G
+Tecos 0.1 for TEC-1G
 A: SYSTEM
 B: WORK
 

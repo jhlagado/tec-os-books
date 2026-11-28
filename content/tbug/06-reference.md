@@ -87,4 +87,4 @@ Copy both files to drive A of your Tecos card. TBUG needs Tecos ABI 5.3 or later
 [TBUG source](https://github.com/jhlagado/tbug) ·
 [Origo P8 test evidence](https://github.com/jhlagado/origo/tree/main/studies/p8-tbg/evidence)
 
-_Checked against Tecos `8a7e24e` with TBUG `167f7f0`, on the starter card in the emulated TEC-1G, 28 November 2026._
+_Checked against Tecos `8c12c9f` with TBUG `167f7f0`, on the starter card in the emulated TEC-1G, 28 November 2026._

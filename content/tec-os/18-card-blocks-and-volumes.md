@@ -7,7 +7,7 @@ nav_group: "Inside Tecos"
 
 # 18. Card blocks and volumes
 
-<!-- Checked against TEC-OS 57a8c38b7f341433285e39c4bec14ecc486ffe26 (retained recovery baseline),
+<!-- Checked against Tecos 57a8c38b7f341433285e39c4bec14ecc486ffe26 (retained recovery baseline),
      ROM SHA-256 ac86ad233696d22a46b4f98a4119c53b718bfe89881952a08e9f92223f3fa1c3.
      Unprefixed source citations use this revision. Explicit historical
      prefixes retain their stated revisions. Host-model capture recipes and
@@ -154,7 +154,7 @@ only sixteen of B's thirty-two directory blocks. Logging B in reaches the
 missing seventeenth block and reports an error. A's directory is still
 accessible afterwards:
 
-<!-- TEC-OS with the sized DIR (ROM c9586263, starter card 1cdc614e): node tools/capture.mjs --card build/short.img '@start DIR B:' '@key x' 'DIR A:*.CMD'. Complete captured console transcript. -->
+<!-- Tecos with the sized DIR (ROM c9586263, starter card 1cdc614e): node tools/capture.mjs --card build/short.img '@start DIR B:' '@key x' 'DIR A:*.CMD'. Complete captured console transcript. -->
 ```text
 TEC-OS 0.1 for TEC-1G
 A: SYSTEM
@@ -183,7 +183,7 @@ enters its diagnostic prompt when `SDINIT` or `MOUNT` fails
 `printf X | dd of=build/bad.img bs=1 seek=0 conv=notrunc`. The `H` key
 produced another diagnostic prompt:
 
-<!-- TEC-OS 57a8c38: node tools/capture.mjs --card build/bad.img H. Complete captured console transcript. -->
+<!-- Tecos 57a8c38: node tools/capture.mjs --card build/bad.img H. Complete captured console transcript. -->
 ```text
 TEC-OS 0.1 for TEC-1G
 No volume mounted, error 21
@@ -548,7 +548,7 @@ capture, service 11 supplies the descriptor list for `CD ?`. Service 9
 mounts GAMES on the empty D for `CD D:GAMES`. `CD C:WORK` fails because WORK
 is already mounted on B (`57a8c38:drivers/shellcd.asm:99-117`):
 
-<!-- TEC-OS 57a8c38: node tools/capture.mjs 'CD ?' 'CD D:GAMES' 'CD C:WORK'. Complete captured console transcript. -->
+<!-- Tecos 57a8c38: node tools/capture.mjs 'CD ?' 'CD D:GAMES' 'CD C:WORK'. Complete captured console transcript. -->
 ```text
 TEC-OS 0.1 for TEC-1G
 A: SYSTEM

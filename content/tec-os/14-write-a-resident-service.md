@@ -7,7 +7,7 @@ nav_group: "Writing programs"
 
 # 14. Write a resident service
 
-<!-- Checked against TEC-OS 57a8c38b7f341433285e39c4bec14ecc486ffe26 (retained recovery baseline),
+<!-- Checked against Tecos 57a8c38b7f341433285e39c4bec14ecc486ffe26 (retained recovery baseline),
      ROM SHA-256 ac86ad233696d22a46b4f98a4119c53b718bfe89881952a08e9f92223f3fa1c3.
      Unprefixed source citations use this revision. Explicit historical
      prefixes retain their stated revisions. Host-model capture recipes and
@@ -226,7 +226,7 @@ node tools/tecvol.mjs put svc.img B chars.asm --text
 The run builds AREA and CHARS, writes COUNT.SVC, then measures installation,
 use and removal:
 
-<!-- TEC-OS with the sized DIR (ROM c9586263, starter card 1cdc614e): node tools/capture.mjs --card svc.img B: 'TAS AREA' 'TAS CHARS' 'TAS COUNT COUNT.SVC' AREA COUNT.SVC SERVICES AREA CHARS CHARS UNLOAD SERVICES AREA CHARS. Complete captured console transcript. -->
+<!-- Tecos with the sized DIR (ROM c9586263, starter card 1cdc614e): node tools/capture.mjs --card svc.img B: 'TAS AREA' 'TAS CHARS' 'TAS COUNT COUNT.SVC' AREA COUNT.SVC SERVICES AREA CHARS CHARS UNLOAD SERVICES AREA CHARS. Complete captured console transcript. -->
 ```text
 TEC-OS 0.1 for TEC-1G
 A: SYSTEM
@@ -382,7 +382,7 @@ The following 40-column PICO run has the Matrix switch enabled. A separate
 starter-card copy holds fail.asm, Chapter 11's area.asm and matching abi.inc
 on B. AREA needs no HWLIB. Startup has installed only the shell:
 
-<!-- TEC-OS with the sized DIR (ROM c9586263, starter card 1cdc614e): node tools/capture.mjs --board pico --card svc2.img B: 'TAS AREA' 'TAS FAIL FAIL.SVC' AREA SERVICES FAIL.SVC AREA. Complete captured console transcript. -->
+<!-- Tecos with the sized DIR (ROM c9586263, starter card 1cdc614e): node tools/capture.mjs --board pico --card svc2.img B: 'TAS AREA' 'TAS FAIL FAIL.SVC' AREA SERVICES FAIL.SVC AREA. Complete captured console transcript. -->
 ```text
 TEC-OS 0.1 for TEC-1G
 A: SYSTEM
@@ -493,7 +493,7 @@ this conflict in the captured workflows.
 CHEAT changes COUNT's BDOS declaration to 9, which exceeds 8 even alone. The
 capture includes the build and rejected load:
 
-<!-- TEC-OS with the sized DIR (ROM c9586263, starter card 1cdc614e): node tools/capture.mjs --card svc.img B: 'TAS CHEAT CHEAT.SVC' CHEAT.SVC SERVICES. Complete captured console transcript. -->
+<!-- Tecos with the sized DIR (ROM c9586263, starter card 1cdc614e): node tools/capture.mjs --card svc.img B: 'TAS CHEAT CHEAT.SVC' CHEAT.SVC SERVICES. Complete captured console transcript. -->
 ```text
 TEC-OS 0.1 for TEC-1G
 A: SYSTEM
@@ -684,7 +684,7 @@ This PICO-model run leaves GLCD uninstalled during startup, preserving stack
 room for COUNT. After TAS builds COUNT.SVC, RECS lists two records at the
 addresses shown:
 
-<!-- TEC-OS with the sized DIR (ROM c9586263, starter card 1cdc614e): node tools/capture.mjs --card svc.img --board pico B: 'TAS COUNT COUNT.SVC' 'TAS RECS' COUNT.SVC RECS. Complete captured console transcript. -->
+<!-- Tecos with the sized DIR (ROM c9586263, starter card 1cdc614e): node tools/capture.mjs --card svc.img --board pico B: 'TAS COUNT COUNT.SVC' 'TAS RECS' COUNT.SVC RECS. Complete captured console transcript. -->
 ```text
 TEC-OS 0.1 for TEC-1G
 A: SYSTEM
@@ -791,7 +791,7 @@ and version for its declaration and FIND call so the record is already
 available at entry. Without COUNT the loader rejects it before INIT. The run
 shows that failure followed by valid installation and removal order:
 
-<!-- TEC-OS with the sized DIR (ROM c9586263, starter card 1cdc614e): node tools/capture.mjs --card svc.img B: 'TAS COUNT COUNT.SVC' 'TAS NEEDS NEEDS.SVC' NEEDS.SVC COUNT.SVC NEEDS.SVC SERVICES UNLOAD UNLOAD SERVICES. Complete captured console transcript. -->
+<!-- Tecos with the sized DIR (ROM c9586263, starter card 1cdc614e): node tools/capture.mjs --card svc.img B: 'TAS COUNT COUNT.SVC' 'TAS NEEDS NEEDS.SVC' NEEDS.SVC COUNT.SVC NEEDS.SVC SERVICES UNLOAD UNLOAD SERVICES. Complete captured console transcript. -->
 ```text
 TEC-OS 0.1 for TEC-1G
 A: SYSTEM

@@ -7,7 +7,7 @@ nav_group: "Inside Tecos"
 
 # 27. Build the ROM and media
 
-<!-- Checked against TEC-OS 57a8c38b7f341433285e39c4bec14ecc486ffe26 (retained recovery baseline),
+<!-- Checked against Tecos 57a8c38b7f341433285e39c4bec14ecc486ffe26 (retained recovery baseline),
      ROM SHA-256 ac86ad233696d22a46b4f98a4119c53b718bfe89881952a08e9f92223f3fa1c3.
      Unprefixed source citations use this revision. Explicit historical
      prefixes retain their stated revisions. Host-model capture recipes and
@@ -54,8 +54,8 @@ Build and test procedure creates a temporary host, installs locked
 dependencies and verifies it before moving it to `.inputs/tas-host`.
 Repeating preparation validates an existing host. Checks cover the runner,
 lock file, locked Z80 runtime and 11,013-byte TAS binary
-(`TEC-OS 02c98077b680e789e5c9d6e5f8bc4cc1e09f6fe5:tools/lib/tas-rom.mjs:10-11`,
-`TEC-OS 02c98077b680e789e5c9d6e5f8bc4cc1e09f6fe5:test/inputs.json:4-13`).
+(`Tecos 02c98077b680e789e5c9d6e5f8bc4cc1e09f6fe5:tools/lib/tas-rom.mjs:10-11`,
+`Tecos 02c98077b680e789e5c9d6e5f8bc4cc1e09f6fe5:test/inputs.json:4-13`).
 
 This TAS also writes Intel HEX when the output name ends in `.HEX`, as in
 `TAS NAME NAME.HEX`: data records at the source's own 16-bit addresses with
@@ -75,7 +75,7 @@ that limit. The ROM, `GLCD.SVC`, `MON3.SVC`, `DEMO.COM`, `HELLO3.BIN`
 and test programs therefore kept their earlier `dbee66a` assembly bytes (`57a8c38:docs/compatibility.md:226`).
 The TAS pinned now likewise assembles the ROM, `SHELL.SVC` and `MON3.SVC` to
 the same bytes as the TAS before it
-(`TEC-OS 02c98077b680e789e5c9d6e5f8bc4cc1e09f6fe5:docs/compatibility.md:234`). ROM maps assign a statement to each source line. The build therefore
+(`Tecos 02c98077b680e789e5c9d6e5f8bc4cc1e09f6fe5:docs/compatibility.md:234`). ROM maps assign a statement to each source line. The build therefore
 rejects a `\` outside quotes and comments in ROM source
 (`57a8c38:tools/lib/tas-d8.mjs:105-121`,
 `57a8c38:tools/lib/tas-d8.mjs:155-157`).
@@ -413,7 +413,7 @@ with the Matrix switch enabled starts at 40 columns. Explicit 80, 40 and
 
 The final build line reports the reference TPA as well as ROM use:
 
-<!-- TEC-OS 57a8c38: Host-tool output; exact raw receipts in Origo book-recovery-host. -->
+<!-- Tecos 57a8c38: Host-tool output; exact raw receipts in Origo book-recovery-host. -->
 ```text
 tecos: ROM 15312/16384 bytes, TPA $0100-$B984 (47237 bytes), sha256 ac86ad233696d22a
 ```
@@ -436,7 +436,7 @@ BDOS    EQU     $0005
         LD      DE,MESSAGE      ; the string, ended by $
         LD      C,9             ; BDOS function 9: print a string
         CALL    BDOS
-        RET                     ; back to TEC-OS
+        RET                     ; back to Tecos
 MESSAGE:DB      "Hello from the TEC-1G",13,10,"$"
 ```
 
@@ -461,7 +461,7 @@ Inserting `1` at the line start creates an assembly error. `^T B` saves
 and supplies the shell chain `A:TAS HELLO.ASM` followed by `A:TED`.
 The PICO9918 displays the resulting diagnostic:
 
-<!-- TEC-OS 57a8c38: node tools/capture.mjs --card work.img --board pico --screen 'CON PICO 80' B: '@start TED HELLO.ASM 7' '@press 1' $'@press \x14B' '@run 400'. Console excerpt; terminal controls and editor redraw outside the selected span omitted. -->
+<!-- Tecos 57a8c38: node tools/capture.mjs --card work.img --board pico --screen 'CON PICO 80' B: '@start TED HELLO.ASM 7' '@press 1' $'@press \x14B' '@run 400'. Console excerpt; terminal controls and editor redraw outside the selected span omitted. -->
 ```text
 B:WORK>A:TAS HELLO.ASM
 HELLO.ASM:7:1: expected a label, instruction or directive
@@ -473,7 +473,7 @@ The diagnostic identifies filename, line and column. TED reopens there
 with the message on its status row. This screen retains the intervening
 blank rows so that source and status positions can be compared:
 
-<!-- TEC-OS 57a8c38: node tools/capture.mjs --card work.img --board pico --screen 'CON PICO 80' B: '@start TED HELLO.ASM 7' '@press 1' $'@press \x14B' '@run 400'. Full screen; trailing empty rows omitted. -->
+<!-- Tecos 57a8c38: node tools/capture.mjs --card work.img --board pico --screen 'CON PICO 80' B: '@start TED HELLO.ASM 7' '@press 1' $'@press \x14B' '@run 400'. Full screen; trailing empty rows omitted. -->
 ```text
 ; HELLO: print a line and return to the CCP.
 BDOS    EQU     $0005
@@ -505,7 +505,7 @@ The repair uses backspace because the matrix keyboard has no Delete key.
 Right moves beyond `1` and `^H` removes it. `^T R` saves, assembles and
 runs corrected HELLO. TED then waits for a key before redrawing:
 
-<!-- TEC-OS 57a8c38: node tools/capture.mjs --card work.img --board pico --screen 'CON PICO 80' B: '@start TED HELLO.ASM 7' '@press 1' $'@press \x14B' '@run 400' $'@press \x1b[C' $'@press \x08' $'@press \x14R' '@run 600'. Console excerpt; terminal controls and editor redraw outside the selected span omitted. -->
+<!-- Tecos 57a8c38: node tools/capture.mjs --card work.img --board pico --screen 'CON PICO 80' B: '@start TED HELLO.ASM 7' '@press 1' $'@press \x14B' '@run 400' $'@press \x1b[C' $'@press \x08' $'@press \x14R' '@run 600'. Console excerpt; terminal controls and editor redraw outside the selected span omitted. -->
 ```text
 B:WORK>A:TAS HELLO.ASM
 HELLO.COM written
@@ -559,7 +559,7 @@ Physical-board use requires installing `work.img` to the card through
 Chapter 6's `tecvol install` procedure. This host-model capture instead
 boots the image and enters `B:`, DIR and HELLO:
 
-<!-- TEC-OS with the sized DIR (ROM c9586263, starter card 1cdc614e): node tools/capture.mjs --card work.img B: DIR HELLO. Complete captured console transcript. -->
+<!-- Tecos with the sized DIR (ROM c9586263, starter card 1cdc614e): node tools/capture.mjs --card work.img B: DIR HELLO. Complete captured console transcript. -->
 ```text
 TEC-OS 0.1 for TEC-1G
 A: SYSTEM

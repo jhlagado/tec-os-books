@@ -7,7 +7,7 @@ nav_group: "Using the machine"
 
 # 3. Build a BASIC program
 
-<!-- Source and test contracts checked at TEC-OS
+<!-- Source and test contracts checked at Tecos
      57a8c38b7f341433285e39c4bec14ecc486ffe26 (retained recovery baseline),
      programs/TIMES.BAS, test/times.test.mjs and test/ted-baza.test.mjs.
      TED.COM is pinned at Thorium 02b63d8 and the compiler/runtime pair at Baza eee4ee6. The BAZC
@@ -33,7 +33,7 @@ TIMES.BAS is on A beside the supplied tools. `TYPE TIMES.BAS` displays
 the file at `A:SYSTEM>`. Chapter 4 explains this command and its page
 controls. The complete source is:
 
-<!-- TEC-OS de6216f programs/TIMES.BAS, lines 1-22, complete. The starter
+<!-- Tecos de6216f programs/TIMES.BAS, lines 1-22, complete. The starter
      card stores it with CRLF line ends and a final ^Z (tools/media.mjs). -->
 ```text
 10 REM TIMES.BAS, a first BASIC program
@@ -91,10 +91,10 @@ cycles through `|`, `/`, `-` and `\` at the start of the line. Each is
 followed by a backspace. Completion prints `COM written` over the last
 mark and returns to the prompt:
 
-<!-- TEC-OS 1e35854, ROM bb429d10, starter card 24801956: node tools/capture.mjs --board pico --screen 'BAZC TIMES'. Full screen; trailing empty rows omitted. -->
+<!-- Tecos 8c12c9f, ROM 04ab62be, starter card e2f124e9: node tools/capture.mjs --board pico --screen 'BAZC TIMES'. Full screen; trailing empty rows omitted. -->
 ```text
 
-TEC-OS 0.1 for TEC-1G
+Tecos 0.1 for TEC-1G
 A: SYSTEM
 B: WORK
 
@@ -114,7 +114,7 @@ with or without them (`Baza 5f6b58d:README.md:26-30`).
 The command `TIMES` runs TIMES.COM. This 40-column screen answers `TEC`,
 13 and then 7. The starting `A:SYSTEM>TIMES` line is omitted:
 
-<!-- TEC-OS 1e35854, ROM bb429d10, starter card 24801956: node tools/capture.mjs --board pico --screen 'BAZC TIMES' '@start TIMES' '@press TEC' $'@press \r' '@run 100' $'@press 13\r' '@run 100' $'@press 7\r' '@run 300'. The PICO9918's screen from the program's first line; trailing empty rows omitted. -->
+<!-- Tecos 8c12c9f, ROM 04ab62be, starter card e2f124e9: node tools/capture.mjs --board pico --screen 'BAZC TIMES' '@start TIMES' '@press TEC' $'@press \r' '@run 100' $'@press 13\r' '@run 100' $'@press 7\r' '@run 300'. The PICO9918's screen from the program's first line; trailing empty rows omitted. -->
 ```text
 HELLO FROM BASIC ON TEC-OS.
 WHAT IS YOUR NAME? TEC
@@ -213,7 +213,7 @@ Inserting `95 PRINT (` before file line 10 places it between BASIC lines
 the broken copy is on B. After F9 saved the file, BAZC printed this message
 over the last progress mark:
 
-<!-- TEC-OS a738e2d, ROM bb429d10, BAZC from Baza 3f31488: node tools/capture.mjs --card times-broken.img --board pico --screen B: '@start TED TIMES.BAS' '@fn 9' '@run 600', where times-broken.img holds TIMES.BAS with 95 PRINT ( as file line 10 on B. Console excerpt, the spinner's marks taken out. -->
+<!-- Tecos 8c12c9f, ROM 04ab62be, BAZC from Baza 3f31488: node tools/capture.mjs --card times-broken.img --board pico --screen B: '@start TED TIMES.BAS' '@fn 9' '@run 600', where times-broken.img holds TIMES.BAS with 95 PRINT ( as file line 10 on B. Console excerpt, the spinner's marks taken out. -->
 ```text
 B:WORK>A:BAZC TIMES.BAS
 ?SYNTAX ERROR IN 95
@@ -281,7 +281,7 @@ the shell loaded. Leaving a MON-3 session with `EXIT` keeps `MON3.SVC`
 installed, and TED then has 23,318 bytes, or 22,550 with the GLCD driver
 too. Unload MON3.SVC before editing a larger source. These are host-model
 measurements with the seventeen-page shell and the nineteen-page monitor
-(`TEC-OS 1cded94eed6a077bd0cddea4554c2a2245c40a5a:docs/compatibility.md:233`).
+(`Tecos 1cded94eed6a077bd0cddea4554c2a2245c40a5a:docs/compatibility.md:233`).
 
 ## Machine code from BASIC
 
@@ -297,7 +297,7 @@ way. Three of its lines show the pattern
 (`Baza 5f6b58d:examples/BOUNCE.BAS:6`, `11`, `18`):
 
 <!-- Baza 5f6b58d examples/BOUNCE.BAS file lines 6, 11 and 18, as the
-     card holds it (TEC-OS de6216f tools/media.mjs:224-227). -->
+     card holds it (Tecos de6216f tools/media.mjs:224-227). -->
 ```text
 50 DEF CALL vi = ROM 3: DEF CALL bp = ROM 4: DEF CALL ft = ROM 15
 100 CALL vi, b = 1
@@ -327,7 +327,7 @@ entry 10 of the PICO console record for copying RAM to VRAM
 (`Baza 5f6b58d:docs/call.md:24-25`). Baza's own `examples/BOUNCE.BAS` at
 `5f6b58d` still calls the retired service 15 there. The starter card's copy
 takes lines 40, 50 and 170 through service 17 instead
-(`TEC-OS 6c31d32:tools/lib/bounce-source.mjs:1-12`).
+(`Tecos 6c31d32:tools/lib/bounce-source.mjs:1-12`).
 
 Ordinary BAZC numbers use 32-bit floating point. An addition takes
 about 3,000 T-states on the Z80, close to a millisecond at 4 MHz. A
@@ -378,4 +378,4 @@ The host-model test checks each of these steps
 (`57a8c38:tools/media.mjs:218-221`, `57a8c38:test/starter.test.mjs:103-184`,
 `Baza 5f6b58d:examples/BOUNCE.BAS:84`, `103-115`).
 
-_Screens checked against Tecos `1e35854` with TED `b2f98bc` and BAZ and BAZC from Baza `3f31488`, on the starter card in the emulated TEC-1G, 27 November 2026._
+_Screens checked against Tecos `8c12c9f` with TED `b2f98bc` and BAZ and BAZC from Baza `3f31488`, on the starter card in the emulated TEC-1G, 28 November 2026._

@@ -7,7 +7,7 @@ nav_group: "Inside Tecos"
 
 # 15. State and memory inside Tecos
 
-<!-- Checked against TEC-OS 57a8c38b7f341433285e39c4bec14ecc486ffe26 (retained recovery baseline),
+<!-- Checked against Tecos 57a8c38b7f341433285e39c4bec14ecc486ffe26 (retained recovery baseline),
      ROM SHA-256 ac86ad233696d22a46b4f98a4119c53b718bfe89881952a08e9f92223f3fa1c3.
      Unprefixed source citations use this revision. Explicit historical
      prefixes retain their stated revisions. Host-model capture recipes and
@@ -30,7 +30,7 @@ buffers outside the TPA
 (`b95b2a9:src/rom.asm:17-45`, `b95b2a9:src/layout.asm:78-87`, `b95b2a9:format/format.json:20-25`,
 `b95b2a9:src/services.asm:1-20`, `b95b2a9:src/abi.inc:65-106`). SHELL.SVC reserves seventeen
 pages from the TPA and places its 256-byte history ring in the last
-page (`TEC-OS 02c98077b680e789e5c9d6e5f8bc4cc1e09f6fe5:docs/shell.md:23-31`, `TEC-OS 02c98077b680e789e5c9d6e5f8bc4cc1e09f6fe5:drivers/shell.asm:791-798`).
+page (`Tecos 02c98077b680e789e5c9d6e5f8bc4cc1e09f6fe5:docs/shell.md:23-31`, `Tecos 02c98077b680e789e5c9d6e5f8bc4cc1e09f6fe5:drivers/shell.asm:791-798`).
 
 ## Two banks at the same addresses
 
@@ -166,7 +166,7 @@ On the starter card workspace begins at `BACBh`. Four 256-byte vectors occupy
 bytes at `0100h–B6C7h`. A two-volume G1M/G8M card without a drives field needs
 320 vector bytes. Its stub at `B988h` leaves 47,240 bytes. Startup's
 seventeen-page SHELL.SVC lowers the starter boundary to `A500h`, or 41,984
-bytes (`TEC-OS 02c98077b680e789e5c9d6e5f8bc4cc1e09f6fe5:docs/memory-map.md:18-19`). [Appendix C](appendix-c-memory-map.md#the-cpu-s-address-space) records
+bytes (`Tecos 02c98077b680e789e5c9d6e5f8bc4cc1e09f6fe5:docs/memory-map.md:18-19`). [Appendix C](appendix-c-memory-map.md#the-cpu-s-address-space) records
 these layouts. The workspace below `BF00h` is 1,077 bytes and warm boot clears
 347 at `BDA5h–BEFFh`. Above the table 205 bytes occupy `BF33h–BFFFh`
 (`b95b2a9:docs/memory-map.md:8-22`, `b95b2a9:docs/memory-map.md:47-58`,

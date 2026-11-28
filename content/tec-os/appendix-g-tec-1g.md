@@ -7,7 +7,7 @@ nav_group: "Reference"
 
 # Appendix G. The TEC-1G as Tecos uses it
 
-<!-- Checked against TEC-OS 57a8c38b7f341433285e39c4bec14ecc486ffe26 (retained recovery baseline),
+<!-- Checked against Tecos 57a8c38b7f341433285e39c4bec14ecc486ffe26 (retained recovery baseline),
      ROM SHA-256 ac86ad233696d22a46b4f98a4119c53b718bfe89881952a08e9f92223f3fa1c3.
      Unprefixed source citations use this revision. Explicit historical
      prefixes retain their stated revisions. Host-model capture recipes and
@@ -165,7 +165,7 @@ checklist does not repeat it.
 
 Before printing the banner, cold boot checks both ends of the visible window
 with complementary patterns and checks for the separate half behind it. Failure
-prints `TEC-OS needs 64K RAM` on serial and stops. The serial failure path uses
+prints `Tecos needs 64K RAM` on serial and stops. The serial failure path uses
 the boot stack in fixed RAM and does not require the resident workspace in U9
 (`b95b2a9:src/boot.asm:59-65`, `b95b2a9:src/boot.asm:424-498`). Chapters 11 and 15 give the
 program and resident layouts once this check succeeds.

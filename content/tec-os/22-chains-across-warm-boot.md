@@ -7,7 +7,7 @@ nav_group: "Inside Tecos"
 
 # 22. Chains across a warm boot
 
-<!-- Checked against TEC-OS 57a8c38b7f341433285e39c4bec14ecc486ffe26 (retained recovery baseline),
+<!-- Checked against Tecos 57a8c38b7f341433285e39c4bec14ecc486ffe26 (retained recovery baseline),
      ROM SHA-256 ac86ad233696d22a46b4f98a4119c53b718bfe89881952a08e9f92223f3fa1c3.
      Unprefixed source citations use this revision. Explicit historical
      prefixes retain their stated revisions. Host-model capture recipes and
@@ -110,7 +110,7 @@ cp dist/starter.img start.img
 node tools/tecvol.mjs put start.img A startup.cmd --text
 ```
 
-<!-- TEC-OS 84518ef, ROM 35893cab: node tools/capture.mjs --card start.img. Complete captured console transcript. -->
+<!-- Tecos 84518ef, ROM 35893cab: node tools/capture.mjs --card start.img. Complete captured console transcript. -->
 ```text
 TEC-OS 0.1 for TEC-1G
 A: SYSTEM

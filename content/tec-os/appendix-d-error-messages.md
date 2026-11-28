@@ -7,7 +7,7 @@ nav_group: "Reference"
 
 # Appendix D. Error messages
 
-<!-- Checked against TEC-OS 57a8c38b7f341433285e39c4bec14ecc486ffe26 (retained recovery baseline),
+<!-- Checked against Tecos 57a8c38b7f341433285e39c4bec14ecc486ffe26 (retained recovery baseline),
      ROM SHA-256 ac86ad233696d22a46b4f98a4119c53b718bfe89881952a08e9f92223f3fa1c3.
      Unprefixed source citations use this revision. Explicit historical
      prefixes retain their stated revisions. Host-model capture recipes and
@@ -39,7 +39,7 @@ display or on the LCD.
 
 | Message | Cause | Remedy | See |
 | --- | --- | --- | --- |
-| `TEC-OS needs 64K RAM` | The bank window at `8000h–BFFFh` failed the RAM patterns or the bank probe did not find EXPAND 1 behind it. | Fit the required 32 KiB RAM chip in U9 and check the configuration, then reset. | [Appendix G](appendix-g-tec-1g.md), `b95b2a9:src/boot.asm:435-488`, `b95b2a9:src/text.asm:11` |
+| `Tecos needs 64K RAM` | The bank window at `8000h–BFFFh` failed the RAM patterns or the bank probe did not find EXPAND 1 behind it. | Fit the required 32 KiB RAM chip in U9 and check the configuration, then reset. | [Appendix G](appendix-g-tec-1g.md), `b95b2a9:src/boot.asm:435-488`, `b95b2a9:src/text.asm:11` |
 
 ## The diagnostic prompt
 
@@ -267,7 +267,7 @@ PICO installable, so its next attempt still leaves no service installed.
 GLCD installs and selects its console. `SERVICES` also fails because that
 command requires the shell:
 
-<!-- TEC-OS 57a8c38: node tools/capture.mjs --card old.img --board glcd 'REN PICO.SVC=PICO.DRV' 'REN GLCD.SVC=GLCD.DRV' PICO.SVC GLCD.SVC CON SERVICES. Complete captured console transcript. -->
+<!-- Tecos 57a8c38: node tools/capture.mjs --card old.img --board glcd 'REN PICO.SVC=PICO.DRV' 'REN GLCD.SVC=GLCD.DRV' PICO.SVC GLCD.SVC CON SERVICES. Complete captured console transcript. -->
 ```text
 TEC-OS 0.1 for TEC-1G
 A: SYSTEM
@@ -419,7 +419,7 @@ gives for entering a service.
 
 | Message | Cause | Action | See |
 | --- | --- | --- | --- |
-| `?` | The `MON3>` line is not `LOAD`, `GO` or `EXIT` in a form they take. For `LOAD`: a drive beyond P, a name or type too long or holding `?` or `*`, a file not found or empty, bytes outside `0100h` to the BDOS entry's page or inside `0800h–08FFh`, or a fault anywhere in a HEX file. `GO` with no address prints it when no load has ended well. `GO` also prints it, and runs nothing, while a card write is pending. A refused load writes nothing and leaves nothing runnable. | Correct the line, the file or the address. After `Write pending`, resolve the card's refusal; `GO` runs again once the console shows `Cache clear`. | [Chapter 5](05-drives-and-user-areas.md#a-mon-3-session), `b95b2a9:docs/mon3.md:61-98`, `TEC-OS 1cded94eed6a077bd0cddea4554c2a2245c40a5a:docs/mon3.md:117-124` |
+| `?` | The `MON3>` line is not `LOAD`, `GO` or `EXIT` in a form they take. For `LOAD`: a drive beyond P, a name or type too long or holding `?` or `*`, a file not found or empty, bytes outside `0100h` to the BDOS entry's page or inside `0800h–08FFh`, or a fault anywhere in a HEX file. `GO` with no address prints it when no load has ended well. `GO` also prints it, and runs nothing, while a card write is pending. A refused load writes nothing and leaves nothing runnable. | Correct the line, the file or the address. After `Write pending`, resolve the card's refusal; `GO` runs again once the console shows `Cache clear`. | [Chapter 5](05-drives-and-user-areas.md#a-mon-3-session), `b95b2a9:docs/mon3.md:61-98`, `Tecos 1cded94eed6a077bd0cddea4554c2a2245c40a5a:docs/mon3.md:117-124` |
 | `RST nn held: UNLOAD or reset` | At entry a restart slot from `08h` to `30h` holds a `JP`: a service's claim, or a jump into ROM that a program left. The entry is refused with return code FF00h and nothing changed. | `UNLOAD` the service that holds the slot, or reset. | `b95b2a9:docs/mon3.md:198-201` |
 | `RST 38 held: no interrupts` | `0038h` held a `JP` at entry, which the session leaves alone. A program's interrupts through MON-3's `USER_INT` are not delivered. | The session runs without them. | `b95b2a9:docs/mon3.md:185`, `b95b2a9:docs/mon3.md:232` |
 | `MON3 active` | A program in a session called the service's entry. The call returns to the program with FF00h. | None. | `b95b2a9:docs/mon3.md:202-203` |
@@ -434,7 +434,7 @@ indicate a fault and need no recovery action.
 
 | Line | Meaning | See |
 | --- | --- | --- |
-| `TEC-OS 0.1 for TEC-1G` | The cold-boot console banner. The LCD banner is `TEC-OS 0.1  TEC-1G`. | [Chapter 1](01-first-session.md), `b95b2a9:src/text.asm:12`, `b95b2a9:src/text.asm:79`, `b95b2a9:tools/build.mjs:28` |
+| `Tecos 0.1 for TEC-1G` | The cold-boot console banner. The LCD banner is `Tecos 0.1  TEC-1G`. | [Chapter 1](01-first-session.md), `b95b2a9:src/text.asm:12`, `b95b2a9:src/text.asm:79`, `b95b2a9:tools/build.mjs:28` |
 | `d: LABEL` | A mounted drive and volume at cold boot, with ` (read-only)` for a protected volume. LCD rows 1 and 2 show A and B without that suffix. | `b95b2a9:src/boot.asm:500-527`, `b95b2a9:src/lcd.asm:104-168`, `b95b2a9:src/text.asm:13` |
 | `n files, nK free` | The ROM's DIR, `DIR /W` under the shell: its listed-file count and free space. The singular is `1 file, nK free`. | [Chapter 4](04-work-with-files.md), `b95b2a9:src/cpm/ccpfile.asm:198-254`, `b95b2a9:src/text.asm:27-32` |
 | `n files, n bytes` and `n free on d:LABEL` | The shell's DIR: the count and bytes of the files listed, and the drive's free bytes with its volume. | [Appendix J](appendix-j-command-reference.md#dir-and-type), `b95b2a9:drivers/shelldir.asm:240-280` |

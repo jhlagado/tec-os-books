@@ -7,7 +7,7 @@ nav_group: "Inside Tecos"
 
 # 16. Reset and boot
 
-<!-- Checked against TEC-OS 57a8c38b7f341433285e39c4bec14ecc486ffe26 (retained recovery baseline),
+<!-- Checked against Tecos 57a8c38b7f341433285e39c4bec14ecc486ffe26 (retained recovery baseline),
      ROM SHA-256 ac86ad233696d22a46b4f98a4119c53b718bfe89881952a08e9f92223f3fa1c3.
      Unprefixed source citations use this revision. Explicit historical
      prefixes retain their stated revisions. Host-model capture recipes and
@@ -87,7 +87,7 @@ COLD orders the work accordingly (`b95b2a9:src/boot.asm:35-115`):
    mounting needs a cache line (`b95b2a9:src/boot.asm:77`,
    `b95b2a9:src/boot.asm:239-256`).
 8. `COLDRT` sets the BDOS stack afresh. `LCDINIT` clears the 20 × 4 LCD
-   and the top row receives `TEC-OS 0.1  TEC-1G`
+   and the top row receives `Tecos 0.1  TEC-1G`
    (`b95b2a9:src/boot.asm:92-96`, `b95b2a9:src/text.asm:65`).
 9. `SDINIT` starts the card. `MOUNT` reads and validates the container
    table through the cache and fills the drive table. Either failure jumps
@@ -157,7 +157,7 @@ stack access while the bit is set because that view may hide the stack
 (`b95b2a9:src/boot.asm:285-295`).
 
 A failed end-byte test or any result other than 2 enters RAMBAD. It sends
-`TEC-OS needs 64K RAM` directly through TXBYTE and loops. TXBYTE requires only
+`Tecos needs 64K RAM` directly through TXBYTE and loops. TXBYTE requires only
 serial hardware, ROM and the fixed stack, so the failure can be reported
 before console workspace exists (`b95b2a9:src/boot.asm:435-488`, `b95b2a9:src/text.asm:11`,
 `b95b2a9:src/console.asm:352-393`).
@@ -219,7 +219,7 @@ empty even if the card assigns it a volume by default
 Here `CD D:GAMES` assigns GAMES to an empty D. After reset the descriptors
 still match so the boot list includes D:
 
-<!-- TEC-OS 57a8c38: node tools/capture.mjs 'CD D:GAMES' @reset. Complete captured console transcript. -->
+<!-- Tecos 57a8c38: node tools/capture.mjs 'CD D:GAMES' @reset. Complete captured console transcript. -->
 ```text
 TEC-OS 0.1 for TEC-1G
 A: SYSTEM
@@ -303,9 +303,9 @@ before cancellation (`b95b2a9:src/cpm/bdos.asm:103-105`, `b95b2a9:src/cpm/bdos.a
 Prompt input uses function 10 through either the shell's LINE entry or the
 bare CCP. An empty-prompt `^C` therefore takes the same exit:
 
-<!-- TEC-OS 1e35854, ROM bb429d10, starter card 24801956: node tools/capture.mjs '^C'. Complete captured console transcript. -->
+<!-- Tecos 8c12c9f, ROM 04ab62be, starter card e2f124e9: node tools/capture.mjs '^C'. Complete captured console transcript. -->
 ```text
-TEC-OS 0.1 for TEC-1G
+Tecos 0.1 for TEC-1G
 A: SYSTEM
 B: WORK
 

@@ -7,7 +7,7 @@ nav_group: "Reference"
 
 # Appendix E. The container format
 
-<!-- Checked against TEC-OS 57a8c38b7f341433285e39c4bec14ecc486ffe26 (retained recovery baseline),
+<!-- Checked against Tecos 57a8c38b7f341433285e39c4bec14ecc486ffe26 (retained recovery baseline),
      ROM SHA-256 ac86ad233696d22a46b4f98a4119c53b718bfe89881952a08e9f92223f3fa1c3.
      Unprefixed source citations use this revision. Explicit historical
      prefixes retain their stated revisions. Host-model capture recipes and
@@ -41,7 +41,7 @@ followed by two descriptors.
 od -A x -t x1 -N 96 dist/starter.img
 ```
 
-<!-- TEC-OS 57a8c38: Host-tool output; exact raw receipts in Origo book-recovery-host. -->
+<!-- Tecos 57a8c38: Host-tool output; exact raw receipts in Origo book-recovery-host. -->
 ```text
 000000 54 45 43 4f 53 56 4f 4c 01 01 00 02 20 00 05 00
 000010 00 68 00 00 77 12 04 00 00 00 00 00 00 00 00 00
@@ -205,12 +205,12 @@ writeFileSync("build/swapped.img", img);
 node tools/tecvol.mjs verify build/swapped.img
 ```
 
-<!-- TEC-OS 57a8c38: Host-tool output; exact raw receipts in Origo book-recovery-host. -->
+<!-- Tecos 57a8c38: Host-tool output; exact raw receipts in Origo book-recovery-host. -->
 ```text
 tecvol: volume 1: not after volume 0
 ```
 
-<!-- TEC-OS 57a8c38: node tools/capture.mjs --card build/swapped.img. Complete captured console transcript. -->
+<!-- Tecos 57a8c38: node tools/capture.mjs --card build/swapped.img. Complete captured console transcript. -->
 ```text
 TEC-OS 0.1 for TEC-1G
 No volume mounted, error 28
@@ -231,7 +231,7 @@ card and `tecvol create` rejects a volume on drive C with `--drives 2`:
 node tools/tecvol.mjs create build/drv2.img --volume G1M:SYSTEM:A --volume G1M:EXTRA:C --drives 2
 ```
 
-<!-- TEC-OS 57a8c38: Host-tool output; exact raw receipts in Origo book-recovery-host. -->
+<!-- Tecos 57a8c38: Host-tool output; exact raw receipts in Origo book-recovery-host. -->
 ```text
 tecvol: volume 1: drive C is past the card's 2 drive(s)
 ```

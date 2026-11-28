@@ -7,7 +7,7 @@ nav_group: "Reference"
 
 # Appendix F. `tecvol`
 
-<!-- Checked against TEC-OS 57a8c38b7f341433285e39c4bec14ecc486ffe26 (retained recovery baseline),
+<!-- Checked against Tecos 57a8c38b7f341433285e39c4bec14ecc486ffe26 (retained recovery baseline),
      ROM SHA-256 ac86ad233696d22a46b4f98a4119c53b718bfe89881952a08e9f92223f3fa1c3.
      Unprefixed source citations use this revision. Explicit historical
      prefixes retain their stated revisions. Host-model capture recipes and
@@ -139,7 +139,7 @@ Successful creation prints nothing.
 node tools/tecvol.mjs info build/my.img
 ```
 
-<!-- TEC-OS 57a8c38: Host-tool output; exact raw receipts in Origo book-recovery-host. -->
+<!-- Tecos 57a8c38: Host-tool output; exact raw receipts in Origo book-recovery-host. -->
 ```text
 container: format 1.0, 22528 blocks (11534336 bytes), 3 volume(s)
   A: SYSTEM      id 1 G1M start 2048 rw 0 file(s), 1040384 bytes free
@@ -173,7 +173,7 @@ printf 'X' | dd of=build/badsum.img bs=1 seek=25 conv=notrunc
 node tools/tecvol.mjs verify build/badsum.img
 ```
 
-<!-- TEC-OS 57a8c38: Host-tool output; exact raw receipts in Origo book-recovery-host. -->
+<!-- Tecos 57a8c38: Host-tool output; exact raw receipts in Origo book-recovery-host. -->
 ```text
 tecvol: header checksum mismatch
 ```
@@ -190,7 +190,7 @@ directory is:
 node tools/tecvol.mjs dir dist/starter.img A
 ```
 
-<!-- TEC-OS with the sized DIR (ROM 41c87b73, starter card 7c5c6202): host-tool output of the command above. -->
+<!-- Tecos with the sized DIR (ROM 41c87b73, starter card 7c5c6202): host-tool output of the command above. -->
 ```text
  0 BAZC.COM        13440
  0 BAZC.RTL        13056
@@ -211,9 +211,9 @@ node tools/tecvol.mjs dir dist/starter.img A
 
 In this image SHELL.SVC is 4,203 bytes in `dist/files` and occupies 33
 records, 4,224 bytes, on the card. The fifteen files are those of
-`TEC-OS 02c98077b680e789e5c9d6e5f8bc4cc1e09f6fe5:tools/media.mjs:219-249` and
-`TEC-OS 02c98077b680e789e5c9d6e5f8bc4cc1e09f6fe5:tools/lib/starter.mjs:11-22`, and STARTUP.CMD holds `SHELL.SVC` and
-`GLCD.SVC` (`TEC-OS 02c98077b680e789e5c9d6e5f8bc4cc1e09f6fe5:test/starter.test.mjs:44-52`).
+`Tecos 02c98077b680e789e5c9d6e5f8bc4cc1e09f6fe5:tools/media.mjs:219-249` and
+`Tecos 02c98077b680e789e5c9d6e5f8bc4cc1e09f6fe5:tools/lib/starter.mjs:11-22`, and STARTUP.CMD holds `SHELL.SVC` and
+`GLCD.SVC` (`Tecos 02c98077b680e789e5c9d6e5f8bc4cc1e09f6fe5:test/starter.test.mjs:44-52`).
 
 ## put
 
@@ -248,7 +248,7 @@ Copying to the read-only volume fails without changing the image:
 node tools/tecvol.mjs put build/my.img ARCHIVE build/hello.txt
 ```
 
-<!-- TEC-OS 57a8c38: Host-tool output; exact raw receipts in Origo book-recovery-host. -->
+<!-- Tecos 57a8c38: Host-tool output; exact raw receipts in Origo book-recovery-host. -->
 ```text
 tecvol: volume is read-only
 ```
@@ -259,7 +259,7 @@ The invalid user value is rejected with status 2 before opening the image:
 node tools/tecvol.mjs put build/my.img A build/hello.txt --user 1.5
 ```
 
-<!-- TEC-OS 57a8c38: Host-tool output; exact raw receipts in Origo book-recovery-host. -->
+<!-- Tecos 57a8c38: Host-tool output; exact raw receipts in Origo book-recovery-host. -->
 ```text
 tecvol: --user "1.5": a user number 0 to 15
 usage: tecvol create|info|verify|dir|put|get|era|recipe|install ... (see tools/tecvol.mjs)
@@ -283,7 +283,7 @@ and block in the error (`b95b2a9:tools/lib/cpmfs.mjs:128-150`).
 node tools/tecvol.mjs get build/my.img A HELLO.TXT --text
 ```
 
-<!-- TEC-OS 57a8c38: Host-tool output; exact raw receipts in Origo book-recovery-host. -->
+<!-- Tecos 57a8c38: Host-tool output; exact raw receipts in Origo book-recovery-host. -->
 ```text
 hello
 world
@@ -301,7 +301,7 @@ node tools/tecvol.mjs era build/my.img B TAS.COM
 node tools/tecvol.mjs era build/my.img B TAS.COM --user 3
 ```
 
-<!-- TEC-OS 57a8c38: Host-tool output; exact raw receipts in Origo book-recovery-host. -->
+<!-- Tecos 57a8c38: Host-tool output; exact raw receipts in Origo book-recovery-host. -->
 ```text
 tecvol: TAS.COM not found
 usage: tecvol create|info|verify|dir|put|get|era|recipe|install ... (see tools/tecvol.mjs)
@@ -318,7 +318,7 @@ node tools/tecvol.mjs era build/my.img B NOTE.TXT
 node tools/tecvol.mjs era build/my.img B NOTE.TXT --force
 ```
 
-<!-- TEC-OS 57a8c38: Host-tool output; exact raw receipts in Origo book-recovery-host. -->
+<!-- Tecos 57a8c38: Host-tool output; exact raw receipts in Origo book-recovery-host. -->
 ```text
 tecvol: 0/NOTE.TXT is read-only
 tecvol: 0/NOTE.TXT is read-only
@@ -358,7 +358,7 @@ node tools/tecvol.mjs recipe dist/starter.recipe.json build/book-fresh.img
 sha256sum build/book-fresh.img dist/starter.img
 ```
 
-<!-- TEC-OS 57a8c38: Host-tool output; exact raw receipts in Origo book-recovery-host. -->
+<!-- Tecos 57a8c38: Host-tool output; exact raw receipts in Origo book-recovery-host. -->
 ```text
 b11cd5b0504ae93ad2dd57db2ed0dbce8684ca80c607c5332d0c5e0fc701ebb7  build/book-fresh.img
 b11cd5b0504ae93ad2dd57db2ed0dbce8684ca80c607c5332d0c5e0fc701ebb7  dist/starter.img
@@ -401,7 +401,7 @@ The final directory is:
 node tools/tecvol.mjs dir build/my.img A
 ```
 
-<!-- TEC-OS with the sized DIR (SHELL.SVC 2697cc8d): host-tool output of the command above. -->
+<!-- Tecos with the sized DIR (SHELL.SVC 2697cc8d): host-tool output of the command above. -->
 ```text
  0 HELLO.TXT         128
  0 SHELL.SVC        4224
@@ -410,7 +410,7 @@ node tools/tecvol.mjs dir build/my.img A
 
 The same card's Tecos capture reads the text and lists all volumes:
 
-<!-- TEC-OS with the sized DIR (ROM c9586263, starter card 1cdc614e): node tools/capture.mjs --card build/my.img DIR 'TYPE HELLO.TXT' 'CD ?'. Complete captured console transcript. -->
+<!-- Tecos with the sized DIR (ROM c9586263, starter card 1cdc614e): node tools/capture.mjs --card build/my.img DIR 'TYPE HELLO.TXT' 'CD ?'. Complete captured console transcript. -->
 ```text
 TEC-OS 0.1 for TEC-1G
 A: SYSTEM

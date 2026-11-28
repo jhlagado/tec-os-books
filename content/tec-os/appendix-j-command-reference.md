@@ -7,7 +7,7 @@ nav_group: "Reference"
 
 # Appendix J. Command reference
 
-<!-- Checked against TEC-OS 57a8c38b7f341433285e39c4bec14ecc486ffe26 (retained recovery baseline),
+<!-- Checked against Tecos 57a8c38b7f341433285e39c4bec14ecc486ffe26 (retained recovery baseline),
      ROM SHA-256 ac86ad233696d22a46b4f98a4119c53b718bfe89881952a08e9f92223f3fa1c3.
      Unprefixed source citations use this revision. Explicit historical
      prefixes retain their stated revisions. Host-model capture recipes and
@@ -66,9 +66,9 @@ command also requires one name.
 The following retained capture shows an overlong name, a pattern where TYPE
 requires one file and a second argument where DIR accepts only one.
 
-<!-- TEC-OS 1e35854, ROM bb429d10, starter card 24801956: node tools/capture.mjs 'DIR VERYLONGNAME.TXT' 'TYPE *.CMD' 'DIR A: B:'. Complete captured console transcript. -->
+<!-- Tecos 8c12c9f, ROM 04ab62be, starter card e2f124e9: node tools/capture.mjs 'DIR VERYLONGNAME.TXT' 'TYPE *.CMD' 'DIR A: B:'. Complete captured console transcript. -->
 ```text
-TEC-OS 0.1 for TEC-1G
+Tecos 0.1 for TEC-1G
 A: SYSTEM
 B: WORK
 
@@ -167,7 +167,7 @@ SAY.COM          128
 X.DAT         128128
 ```
 
-These rows are the example in `TEC-OS 02c98077b680e789e5c9d6e5f8bc4cc1e09f6fe5:docs/shell.md:200-212`.
+These rows are the example in `Tecos 02c98077b680e789e5c9d6e5f8bc4cc1e09f6fe5:docs/shell.md:200-212`.
 After the rows, the totals give the file count and combined byte length.
 Free space is function 46's record count times 128, on a final line that
 identifies the drive and its volume. Files
@@ -177,7 +177,7 @@ threshold is 16 KiB. A first search of the directory gathers each name's
 size in a table, so a large file costs no more than a small one: DIR takes
 about twice `DIR /W`'s time, 40.6 s against 21.5 s for 452 files on a G8M
 volume at 4 MHz on the serial console
-(`TEC-OS 02c98077b680e789e5c9d6e5f8bc4cc1e09f6fe5:docs/shell.md:223-235`).
+(`Tecos 02c98077b680e789e5c9d6e5f8bc4cc1e09f6fe5:docs/shell.md:223-235`).
 
 `DIR /W`, and DIR without the shell, is the ROM's wide listing. Its last line
 gives the number listed and the free KiB on that drive. A displayed name has
@@ -211,9 +211,9 @@ in hexadecimal (`b95b2a9:drivers/shellcmd.asm:54-154`).
 The type-only destination and self-copy cases below were captured on A
 with the starter card.
 
-<!-- TEC-OS 1e35854, ROM bb429d10, starter card 24801956: node tools/capture.mjs 'COPY STARTUP.CMD B:.DOC' 'DIR B:' 'COPY A:STARTUP.CMD STARTUP.CMD' 'COPY STARTUP.CMD'. Complete captured console transcript. -->
+<!-- Tecos 8c12c9f, ROM 04ab62be, starter card e2f124e9: node tools/capture.mjs 'COPY STARTUP.CMD B:.DOC' 'DIR B:' 'COPY A:STARTUP.CMD STARTUP.CMD' 'COPY STARTUP.CMD'. Complete captured console transcript. -->
 ```text
-TEC-OS 0.1 for TEC-1G
+Tecos 0.1 for TEC-1G
 A: SYSTEM
 B: WORK
 
@@ -285,9 +285,9 @@ disposable file there. It records an `n` answer that leaves the file and a `y`
 answer that erases it. This is a separate demonstration, not the card
 used for BANNER in Chapter 2. `ERA *.*` would erase BANNER too on that card.
 
-<!-- TEC-OS 1e35854, ROM bb429d10, starter card 24801956: node tools/capture.mjs 'COPY STARTUP.CMD B:' B: '@start ERA *.*' $'@key n\x0d' DIR '@start ERA *.*' $'@key y\x0d' DIR. Complete captured console transcript. -->
+<!-- Tecos 8c12c9f, ROM 04ab62be, starter card e2f124e9: node tools/capture.mjs 'COPY STARTUP.CMD B:' B: '@start ERA *.*' $'@key n\x0d' DIR '@start ERA *.*' $'@key y\x0d' DIR. Complete captured console transcript. -->
 ```text
-TEC-OS 0.1 for TEC-1G
+Tecos 0.1 for TEC-1G
 A: SYSTEM
 B: WORK
 
@@ -432,7 +432,7 @@ gives the record layout.
 `MON3.SVC` gives the `MON3>` line, which BDOS function 10 reads and the
 service converts to capitals. It takes three commands. Anything else prints
 `?`. The address forms below follow the later development component
-(`TEC-OS 1cded94eed6a077bd0cddea4554c2a2245c40a5a:docs/mon3.md:60-143`):
+(`Tecos 1cded94eed6a077bd0cddea4554c2a2245c40a5a:docs/mon3.md:60-143`):
 
 | Form | Operation |
 | --- | --- |
@@ -500,7 +500,7 @@ and debug conventions remain. For example, `TAS PIC PIC.HEX`, then
 code or assemble for the intended destination: moving bytes does not
 relocate embedded addresses. `GO ADDR` remains a one-run entry override
 (`Thorium 7a217f96c76f11641af3fa0b22d0b34be6e2a467:docs/language.md:167-185`,
-`TEC-OS 54f1b102f7031d563c13c465747bc92157c803da:test/tas-hex.test.mjs:105-137`).
+`Tecos 54f1b102f7031d563c13c465747bc92157c803da:test/tas-hex.test.mjs:105-137`).
 
 TED's F9 builds an `.ASM` file with `TAS NAME.ASM` and compiles a `.BAS`
 file with `BAZC NAME.BAS`. F5 runs an `.ASM` program, building it first if

@@ -7,7 +7,7 @@ nav_exclude: true
 
 # Tecos on the TEC-1G
 
-<!-- Checked against TEC-OS 57a8c38 (retained recovery baseline), ROM ac86ad23:
+<!-- Checked against Tecos 57a8c38 (retained recovery baseline), ROM ac86ad23:
      15,312 bytes used and 1,072 free. Basic CD recovery is in ROM;
      SHELL.SVC supplies the richer command environment. The starter has
      thirteen files and supplies HELLO3.ASM for guest TAS compilation.

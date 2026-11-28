@@ -7,7 +7,7 @@ nav_group: "Inside Tecos"
 
 # 29. The host model as evidence
 
-<!-- Checked against TEC-OS 57a8c38b7f341433285e39c4bec14ecc486ffe26 (retained recovery baseline),
+<!-- Checked against Tecos 57a8c38b7f341433285e39c4bec14ecc486ffe26 (retained recovery baseline),
      ROM SHA-256 ac86ad233696d22a46b4f98a4119c53b718bfe89881952a08e9f92223f3fa1c3.
      Unprefixed source citations use this revision. Explicit historical
      prefixes retain their stated revisions. Host-model capture recipes and
@@ -116,9 +116,9 @@ The distinction is visible when output switches to GLCD. These captures
 use matrix input and graphics LCD without PICO9918. Console bytes include
 boot and later CON output after GLCD selection:
 
-<!-- TEC-OS 1e35854, ROM bb429d10, starter card 24801956: node tools/capture.mjs --board glcd CON. Complete captured console transcript. -->
+<!-- Tecos 8c12c9f, ROM 04ab62be, starter card e2f124e9: node tools/capture.mjs --board glcd CON. Complete captured console transcript. -->
 ```text
-TEC-OS 0.1 for TEC-1G
+Tecos 0.1 for TEC-1G
 A: SYSTEM
 B: WORK
 
@@ -133,9 +133,9 @@ A:SYSTEM>
 
 Serial bytes stop at the console switch, before the later command:
 
-<!-- TEC-OS 1e35854, ROM bb429d10, starter card 24801956: node tools/capture.mjs --board glcd --serial CON. Complete serial transcript. -->
+<!-- Tecos 8c12c9f, ROM 04ab62be, starter card e2f124e9: node tools/capture.mjs --board glcd --serial CON. Complete serial transcript. -->
 ```text
-TEC-OS 0.1 for TEC-1G
+Tecos 0.1 for TEC-1G
 A: SYSTEM
 B: WORK
 
@@ -147,7 +147,7 @@ A:SYSTEM>GLCD.SVC
 The decoded GLCD screen instead contains only the later command. Driver
 startup cleared the earlier display contents:
 
-<!-- TEC-OS 1e35854, ROM bb429d10, starter card 24801956: node tools/capture.mjs --board glcd --screen CON. Full screen; trailing empty rows omitted. -->
+<!-- Tecos 8c12c9f, ROM 04ab62be, starter card e2f124e9: node tools/capture.mjs --board glcd --screen CON. Full screen; trailing empty rows omitted. -->
 ```text
 
 A:SYSTEM>CON
@@ -264,7 +264,7 @@ node tools/tecvol.mjs put long.img A lines.txt --text
 GLCD has eight rows of 21 characters. Reserving the last for `[more]`
 gives seven output rows before the first pause:
 
-<!-- TEC-OS 57a8c38: node tools/capture.mjs --card long.img --board glcd --screen 'TYPE LINES.TXT'. Full screen; trailing empty rows omitted. -->
+<!-- Tecos 57a8c38: node tools/capture.mjs --card long.img --board glcd --screen 'TYPE LINES.TXT'. Full screen; trailing empty rows omitted. -->
 ```text
 The graphics LCD has
 8 rows of 21 characte
@@ -280,7 +280,7 @@ Each initial file line wraps across three rows. Counting starts at the
 listing's first row, so the command has scrolled away before the pause.
 The next capture sends x to erase `[more]` and continue:
 
-<!-- TEC-OS 57a8c38: node tools/capture.mjs --card long.img --board glcd --screen 'TYPE LINES.TXT' '@key x'. Full screen; trailing empty rows omitted. -->
+<!-- Tecos 57a8c38: node tools/capture.mjs --card long.img --board glcd --screen 'TYPE LINES.TXT' '@key x'. Full screen; trailing empty rows omitted. -->
 ```text
 Four
 Five
@@ -298,7 +298,7 @@ Chapter 13. Pager cleanup erases `[more]` before returning. Here q stops
 at the first pause, leaving remaining file text unprinted and a prompt
 below the erased row:
 
-<!-- TEC-OS 57a8c38: node tools/capture.mjs --card long.img --board glcd --screen 'TYPE LINES.TXT' '@key q'. Full screen; trailing empty rows omitted. -->
+<!-- Tecos 57a8c38: node tools/capture.mjs --card long.img --board glcd --screen 'TYPE LINES.TXT' '@key q'. Full screen; trailing empty rows omitted. -->
 ```text
 8 rows of 21 characte
 rs.

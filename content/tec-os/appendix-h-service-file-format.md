@@ -7,7 +7,7 @@ nav_group: "Reference"
 
 # Appendix H. The service file format
 
-<!-- Checked against TEC-OS 57a8c38b7f341433285e39c4bec14ecc486ffe26 (retained recovery baseline),
+<!-- Checked against Tecos 57a8c38b7f341433285e39c4bec14ecc486ffe26 (retained recovery baseline),
      ROM SHA-256 ac86ad233696d22a46b4f98a4119c53b718bfe89881952a08e9f92223f3fa1c3.
      Unprefixed source citations use this revision. Explicit historical
      prefixes retain their stated revisions. Host-model capture recipes and
@@ -192,7 +192,7 @@ writeFileSync("GAPZERO.SVC", out);
 node tools/tecvol.mjs put svc.img B GAPZERO.SVC
 ```
 
-<!-- TEC-OS with the sized DIR (ROM c9586263, starter card 1cdc614e): node tools/capture.mjs --card svc.img B: GAPZERO.SVC SERVICES. Complete captured console transcript. -->
+<!-- Tecos with the sized DIR (ROM c9586263, starter card 1cdc614e): node tools/capture.mjs --card svc.img B: GAPZERO.SVC SERVICES. Complete captured console transcript. -->
 ```text
 TEC-OS 0.1 for TEC-1G
 A: SYSTEM
@@ -227,7 +227,7 @@ od -A x -t x1 -N 48 dist/files/GLCD.SVC
 od -A x -t x1 -j 767 dist/files/GLCD.SVC
 ```
 
-<!-- TEC-OS 57a8c38: Host-tool output; exact raw receipts in Origo book-recovery-host. -->
+<!-- Tecos 57a8c38: Host-tool output; exact raw receipts in Origo book-recovery-host. -->
 ```text
 000000 44 04 00 01 4e 00 ff 02 00 00 45 00 02 00 06 2b
 000010 00 47 4c 43 44 20 20 20 20 f2 00 4d 01 52 01 c9

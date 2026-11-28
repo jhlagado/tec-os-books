@@ -7,7 +7,7 @@ nav_group: "Using the machine"
 
 # 1. First session
 
-<!-- Checked against TEC-OS 57a8c38b7f341433285e39c4bec14ecc486ffe26 (retained recovery baseline),
+<!-- Checked against Tecos 57a8c38b7f341433285e39c4bec14ecc486ffe26 (retained recovery baseline),
      ROM SHA-256 ac86ad233696d22a46b4f98a4119c53b718bfe89881952a08e9f92223f3fa1c3.
      Unprefixed source citations use this revision. Explicit historical
      prefixes retain their stated revisions. Host-model capture recipes and
@@ -42,10 +42,10 @@ with this configuration. Unused blank rows are omitted from the excerpts.
 Power-on starts Tecos and displays the system name. The two names below
 it identify the card volumes on the drives:
 
-<!-- TEC-OS 1e35854, ROM bb429d10, starter card 24801956: node tools/capture.mjs --board pico --screen. The PICO9918's 40-column screen; right-hand blanks and empty bottom rows omitted. -->
+<!-- Tecos 8c12c9f, ROM 04ab62be, starter card e2f124e9: node tools/capture.mjs --board pico --screen. The PICO9918's 40-column screen; right-hand blanks and empty bottom rows omitted. -->
 ```text
 
-TEC-OS 0.1 for TEC-1G
+Tecos 0.1 for TEC-1G
 A: SYSTEM
 B: WORK
 
@@ -73,24 +73,30 @@ graphics LCD. In this session it leaves the PICO9918 selected as the
 after the prompt and press Return. The prompt is already on screen, so it
 is not part of the command you enter. The same session produced:
 
-<!-- TEC-OS 1e35854, ROM bb429d10, starter card 24801956: node tools/capture.mjs --board pico --screen DIR. The PICO9918's 40-column screen from the DIR line; right-hand blanks and empty bottom rows omitted. -->
+<!-- Tecos 8c12c9f, ROM 04ab62be, starter card e2f124e9: node tools/capture.mjs --board pico --screen DIR. The PICO9918's 40-column screen from the DIR line; right-hand blanks and empty bottom rows omitted. -->
 ```text
+B: WORK
+
+A:SYSTEM>SHELL.SVC
+
+A:SYSTEM>GLCD.SVC
+
 A:SYSTEM>DIR
 
 STARTUP.CMD      128
 SHELL.SVC       3584
 GLCD.SVC         896
 TED.COM        16256
-TBUG.SVC        9216
+TBUG.SVC        9088
 TBUG.HLP        3584
 TAS.COM        11008
 BAZC.COM       13824
 BAZC.RTL       13568
 MON3.SVC        5376
-SAMPLE.ASM      4608
+SAMPLE.ASM      4480
 TIMES.BAS        640
 BAZ.COM        22272
-13 files, 104960 bytes
+13 files, 104704 bytes
 923648 free on A:SYSTEM
 A:SYSTEM>
 ```
@@ -149,7 +155,7 @@ A drive letter followed by a colon changes the current drive. `B:` selects
 WORK and `A:` returns to SYSTEM. This screen follows the listing above
 with both drive commands:
 
-<!-- TEC-OS 1e35854, ROM bb429d10, starter card 24801956: node tools/capture.mjs --board pico --screen DIR B: A:. Full screen; trailing empty rows omitted. -->
+<!-- Tecos 8c12c9f, ROM 04ab62be, starter card e2f124e9: node tools/capture.mjs --board pico --screen DIR B: A:. Full screen; trailing empty rows omitted. -->
 ```text
 A:SYSTEM>SHELL.SVC
 
@@ -161,16 +167,16 @@ STARTUP.CMD      128
 SHELL.SVC       3584
 GLCD.SVC         896
 TED.COM        16256
-TBUG.SVC        9216
+TBUG.SVC        9088
 TBUG.HLP        3584
 TAS.COM        11008
 BAZC.COM       13824
 BAZC.RTL       13568
 MON3.SVC        5376
-SAMPLE.ASM      4608
+SAMPLE.ASM      4480
 TIMES.BAS        640
 BAZ.COM        22272
-13 files, 104960 bytes
+13 files, 104704 bytes
 923648 free on A:SYSTEM
 A:SYSTEM>B:
 B:WORK>A:
@@ -187,10 +193,10 @@ SAMPLE and the assembler for the next command.
 The command needs only SAMPLE because TAS supplies the file types.
 A completed assembly produces this message:
 
-<!-- TEC-OS 1e35854, ROM bb429d10, starter card 24801956: node tools/capture.mjs --board pico --screen 'TAS SAMPLE'. Full screen; trailing empty rows omitted. -->
+<!-- Tecos 8c12c9f, ROM 04ab62be, starter card e2f124e9: node tools/capture.mjs --board pico --screen 'TAS SAMPLE'. Full screen; trailing empty rows omitted. -->
 ```text
 
-TEC-OS 0.1 for TEC-1G
+Tecos 0.1 for TEC-1G
 A: SYSTEM
 B: WORK
 
@@ -211,10 +217,10 @@ only after you assemble it again.
 The command `SAMPLE` loads and starts `SAMPLE.COM`. Its greeting and screen
 size appear before it returns to the prompt:
 
-<!-- TEC-OS 1e35854, ROM bb429d10, starter card 24801956: node tools/capture.mjs --board pico --screen 'TAS SAMPLE' SAMPLE. Full screen; trailing empty rows omitted. -->
+<!-- Tecos 8c12c9f, ROM 04ab62be, starter card e2f124e9: node tools/capture.mjs --board pico --screen 'TAS SAMPLE' SAMPLE. Full screen; trailing empty rows omitted. -->
 ```text
 
-TEC-OS 0.1 for TEC-1G
+Tecos 0.1 for TEC-1G
 A: SYSTEM
 B: WORK
 
@@ -295,7 +301,7 @@ HELLO3.ASM with `TAS HELLO3 HELLO3.BIN`. Then `MON3.SVC` installs the service an
 `GO` runs it. HELLO3 prints four lines on the 20 × 4 LCD through MON-3's
 calls, then beeps:
 
-<!-- TEC-OS 9ade2fe test/starter.test.mjs:219, the LCD rows the host-model
+<!-- Tecos 9ade2fe test/starter.test.mjs:219, the LCD rows the host-model
      test checks, trailing spaces removed. Not a separate capture. -->
 ```text
 MON-3 ON TEC-OS
@@ -312,4 +318,4 @@ to the prompt, `A:MON3>`. The starter supplies the source. The binary is the fil
 you built above. [Chapter 5](05-drives-and-user-areas.md) explains
 the service and its reserved memory.
 
-_Screens checked against Tecos `1e35854` on the starter card in the emulated TEC-1G, 27 November 2026._
+_Screens checked against Tecos `8c12c9f` on the starter card in the emulated TEC-1G, 28 November 2026._

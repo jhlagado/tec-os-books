@@ -25,7 +25,7 @@ When you want to stop at the same line on every pass through a loop or every cal
 
 Start `tbug step` from `B:WORK>`. The stop opens in Code, with `>` and `→` together on `0100 LD HL,1234`. Move `>` down twice to `0104 POP DE`, leaving `→` back at `0100`:
 
-<!-- TEC-OS 8a7e24e with TBUG 167f7f0, starter card de6b5ff6: TECOS=<checkout> node scripts/tbug-capture.mjs --card tbug.img '>b:' '>tas step' '!tbug step' down down Space R F5 C, where tbug.img holds this book's HELLO.ASM, STEP.ASM and FILL.ASM on B. The LCD after the second down. -->
+<!-- Tecos 8c12c9f with TBUG 167f7f0, starter card e2f124e9: TECOS=<checkout> node scripts/tbug-capture.mjs --card tbug.img '>b:' '>tas step' '!tbug step' down down Space R F5 C, where tbug.img holds this book's HELLO.ASM, STEP.ASM and FILL.ASM on B. The LCD after the second down. -->
 ```text
 START:
  →0100 LD HL,1234
@@ -35,7 +35,7 @@ START:
 
 Press `Space`. A hollow box `□` appears in column 2 beside `0104`, and the top row reports `BP SET 0104` in place of the label:
 
-<!-- TEC-OS 8a7e24e with TBUG 167f7f0, starter card de6b5ff6: TECOS=<checkout> node scripts/tbug-capture.mjs --card tbug.img '>b:' '>tas step' '!tbug step' down down Space R F5 C, where tbug.img holds this book's HELLO.ASM, STEP.ASM and FILL.ASM on B. The LCD after Space. -->
+<!-- Tecos 8c12c9f with TBUG 167f7f0, starter card e2f124e9: TECOS=<checkout> node scripts/tbug-capture.mjs --card tbug.img '>b:' '>tas step' '!tbug step' down down Space R F5 C, where tbug.img holds this book's HELLO.ASM, STEP.ASM and FILL.ASM on B. The LCD after Space. -->
 ```text
 BP SET 0104
  →0100 LD HL,1234
@@ -47,7 +47,7 @@ BP SET 0104
 
 Jump back to Registers with `R` and press `F5`. The Z80 runs `LD HL,$1234` and `PUSH HL` at full speed and halts right before `POP DE`:
 
-<!-- TEC-OS 8a7e24e with TBUG 167f7f0, starter card de6b5ff6: TECOS=<checkout> node scripts/tbug-capture.mjs --card tbug.img '>b:' '>tas step' '!tbug step' down down Space R F5 C, where tbug.img holds this book's HELLO.ASM, STEP.ASM and FILL.ASM on B. The LCD after F5. -->
+<!-- Tecos 8c12c9f with TBUG 167f7f0, starter card e2f124e9: TECOS=<checkout> node scripts/tbug-capture.mjs --card tbug.img '>b:' '>tas step' '!tbug step' down down Space R F5 C, where tbug.img holds this book's HELLO.ASM, STEP.ASM and FILL.ASM on B. The LCD after F5. -->
 ```text
 >PC 0104  SP 8DFC BP
  AF 0000  BC 0000 SY
@@ -85,4 +85,4 @@ Two boundaries limit `Ctrl+Esc`:
 
 ![Three ways to stop a running program: one-shot F5 off PC, persistent Space breakpoints and Ctrl+Esc at the next BDOS call.](/images/tbug/stop-paths.svg)
 
-_Checked against Tecos `8a7e24e` with TBUG `167f7f0`, on the starter card in the emulated TEC-1G, 28 November 2026._
+_Checked against Tecos `8c12c9f` with TBUG `167f7f0`, on the starter card in the emulated TEC-1G, 28 November 2026._

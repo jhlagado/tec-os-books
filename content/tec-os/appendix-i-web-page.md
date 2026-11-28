@@ -7,7 +7,7 @@ nav_group: "Reference"
 
 # Appendix I. The web page
 
-<!-- Checked against TEC-OS 57a8c38b7f341433285e39c4bec14ecc486ffe26 (retained recovery baseline),
+<!-- Checked against Tecos 57a8c38b7f341433285e39c4bec14ecc486ffe26 (retained recovery baseline),
      ROM SHA-256 ac86ad233696d22a46b4f98a4119c53b718bfe89881952a08e9f92223f3fa1c3.
      Unprefixed source citations use this revision. Explicit historical
      prefixes retain their stated revisions. Host-model capture recipes and
@@ -18,7 +18,7 @@ nav_group: "Reference"
      Baza is the qualified 5f6b58d payload. Source-derived excerpts are
      labelled separately from console captures.
      The section on the current Viewer was checked against Viewer 8d7e623
-     (src/main.mjs, README.md) and the TEC-OS 1e35854 starter recipe. -->
+     (src/main.mjs, README.md) and the Tecos 1e35854 starter recipe. -->
 
 The browser page lets you use a software TEC-1G and exchange files with
 your PC. The machine's working card and the browser's saved copy are
@@ -368,8 +368,8 @@ the wording defined by that source:
 | --- | --- |
 | Drive A cannot be opened and listed | `This card has no drive A: the diagnostic prompt is on the serial terminal below. A new starter card has one.` |
 | GLCD selected without GLCD.SVC or an old display .DRV file | `This card has no GLCD.SVC: it boots as its STARTUP.CMD says. A new starter card has it.` |
-| An old .DRV display file is found instead of GLCD.SVC | `This card is from an older TEC-OS: this ROM doesn't load NAME.DRV, so the card boots as its STARTUP.CMD says. A new starter card has GLCD.SVC.` |
-| GLCD.SVC has another format byte | `This card's GLCD.SVC is format n, from an older TEC-OS, and this ROM refuses it. A new starter card has the driver.` |
+| An old .DRV display file is found instead of GLCD.SVC | `This card is from an older Tecos: this ROM doesn't load NAME.DRV, so the card boots as its STARTUP.CMD says. A new starter card has GLCD.SVC.` |
+| GLCD.SVC has another format byte | `This card's GLCD.SVC is format n, from an older Tecos, and this ROM refuses it. A new starter card has the driver.` |
 | A needed rewrite fails, for example on a read-only volume or insufficient directory space | `This card couldn't be prepared for the page (` the reason `), so it boots as it is.` |
 | A needed rewrite encounters STARTUP.CMD's read-only attribute | `This card's STARTUP.CMD is read-only, so the page can't set its display line; it boots as it is` |
 

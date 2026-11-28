@@ -7,7 +7,7 @@ nav_group: "Inside Tecos"
 
 # 23. The history ring
 
-<!-- Checked against TEC-OS 57a8c38b7f341433285e39c4bec14ecc486ffe26 (retained recovery baseline),
+<!-- Checked against Tecos 57a8c38b7f341433285e39c4bec14ecc486ffe26 (retained recovery baseline),
      ROM SHA-256 ac86ad233696d22a46b4f98a4119c53b718bfe89881952a08e9f92223f3fa1c3.
      Unprefixed source citations use this revision. Explicit historical
      prefixes retain their stated revisions. Host-model capture recipes and
@@ -90,10 +90,10 @@ returns. The shell folds command pieces afterwards (`57a8c38:src/cpm/bdos.asm:65
 `57a8c38:drivers/shell.asm:426-429`, `57a8c38:drivers/shell.asm:498-518`). Recalling `con`
 in this PICO9918 capture therefore retains lowercase text:
 
-<!-- TEC-OS 1e35854, ROM bb429d10, starter card 24801956: node tools/capture.mjs --board pico --screen con $'@start \x17'. Full screen; trailing empty rows omitted. -->
+<!-- Tecos 8c12c9f, ROM 04ab62be, starter card e2f124e9: node tools/capture.mjs --board pico --screen con $'@start \x17'. Full screen; trailing empty rows omitted. -->
 ```text
 
-TEC-OS 0.1 for TEC-1G
+Tecos 0.1 for TEC-1G
 A: SYSTEM
 B: WORK
 
@@ -127,7 +127,7 @@ differences. A duplicate requires `C = 0` and a final offset equal to
 keeps the existing entry. After two CON commands and `DIR *.CMD`, three
 `^W` presses therefore reach CON then stop: only two entries exist.
 
-<!-- TEC-OS with the sized DIR (ROM c9586263, starter card 1cdc614e): node tools/capture.mjs --board pico --screen CON CON 'DIR *.CMD' $'@start \x17\x17\x17'. Full screen; trailing empty rows omitted. -->
+<!-- Tecos with the sized DIR (ROM c9586263, starter card 1cdc614e): node tools/capture.mjs --board pico --screen CON CON 'DIR *.CMD' $'@start \x17\x17\x17'. Full screen; trailing empty rows omitted. -->
 ```text
 
 TEC-OS 0.1 for TEC-1G
@@ -219,10 +219,10 @@ text, advancing pointer and count until zero or capacity
 After two typed commands, two `^W` presses and Return select CON in this
 capture:
 
-<!-- TEC-OS 1e35854, ROM bb429d10, starter card 24801956: node tools/capture.mjs --board pico --screen CON 'TYPE STARTUP.CMD' $'@start \x17\x17'. Full screen; trailing empty rows omitted. -->
+<!-- Tecos 8c12c9f, ROM 04ab62be, starter card e2f124e9: node tools/capture.mjs --board pico --screen CON 'TYPE STARTUP.CMD' $'@start \x17\x17'. Full screen; trailing empty rows omitted. -->
 ```text
 
-TEC-OS 0.1 for TEC-1G
+Tecos 0.1 for TEC-1G
 A: SYSTEM
 B: WORK
 
@@ -258,9 +258,9 @@ Normal exit, function 0 and `^C` at an empty prompt all use warm boot
 (`57a8c38:src/cpm/bdos.asm:216-221`, `57a8c38:src/cpm/bdos.asm:521-533`). Here, `^W` after
 `^C` still recalls CON:
 
-<!-- TEC-OS 1e35854, ROM bb429d10, starter card 24801956: node tools/capture.mjs CON '^C' $'@start \x17'. Complete captured console transcript. -->
+<!-- Tecos 8c12c9f, ROM 04ab62be, starter card e2f124e9: node tools/capture.mjs CON '^C' $'@start \x17'. Complete captured console transcript. -->
 ```text
-TEC-OS 0.1 for TEC-1G
+Tecos 0.1 for TEC-1G
 A: SYSTEM
 B: WORK
 
@@ -283,9 +283,9 @@ establishing the empty boundary preserved by insertion. Recognised reset
 retains only drive selection, so history is still lost. In this capture,
 `^W` and Return after reset produce empty input:
 
-<!-- TEC-OS 1e35854, ROM bb429d10, starter card 24801956: node tools/capture.mjs CON @reset $'@start \x17'. Complete captured console transcript. -->
+<!-- Tecos 8c12c9f, ROM 04ab62be, starter card e2f124e9: node tools/capture.mjs CON @reset $'@start \x17'. Complete captured console transcript. -->
 ```text
-TEC-OS 0.1 for TEC-1G
+Tecos 0.1 for TEC-1G
 A: SYSTEM
 B: WORK
 
@@ -296,7 +296,7 @@ A:SYSTEM>GLCD.SVC
 A:SYSTEM>CON
 CON: TTY:
 A:SYSTEM>
-TEC-OS 0.1 for TEC-1G
+Tecos 0.1 for TEC-1G
 A: SYSTEM
 B: WORK
 

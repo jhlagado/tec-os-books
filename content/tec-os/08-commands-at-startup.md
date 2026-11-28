@@ -7,7 +7,7 @@ nav_group: "Using the machine"
 
 # 8. Commands at startup
 
-<!-- Checked against TEC-OS 57a8c38b7f341433285e39c4bec14ecc486ffe26 (retained recovery baseline),
+<!-- Checked against Tecos 57a8c38b7f341433285e39c4bec14ecc486ffe26 (retained recovery baseline),
      ROM SHA-256 ac86ad233696d22a46b4f98a4119c53b718bfe89881952a08e9f92223f3fa1c3.
      Unprefixed source citations use this revision. Explicit historical
      prefixes retain their stated revisions. Host-model capture recipes and
@@ -48,9 +48,9 @@ writes but run no SDINIT and authorise no replay onto an inserted stranger
 
 The starter card's file has two lines:
 
-<!-- TEC-OS 1e35854, ROM bb429d10, starter card 24801956: node tools/capture.mjs 'TYPE STARTUP.CMD'. Complete captured console transcript. -->
+<!-- Tecos 8c12c9f, ROM 04ab62be, starter card e2f124e9: node tools/capture.mjs 'TYPE STARTUP.CMD'. Complete captured console transcript. -->
 ```text
-TEC-OS 0.1 for TEC-1G
+Tecos 0.1 for TEC-1G
 A: SYSTEM
 B: WORK
 
@@ -91,7 +91,7 @@ cp dist/starter.img lines.img
 node tools/tecvol.mjs put lines.img A startup.cmd --text
 ```
 
-<!-- TEC-OS 84518ef, ROM 35893cab: node tools/capture.mjs --card lines.img. Complete captured console transcript. -->
+<!-- Tecos 84518ef, ROM 35893cab: node tools/capture.mjs --card lines.img. Complete captured console transcript. -->
 ```text
 TEC-OS 0.1 for TEC-1G
 A: SYSTEM
@@ -131,7 +131,7 @@ cp dist/starter.img bare.img
 node tools/tecvol.mjs put bare.img A startup.cmd --text
 ```
 
-<!-- TEC-OS 84518ef, ROM 35893cab: node tools/capture.mjs --card bare.img. Complete captured console transcript. -->
+<!-- Tecos 84518ef, ROM 35893cab: node tools/capture.mjs --card bare.img. Complete captured console transcript. -->
 ```text
 TEC-OS 0.1 for TEC-1G
 A: SYSTEM
@@ -175,7 +175,7 @@ The host-model configurations give these startup results:
 With both displays configured, startup leaves no resident GLCD driver.
 `SERVICES` lists only the shell and `CON` reports CRT:
 
-<!-- TEC-OS with the sized DIR (ROM c9586263, starter card 1cdc614e): node tools/capture.mjs --board pico SERVICES CON. Complete captured console transcript. -->
+<!-- Tecos with the sized DIR (ROM c9586263, starter card 1cdc614e): node tools/capture.mjs --board pico SERVICES CON. Complete captured console transcript. -->
 ```text
 TEC-OS 0.1 for TEC-1G
 A: SYSTEM
@@ -212,7 +212,7 @@ node tools/tecvol.mjs put w32.img A startup.cmd --text
 The banner and volumes first appeared at 40 columns. Selecting 32
 cleared the screen before the reply. A later DIR produced this display:
 
-<!-- TEC-OS with the sized DIR (ROM 41c87b73, starter card 7c5c6202): node tools/capture.mjs --card w32.img --board pico --screen DIR. Full screen; trailing empty rows omitted. -->
+<!-- Tecos with the sized DIR (ROM 41c87b73, starter card 7c5c6202): node tools/capture.mjs --card w32.img --board pico --screen DIR. Full screen; trailing empty rows omitted. -->
 ```text
 CON: CRT:
 A:SYSTEM>GLCD.SVC
@@ -247,7 +247,7 @@ not start. The typed equivalent would print the width followed by `?`,
 such as `32?`. This serial-only run of the same card printed each
 startup command without an error:
 
-<!-- TEC-OS with the sized DIR (ROM c9586263, starter card 1cdc614e): node tools/capture.mjs --card w32.img. Complete captured console transcript. -->
+<!-- Tecos with the sized DIR (ROM c9586263, starter card 1cdc614e): node tools/capture.mjs --card w32.img. Complete captured console transcript. -->
 ```text
 TEC-OS 0.1 for TEC-1G
 A: SYSTEM
@@ -319,7 +319,7 @@ cp dist/starter.img cut.img
 node tools/tecvol.mjs put cut.img A startup.cmd --text
 ```
 
-<!-- TEC-OS 84518ef, ROM 35893cab: node tools/capture.mjs --card cut.img. Complete captured console transcript. -->
+<!-- Tecos 84518ef, ROM 35893cab: node tools/capture.mjs --card cut.img. Complete captured console transcript. -->
 ```text
 TEC-OS 0.1 for TEC-1G
 A: SYSTEM
@@ -344,7 +344,7 @@ cp dist/starter.img long.img
 node tools/tecvol.mjs put long.img A startup.cmd --text
 ```
 
-<!-- TEC-OS 84518ef, ROM 35893cab: node tools/capture.mjs --card long.img. Complete captured console transcript. -->
+<!-- Tecos 84518ef, ROM 35893cab: node tools/capture.mjs --card long.img. Complete captured console transcript. -->
 ```text
 TEC-OS 0.1 for TEC-1G
 A: SYSTEM
@@ -389,7 +389,7 @@ cp dist/starter.img semi.img
 node tools/tecvol.mjs put semi.img A startup.cmd --text
 ```
 
-<!-- TEC-OS 57a8c38: node tools/capture.mjs --card semi.img. Complete captured console transcript. -->
+<!-- Tecos 57a8c38: node tools/capture.mjs --card semi.img. Complete captured console transcript. -->
 ```text
 TEC-OS 0.1 for TEC-1G
 A: SYSTEM
@@ -448,7 +448,7 @@ printf 'DIR\n' > startup.cmd
 node tools/tecvol.mjs put spare.img SPARE startup.cmd --text
 ```
 
-<!-- TEC-OS 84518ef, ROM 35893cab: node tools/capture.mjs --card spare.img 'CD A:SPARE' @reset. Complete captured console transcript. -->
+<!-- Tecos 84518ef, ROM 35893cab: node tools/capture.mjs --card spare.img 'CD A:SPARE' @reset. Complete captured console transcript. -->
 ```text
 TEC-OS 0.1 for TEC-1G
 A: SYSTEM
@@ -513,7 +513,7 @@ cp dist/starter.img nostart.img
 node tools/tecvol.mjs era nostart.img A STARTUP.CMD
 ```
 
-<!-- TEC-OS 57a8c38: node tools/capture.mjs --card nostart.img --lcd 'CON UC1'. Complete captured console transcript and LCD rows. -->
+<!-- Tecos 57a8c38: node tools/capture.mjs --card nostart.img --lcd 'CON UC1'. Complete captured console transcript and LCD rows. -->
 ```text
 TEC-OS 0.1 for TEC-1G
 A: SYSTEM
@@ -541,7 +541,7 @@ node tools/tecvol.mjs put gname.img A dist/files/GLCD.SVC G.SVC
 node tools/tecvol.mjs era gname.img A GLCD.SVC
 ```
 
-<!-- TEC-OS 57a8c38: node tools/capture.mjs --card gname.img --board glcd --lcd 'CON UC1' G.SVC CON. Complete captured console transcript and LCD rows. -->
+<!-- Tecos 57a8c38: node tools/capture.mjs --card gname.img --board glcd --lcd 'CON UC1' G.SVC CON. Complete captured console transcript and LCD rows. -->
 ```text
 TEC-OS 0.1 for TEC-1G
 A: SYSTEM

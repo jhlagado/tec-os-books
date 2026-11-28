@@ -7,7 +7,7 @@ nav_group: "Writing programs"
 
 # 11. Memory for programs
 
-<!-- Checked against TEC-OS 57a8c38b7f341433285e39c4bec14ecc486ffe26 (retained recovery baseline),
+<!-- Checked against Tecos 57a8c38b7f341433285e39c4bec14ecc486ffe26 (retained recovery baseline),
      ROM SHA-256 ac86ad233696d22a46b4f98a4119c53b718bfe89881952a08e9f92223f3fa1c3.
      Unprefixed source citations use this revision. Explicit historical
      prefixes retain their stated revisions. Host-model capture recipes and
@@ -138,7 +138,7 @@ node tools/tecvol.mjs put mem.img B top.com
 
 On the serial-only host model TOP produced:
 
-<!-- TEC-OS with the sized DIR (ROM c9586263, starter card 1cdc614e): node tools/capture.mjs --card mem.img B:TOP. Complete captured console transcript. -->
+<!-- Tecos with the sized DIR (ROM c9586263, starter card 1cdc614e): node tools/capture.mjs --card mem.img B:TOP. Complete captured console transcript. -->
 ```text
 TEC-OS 0.1 for TEC-1G
 A: SYSTEM
@@ -162,7 +162,7 @@ lowers the boundary. In this run the first TOP result and `CON UC1` echo went
 to PICO9918. The reply and second result went to the graphics LCD. The capture
 is from the host model, not a browser or physical board:
 
-<!-- TEC-OS with the sized DIR (ROM c9586263, starter card 1cdc614e): node tools/capture.mjs --board pico --card mem.img B:TOP 'CON UC1' B:TOP. Complete captured console transcript. -->
+<!-- Tecos with the sized DIR (ROM c9586263, starter card 1cdc614e): node tools/capture.mjs --board pico --card mem.img B:TOP 'CON UC1' B:TOP. Complete captured console transcript. -->
 ```text
 TEC-OS 0.1 for TEC-1G
 A: SYSTEM
@@ -221,12 +221,12 @@ the bare starter card GLCD.SVC occupies `B300h–B5FFh`. Its 768 bytes also
 exclude the alignment gap at `B600h–B6C7h`, reducing the TPA by 968 bytes.
 Later services allocate below the first. Startup's seventeen-page `SHELL.SVC`
 leaves `A500h`, or 41,984 bytes. Adding GLCD leaves 41,216
-(`TEC-OS 02c98077b680e789e5c9d6e5f8bc4cc1e09f6fe5:docs/memory-map.md:12-22`, `TEC-OS 02c98077b680e789e5c9d6e5f8bc4cc1e09f6fe5:docs/shell.md:23-31`,
-`TEC-OS 02c98077b680e789e5c9d6e5f8bc4cc1e09f6fe5:docs/compatibility.md:3-16`). MON3.SVC uses 19 pages. Alone it lowers
+(`Tecos 02c98077b680e789e5c9d6e5f8bc4cc1e09f6fe5:docs/memory-map.md:12-22`, `Tecos 02c98077b680e789e5c9d6e5f8bc4cc1e09f6fe5:docs/shell.md:23-31`,
+`Tecos 02c98077b680e789e5c9d6e5f8bc4cc1e09f6fe5:docs/compatibility.md:3-16`). MON3.SVC uses 19 pages. Alone it lowers
 `B6C8h` to `A300h`, leaving 41,472 bytes, or 40,704 after GLCD. After the
 shell it leaves `9200h` and 37,120 bytes. Adding GLCD lowers it
 to `8F00h` with 36,352 bytes, in any order of installing the three
-(`TEC-OS 1cded94eed6a077bd0cddea4554c2a2245c40a5a:docs/mon3.md:47-58`).
+(`Tecos 1cded94eed6a077bd0cddea4554c2a2245c40a5a:docs/mon3.md:47-58`).
 The cited revisions give `B6C5h` and 46,533 bytes for the bare starter card.
 The ROM has since lost its SAVE command and the three workspace bytes SAVE
 used, so the bare boundary and TPA are three bytes higher. A service's
@@ -294,7 +294,7 @@ writeFileSync(out, (await assembleProgram(src)).bytes);
 node tools/tecvol.mjs put mem.img B area.com
 ```
 
-<!-- TEC-OS with the sized DIR (ROM c9586263, starter card 1cdc614e): node tools/capture.mjs --card mem.img B:AREA. Complete captured console transcript. -->
+<!-- Tecos with the sized DIR (ROM c9586263, starter card 1cdc614e): node tools/capture.mjs --card mem.img B:AREA. Complete captured console transcript. -->
 ```text
 TEC-OS 0.1 for TEC-1G
 A: SYSTEM
@@ -543,7 +543,7 @@ node tools/tecvol.mjs put con.img B key.com
 
 The serial capture supplies `a`, `Z`, `^C`, Esc and Return:
 
-<!-- TEC-OS 57a8c38: node tools/capture.mjs --card con.img '@start B:KEY' $'@key aZ\x03\x1b\x0d'. Complete captured console transcript. -->
+<!-- Tecos 57a8c38: node tools/capture.mjs --card con.img '@start B:KEY' $'@key aZ\x03\x1b\x0d'. Complete captured console transcript. -->
 ```text
 TEC-OS 0.1 for TEC-1G
 A: SYSTEM

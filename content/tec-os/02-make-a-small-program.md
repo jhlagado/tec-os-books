@@ -7,7 +7,7 @@ nav_group: "Using the machine"
 
 # 2. Make a small program
 
-<!-- Checked against TEC-OS 57a8c38b7f341433285e39c4bec14ecc486ffe26 (retained recovery baseline),
+<!-- Checked against Tecos 57a8c38b7f341433285e39c4bec14ecc486ffe26 (retained recovery baseline),
      ROM SHA-256 ac86ad233696d22a46b4f98a4119c53b718bfe89881952a08e9f92223f3fa1c3.
      Unprefixed source citations use this revision. Explicit historical
      prefixes retain their stated revisions. Host-model capture recipes and
@@ -78,7 +78,7 @@ same key to compile BASIC source with BAZC. This
 excerpt shows the rejected build before TED redraws its screen. The initial
 screen-clear controls, leading blank line and final editor redraw are omitted:
 
-<!-- TEC-OS a738e2d, ROM bb429d10, TED b2f98bc: node tools/capture.mjs --card banner-broken.img --board pico --screen '@start A:TED B:BANNER.ASM' '@fn 9' '@run 400'. Console excerpt; terminal controls and editor redraw outside the selected span omitted. -->
+<!-- Tecos 8c12c9f, ROM 04ab62be, TED b2f98bc: node tools/capture.mjs --card banner-broken.img --board pico --screen '@start A:TED B:BANNER.ASM' '@fn 9' '@run 400'. Console excerpt; terminal controls and editor redraw outside the selected span omitted. -->
 ```text
 A:SYSTEM>A:TAS B:BANNER.ASM
 BANNER.ASM:14:1: unknown instruction or directive
@@ -116,7 +116,7 @@ is out of date. The initial run
 produced this complete console text before the editor redraw. The initial
 clear-screen controls and leading blank line are omitted:
 
-<!-- TEC-OS a738e2d, ROM bb429d10, TED b2f98bc: node tools/capture.mjs --card banner-plain.img --board pico --screen '@start A:TED B:BANNER.ASM' '@fn 5' '@run 400'. Console excerpt; terminal controls and editor redraw outside the selected span omitted. -->
+<!-- Tecos 8c12c9f, ROM 04ab62be, TED b2f98bc: node tools/capture.mjs --card banner-plain.img --board pico --screen '@start A:TED B:BANNER.ASM' '@fn 5' '@run 400'. Console excerpt; terminal controls and editor redraw outside the selected span omitted. -->
 ```text
 A:SYSTEM>A:TAS B:BANNER.ASM
 BANNER.COM written
@@ -124,7 +124,7 @@ BANNER.COM written
 A:SYSTEM>A:TED
 
 A:SYSTEM>B:BANNER
-Hello from TEC-OS
+Hello from Tecos
 
 A:SYSTEM>A:TED
 Press a key
@@ -197,7 +197,7 @@ F5 builds and runs the changed program. Its new greeting appears in
 this separate capture. The initial clear-screen controls and leading
 blank line are omitted:
 
-<!-- TEC-OS a738e2d, ROM bb429d10, TED b2f98bc: node tools/capture.mjs --card banner-edited.img --board pico --screen '@start A:TED B:BANNER.ASM' '@fn 5' '@run 400'. Console excerpt; terminal controls and editor redraw outside the selected span omitted. -->
+<!-- Tecos 8c12c9f, ROM 04ab62be, TED b2f98bc: node tools/capture.mjs --card banner-edited.img --board pico --screen '@start A:TED B:BANNER.ASM' '@fn 5' '@run 400'. Console excerpt; terminal controls and editor redraw outside the selected span omitted. -->
 ```text
 A:SYSTEM>A:TAS B:BANNER.ASM
 BANNER.COM written
@@ -205,7 +205,7 @@ BANNER.COM written
 A:SYSTEM>A:TED
 
 A:SYSTEM>B:BANNER
-Hello from TEC-OS!
+Hello from Tecos!
 
 A:SYSTEM>A:TED
 Press a key
@@ -232,9 +232,9 @@ empty-prompt `^C`. `B:BANNER` runs it from B while A remains current,
 without opening TED or assembling source. The final excerpt includes
 the quit's preservation step, the standalone run and a final `^C`:
 
-<!-- TEC-OS 1e35854, ROM bb429d10, starter card 24801956: node tools/capture.mjs --card banner-edited.img 'A:TAS B:BANNER.ASM' '^C' B:BANNER '^C'. Complete captured console transcript. -->
+<!-- Tecos 8c12c9f, ROM 04ab62be, starter card e2f124e9: node tools/capture.mjs --card banner-edited.img 'A:TAS B:BANNER.ASM' '^C' B:BANNER '^C'. Complete captured console transcript. -->
 ```text
-TEC-OS 0.1 for TEC-1G
+Tecos 0.1 for TEC-1G
 A: SYSTEM
 B: WORK
 
@@ -247,7 +247,7 @@ BANNER.COM written
 
 A:SYSTEM>^C
 A:SYSTEM>B:BANNER
-Hello from TEC-OS!
+Hello from Tecos!
 
 A:SYSTEM>^C
 A:SYSTEM>
@@ -305,4 +305,4 @@ column 129, whether it holds one statement or several. A line much longer
 than that can be cut by TAS's source window first and then gives the error of
 its cut text, but it is rejected either way. A comment may be any length.
 
-_Screens checked against Tecos `1e35854` with TED `b2f98bc`, on the starter card in the emulated TEC-1G, 27 November 2026._
+_Screens checked against Tecos `8c12c9f` with TED `b2f98bc`, on the starter card in the emulated TEC-1G, 28 November 2026._

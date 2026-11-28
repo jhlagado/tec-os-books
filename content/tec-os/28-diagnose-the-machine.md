@@ -7,7 +7,7 @@ nav_group: "Inside Tecos"
 
 # 28. Diagnose the machine
 
-<!-- Checked against TEC-OS 57a8c38b7f341433285e39c4bec14ecc486ffe26 (retained recovery baseline),
+<!-- Checked against Tecos 57a8c38b7f341433285e39c4bec14ecc486ffe26 (retained recovery baseline),
      ROM SHA-256 ac86ad233696d22a46b4f98a4119c53b718bfe89881952a08e9f92223f3fa1c3.
      Unprefixed source citations use this revision. Explicit historical
      prefixes retain their stated revisions. Host-model capture recipes and
@@ -49,10 +49,10 @@ Without active PICO or an attached terminal, only LCD `CARD?` is visible.
 The following empty-socket model capture uses PICO9918 and its matrix
 keyboard. H repeats the prompt and no serial output is produced:
 
-<!-- TEC-OS 1e35854, ROM bb429d10, starter card 24801956: node tools/capture.mjs --card none --board pico --screen H. Full screen; trailing empty rows omitted. -->
+<!-- Tecos 8c12c9f, ROM 04ab62be, starter card e2f124e9: node tools/capture.mjs --card none --board pico --screen H. Full screen; trailing empty rows omitted. -->
 ```text
 
-TEC-OS 0.1 for TEC-1G
+Tecos 0.1 for TEC-1G
 No volume mounted, error 01
 R retry> H
 R retry>
@@ -68,7 +68,7 @@ the container table rather than using earlier cached metadata
 
 The banner locates failure after several earlier checks. RAM validation,
 console initialisation and clock probe precede it (`b95b2a9:src/boot.asm:60-77`).
-Missing required RAM instead prints `TEC-OS needs 64K RAM` on serial
+Missing required RAM instead prints `Tecos needs 64K RAM` on serial
 (`b95b2a9:src/boot.asm:435-488`, `b95b2a9:src/text.asm:11`), as
 [Chapter 16](16-reset-and-boot.md#ram-before-the-workspace) explains.
 `COLDRT` and `DIAG` use the BDOS stack before CCP entry. Both failure

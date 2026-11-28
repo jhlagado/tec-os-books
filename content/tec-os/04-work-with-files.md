@@ -7,7 +7,7 @@ nav_group: "Using the machine"
 
 # 4. Work with files
 
-<!-- Checked against TEC-OS 57a8c38b7f341433285e39c4bec14ecc486ffe26 (retained recovery baseline),
+<!-- Checked against Tecos 57a8c38b7f341433285e39c4bec14ecc486ffe26 (retained recovery baseline),
      ROM SHA-256 ac86ad233696d22a46b4f98a4119c53b718bfe89881952a08e9f92223f3fa1c3.
      Unprefixed source citations use this revision. Explicit historical
      prefixes retain their stated revisions. Host-model capture recipes and
@@ -59,9 +59,9 @@ contains the two automatic startup commands from Chapter 1. This serial
 terminal run is separate from both your BANNER session and the later
 40-column capture:
 
-<!-- TEC-OS 1e35854, ROM bb429d10, starter card 24801956: node tools/capture.mjs 'TYPE STARTUP.CMD'. Complete captured console transcript. -->
+<!-- Tecos 8c12c9f, ROM 04ab62be, starter card e2f124e9: node tools/capture.mjs 'TYPE STARTUP.CMD'. Complete captured console transcript. -->
 ```text
-TEC-OS 0.1 for TEC-1G
+Tecos 0.1 for TEC-1G
 A: SYSTEM
 B: WORK
 
@@ -93,17 +93,17 @@ pausing.
 The first paused screen contains these 24 rows. The typed command has
 already scrolled off the display:
 
-<!-- TEC-OS 1e35854, ROM bb429d10, starter card 24801956: node tools/capture.mjs --board pico --screen 'TYPE A:SAMPLE.ASM'. Full screen; trailing empty rows omitted. -->
+<!-- Tecos 8c12c9f, ROM 04ab62be, starter card e2f124e9: node tools/capture.mjs --board pico --screen 'TYPE A:SAMPLE.ASM'. Full screen; trailing empty rows omitted. -->
 ```text
-; A first program for TEC-OS. Build it
+; A first program for Tecos. Build it
 ; with TAS SAMPLE. Run it with SAMPLE.
 
 ; Say hello through CP/M BDOS, then
-; check for the TEC-OS ABI 5 table.
+; check for the Tecos ABI 5 table.
 ; Print the screen size, write to LCD
 ; row 2, show 123456 and beep.
 
-; TEC-OS's table and service numbers use
+; Tecos's table and service numbers use
 ; the names from abi.inc. ABITAB points
 ; to "TNA", then the major version.
 
@@ -124,7 +124,7 @@ ABICALL   EQU   $C008
 Space clears the pause and displays the next rows. The complete next
 paused screen is:
 
-<!-- TEC-OS 1e35854, ROM bb429d10, starter card 24801956: node tools/capture.mjs --board pico --screen 'TYPE A:SAMPLE.ASM' '@key  '. Full screen; trailing empty rows omitted. -->
+<!-- Tecos 8c12c9f, ROM 04ab62be, starter card e2f124e9: node tools/capture.mjs --board pico --screen 'TYPE A:SAMPLE.ASM' '@key  '. Full screen; trailing empty rows omitted. -->
 ```text
 
 TNINFO    EQU   0
@@ -178,10 +178,10 @@ This capture uses a fresh starter card with B empty. It is separate
 from the BANNER session. The command writes only B:SAMPLE.ASM, whose
 name differs from the BANNER files on your working card:
 
-<!-- TEC-OS 1e35854, ROM bb429d10, starter card 24801956: node tools/capture.mjs --board pico --screen 'COPY A:SAMPLE.ASM B:SAMPLE.ASM'. Full screen; trailing empty rows omitted. -->
+<!-- Tecos 8c12c9f, ROM 04ab62be, starter card e2f124e9: node tools/capture.mjs --board pico --screen 'COPY A:SAMPLE.ASM B:SAMPLE.ASM'. Full screen; trailing empty rows omitted. -->
 ```text
 
-TEC-OS 0.1 for TEC-1G
+Tecos 0.1 for TEC-1G
 A: SYSTEM
 B: WORK
 
@@ -190,13 +190,13 @@ A:SYSTEM>SHELL.SVC
 A:SYSTEM>GLCD.SVC
 
 A:SYSTEM>COPY A:SAMPLE.ASM B:SAMPLE.ASM
-COPIED 0024
+COPIED 0023
 
 A:SYSTEM>
 ```
 
-The hexadecimal count `0024` means 36 records of 128 bytes. These
-records contain the 4,485-byte SAMPLE.ASM, including line endings and
+The hexadecimal count `0023` means 35 records of 128 bytes. These
+records contain the 4,479-byte SAMPLE.ASM, including line endings and
 its end marker. The source stays on A. `TYPE B:SAMPLE.ASM` displays
 the copy without selecting B as the current drive.
 
@@ -212,9 +212,9 @@ that separate session, not as a sequence to repeat on your current card. It
 copies A's STARTUP.CMD under two names, renames one copy and erases only
 NOTES.TXT. The listings and free-space figures belong to that card:
 
-<!-- TEC-OS 1e35854, ROM bb429d10, starter card 24801956: node tools/capture.mjs 'COPY STARTUP.CMD B:' 'COPY STARTUP.CMD B:COPY.TXT' B: DIR 'REN NOTES.TXT=COPY.TXT' 'REN NOTES.TXT=STARTUP.CMD' DIR 'ERA NOTES.TXT' 'ERA NOTES.TXT' DIR. Complete captured console transcript. -->
+<!-- Tecos 8c12c9f, ROM 04ab62be, starter card e2f124e9: node tools/capture.mjs 'COPY STARTUP.CMD B:' 'COPY STARTUP.CMD B:COPY.TXT' B: DIR 'REN NOTES.TXT=COPY.TXT' 'REN NOTES.TXT=STARTUP.CMD' DIR 'ERA NOTES.TXT' 'ERA NOTES.TXT' DIR. Complete captured console transcript. -->
 ```text
-TEC-OS 0.1 for TEC-1G
+Tecos 0.1 for TEC-1G
 A: SYSTEM
 B: WORK
 

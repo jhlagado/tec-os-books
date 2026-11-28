@@ -7,7 +7,7 @@ nav_group: "Reference"
 
 # Appendix C. Memory map
 
-<!-- Checked against TEC-OS 57a8c38b7f341433285e39c4bec14ecc486ffe26 (retained recovery baseline),
+<!-- Checked against Tecos 57a8c38b7f341433285e39c4bec14ecc486ffe26 (retained recovery baseline),
      ROM SHA-256 ac86ad233696d22a46b4f98a4119c53b718bfe89881952a08e9f92223f3fa1c3.
      Unprefixed source citations use this revision. Explicit historical
      prefixes retain their stated revisions. Host-model capture recipes and
@@ -93,8 +93,8 @@ program space:
 | Starter card with `SHELL.SVC` and `GLCD.SVC` | 1,024 bytes | `A200h` | 41,216 bytes |
 | Two-volume reference, no drives field, no service | 320 bytes | `B988h` | 47,240 bytes |
 
-The shell takes seventeen pages, and its last page holds its 256-byte history ring (`TEC-OS 02c98077b680e789e5c9d6e5f8bc4cc1e09f6fe5:docs/memory-map.md:8-22`,
-`TEC-OS 02c98077b680e789e5c9d6e5f8bc4cc1e09f6fe5:docs/compatibility.md:3-16`, `TEC-OS 02c98077b680e789e5c9d6e5f8bc4cc1e09f6fe5:docs/shell.md:23-31`).
+The shell takes seventeen pages, and its last page holds its 256-byte history ring (`Tecos 02c98077b680e789e5c9d6e5f8bc4cc1e09f6fe5:docs/memory-map.md:8-22`,
+`Tecos 02c98077b680e789e5c9d6e5f8bc4cc1e09f6fe5:docs/compatibility.md:3-16`, `Tecos 02c98077b680e789e5c9d6e5f8bc4cc1e09f6fe5:docs/shell.md:23-31`).
 
 Housekeeping preserves the bare/reference/shell TPA and public stack sizes
 already allocated by recovery. Its private worker's refusal account is 28+12+2
@@ -475,7 +475,7 @@ for (const n of process.argv.slice(1)) {
 
 It prints:
 
-<!-- TEC-OS 84518ef, ROM 35893cab: host-tool output of the lookup above. -->
+<!-- Tecos 84518ef, ROM 35893cab: host-tool output of the lookup above. -->
 ```text
 CMDTXT BD23h
 PRGCODE BF54h

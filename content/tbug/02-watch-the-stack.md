@@ -60,7 +60,7 @@ START:
 
 `STEP.TBG` also names `0104` as `TAKE:`, but a label row never takes the bottom row, so it waits until the window scrolls. Press `Left`. It puts `PC` on Code's top row, and `TAKE:` appears right above `0104`:
 
-<!-- TEC-OS 8a7e24e with TBUG 167f7f0, starter card de6b5ff6: TECOS=<checkout> node scripts/tbug-capture.mjs --card tbug.img '>b:' '>tas step' '!tbug step' F8 left down down S F8 Enter Esc C F8 R F5 Q Y, where tbug.img holds this book's HELLO.ASM, STEP.ASM and FILL.ASM on B. The LCD after F8 and Left. -->
+<!-- Tecos 8c12c9f with TBUG 167f7f0, starter card e2f124e9: TECOS=<checkout> node scripts/tbug-capture.mjs --card tbug.img '>b:' '>tas step' '!tbug step' F8 left down down S F8 Enter Esc C F8 R F5 Q Y, where tbug.img holds this book's HELLO.ASM, STEP.ASM and FILL.ASM on B. The LCD after F8 and Left. -->
 ```text
 >→0103 PUSH HL
 TAKE:
@@ -82,10 +82,10 @@ Scroll one row past `0105 RET` and you will see `0106 NOP`. A Z80 keeps code and
 
 With `PUSH HL` lined up at `0103h`, press `S` to open Stack:
 
-<!-- TEC-OS 8a7e24e with TBUG 167f7f0, starter card de6b5ff6: TECOS=<checkout> node scripts/tbug-capture.mjs --card tbug.img '>b:' '>tas step' '!tbug step' F8 left down down S F8 Enter Esc C F8 R F5 Q Y, where tbug.img holds this book's HELLO.ASM, STEP.ASM and FILL.ASM on B. The LCD after S. -->
+<!-- Tecos 8c12c9f with TBUG 167f7f0, starter card e2f124e9: TECOS=<checkout> node scripts/tbug-capture.mjs --card tbug.img '>b:' '>tas step' '!tbug step' F8 left down down S F8 Enter Esc C F8 R F5 Q Y, where tbug.img holds this book's HELLO.ASM, STEP.ASM and FILL.ASM on B. The LCD after S. -->
 ```text
 >SP 8DFE  9102
-    8E00  39C3
+    8E00  36C3
     8E02  01E6
     8E04  0042
 ```
@@ -94,11 +94,11 @@ Stack displays four 16-bit words starting at `SP`. That top word, `9102` at `8DF
 
 You do not need to switch back to Registers to step. Tap `F8` right here in Stack and watch `PUSH HL` execute in place:
 
-<!-- TEC-OS 8a7e24e with TBUG 167f7f0, starter card de6b5ff6: TECOS=<checkout> node scripts/tbug-capture.mjs --card tbug.img '>b:' '>tas step' '!tbug step' F8 left down down S F8 Enter Esc C F8 R F5 Q Y, where tbug.img holds this book's HELLO.ASM, STEP.ASM and FILL.ASM on B. The LCD after the F8 in Stack. -->
+<!-- Tecos 8c12c9f with TBUG 167f7f0, starter card e2f124e9: TECOS=<checkout> node scripts/tbug-capture.mjs --card tbug.img '>b:' '>tas step' '!tbug step' F8 left down down S F8 Enter Esc C F8 R F5 Q Y, where tbug.img holds this book's HELLO.ASM, STEP.ASM and FILL.ASM on B. The LCD after the F8 in Stack. -->
 ```text
 >SP 8DFC  1234
     8DFE  9102
-    8E00  39C3
+    8E00  36C3
     8E02  01E6
 ```
 
@@ -106,10 +106,10 @@ On a Z80, the stack grows downwards. Pushing a 16-bit pair subtracts two from `S
 
 Now hit `Enter` on that top slot to open Memory at `8DFCh`:
 
-<!-- TEC-OS 8a7e24e with TBUG 167f7f0, starter card de6b5ff6: TECOS=<checkout> node scripts/tbug-capture.mjs --card tbug.img '>b:' '>tas step' '!tbug step' F8 left down down S F8 Enter Esc C F8 R F5 Q Y, where tbug.img holds this book's HELLO.ASM, STEP.ASM and FILL.ASM on B. The LCD after Enter. -->
+<!-- Tecos 8c12c9f with TBUG 167f7f0, starter card e2f124e9: TECOS=<checkout> node scripts/tbug-capture.mjs --card tbug.img '>b:' '>tas step' '!tbug step' F8 left down down S F8 Enter Esc C F8 R F5 Q Y, where tbug.img holds this book's HELLO.ASM, STEP.ASM and FILL.ASM on B. The LCD after Enter. -->
 ```text
 8DFC>34 12 02 91 FIX
-8E00 C3 39 E6 01
+8E00 C3 36 E6 01
 8E04 42 00 4F BB
 8E08 AE 00 DD 03
 ```
@@ -130,4 +130,4 @@ Tapping `F8` one instruction at a time works on six bytes, not when your code ca
 
 `F5` to `F8` all wait for every key to be released before resuming the CPU. That release guard prevents a debugger keypress from leaking into a program polling the matrix keyboard.
 
-_Checked against Tecos `8a7e24e` with TBUG `167f7f0`, on the starter card in the emulated TEC-1G, 28 November 2026._
+_Checked against Tecos `8c12c9f` with TBUG `167f7f0`, on the starter card in the emulated TEC-1G, 28 November 2026._

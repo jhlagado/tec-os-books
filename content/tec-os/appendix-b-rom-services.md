@@ -7,7 +7,7 @@ nav_group: "Reference"
 
 # Appendix B. The ROM table and hardware services
 
-<!-- Checked against TEC-OS 57a8c38b7f341433285e39c4bec14ecc486ffe26 (retained recovery baseline),
+<!-- Checked against Tecos 57a8c38b7f341433285e39c4bec14ecc486ffe26 (retained recovery baseline),
      ROM SHA-256 ac86ad233696d22a46b4f98a4119c53b718bfe89881952a08e9f92223f3fa1c3.
      Unprefixed source citations use this revision. Explicit historical
      prefixes retain their stated revisions. Host-model capture recipes and
@@ -570,7 +570,7 @@ The following host-model run writes and reads back VRAM through the ROM
 console's PICO record. It is not a physical-board result. Its preparation
 is Chapter 14's `svc.img`, ABI.INC and HWLIB.ASM.
 
-<!-- TEC-OS 57a8c38: node tools/capture.mjs --card svc.img --board pico B: 'TAS VTEST' VTEST. Complete captured console transcript. -->
+<!-- Tecos 57a8c38: node tools/capture.mjs --card svc.img --board pico B: 'TAS VTEST' VTEST. Complete captured console transcript. -->
 ```text
 TEC-OS 0.1 for TEC-1G
 A: SYSTEM

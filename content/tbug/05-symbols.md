@@ -21,7 +21,7 @@ Each time TBUG stops a program at launch, it checks for a `NAME.TBG` file beside
 
 When both match, symbols turn on and `SY` lights up at the right end of row 2 in Registers:
 
-<!-- TEC-OS 8a7e24e with TBUG 167f7f0, starter card de6b5ff6: TECOS=<checkout> node scripts/tbug-capture.mjs --card tbug.img '>b:' '>tas fill' '!tbug fill' R F8 F8 F8 F8 C Y R Tab, where tbug.img holds this book's HELLO.ASM, STEP.ASM and FILL.ASM on B. The LCD after R at the entry stop. -->
+<!-- Tecos 8c12c9f with TBUG 167f7f0, starter card e2f124e9: TECOS=<checkout> node scripts/tbug-capture.mjs --card tbug.img '>b:' '>tas fill' '!tbug fill' R F8 F8 F8 F8 C Y R Tab, where tbug.img holds this book's HELLO.ASM, STEP.ASM and FILL.ASM on B. The LCD after R at the entry stop. -->
 ```text
 >PC 0100  SP 8DFE ST
  AF 0000  BC 0000 SY
@@ -35,7 +35,7 @@ When the `.TBG` file is absent or stale, TBUG ignores it quietly, `SY` stays off
 
 Start `tbug fill` from `B:WORK>`, press `R` and tap `F8` (`Fn+8`) four times (`LD HL,BUF`, `LD B,4`, `LD (HL),B`, `INC HL`) so `PC` lands on `0107h`. Press `C` to jump to Code:
 
-<!-- TEC-OS 8a7e24e with TBUG 167f7f0, starter card de6b5ff6: TECOS=<checkout> node scripts/tbug-capture.mjs --card tbug.img '>b:' '>tas fill' '!tbug fill' R F8 F8 F8 F8 C Y R Tab, where tbug.img holds this book's HELLO.ASM, STEP.ASM and FILL.ASM on B. The LCD after C. -->
+<!-- Tecos 8c12c9f with TBUG 167f7f0, starter card e2f124e9: TECOS=<checkout> node scripts/tbug-capture.mjs --card tbug.img '>b:' '>tas fill' '!tbug fill' R F8 F8 F8 F8 C Y R Tab, where tbug.img holds this book's HELLO.ASM, STEP.ASM and FILL.ASM on B. The LCD after C. -->
 ```text
 >→0107 DJNZ FILL
   0109 RET
@@ -53,7 +53,7 @@ Three details jump out on those four lines:
 
 Whenever TBUG matches a `.TBG` file, a fifth view called **Symbols** becomes active. Jump straight to it with `Y` (or with `Tab` from Registers) on `FILL`:
 
-<!-- TEC-OS 8a7e24e with TBUG 167f7f0, starter card de6b5ff6: TECOS=<checkout> node scripts/tbug-capture.mjs --card tbug.img '>b:' '>tas fill' '!tbug fill' R F8 F8 F8 F8 C Y R Tab, where tbug.img holds this book's HELLO.ASM, STEP.ASM and FILL.ASM on B. The LCD after Y; Tab from Registers shows the same. -->
+<!-- Tecos 8c12c9f with TBUG 167f7f0, starter card e2f124e9: TECOS=<checkout> node scripts/tbug-capture.mjs --card tbug.img '>b:' '>tas fill' '!tbug fill' R F8 F8 F8 F8 C Y R Tab, where tbug.img holds this book's HELLO.ASM, STEP.ASM and FILL.ASM on B. The LCD after Y; Tab from Registers shows the same. -->
 ```text
 >0100 START
  0105 FILL
@@ -62,4 +62,4 @@ Whenever TBUG matches a `.TBG` file, a fifth view called **Symbols** becomes act
 
 Symbols lists global labels in ascending address order. `Up` and `Down` move `>` through the list. Hit `Enter` to open Code at that label without disturbing `PC` (`Esc` brings you back to Symbols), or press `Space` to toggle a breakpoint straight on that label's address without visiting Code first.
 
-_Checked against Tecos `8a7e24e` with TBUG `167f7f0`, on the starter card in the emulated TEC-1G, 28 November 2026._
+_Checked against Tecos `8c12c9f` with TBUG `167f7f0`, on the starter card in the emulated TEC-1G, 28 November 2026._

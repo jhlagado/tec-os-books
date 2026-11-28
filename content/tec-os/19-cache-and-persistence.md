@@ -7,7 +7,7 @@ nav_group: "Inside Tecos"
 
 # 19. Cache and persistence
 
-<!-- Checked against TEC-OS 57a8c38b7f341433285e39c4bec14ecc486ffe26 (retained recovery baseline),
+<!-- Checked against Tecos 57a8c38b7f341433285e39c4bec14ecc486ffe26 (retained recovery baseline),
      ROM SHA-256 ac86ad233696d22a46b4f98a4119c53b718bfe89881952a08e9f92223f3fa1c3.
      Unprefixed source citations use this revision. Explicit historical
      prefixes retain their stated revisions. Host-model capture recipes and
@@ -472,7 +472,7 @@ outside the backend. The capture sends `COPY STARTUP.CMD B:X.CMD`, acknowledges
 its error with one explicit `x`, then sends `DIR B:`. No further key is
 supplied.
 
-<!-- TEC-OS 84518ef, ROM 35893cab: node tools/capture.mjs --card nodata.img '@start COPY STARTUP.CMD B:X.CMD' '@key x' '@start DIR B:'. Complete captured console transcript. The cache's state after each step was read from the same host model. -->
+<!-- Tecos 84518ef, ROM 35893cab: node tools/capture.mjs --card nodata.img '@start COPY STARTUP.CMD B:X.CMD' '@key x' '@start DIR B:'. Complete captured console transcript. The cache's state after each step was read from the same host model. -->
 ```text
 TEC-OS 0.1 for TEC-1G
 A: SYSTEM
@@ -532,7 +532,7 @@ cp dist/starter.img nodata.img
 truncate -s 2113536 nodata.img
 ```
 
-<!-- TEC-OS 57a8c38: node tools/capture.mjs --card nodata.img '@start SAVE 1 B:X.COM' '@key x' 'DIR B:'. Complete captured console transcript. -->
+<!-- Tecos 57a8c38: node tools/capture.mjs --card nodata.img '@start SAVE 1 B:X.COM' '@key x' 'DIR B:'. Complete captured console transcript. -->
 ```text
 TEC-OS 0.1 for TEC-1G
 A: SYSTEM

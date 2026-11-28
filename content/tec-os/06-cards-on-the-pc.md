@@ -7,7 +7,7 @@ nav_group: "Using the machine"
 
 # 6. Cards on the PC
 
-<!-- Checked against TEC-OS 57a8c38b7f341433285e39c4bec14ecc486ffe26 (retained recovery baseline),
+<!-- Checked against Tecos 57a8c38b7f341433285e39c4bec14ecc486ffe26 (retained recovery baseline),
      ROM SHA-256 ac86ad233696d22a46b4f98a4119c53b718bfe89881952a08e9f92223f3fa1c3.
      Unprefixed source citations use this revision. Explicit historical
      prefixes retain their stated revisions. Host-model capture recipes and
@@ -168,7 +168,7 @@ project and session files:
 
 B's listing contains the source, executable and debug file:
 
-<!-- TEC-OS 57a8c38: Host-tool output; exact raw receipts in Origo book-recovery-host. -->
+<!-- Tecos 57a8c38: Host-tool output; exact raw receipts in Origo book-recovery-host. -->
 ```text
  0 BANNER.ASM        384
  0 BANNER.COM        128
@@ -189,7 +189,7 @@ wc -c recovered/BANNER.REC recovered/BANNER.ASM
 The filtered listing contains the same three B entries. `wc` reports
 the extracted file sizes:
 
-<!-- TEC-OS 57a8c38: Host-tool output; exact raw receipts in Origo book-recovery-host. -->
+<!-- Tecos 57a8c38: Host-tool output; exact raw receipts in Origo book-recovery-host. -->
 ```text
 384 recovered/BANNER.REC
 273 recovered/BANNER.ASM
@@ -232,7 +232,7 @@ printf 'missing get exit: %s\n' "$missing_status"
 cat recovered/missing.stderr
 ```
 
-<!-- TEC-OS 57a8c38: Host-tool output; exact raw receipts in Origo book-recovery-host. -->
+<!-- Tecos 57a8c38: Host-tool output; exact raw receipts in Origo book-recovery-host. -->
 ```text
 missing get exit: 1
 tecvol: 0/MISSING.ASM not found
@@ -272,7 +272,7 @@ prepared starter image this command produces:
 node tools/tecvol.mjs info dist/starter.img
 ```
 
-<!-- TEC-OS with the sized DIR (ROM 41c87b73, starter card 7c5c6202): host-tool output of the command above. -->
+<!-- Tecos with the sized DIR (ROM 41c87b73, starter card 7c5c6202): host-tool output of the command above. -->
 ```text
 container: format 1.1, 26624 blocks (13631488 bytes), 5 volume(s), 4 drive(s) wanted
   A: SYSTEM      id 1 G1M start 2048 rw 15 file(s), 899072 bytes free
@@ -399,7 +399,7 @@ node tools/tecvol.mjs put my.img SPARE hello.txt --text
 node tools/tecvol.mjs dir my.img
 ```
 
-<!-- TEC-OS with the sized DIR (SHELL.SVC 2697cc8d): host-tool output of the command above. -->
+<!-- Tecos with the sized DIR (SHELL.SVC 2697cc8d): host-tool output of the command above. -->
 ```text
  0 SHELL.SVC        4224
  0 STARTUP.CMD       128
@@ -407,7 +407,7 @@ node tools/tecvol.mjs dir my.img
 
 After those puts, `node tools/tecvol.mjs info my.img` prints this:
 
-<!-- TEC-OS with the sized DIR (SHELL.SVC 2697cc8d): host-tool output of the command above. -->
+<!-- Tecos with the sized DIR (SHELL.SVC 2697cc8d): host-tool output of the command above. -->
 ```text
 container: format 1.1, 38912 blocks (19922944 bytes), 4 volume(s), 4 drive(s) wanted
   A: SYSTEM      id 1 G1M start 2048 rw 2 file(s), 1032192 bytes free
@@ -452,7 +452,7 @@ The recipe's volume list is:
 A file inside a component's `files` list has an entry such as this shell
 entry:
 
-<!-- TEC-OS with the sized DIR: the SHELL.SVC object of the generated dist/starter.recipe.json. -->
+<!-- Tecos with the sized DIR: the SHELL.SVC object of the generated dist/starter.recipe.json. -->
 ```json
 {
   "name": "SHELL.SVC",
@@ -494,7 +494,7 @@ node tools/tecvol.mjs put build/errs.img A dist/files/SHELL.SVC
 node tools/tecvol.mjs put build/errs.img B dist/files/STARTUP.CMD --ro
 ```
 
-<!-- TEC-OS 84518ef, ROM 35893cab: node tools/capture.mjs --card build/errs.img SHELL.SVC '@start COPY B:STARTUP.CMD C:' '@key x' '@start ERA B:STARTUP.CMD' '@key x' 'DIR B:'. Complete captured console transcript. -->
+<!-- Tecos 84518ef, ROM 35893cab: node tools/capture.mjs --card build/errs.img SHELL.SVC '@start COPY B:STARTUP.CMD C:' '@key x' '@start ERA B:STARTUP.CMD' '@key x' 'DIR B:'. Complete captured console transcript. -->
 ```text
 TEC-OS 0.1 for TEC-1G
 A: SYSTEM
@@ -550,7 +550,7 @@ cp dist/starter.img short.img
 truncate -s 2104320 short.img
 ```
 
-<!-- TEC-OS 57a8c38: node tools/capture.mjs --card short.img '@start DIR B:' '@key x'. Complete captured console transcript. -->
+<!-- Tecos 57a8c38: node tools/capture.mjs --card short.img '@start DIR B:' '@key x'. Complete captured console transcript. -->
 ```text
 TEC-OS 0.1 for TEC-1G
 A: SYSTEM

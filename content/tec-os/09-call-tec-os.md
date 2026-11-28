@@ -7,7 +7,7 @@ nav_group: "Writing programs"
 
 # 9. Call Tecos
 
-<!-- Checked against TEC-OS 57a8c38b7f341433285e39c4bec14ecc486ffe26 (retained recovery baseline),
+<!-- Checked against Tecos 57a8c38b7f341433285e39c4bec14ecc486ffe26 (retained recovery baseline),
      ROM SHA-256 ac86ad233696d22a46b4f98a4119c53b718bfe89881952a08e9f92223f3fa1c3.
      Unprefixed source citations use this revision. Explicit historical
      prefixes retain their stated revisions. Host-model capture recipes and
@@ -147,7 +147,7 @@ return word.
 On drive B, `TAS LINE` builds LINE.COM from that source. The serial capture
 starts with the build:
 
-<!-- TEC-OS 57a8c38: node tools/capture.mjs --card line.img B: 'TAS LINE' '@start LINE' HELLO. Console excerpt; terminal controls and editor redraw outside the selected span omitted. -->
+<!-- Tecos 57a8c38: node tools/capture.mjs --card line.img B: 'TAS LINE' '@start LINE' HELLO. Console excerpt; terminal controls and editor redraw outside the selected span omitted. -->
 ```text
 B:WORK>TAS LINE
 LINE.COM written
@@ -156,7 +156,7 @@ LINE.COM written
 Running `LINE` and entering `HELLO` followed by Return continues the same
 capture:
 
-<!-- TEC-OS 57a8c38: node tools/capture.mjs --card line.img B: 'TAS LINE' '@start LINE' HELLO. Console excerpt; terminal controls and editor redraw outside the selected span omitted. -->
+<!-- Tecos 57a8c38: node tools/capture.mjs --card line.img B: 'TAS LINE' '@start LINE' HELLO. Console excerpt; terminal controls and editor redraw outside the selected span omitted. -->
 ```text
 B:WORK>LINE
 HELLO

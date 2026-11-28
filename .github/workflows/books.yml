@@ -1,4 +1,4 @@
-name: Publish the TEC-OS books
+name: Publish the Tecos books
 
 on:
   push:

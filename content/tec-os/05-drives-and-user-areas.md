@@ -7,7 +7,7 @@ nav_group: "Using the machine"
 
 # 5. Drives and user areas
 
-<!-- Checked against TEC-OS 57a8c38b7f341433285e39c4bec14ecc486ffe26 (retained recovery baseline),
+<!-- Checked against Tecos 57a8c38b7f341433285e39c4bec14ecc486ffe26 (retained recovery baseline),
      ROM SHA-256 ac86ad233696d22a46b4f98a4119c53b718bfe89881952a08e9f92223f3fa1c3.
      Unprefixed source citations use this revision. Explicit historical
      prefixes retain their stated revisions. Host-model capture recipes and
@@ -37,7 +37,7 @@ GAMES and SPARE are present on the card but unassigned. The prompt
 `CD ?` lists the card's volumes, in the card's order, each with the drive it
 is on:
 
-<!-- TEC-OS 57a8c38: node tools/capture.mjs 'CD ?'. Complete captured console transcript. -->
+<!-- Tecos 57a8c38: node tools/capture.mjs 'CD ?'. Complete captured console transcript. -->
 ```text
 TEC-OS 0.1 for TEC-1G
 A: SYSTEM
@@ -69,9 +69,9 @@ drive can be named explicitly, as in `DIR B:` or `TYPE A:SAMPLE.ASM`.
 Selecting an empty drive or naming a file on it gives `Select`. This
 starter-card run selects B and then uses empty drive D:
 
-<!-- TEC-OS 1e35854, ROM bb429d10, starter card 24801956: node tools/capture.mjs B: '@start D:' '@key x' '@start DIR D:' '@key x'. Complete captured console transcript. -->
+<!-- Tecos 8c12c9f, ROM 04ab62be, starter card e2f124e9: node tools/capture.mjs B: '@start D:' '@key x' '@start DIR D:' '@key x'. Complete captured console transcript. -->
 ```text
-TEC-OS 0.1 for TEC-1G
+Tecos 0.1 for TEC-1G
 A: SYSTEM
 B: WORK
 
@@ -112,7 +112,7 @@ listed, erased or run from the prompt. In this example NOTES.TXT is in area
 3 of WORK, put there from the PC with `tecvol put card.img B NOTES.TXT
 --text --user 3`. Neither `DIR` nor `TYPE` finds it:
 
-<!-- TEC-OS 84518ef, ROM 35893cab: node tools/capture.mjs --card build/area.img 'DIR B:' 'TYPE B:NOTES.TXT'. Complete captured console transcript. -->
+<!-- Tecos 84518ef, ROM 35893cab: node tools/capture.mjs --card build/area.img 'DIR B:' 'TYPE B:NOTES.TXT'. Complete captured console transcript. -->
 ```text
 TEC-OS 0.1 for TEC-1G
 A: SYSTEM
@@ -160,7 +160,7 @@ only. Loading from A also leaves the current drive unchanged. In this
 capture, both `A:TAS` and plain `TAS` run
 A's program and print its usage line. The prompt remains on B:
 
-<!-- TEC-OS 57a8c38: node tools/capture.mjs B: A:TAS TAS STARTUP.CMD. Complete captured console transcript. -->
+<!-- Tecos 57a8c38: node tools/capture.mjs B: A:TAS TAS STARTUP.CMD. Complete captured console transcript. -->
 ```text
 TEC-OS 0.1 for TEC-1G
 A: SYSTEM
@@ -225,7 +225,7 @@ slot large enough for either geometry, so any volume fits any drive.
 This run assigns GAMES to D, displays that assignment and attempts to
 put WORK on C before listing all volumes:
 
-<!-- TEC-OS 57a8c38: node tools/capture.mjs 'CD D:GAMES' 'CD D:' 'CD C:WORK' 'CD ?'. Complete captured console transcript. -->
+<!-- Tecos 57a8c38: node tools/capture.mjs 'CD D:GAMES' 'CD D:' 'CD C:WORK' 'CD ?'. Complete captured console transcript. -->
 ```text
 TEC-OS 0.1 for TEC-1G
 A: SYSTEM
@@ -284,7 +284,7 @@ selection, so a reset after `CD A:GAMES` starts from GAMES, which has no
 startup file and no shell. The bare prompt `A>` follows. ROM CD commands
 remain available to restore SYSTEM:
 
-<!-- TEC-OS 57a8c38: node tools/capture.mjs 'CD A:GAMES' TAS @reset 'CD ?' 'CD A:SYSTEM' SHELL.SVC. Complete captured console transcript. -->
+<!-- Tecos 57a8c38: node tools/capture.mjs 'CD A:GAMES' TAS @reset 'CD ?' 'CD A:SYSTEM' SHELL.SVC. Complete captured console transcript. -->
 ```text
 TEC-OS 0.1 for TEC-1G
 A: SYSTEM
@@ -363,7 +363,7 @@ in location, size, geometry and flags and fit the drive's slot.
 This run assigns GAMES to D and then resets. The boot banner and volume
 listing show that D still contains GAMES:
 
-<!-- TEC-OS 57a8c38: node tools/capture.mjs 'CD D:GAMES' @reset 'CD ?'. Complete captured console transcript. -->
+<!-- Tecos 57a8c38: node tools/capture.mjs 'CD D:GAMES' @reset 'CD ?'. Complete captured console transcript. -->
 ```text
 TEC-OS 0.1 for TEC-1G
 A: SYSTEM
@@ -439,7 +439,7 @@ with PICO9918 selected. Startup installed the shell but its `GLCD.SVC`
 line installed no driver. Typing `GLCD.SVC` at the prompt then installed
 the driver while leaving the PICO9918 selected:
 
-<!-- TEC-OS with the sized DIR (ROM c9586263, starter card 1cdc614e): node tools/capture.mjs --board pico GLCD.SVC SERVICES UNLOAD SERVICES UNLOAD SERVICES UNLOAD. Complete captured console transcript. -->
+<!-- Tecos with the sized DIR (ROM c9586263, starter card 1cdc614e): node tools/capture.mjs --board pico GLCD.SVC SERVICES UNLOAD SERVICES UNLOAD SERVICES UNLOAD. Complete captured console transcript. -->
 ```text
 TEC-OS 0.1 for TEC-1G
 A: SYSTEM
@@ -493,7 +493,7 @@ instead ends the command with the BDOS's `Bad Sector` message.
 A second graphics LCD driver cannot install over the first. In this
 GLCD-console run, startup had already installed the shell and the driver:
 
-<!-- TEC-OS with the sized DIR (ROM c9586263, starter card 1cdc614e): node tools/capture.mjs --board glcd GLCD.SVC SERVICES. Complete captured console transcript. -->
+<!-- Tecos with the sized DIR (ROM c9586263, starter card 1cdc614e): node tools/capture.mjs --board glcd GLCD.SVC SERVICES. Complete captured console transcript. -->
 ```text
 TEC-OS 0.1 for TEC-1G
 A: SYSTEM
@@ -557,7 +557,7 @@ address for one run. LOAD never runs automatically,
 and moving bytes does not relocate absolute operands. TAS produces genuine
 HEX with `TAS NAME OUT.HEX`, using data 00/EOF 01 and no entry record. These
 address forms follow the later development components
-(`TEC-OS 1cded94eed6a077bd0cddea4554c2a2245c40a5a:docs/mon3.md:60-143`,
+(`Tecos 1cded94eed6a077bd0cddea4554c2a2245c40a5a:docs/mon3.md:60-143`,
 `Thorium 7a217f96c76f11641af3fa0b22d0b34be6e2a467:docs/language.md:167-185`).
 GO flushes the cache before it runs anything. If a write fails, the data
 stays queued, GO prints `?` and no program starts. It runs once the card has
@@ -581,7 +581,7 @@ that ended a program out of the command line. Serial has no such wait.
 Warm boot preserves MON3.SVC. `EXIT`, `UNLOAD` or reset removes it. Its
 current 4,781-byte header and image occupy 19 pages. With relocation data
 the file occupies 5,237 bytes. These later measurements belong to the monitor
-at `TEC-OS 1cded94eed6a077bd0cddea4554c2a2245c40a5a`; the earlier checked
+at `Tecos 1cded94eed6a077bd0cddea4554c2a2245c40a5a`; the earlier checked
 header/captures above retain their historical ownership. These pages hold the service code,
 line buffer and recovery stack above the MON-3 program's load area.
 The program itself uses MON-3's stack below `0880h`.
@@ -592,7 +592,7 @@ to 41,472, or 40,704 with GLCD.SVC too. On the starter card, the
 shell is already installed. Installing MON3 changes that address from `A500h` to `9200h` and
 reduces program memory from 41,984 to 37,120 bytes. Adding
 GLCD.SVC gives `8F00h` and 36,352 bytes
-(`TEC-OS 1cded94eed6a077bd0cddea4554c2a2245c40a5a:docs/mon3.md:47-58`).
+(`Tecos 1cded94eed6a077bd0cddea4554c2a2245c40a5a:docs/mon3.md:47-58`).
 
 The return-to-prompt key handling uses Tecos's `KBLAST` state. Each
 MON3 matrix read stores the detected key there. A later Tecos scan
