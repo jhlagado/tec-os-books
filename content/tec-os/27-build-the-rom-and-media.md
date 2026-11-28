@@ -1,8 +1,8 @@
 ---
 title: Build the ROM and media
-parent: TEC-OS
+parent: Tecos
 nav_order: 27
-nav_group: "Inside TEC-OS"
+nav_group: "Inside Tecos"
 ---
 
 # 27. Build the ROM and media
@@ -20,7 +20,7 @@ nav_group: "Inside TEC-OS"
 
 A successful assembly is useful only with the matching map and media.
 The map must label the instructions in that ROM and card programs must
-use interfaces the ROM supplies. TEC-OS writes the image, symbol map and
+use interfaces the ROM supplies. Tecos writes the image, symbol map and
 memory census together. Media preparation then checks map provenance and
 ROM size and hash against the census (`b95b2a9:tools/build.mjs:275-326`,
 `b95b2a9:tools/media.mjs:197-211`).
@@ -70,7 +70,7 @@ including its byte-equivalence comparison. This TAS takes several statements
 on a line and rejects a line with more
 than 128 characters of code, as
 [Chapter 2](02-make-a-small-program.md#several-statements-on-a-line)
-describes. TEC-OS source uses a statement per line within
+describes. Tecos source uses a statement per line within
 that limit. The ROM, `GLCD.SVC`, `MON3.SVC`, `DEMO.COM`, `HELLO3.BIN`
 and test programs therefore kept their earlier `dbee66a` assembly bytes (`57a8c38:docs/compatibility.md:226`).
 The TAS pinned now likewise assembles the ROM, `SHELL.SVC` and `MON3.SVC` to

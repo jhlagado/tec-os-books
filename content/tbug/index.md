@@ -6,11 +6,11 @@ nav_exclude: true
 
 # Using TBUG
 
-On TEC-OS, ordinary development follows a short loop. You write Z80 assembly in `TED`, assemble a `.COM` program with `TAS` and run it by typing its name at the prompt. TEC-OS loads the file at `0100h`, runs it and drops you back to the prompt. When the output looks right, you carry on.
+On Tecos, ordinary development follows a short loop. You write Z80 assembly in `TED`, assemble a `.COM` program with `TAS` and run it by typing its name at the prompt. Tecos loads the file at `0100h`, runs it and drops you back to the prompt. When the output looks right, you carry on.
 
 When something goes wrong, that loop gives you almost nothing to work with. A Z80 at 4 MHz executes hundreds of thousands of instructions a second, so by the time garbled text hits the screen or the machine hangs, the broken instruction is long gone. Stuffing print calls into the source shifts addresses, clobbers registers and muddies the very console output you are trying to read.
 
-TBUG puts a resident debugger right inside TEC-OS. It loads at the top of RAM below the ROM and catches a `.COM` program before its first instruction at `0100h`. From there you can read the CPU's registers, step through disassembled instructions, watch the stack and memory change byte by byte and run at full speed between breakpoints.
+TBUG puts a resident debugger right inside Tecos. It loads at the top of RAM below the ROM and catches a `.COM` program before its first instruction at `0100h`. From there you can read the CPU's registers, step through disassembled instructions, watch the stack and memory change byte by byte and run at full speed between breakpoints.
 
 ## Transparent to the console
 
@@ -22,7 +22,7 @@ By itself, TBUG can debug any `.COM` binary using hexadecimal addresses. Wheneve
 
 ## Before you start
 
-You should be comfortable at the TEC-OS prompt, able to enter a short file in `TED` and able to read basic Z80 instructions and hexadecimal. Every chapter works through a concrete program rather than listing controls in isolation. You write or reuse a small `.ASM` file, run it normally to see what it does, then bring it under TBUG so each control turns up beside the problem that calls for it.
+You should be comfortable at the Tecos prompt, able to enter a short file in `TED` and able to read basic Z80 instructions and hexadecimal. Every chapter works through a concrete program rather than listing controls in isolation. You write or reuse a small `.ASM` file, run it normally to see what it does, then bring it under TBUG so each control turns up beside the problem that calls for it.
 
 Addresses and bytes use hexadecimal with a trailing `h`, such as `0100h`, and sizes use KiB or decimal bytes.
 

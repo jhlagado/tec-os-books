@@ -1,6 +1,6 @@
 ---
 title: Choose a console
-parent: TEC-OS
+parent: Tecos
 nav_order: 7
 nav_group: "Using the machine"
 ---
@@ -49,24 +49,24 @@ Programs can write to it through the ROM calls in Chapter 12.
 A program's warm boot keeps the selected console. Reset performs a
 cold boot and checks the board configuration again. A responding
 PICO9918 with the Matrix switch enabled starts as `CRT:` at 40 columns
-before the banner. Otherwise TEC-OS starts on `TTY:`. A startup file
+before the banner. Otherwise Tecos starts on `TTY:`. A startup file
 can then load the graphics LCD console, as Chapter 8 explains.
 
 ## The serial terminal
 
 A serial connection needs 4800 baud, 8 data bits, no parity and 2 stop
-bits. The board must run at FAST, 4 MHz, because TEC-OS generates the
+bits. The board must run at FAST, 4 MHz, because Tecos generates the
 serial timing in software. A different clock changes that timing.
 Appendix G lists the physical preparation requirements.
 
 Output bytes reach the serial terminal unchanged. The PC terminal
 program interprets control characters and escape sequences, so programs
 that position a cursor or clear the screen need ANSI support. Command
-pagination assumes 80 columns and 24 rows. TEC-OS cannot read the
+pagination assumes 80 columns and 24 rows. Tecos cannot read the
 terminal window's actual size.
 
 There is no hardware receive buffer on the board. Input is caught only while
-TEC-OS polls the serial line. It polls while waiting for a key and briefly
+Tecos polls the serial line. It polls while waiting for a key and briefly
 during ordinary text output. Keys typed by hand at the prompt are caught.
 Pasting text or typing ahead of a busy program can lose characters. A host
 model's queued input does not establish that the physical board can receive a
@@ -281,7 +281,7 @@ Chapter 8 explains these startup conditions.
 
 ## A silent console and recovery
 
-`BAT:` is CP/M's batch-device name. TEC-OS reads its input from serial
+`BAT:` is CP/M's batch-device name. Tecos reads its input from serial
 and discards its output. `CON BAT` therefore suppresses its own reply
 but commands typed on the serial terminal still run.
 
@@ -337,7 +337,7 @@ the scan timing and character encodings.
 
 ## Text and the cursor on a display
 
-TEC-OS draws display-console text at the cursor and advances it a
+Tecos draws display-console text at the cursor and advances it a
 column for each printable character. Control characters move the cursor
 or clear the screen. Supported ANSI sequences provide these operations
 and reverse video. They also insert or delete characters and lines.

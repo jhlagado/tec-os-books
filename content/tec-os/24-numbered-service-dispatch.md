@@ -1,8 +1,8 @@
 ---
 title: Numbered-service dispatch
-parent: TEC-OS
+parent: Tecos
 nav_order: 24
-nav_group: "Inside TEC-OS"
+nav_group: "Inside Tecos"
 ---
 
 # 24. Numbered-service dispatch

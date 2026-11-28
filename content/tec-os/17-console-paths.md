@@ -1,8 +1,8 @@
 ---
 title: Console paths
-parent: TEC-OS
+parent: Tecos
 nav_order: 17
-nav_group: "Inside TEC-OS"
+nav_group: "Inside Tecos"
 ---
 
 # 17. Console paths
@@ -28,7 +28,7 @@ from Chapter 14 (`b95b2a9:src/cpm/bdoscon.asm:120-158`, `b95b2a9:src/cpm/bdoscon
 
 ## The BIOS boundary
 
-The BIOS table separates machine operations from BDOS processing. TEC-OS
+The BIOS table separates machine operations from BDOS processing. Tecos
 supplies all seventeen CP/M 2.2 entries as three-byte jumps at fixed table
 offsets (`b95b2a9:src/tables.asm:14-31`):
 
@@ -81,7 +81,7 @@ activity (`b95b2a9:src/cpm/bdoscon.asm:120-158`, `b95b2a9:src/cpm/bdoscon.asm:30
 ## Requested and applied consoles
 
 The logical CON console is routed by IOBYTE bits 0–1 at `0003h`. The four
-physical names are TTY, CRT, BAT and UC1. TEC-OS assigns their input and
+physical names are TTY, CRT, BAT and UC1. Tecos assigns their input and
 output as follows (`b95b2a9:src/console.asm:1-9`, `b95b2a9:src/console.asm:75-90`,
 `b95b2a9:src/layout.asm:48-49`):
 
@@ -92,7 +92,7 @@ output as follows (`b95b2a9:src/console.asm:1-9`, `b95b2a9:src/console.asm:75-90
 | 2 | `BAT:` | serial port, with console filtering | direct discard |
 | 3 | `UC1:` | matrix keyboard | graphics LCD |
 
-IOBYTE also reserves bits 2–3 for RDR, 4–5 for PUN and 6–7 for LST. TEC-OS
+IOBYTE also reserves bits 2–3 for RDR, 4–5 for PUN and 6–7 for LST. Tecos
 ignores those fields for routing. Its reader, punch and list implementations
 remain fixed regardless of the upper bits (`b95b2a9:src/console.asm:458-489`).
 
@@ -115,7 +115,7 @@ CONMD records the applied selection in CONMOD and IOBYTE's console bits while
 preserving its upper six bits. After the next console call, IOBYTE therefore
 reflects the device actually selected. Missing display or keyboard support
 changes a requested video mode to TTY. INFO returns the applied width and
-height in L and H. Serial dimensions are zero because TEC-OS cannot read the
+height in L and H. Serial dimensions are zero because Tecos cannot read the
 PC terminal's size. Programs must reread dimensions after changing consoles
 (`b95b2a9:src/console.asm:496-510`, `b95b2a9:src/services.asm:85-91`).
 

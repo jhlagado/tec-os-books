@@ -1,13 +1,13 @@
 #!/usr/bin/env node
-// The TBUG book's capture: drives TEC-OS's own machine model through a TBUG
+// The TBUG book's capture: drives Tecos's own machine model through a TBUG
 // session and prints the 20 x 4 LCD after each TBUG key, as the book's screens
 // show it. TBUG reads the matrix itself, so each key is held for a fixed time
 // (0.1 s), let go, and the LCD is read 2 s later, after a view's title clears.
-// After the TEC-OS session's book capture, made general.
+// After the Tecos session's book capture, made general.
 //
 //   TECOS=../tec-os node scripts/tbug-capture.mjs [--card IMAGE] STEP...
 //
-// TECOS names a TEC-OS checkout built with npm run build && npm run media.
+// TECOS names a Tecos checkout built with npm run build && npm run media.
 // The card is its dist/starter.img unless --card names another. Each STEP is:
 //
 //   >LINE   LINE typed at the prompt with Return; waits for the next prompt
@@ -22,7 +22,7 @@ import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { pathToFileURL } from "node:url";
 
-if (!process.env.TECOS) throw new Error("set TECOS to a built TEC-OS checkout");
+if (!process.env.TECOS) throw new Error("set TECOS to a built Tecos checkout");
 const TECOS = resolve(process.env.TECOS);
 const from = (path) => import(pathToFileURL(resolve(TECOS, path)).href);
 const { boot } = await from("test/lib/fixtures.mjs");

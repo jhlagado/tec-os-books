@@ -6,15 +6,15 @@ sidebar: false
 
 # The tools
 
-TEC-OS comes with a core toolkit. Every volume that goes on A: carries it,
+Tecos comes with a core toolkit. Every volume that goes on A: carries it,
 so whichever volume is on A: you can edit, assemble, run and debug a
 program.
 
 | Tool | File | What it does | Where to learn it |
 | --- | --- | --- | --- |
-| The shell | `SHELL.SVC` | Adds `CD`, `COPY`, `DEL`, `DIR` and other commands to the prompt | [TEC-OS book, chapters 1 to 8](../tec-os/01-first-session.md) |
+| The shell | `SHELL.SVC` | Adds `CD`, `COPY`, `DEL`, `DIR` and other commands to the prompt | [Tecos book, chapters 1 to 8](../tec-os/01-first-session.md) |
 | TED | `TED.COM` | Edits text, and builds and runs a program | [Make a small program](../tec-os/02-make-a-small-program.md) |
-| TAS | `TAS.COM` | Assembles Z80 source into a `.COM` program | [Make a small program](../tec-os/02-make-a-small-program.md) and [Call TEC-OS](../tec-os/09-call-tec-os.md) |
+| TAS | `TAS.COM` | Assembles Z80 source into a `.COM` program | [Make a small program](../tec-os/02-make-a-small-program.md) and [Call Tecos](../tec-os/09-call-tec-os.md) |
 | TBUG | `TBUG.SVC`, `TBUG.HLP` | Stops a program and shows its registers, stack and memory on the LCD | [The TBUG book](../tbug/index.md) |
 
 Two more tools are for particular readers:
@@ -29,4 +29,4 @@ written. They will appear on the [library shelf](../index.md) as each is
 ready.
 
 You can try every tool without a board in the
-[TEC-OS Viewer](https://jhlagado.github.io/tec-os-viewer/).
+[Tecos Viewer](https://jhlagado.github.io/tec-os-viewer/).

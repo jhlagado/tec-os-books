@@ -1,6 +1,6 @@
 ---
 title: C. Memory map
-parent: TEC-OS
+parent: Tecos
 nav_order: 103
 nav_group: "Reference"
 ---
@@ -25,7 +25,7 @@ distinguished from resident storage.
 [Chapter 11](11-memory-for-programs.md) explains program limits and
 [Chapter 15](15-state-and-memory.md) explains resident state and its lifetime.
 
-The address tables describe the `tecos` build at TEC-OS `57a8c38`, whose ROM
+The address tables describe the `tecos` build at Tecos `57a8c38`, whose ROM
 SHA-256 is
 `ac86ad233696d22a46b4f98a4119c53b718bfe89881952a08e9f92223f3fa1c3`. It is the
 one image for every board. The starter card reserves four equal drive slots and mounts SYSTEM on A,
@@ -65,7 +65,7 @@ The starter card's layout with EXPAND 0 selected and no service loaded is:
 | `B6C8h–BFFFh` | BDOS entry jump and resident workspace in EXPAND 0 |
 | `C000h–FFFFh` | ROM |
 
-TEC-OS writes the system latch at port `FFh` from its shadow at `0040h`,
+Tecos writes the system latch at port `FFh` from its shadow at `0040h`,
 `LATCHV`. The ordinary EXPAND 0 value is `01h`. With matrix Caps Lock on bit 7
 is set, producing `81h`. Temporary EXPAND 1 accesses set bit 2 and restore the
 shadow value afterwards (`b95b2a9:src/layout.asm:19-28`, `b95b2a9:src/abi.inc:302-305`,
@@ -164,13 +164,13 @@ These fixed addresses identify the current page-zero contracts
 | Address | Contents |
 | --- | --- |
 | `0000h` | `JP BF03h`, warm boot through the RAM BIOS table |
-| `0003h` | IOBYTE. TEC-OS applies its console field in bits 0 and 1 |
+| `0003h` | IOBYTE. Tecos applies its console field in bits 0 and 1 |
 | `0004h` | Current drive in bits 0–3. Bits 4–7, CP/M's user number, are zero |
 | `0005h` | `JP` through the word at `0006h`, to the BDOS entry jump or lowest service page |
 | `0008h–0037h` | Restart vectors 1–6. Each defaults to seven zeros followed by `RET`, unless a `JP` target is strictly above `PZTOP` |
 | `0038h` | Restart 7 and mode 1 interrupt entry. Defaults to `EI`, `RETI` unless a qualifying `JP` remains |
 | `0040h` | `LATCHV`, the system latch shadow |
-| `0041h–004Fh` | Unused by TEC-OS. A `MON3.SVC` session holds them while it runs and gives them back at `EXIT` or warm boot |
+| `0041h–004Fh` | Unused by Tecos. A `MON3.SVC` session holds them while it runs and gives them back at `EXIT` or warm boot |
 | `0050h` | Load-drive byte. 0 means current drive, 1 means A and so on |
 | `005Ch` | First default file control block (FCB) |
 | `006Ch` | Second FCB, overlapping the first FCB's last 20 bytes |
@@ -197,7 +197,7 @@ the load-drive byte (`b95b2a9:src/cpm/ccp.asm:352-370`,
 `b95b2a9:src/cpm/ccpcmd.asm:392-440`, `b95b2a9:src/cpm/ccp.asm:488-520`). The
 second FCB reaches `008Fh` so tail publication follows FCB parsing.
 
-CP/M reserves `0040h–004Fh` for BIOS scratch. TEC-OS uses only `0040h`
+CP/M reserves `0040h–004Fh` for BIOS scratch. Tecos uses only `0040h`
 there. It is the resident state byte read while EXPAND 1 hides the upper
 workspace. Cold boot leaves the other 15 bytes zero. A `MON3.SVC` session
 holds them while it runs: the latch stub its restarts pass through, GO's

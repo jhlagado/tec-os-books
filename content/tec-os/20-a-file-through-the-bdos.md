@@ -1,8 +1,8 @@
 ---
 title: A file through the BDOS
-parent: TEC-OS
+parent: Tecos
 nav_order: 20
-nav_group: "Inside TEC-OS"
+nav_group: "Inside Tecos"
 ---
 
 # 20. A file through the BDOS
@@ -65,7 +65,7 @@ entry stores the user number where the FCB stores its drive. Allocation
 maps contain sixteen one-byte numbers for volumes of at most 256 blocks
 or eight two-byte numbers for larger volumes. `FCBLOCK` and `BLOCKIDX`
 select the width from the high byte of `DSM`, the last block number
-(`b95b2a9:src/cpm/bdosrec.asm:462-472`, `b95b2a9:src/cpm/bdosrec.asm:528-546`). Both TEC-OS
+(`b95b2a9:src/cpm/bdosrec.asm:462-472`, `b95b2a9:src/cpm/bdosrec.asm:528-546`). Both Tecos
 geometries exceed 256 blocks and therefore use eight two-byte numbers.
 
 Larger files require extents because an entry has limited map space.
@@ -356,7 +356,7 @@ scan bound.
 
 This check avoids the directory traffic caused by an ordinary CP/M 2.2
 warm reset. That reset logs drives in again on selection, reading thirty-two
-card blocks for G8M. Chapter 16 records model timings. TEC-OS's CCP still
+card blocks for G8M. Chapter 16 records model timings. Tecos's CCP still
 calls function 13 but first sets `WRFLAG` (`b95b2a9:src/cpm/ccp.asm:75-134`). The
 flag routes reset to `WRESET` (`b95b2a9:src/cpm/bdosfile.asm:19-24`).
 
@@ -408,7 +408,7 @@ that volume's allocation-vector and DPB pointers (`b95b2a9:src/cpm/bdosfn.asm:48
 
 The file lifecycle is implemented by Portable CP/M's BDOS, written from
 the documented CP/M 2.2 interface without Digital Research source
-(`b95b2a9:src/cpm/PROVENANCE.md:3-7`). TEC-OS assembles its six files in this order
+(`b95b2a9:src/cpm/PROVENANCE.md:3-7`). Tecos assembles its six files in this order
 (`b95b2a9:src/rom.asm:36-41`):
 
 | File | Contents |

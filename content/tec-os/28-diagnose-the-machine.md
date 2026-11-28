@@ -1,8 +1,8 @@
 ---
 title: Diagnose the machine
-parent: TEC-OS
+parent: Tecos
 nav_order: 28
-nav_group: "Inside TEC-OS"
+nav_group: "Inside Tecos"
 ---
 
 # 28. Diagnose the machine
@@ -19,7 +19,7 @@ nav_group: "Inside TEC-OS"
      labelled separately from console captures. -->
 
 A machine stopped before its command prompt needs a recovery path that
-works without files or loaded drivers. TEC-OS supplies an error code and
+works without files or loaded drivers. Tecos supplies an error code and
 `R retry>` for card initialisation and mount failures. Checking the board
 itself requires a separate diagnostics program under its monitor. That
 program prints a serial result for each check. Model results and physical
@@ -88,11 +88,11 @@ explains the recognition and reselection conditions.
 Board diagnostics test assumptions that a card retry cannot establish.
 MON-3, the TEC-1G monitor, remains in the ROM socket and loads them as
 a RAM program (`b95b2a9:docs/diagnostics.md:1-8`, `b95b2a9:diag/diag.asm:1-9`). SD checks
-run first because the recorded TEC-OS SD results so far come from a host
+run first because the recorded Tecos SD results so far come from a host
 model whose card answers immediately without stalls. Physical checks
 measure the waits a real card consumes (`b95b2a9:docs/diagnostics.md:10-13`).
 
-The diagnostic includes the actual TEC-OS SD driver and PICO9918 probe
+The diagnostic includes the actual Tecos SD driver and PICO9918 probe
 (`b95b2a9:diag/diag.asm:23-24`, `b95b2a9:docs/diagnostics.md:38-40`). Checks that need
 wait counts repeat the driver's sequence using its primitives and bounds
 rather than substituting a different wait policy
@@ -151,7 +151,7 @@ MON-3 loads `DIAG.HEX` by either of two routes
 - From a FAT32 card: copy `DIAG.HEX` to the card's root, fit the card and
   load the file through MON-3's Drive Access, Catalog (`Fn-F` in data entry
   mode). The card-selection prompt precedes all SD access, so you
-  can then swap the FAT32 card for the TEC-OS card.
+  can then swap the FAT32 card for the Tecos card.
 
 Execution starts at `4000h` with GO in MON-3 data-entry mode. The program
 waits at LCD `Log on? GO=send` before any serial output, providing time
@@ -175,20 +175,20 @@ The checks run in a fixed order (`b95b2a9:diag/main.asm:201-204`):
 
 | Check | What it tests |
 | --- | --- |
-| SHAD | That latch bit 0 clear shows the ROM at `0000h–07FFh` and set shows RAM, as TEC-OS's boot expects (`b95b2a9:diag/memory.asm:338`) |
+| SHAD | That latch bit 0 clear shows the ROM at `0000h–07FFh` and set shows RAM, as Tecos's boot expects (`b95b2a9:diag/memory.asm:338`) |
 | SD1 | The card's data line with the card deselected (`b95b2a9:diag/sdcard.asm:467`) |
 | SD2 | Card start-up along `SDINIT`'s path, with the tries each step used (`b95b2a9:diag/sdcard.asm:508`) |
-| SD3 | The most polls each wait used over 64 reads, against TEC-OS's bounds (`b95b2a9:diag/sdcard.asm:577`) |
+| SD3 | The most polls each wait used over 64 reads, against Tecos's bounds (`b95b2a9:diag/sdcard.asm:577`) |
 | SD4 | The card's capacity, maker and serial number and the agreement of its addressing mode (`b95b2a9:diag/sdcard.asm:708`) |
 | SD5 | Repeated reads of the same blocks, compared (`b95b2a9:diag/sdtests.asm:81`) |
 | SD6 | Read speed, timed by the DS1302 or by a stopwatch between two beeps (`b95b2a9:diag/sdtests.asm:231`) |
 | SD7 | A read-only container check that follows `MOUNT`'s steps, and the first block past the container (`b95b2a9:diag/sdvol.asm:1-12`) |
 | SD8 | The write test, described below (`b95b2a9:diag/sdwrite.asm:18`) |
-| SD9 | Card removal and reinsertion as TEC-OS would see them (`b95b2a9:diag/sdwrite.asm:974`) |
+| SD9 | Card removal and reinsertion as Tecos would see them (`b95b2a9:diag/sdwrite.asm:974`) |
 | RAM | Free RAM and both EXPAND settings of the `8000h–BFFFh` window, which must hold different data (`b95b2a9:diag/memory.asm:100-106`) |
 | PROT | That PROTECT stops a write in `4000h–7FFFh` and its removal lets the write land (`b95b2a9:diag/memory.asm:258`) |
 | CLK | The CPU clock against one DS1302 second, with a `WARN` outside 2% of 4 MHz (`b95b2a9:diag/devices.asm:86-91`) |
-| VDP | The PICO9918, found by TEC-OS's probe, and its frame rate (`b95b2a9:diag/devices.asm:164`) |
+| VDP | The PICO9918, found by Tecos's probe, and its frame rate (`b95b2a9:diag/devices.asm:164`) |
 | LCD | The 20 × 4 LCD, by reading back two addresses (`b95b2a9:diag/devices.asm:271`) |
 | GLCD | The graphics LCD's busy flag (`b95b2a9:diag/devices.asm:327`) |
 | RTC | The DS1302's registers, read and not set (`b95b2a9:diag/devices.asm:357`) |
@@ -204,12 +204,12 @@ line gives four totals (`b95b2a9:diag/main.asm:72-85`,
 
 | Status | Meaning |
 | --- | --- |
-| `PASS` | The board did what TEC-OS relies on |
+| `PASS` | The board did what Tecos relies on |
 | `WARN` | It worked, with a figure worth checking, given in the line |
 | `FAIL` | It did not. The line gives what was read |
 | `SKIP` | Not run, with the reason in `reason=` |
 
-SD3 reports the headroom in TEC-OS's SD waits. Any wait using more than
+SD3 reports the headroom in Tecos's SD waits. Any wait using more than
 a quarter of its bound receives WARN. That card completed the operation
 but used more of the available margin, leaving less room for slower
 responses (`b95b2a9:docs/diagnostics.md:168-173`).
@@ -239,7 +239,7 @@ Writing requires explicit `8` then GO confirmation. AD or any other key
 skips it. Holding AD during the test stops at the next block
 (`b95b2a9:diag/sdwrite.asm:166-175`, `b95b2a9:diag/sdwrite.asm:513-540`). Every block is
 read twice and saved before receiving the pattern. After pattern readback,
-the saved bytes are restored with TEC-OS SDWRITE and checked, with up
+the saved bytes are restored with Tecos SDWRITE and checked, with up
 to three attempts (`b95b2a9:diag/sdwrite.asm:565-725`,
 `b95b2a9:docs/diagnostics.md:248-266`).
 
@@ -251,10 +251,10 @@ card procedure is therefore required even with those checks
 (`b95b2a9:docs/board-run.md:7-25`):
 
 1. Use a card you can lose, or save an image of the whole card first.
-2. Write the TEC-OS starter image to it.
+2. Write the Tecos starter image to it.
 3. If the log shows `SD8 FAIL alias`, `SD8 FAIL restore-failed` or the note
    to restore the card from its backup, write the starter image or your
-   backup back to the card before using it. Do not run TEC-OS on it first.
+   backup back to the card before using it. Do not run Tecos on it first.
 
 Reset or power loss during SD8 can leave the current block containing
 the pattern. The backup must be kept until the run finishes
@@ -276,9 +276,9 @@ and wrapping cards, writes redirected to block 3 and failed restores
 and card state. They establish no physical-board result
 (`b95b2a9:docs/diagnostics.md:15-18`).
 
-MON-3 in the socket also leaves TEC-OS power-on behaviour untested.
+MON-3 in the socket also leaves Tecos power-on behaviour untested.
 Reset overlay, cold boot, mount and console need a separate run with the
-TEC-OS ROM fitted. The diagnostic does not check the PICO picture,
+Tecos ROM fitted. The diagnostic does not check the PICO picture,
 8 × 8 LEDs, speaker or status LEDs. SDREAD also leaves CRC bytes unchecked
 (`b95b2a9:docs/diagnostics.md:359-381`).
 

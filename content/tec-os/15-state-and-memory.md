@@ -1,11 +1,11 @@
 ---
-title: State and memory inside TEC-OS
-parent: TEC-OS
+title: State and memory inside Tecos
+parent: Tecos
 nav_order: 15
-nav_group: "Inside TEC-OS"
+nav_group: "Inside Tecos"
 ---
 
-# 15. State and memory inside TEC-OS
+# 15. State and memory inside Tecos
 
 <!-- Checked against TEC-OS 57a8c38b7f341433285e39c4bec14ecc486ffe26 (retained recovery baseline),
      ROM SHA-256 ac86ad233696d22a46b4f98a4119c53b718bfe89881952a08e9f92223f3fa1c3.
@@ -50,14 +50,14 @@ boot overlay when set. After reset the overlay maps the first 2 KiB of ROM at
 0 (`b95b2a9:src/layout.asm:19-28`, `b95b2a9:src/abi.inc:302-305`, `b95b2a9:src/reset.asm:1-13`,
 `b95b2a9:src/boot.asm:35-59`).
 
-Temporary switches must preserve the other latch bits. TEC-OS records the
+Temporary switches must preserve the other latch bits. Tecos records the
 write-only port's normal value in LATCHV at `0040h` in fixed RAM. A switch
 reads that byte, sets bit 2 for the port write and restores the saved value
 afterwards. Cache lookup uses this sequence. Caps Lock's bit 7 survives it and
 keyboard toggling updates both LATCHV and the port (`b95b2a9:src/layout.asm:64-69`,
 `b95b2a9:src/abi.inc:307-309`, `b95b2a9:src/cache.asm:41-94`, `b95b2a9:src/keyboard.asm:130-137`).
 
-CP/M assigns `0040h–004Fh` to BIOS scratch. TEC-OS uses only `0040h` and
+CP/M assigns `0040h–004Fh` to BIOS scratch. Tecos uses only `0040h` and
 leaves the remaining fifteen bytes zero after cold boot. Console state is
 above the BIOS table. MVCOPY can reach buffers below `8000h` directly while
 the cache bank is selected because fixed RAM stays visible
@@ -265,7 +265,7 @@ is checked rather than a new passing run (`b95b2a9:src/tables.asm:141-146`,
 `b95b2a9:test/stacks.test.mjs:25-46`, `b95b2a9:test/stacks.test.mjs:203-273`).
 
 The stack test triggers keypad NMI only at a new depth with RETN installed at
-`0066h`. Reported depths exclude the NMI frame since TEC-OS supplies no
+`0066h`. Reported depths exclude the NMI frame since Tecos supplies no
 handler there. Normally that address is inside the default FCB at `005Ch`.
 Keeping the keypad NMI jumper disabled prevents entry into its bytes during
 ordinary use (`b95b2a9:test/stacks.test.mjs:8-11`).

@@ -1,8 +1,8 @@
 ---
 title: Cache and persistence
-parent: TEC-OS
+parent: Tecos
 nav_order: 19
-nav_group: "Inside TEC-OS"
+nav_group: "Inside Tecos"
 ---
 
 # 19. Cache and persistence

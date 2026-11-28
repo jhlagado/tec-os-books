@@ -1,6 +1,6 @@
 ---
 title: B. The ROM table and hardware services
-parent: TEC-OS
+parent: Tecos
 nav_order: 102
 nav_group: "Reference"
 ---
@@ -19,7 +19,7 @@ nav_group: "Reference"
      labelled separately from console captures. -->
 
 A program can use the board's displays, keyboard and other hardware through
-TEC-OS services as well as the CP/M file and console calls. The eight-byte
+Tecos services as well as the CP/M file and console calls. The eight-byte
 ROM table at `C003h` contains a jump to seventeen numbered services.
 Numbers 0–8 control hardware, 9–11 manage volumes and 12 registers a
 display driver. Numbers 13–14 read the registry, 15 returns the console font
@@ -609,7 +609,7 @@ draws text uses GLYPH, service 17.
 The selected font is TEC Compact from `format/font5x7.txt`, 96 characters
 from `20h`. The source package checks the selected font and retained notices
 (`b95b2a9:tools/lib/font-package.mjs:8-21`). The retained sources and
-modifications are recorded in `format/FONT-NOTICES.txt`. The original TEC-OS
+modifications are recorded in `format/FONT-NOTICES.txt`. The original Tecos
 bitmap's upstream authorship remains unresolved
 (`b95b2a9:format/FONT-NOTICES.txt:33-47`).
 

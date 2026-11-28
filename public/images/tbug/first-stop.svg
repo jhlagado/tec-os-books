@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="720" height="324" viewBox="0 0 720 324" role="img" aria-labelledby="figTitle figDesc">
   <title id="figTitle">TBUG in high memory with separate console and LCD paths</title>
-  <desc id="figDesc">TEC-OS ROM sits at C000h to FFFFh. TBUG.SVC loads at the top of RAM below the ROM. The program runs from 0100h up to the address at 0006h where TBUG begins, above page zero. TBUG uses the 20x4 LCD and matrix keyboard while the program keeps the console.</desc>
+  <desc id="figDesc">Tecos ROM sits at C000h to FFFFh. TBUG.SVC loads at the top of RAM below the ROM. The program runs from 0100h up to the address at 0006h where TBUG begins, above page zero. TBUG uses the 20x4 LCD and matrix keyboard while the program keeps the console.</desc>
   <defs>
     <style>
       :root {
@@ -64,7 +64,7 @@
   <text class="cap" x="124" y="30" text-anchor="start" xml:space="preserve">MEMORY LAYOUT (NOT TO SCALE)</text>
   <text class="cap" x="416" y="30" text-anchor="start" xml:space="preserve">SEPARATE DISPLAYS</text>
   <rect class="bxq" x="124" y="48" width="208" height="46" rx="0"/>
-  <text class="nb" x="228" y="69" text-anchor="middle" xml:space="preserve">TEC-OS ROM</text>
+  <text class="nb" x="228" y="69" text-anchor="middle" xml:space="preserve">Tecos ROM</text>
   <text class="dimn" x="228" y="86" text-anchor="middle" xml:space="preserve">Read-only · 16 KB</text>
   <rect class="bx" x="124" y="150" width="208" height="66" rx="0"/>
   <text class="nb" x="228" y="179" text-anchor="middle" xml:space="preserve">Program (TPA)</text>

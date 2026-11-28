@@ -162,4 +162,4 @@ for (const [name, svg] of figures) {
   if (check) assert.equal(readFileSync(target, 'utf8'), svg, `Regenerate ${name}`);
   else writeFileSync(target, svg);
 }
-console.log(`${check ? 'Verified' : 'Generated'} ${figures.size} TEC-OS figures in ${fileURLToPath(out)}`);
+console.log(`${check ? 'Verified' : 'Generated'} ${figures.size} Tecos figures in ${fileURLToPath(out)}`);

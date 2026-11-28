@@ -1,6 +1,6 @@
 ---
 title: H. The service file format
-parent: TEC-OS
+parent: Tecos
 nav_order: 108
 nav_group: "Reference"
 ---
@@ -107,7 +107,7 @@ or one below the minimum version rejects the load
 
 ## The execution record
 
-A service can carry an application that TEC-OS enters,
+A service can carry an application that Tecos enters,
 as `MON3.SVC` and `SHELL.SVC` do. Its image then starts with a 16-byte
 *execution record*, at file offset 25, directly after the header
 (`b95b2a9:docs/services.md:133-144`):
@@ -121,7 +121,7 @@ as `MON3.SVC` and `SHELL.SVC` do. Its image then starts with a 16-byte
 | 6 | 8 | The name the service was installed by, written by INIT |
 | 14 | 2 | The service's own version, for its own use |
 
-The entry is an offset, never a relocated label: TEC-OS adds the service's
+The entry is an offset, never a relocated label: Tecos adds the service's
 page itself, and the loader rejects a staged record whose entry lies
 outside the image. A format-4 service without a record must not start its
 image with `45h 58h 01h` (`b95b2a9:docs/services.md:146-158`).

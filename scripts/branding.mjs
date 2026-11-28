@@ -13,10 +13,11 @@ export function checkBranding(html, { requireMark = true } = {}) {
   }
   walk(parse(html));
   const errors = [];
-  if (titles.length !== 1 || !/(?:^|\| )TEC-OS$/.test(titles[0])) errors.push('Page title must end with TEC-OS');
-  if (sites.length !== 1 || sites[0] !== 'TEC-OS') errors.push('Open Graph site name must be TEC-OS');
-  if ((requireMark && !logos.length) || logos.some(label => label !== 'TEC-OS')) errors.push('Site marks must be labelled TEC-OS');
+  if (titles.length !== 1 || !/(?:^|\| )Tecos$/.test(titles[0])) errors.push('Page title must end with Tecos');
+  if (sites.length !== 1 || sites[0] !== 'Tecos') errors.push('Open Graph site name must be Tecos');
+  if ((requireMark && !logos.length) || logos.some(label => label !== 'Tecos')) errors.push('Site marks must be labelled Tecos');
   if (/\btech-?os\b/i.test([...text, ...titles, ...sites, ...logos].join(' '))) errors.push('Incorrect site spelling in visible content or metadata');
-  if (/(?<![\w./-])tec-os(?![\w./-])/.test(text.join(' '))) errors.push('Visible branding must use uppercase TEC-OS');
+  // Screens keep the name a program prints, but they sit in code and pre, which are not read here.
+  if (/(?<![\w./-])(?:tec-os|TEC-OS)(?![\w./-])/.test(text.join(' '))) errors.push('Visible prose must name Tecos');
   return errors;
 }

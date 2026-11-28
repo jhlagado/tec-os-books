@@ -4,8 +4,8 @@ import { catalogue, ROOT, SITE } from '../scripts/catalogue.mjs';
 const books = catalogue();
 
 export default defineConfig({
-  title: 'TEC-OS',
-  description: 'Books and reference material for TEC-OS and its tools on the TEC-1G.',
+  title: 'Tecos',
+  description: 'Books and reference material for Tecos and its tools on the TEC-1G.',
   lang: 'en-AU',
   srcDir: 'content',
   base: '/',
@@ -22,17 +22,17 @@ export default defineConfig({
   head: [
     ['link', { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' }],
     ['meta', { name: 'theme-color', content: '#236c4a' }],
-    ['meta', { property: 'og:site_name', content: 'TEC-OS' }],
+    ['meta', { property: 'og:site_name', content: 'Tecos' }],
     ['meta', { property: 'og:type', content: 'website' }]
   ],
   themeConfig: {
-    siteTitle: 'TEC-OS',
+    siteTitle: 'Tecos',
     nav: [{ text: 'Library', link: '/' }, ...books.map(book => ({ text: book.label, link: book.link })), { text: 'Tools', link: '/tools/' }],
     sidebar: Object.fromEntries(books.map(book => [book.link, book.sidebar])),
     search: { provider: 'local' },
     socialLinks: [{ icon: 'github', link: 'https://github.com/jhlagado/tec-os' }],
     outline: { level: [2, 3] },
-    footer: { message: 'TEC-OS and its tools' }
+    footer: { message: 'Tecos and its tools' }
   },
   transformPageData(pageData) {
     if (['default', 'home'].includes(pageData.frontmatter.layout)) delete pageData.frontmatter.layout;

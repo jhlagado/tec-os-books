@@ -1,6 +1,6 @@
 ---
 title: First session
-parent: TEC-OS
+parent: Tecos
 nav_order: 1
 nav_group: "Using the machine"
 ---
@@ -26,7 +26,7 @@ your saved work written to the card.
 
 ## The prepared machine
 
-The examples use a TEC-1G prepared with the TEC-OS ROM and starter card.
+The examples use a TEC-1G prepared with the Tecos ROM and starter card.
 It has the required 32 KiB RAM chip in U9, the 4 MHz FAST setting and a
 PICO9918 display.
 The Matrix switch enables the matrix keyboard. The keypad non-maskable
@@ -39,7 +39,7 @@ with this configuration. Unused blank rows are omitted from the excerpts.
 
 ## The first prompt
 
-Power-on starts TEC-OS and displays the system name. The two names below
+Power-on starts Tecos and displays the system name. The two names below
 it identify the card volumes on the drives:
 
 <!-- TEC-OS 1e35854, ROM bb429d10, starter card 24801956: node tools/capture.mjs --board pico --screen. The PICO9918's 40-column screen; right-hand blanks and empty bottom rows omitted. -->
@@ -312,4 +312,4 @@ to the prompt, `A:MON3>`. The starter supplies the source. The binary is the fil
 you built above. [Chapter 5](05-drives-and-user-areas.md) explains
 the service and its reserved memory.
 
-_Screens checked against TEC-OS `1e35854` on the starter card in the emulated TEC-1G, 27 November 2026._
+_Screens checked against Tecos `1e35854` on the starter card in the emulated TEC-1G, 27 November 2026._

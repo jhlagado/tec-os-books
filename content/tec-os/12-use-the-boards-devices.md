@@ -1,6 +1,6 @@
 ---
 title: Use the board's devices
-parent: TEC-OS
+parent: Tecos
 nav_order: 12
 nav_group: "Writing programs"
 ---
@@ -20,7 +20,7 @@ nav_group: "Writing programs"
 
 A program may need to show a number on the digits, sound a note or draw
 graphics while its console remains usable. The BDOS covers text and files.
-TEC-OS adds numbered ROM calls for the board's devices. Checking their
+Tecos adds numbered ROM calls for the board's devices. Checking their
 signature and version first lets a program exit safely on a CP/M system
 without that interface.
 
@@ -28,7 +28,7 @@ without that interface.
 
 A hardware port is separate from a memory address. Z80 IN and OUT instructions
 use ports to read and write devices. A direct write can also affect a device
-already in use by TEC-OS.
+already in use by Tecos.
 
 Port `01h` combines three uses: bits 0–5 select digits, bit 7 drives the
 speaker and bit 6 transmits serial data. A digit scan or tone that leaves bit
@@ -45,7 +45,7 @@ its entry address. Chapter 14 explains resident code.
 
 Programs need a stable way to reach routines whose locations may change
 between builds. An *application binary interface*, or ABI, defines that entry
-together with register arguments and results. TEC-OS places its eight-byte
+together with register arguments and results. Tecos places its eight-byte
 interface at `C003h`, after the reset jump:
 
 | Address | Name | Contents |
@@ -357,7 +357,7 @@ With `--board glcd`, GLCD.SVC installed as the console driver. The same report
 gave device bits `0Dh`, columns `15h` and rows `08h`, or 21 by 8.
 
 Use INFO's returned dimensions for screen layout. Both are zero for serial
-because TEC-OS cannot read the remote terminal's size. A program may then
+because Tecos cannot read the remote terminal's size. A program may then
 assume 80 by 24 as the shell's pager does. Read the dimensions again
 after changing consoles. `CON UC1` selects the graphics LCD and changes them
 to 21 by 8.
@@ -435,7 +435,7 @@ The LCD text survives program exit. On another ABI major the check instead
 branches to NOTHW, prints `not TEC-OS with ABI 5` and leaves the LCD
 unchanged.
 
-TEC-OS tracks its `GLCD?` message on row 3 with a separate mark. GLCD.SVC
+Tecos tracks its `GLCD?` message on row 3 with a separate mark. GLCD.SVC
 installation clears that message only while the mark is set. Writing row 3
 through LCD clears the mark so a later driver installation preserves your
 replacement text. Chapter 8 explains when the startup message appears.
@@ -792,7 +792,7 @@ text the call removes the cursor image before testing the row. A row below the
 display writes nothing and returns status 0. A later input wait may draw the
 cursor again.
 
-PLACE demonstrates plain and reverse text. It writes TEC-OS twice with bit 7
+PLACE demonstrates plain and reverse text. It writes Tecos twice with bit 7
 set in every byte of the second copy:
 
 ```asm

@@ -62,4 +62,4 @@ Whenever TBUG matches a `.TBG` file, a fifth view called **Symbols** becomes act
 
 Symbols lists global labels in ascending address order. `Up` and `Down` move `>` through the list. Hit `Enter` to open Code at that label without disturbing `PC` (`Esc` brings you back to Symbols), or press `Space` to toggle a breakpoint straight on that label's address without visiting Code first.
 
-_Checked against TEC-OS `8a7e24e` with TBUG `167f7f0`, on the starter card in the emulated TEC-1G, 28 November 2026._
+_Checked against Tecos `8a7e24e` with TBUG `167f7f0`, on the starter card in the emulated TEC-1G, 28 November 2026._

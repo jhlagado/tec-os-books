@@ -1,6 +1,6 @@
 ---
 title: Cards on the PC
-parent: TEC-OS
+parent: Tecos
 nav_order: 6
 nav_group: "Using the machine"
 ---
@@ -26,7 +26,7 @@ and recovering the BANNER source saved in Chapter 2.
 
 ## The host tools
 
-`tecvol` needs a clone of the TEC-OS repository and Node.js 20 or later,
+`tecvol` needs a clone of the Tecos repository and Node.js 20 or later,
 the minimum in `package.json`. The commands below run from the repository
 root. `node tools/tecvol.mjs` invokes the tool directly, so no command
 needs to be installed on the shell's search path.
@@ -52,7 +52,7 @@ retains acknowledged data but cold reset discards it. Queue clearance does not
 close an FCB or guarantee physical durability
 (`0701241:docs/recovery.md:69-117`).
 
-Never change a card on a PC while TEC-OS is using it. Its cached blocks and
+Never change a card on a PC while Tecos is using it. Its cached blocks and
 free-space maps would no longer match the card. Reset after returning a
 PC-changed card to the board. Warm boot retains those old copies in memory.
 [Chapter 19](19-cache-and-persistence.md) explains the persistence rules.
@@ -345,7 +345,7 @@ and reports no position.
 `--user N` selects another.
 
 `put --ro` sets the file's read-only attribute and `put --sys` sets its
-system attribute. TEC-OS's `DIR` omits system files, though the files remain
+system attribute. Tecos's `DIR` omits system files, though the files remain
 available by name in their user area. The host `dir` lists them with `SYS`.
 `put` and `era` leave a read-only file alone unless `--force` is given.
 That override applies to the file attribute, not a read-only volume.
@@ -536,11 +536,11 @@ node tools/tecvol.mjs install my.img /dev/rdiskN --yes
 The device must be the identified removable card, with capacity for the
 whole container. `--yes` confirms the overwrite but does not identify the
 device for you or make a backup. Unlike image replacement, a device write
-can leave a partial result if interrupted. TEC-OS and the PC must have
+can leave a partial result if interrupted. Tecos and the PC must have
 exclusive use of the card in turn. Reset after putting the changed card
 back in the board.
 
-TEC-OS does not read the card's capacity. A valid header can therefore
+Tecos does not read the card's capacity. A valid header can therefore
 describe blocks beyond a smaller card's end. The short-card
 example cuts the starter image to 4,110 blocks, 14 blocks into WORK and
 inside its directory:
@@ -606,7 +606,7 @@ an opened image.
 
 ## Recovery after a power cut
 
-TEC-OS adds no journal to CP/M's writes. Data is written before the directory
+Tecos adds no journal to CP/M's writes. Data is written before the directory
 entry that names it. When close writes a modified file's directory entry
 successfully, its preceding data writes have also succeeded. Before that
 close, some writes may have reached the card and others may remain only in

@@ -1,8 +1,8 @@
 ---
 title: The host model as evidence
-parent: TEC-OS
+parent: Tecos
 nav_order: 29
-nav_group: "Inside TEC-OS"
+nav_group: "Inside Tecos"
 ---
 
 # 29. The host model as evidence
@@ -20,7 +20,7 @@ nav_group: "Inside TEC-OS"
 
 A result needs an observation that can establish its claim. Console
 bytes can demonstrate printed output but cannot by themselves establish
-pixels, persisted files or physical-board behaviour. TEC-OS's host model
+pixels, persisted files or physical-board behaviour. Tecos's host model
 also exposes serial bytes, display state, memory-write reports and card
 bytes. Choosing among these observations is part of checking the operation.
 
@@ -359,7 +359,7 @@ makes it fail. A hash mismatch is a failure, not a reason to try another
 candidate (`b95b2a9:test/lib/inputs.mjs:28-45`, `b95b2a9:package.json:19`).
 
 Browser execution requires another run surface. Repository tests do not
-drive a browser. Those tests moved to TEC-OS Viewer. Playwright remains
+drive a browser. Those tests moved to Tecos Viewer. Playwright remains
 pinned at 1.62.1 for Chromium against the local `npm start` page. README
 setup uses `npx playwright install chromium`. Dependency tests inspect
 declared and locked versions plus that instruction (`b95b2a9:README.md:75-79`,
@@ -438,7 +438,7 @@ retired diagnostics ROM's test asserted its nine window banks plus the base
 mapping, which must not be attributed to the documented board
 (`eee9f64:test/diag.test.mjs:121-123`). The `ram96` mapping is a separate
 configuration, not a repair to every legacy-model result. That ROM's T08,
-T10 and T12 probed these differences. TEC-OS avoids overlay writes and latch
+T10 and T12 probed these differences. Tecos avoids overlay writes and latch
 reads so checked ordinary paths can satisfy those restrictions on a more
 permissive model (`b95b2a9:host/machine.mjs:40-46`, `b95b2a9:host/machine.mjs:158-175`,
 `eee9f64:docs/diagnostics.md:147-164`, `eee9f64:docs/diagnostics.md:187-196`,

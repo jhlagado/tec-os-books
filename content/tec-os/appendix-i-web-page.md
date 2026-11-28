@@ -1,6 +1,6 @@
 ---
 title: I. The web page
-parent: TEC-OS
+parent: Tecos
 nav_order: 109
 nav_group: "Reference"
 ---
@@ -22,7 +22,7 @@ nav_group: "Reference"
 
 The browser page lets you use a software TEC-1G and exchange files with
 your PC. The machine's working card and the browser's saved copy are
-separate, so preserving work involves both TEC-OS and the page controls.
+separate, so preserving work involves both Tecos and the page controls.
 This reference explains input, card transfers and startup preparation for
 the selected display.
 [Chapter 29](29-the-host-model-as-evidence.md) gives the model's evidence
@@ -31,10 +31,10 @@ limits. [Chapter 8](08-commands-at-startup.md) explains STARTUP.CMD and
 
 ## The current standalone Viewer
 
-The [TEC-OS Viewer](https://jhlagado.github.io/tec-os-viewer/) is the page
+The [Tecos Viewer](https://jhlagado.github.io/tec-os-viewer/) is the page
 most readers use. Its
 [build details](https://jhlagado.github.io/tec-os-viewer/build-info.json)
-name the Viewer and TEC-OS commits it is running. A new session uses 40
+name the Viewer and Tecos commits it is running. A new session uses 40
 columns, and a saved choice of 32, 40 or 80 columns is kept.
 
 The starter card has six volumes. A: holds SYSTEM and B: holds WORK, your
@@ -55,11 +55,11 @@ gives the build commands. A merge into its main does not redeploy the live
 page; the build details show what is running there.
 
 The `b95b2a9:web/` source references and `npm run web` instructions below
-describe a different page: the development page in the TEC-OS repository.
+describe a different page: the development page in the Tecos repository.
 That page defaults to 80 columns and routes keys by focus, as
 [Typing](#typing) describes.
 
-Both pages save card-image bytes separately from TEC-OS's pending RAM data;
+Both pages save card-image bytes separately from Tecos's pending RAM data;
 a browser save is not confirmation that a failed guest write reached the card.
 
 ## Serving the page
@@ -142,7 +142,7 @@ a second and reports the achieved rate, not a guaranteed board speed
 ## Typing
 
 On the Viewer, keys reach the matrix from anywhere on the page, as
-[above](#the-current-standalone-viewer). On the TEC-OS development page,
+[above](#the-current-standalone-viewer). On the Tecos development page,
 keyboard routing follows the focused element, and clicking a video display
 gives it focus. The serial terminal becomes the console after `CON TTY`.
 `CON CRT` selects the PICO9918 and `CON UC1` selects the graphics LCD when
@@ -153,7 +153,7 @@ available (`b95b2a9:web/index.html:35-49`, `b95b2a9:web/src/main.mjs:399-438`).
 | PICO9918 screen or graphics LCD | Matrix keyboard for ordinary characters and recognised matrix keys | Native matrix arrow keys |
 | Serial terminal | Serial port | `ESC [` followed by a letter |
 
-The page's serial display removes escape sequences sent by TEC-OS and handles
+The page's serial display removes escape sequences sent by Tecos and handles
 backspace (`b95b2a9:web/src/main.mjs:369-438`). On a phone or tablet tapping a video
 display or the terminal focuses a hidden text field for the on-screen keyboard.
 The extra buttons supply Ctrl, Esc, Tab and four arrows. Ctrl latches for the
@@ -168,12 +168,12 @@ that record. An absent record causes a fresh starter card to be built.
 A read or parse failure instead disables saving for the session, as the
 notices below explain (`b95b2a9:web/src/main.mjs:699-713`).
 
-There are two preservation steps. TEC-OS first flushes its block cache
+There are two preservation steps. Tecos first flushes its block cache
 into the working card image. The browser can then save those image bytes.
 A successful browser save cannot include changes still held in the ROM's
 cache.
 
-Writes by TEC-OS mark the model card dirty. Every two seconds a timer
+Writes by Tecos mark the model card dirty. Every two seconds a timer
 attempts a save when the card is dirty and no import is active. Saving
 copies the current image into an IndexedDB write transaction and completes
 with that transaction (`b95b2a9:web/src/main.mjs:103-105`,

@@ -1,6 +1,6 @@
 ---
 title: Commands at startup
-parent: TEC-OS
+parent: Tecos
 nav_order: 8
 nav_group: "Using the machine"
 ---
@@ -19,7 +19,7 @@ nav_group: "Using the machine"
      labelled separately from console captures. -->
 
 Commands in `A:STARTUP.CMD` repeat your usual setup after reset.
-TEC-OS runs them before accepting keyboard commands. They can load
+Tecos runs them before accepting keyboard commands. They can load
 the shell or a graphics LCD driver and select a display width. They
 can also set the starting drive and put a named volume on a drive. You
 can keep those choices on the card instead
@@ -277,14 +277,14 @@ and boots the card unchanged.
 
 A program that hangs or resets the board can prevent startup from reaching an
 interactive prompt. With the keypad non-maskable interrupt (NMI) jumper off,
-hold any hex-keypad key from reset until the prompt appears. TEC-OS samples the
+hold any hex-keypad key from reset until the prompt appears. Tecos samples the
 keypad once just before opening the file and skips startup when a key is down.
 On the host model with the starter card that sample comes about 1.46
 seconds after reset on the web page's board, and about 1.50 seconds on the
 serial board.
 
 The NMI jumper must be off for this bypass. A key press with it fitted
-causes a non-maskable interrupt at an address TEC-OS uses for other data
+causes a non-maskable interrupt at an address Tecos uses for other data
 and can crash the system. [Appendix G](appendix-g-tec-1g.md#the-hex-keypad-and-its-nmi)
 gives the board requirement.
 
@@ -416,7 +416,7 @@ Reset instead begins startup again. These routes retain different state:
   boot. Installed services, the shell among them, and mounted volumes
   remain, and startup continues at its next unread line. [Chapter 9](09-call-tec-os.md) explains the
   program-exit routes.
-- A recognised reset finds TEC-OS's retained marks in RAM. It rebuilds the
+- A recognised reset finds Tecos's retained marks in RAM. It rebuilds the
   working state and can restore the previous drive-to-volume assignments
   when the card and retained selection are valid.
 - An unrecognised reset, including normal power-on, has no valid retained
@@ -493,7 +493,7 @@ service format 4. Renaming does not convert an incompatible format.
 service-format fields and checks.
 
 An old `PICO.SVC` cannot install under another name because the PICO9918
-console is now in ROM. [Appendix D](appendix-d-error-messages.md#a-card-from-an-older-tec-os)
+console is now in ROM. [Appendix D](appendix-d-error-messages.md#a-card-from-an-older-tecos)
 retains the complete old-card renaming example.
 
 ## Recovery words on the character LCD

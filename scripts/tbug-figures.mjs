@@ -22,7 +22,7 @@ const sansW = (s, size) => {
   return units * size;
 };
 
-/* ---------- Drafting-room SVG primitives (matches TEC-OS house theme) ---------- */
+/* ---------- Drafting-room SVG primitives (matches Tecos house theme) ---------- */
 
 const rect = (cls, x, y, w, h, r = 4) =>
   `  <rect class="${cls}" x="${r0(x)}" y="${r0(y)}" width="${r0(w)}" height="${r0(h)}" rx="${r}"/>`;
@@ -234,7 +234,7 @@ function add(name, title, desc, height, parts) {
 add(
   'first-stop',
   'TBUG in high memory with separate console and LCD paths',
-  'TEC-OS ROM sits at C000h to FFFFh. TBUG.SVC loads at the top of RAM below the ROM. The program runs from 0100h up to the address at 0006h where TBUG begins, above page zero. TBUG uses the 20x4 LCD and matrix keyboard while the program keeps the console.',
+  'Tecos ROM sits at C000h to FFFFh. TBUG.SVC loads at the top of RAM below the ROM. The program runs from 0100h up to the address at 0006h where TBUG begins, above page zero. TBUG uses the 20x4 LCD and matrix keyboard while the program keeps the console.',
   324,
   [
     eyebrow(124, 30, 'Memory layout (not to scale)'),
@@ -242,7 +242,7 @@ add(
 
     // Memory column: x=124..332 (w=208), flush drafting-room bands
     rect('bxq', 124, 48, 208, 46, 0),
-    text('nb', 228, 69, 'TEC-OS ROM', 'middle'),
+    text('nb', 228, 69, 'Tecos ROM', 'middle'),
     text('dimn', 228, 86, 'Read-only · 16 KB', 'middle'),
 
     rect('bx', 124, 150, 208, 66, 0),

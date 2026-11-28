@@ -1,6 +1,6 @@
 ---
 title: Build a BASIC program
-parent: TEC-OS
+parent: Tecos
 nav_order: 3
 nav_group: "Using the machine"
 ---
@@ -361,7 +361,7 @@ routine into a dimensioned array, which never moves, and name its address
 with `DEF CALL` (`Baza 5f6b58d:docs/call.md:26-38`,
 `Baza 5f6b58d:docs/call.md:91-99`).
 
-While a program holds the PICO9918, TEC-OS hides the console. If the
+While a program holds the PICO9918, Tecos hides the console. If the
 program then stops on a run-time error, it gives the display back before
 printing, so the message shows at the prompt. The host-model test checks
 this with a program that claims the display and then divides by zero
@@ -378,4 +378,4 @@ The host-model test checks each of these steps
 (`57a8c38:tools/media.mjs:218-221`, `57a8c38:test/starter.test.mjs:103-184`,
 `Baza 5f6b58d:examples/BOUNCE.BAS:84`, `103-115`).
 
-_Screens checked against TEC-OS `1e35854` with TED `b2f98bc` and BAZ and BAZC from Baza `3f31488`, on the starter card in the emulated TEC-1G, 27 November 2026._
+_Screens checked against Tecos `1e35854` with TED `b2f98bc` and BAZ and BAZC from Baza `3f31488`, on the starter card in the emulated TEC-1G, 27 November 2026._

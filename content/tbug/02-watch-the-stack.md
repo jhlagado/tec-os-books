@@ -130,4 +130,4 @@ Tapping `F8` one instruction at a time works on six bytes, not when your code ca
 
 `F5` to `F8` all wait for every key to be released before resuming the CPU. That release guard prevents a debugger keypress from leaking into a program polling the matrix keyboard.
 
-_Checked against TEC-OS `8a7e24e` with TBUG `167f7f0`, on the starter card in the emulated TEC-1G, 28 November 2026._
+_Checked against Tecos `8a7e24e` with TBUG `167f7f0`, on the starter card in the emulated TEC-1G, 28 November 2026._

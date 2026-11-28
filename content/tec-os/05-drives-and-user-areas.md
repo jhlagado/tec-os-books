@@ -1,6 +1,6 @@
 ---
 title: Drives and user areas
-parent: TEC-OS
+parent: Tecos
 nav_order: 5
 nav_group: "Using the machine"
 ---
@@ -28,7 +28,7 @@ well as having a file on the card.
 ## Drive letters and volumes
 
 The card contains a collection of volumes, also called its *container*.
-TEC-OS can assign four of these volumes to drives A through D. The
+Tecos can assign four of these volumes to drives A through D. The
 letters are equivalent slots for volumes, not separate cards. On the
 starter card, SYSTEM is on A, WORK on B and PROJECTS on C. D is empty.
 GAMES and SPARE are present on the card but unassigned. The prompt
@@ -90,7 +90,7 @@ B:WORK>
 
 The default error path waits for a key, `x` in this capture, then ends the
 command with a warm boot. The prompt stays on B. The CP/M drive letters E
-through P are accepted as names but have no TEC-OS volume and give the same
+through P are accepted as names but have no Tecos volume and give the same
 error. Q and later letters are outside that range so `Q:` gives `Q:?`.
 [Appendix D](appendix-d-error-messages.md) explains these messages and the
 returned-error option for programs.
@@ -100,7 +100,7 @@ returned-error option for programs.
 ## User areas
 
 CP/M gives every file a user area numbered 0 through 15, a way to keep
-groups of files apart within one volume. TEC-OS stores the area with each
+groups of files apart within one volume. Tecos stores the area with each
 file, as CP/M does, but its prompt works in area 0 only. There is no `USER`
 command and the prompt shows no area number. All the starter files are in
 area 0.
@@ -260,7 +260,7 @@ than 11 characters, a drive beyond D or extra text after the name.
 Each rejected command sets the failure return code and skips a following
 `&` piece ([Chapter 13](13-results-and-command-chains.md)).
 
-TEC-OS holds some recent writes in memory in its block cache. Before it
+Tecos holds some recent writes in memory in its block cache. Before it
 changes a drive, the mount writes them to the card. If a write fails, the
 mount is refused with `CD FAILED` and the drive keeps its volume. The
 same message means the volume is too large for the drive's slot, which can
@@ -353,10 +353,10 @@ An ordinary program exit retains the current drive, in user area 0.
 Removing the current drive's volume makes the next prompt use A. Reset
 starts on A in area 0, although the volume assignments may survive.
 
-Cold boot rebuilds TEC-OS's working memory and clears the installed services,
+Cold boot rebuilds Tecos's working memory and clears the installed services,
 open-file state, command history and cache. Changes held only in that cache
 are lost. Writes already accepted by the card remain.
-The drive assignments can be reconstructed from recognised TEC-OS state
+The drive assignments can be reconstructed from recognised Tecos state
 left in RAM. Each assigned volume must still match a descriptor on the card
 in location, size, geometry and flags and fit the drive's slot.
 
@@ -399,7 +399,7 @@ A:SYSTEM>
 
 No saved drive assignment is applied if a required volume no longer matches
 or a required slot cannot hold it. The card's header assignments then stand.
-The same defaults apply when TEC-OS cannot recover its previous state.
+The same defaults apply when Tecos cannot recover its previous state.
 A normal power cycle also loses the previous assignments.
 [Chapter 16](16-reset-and-boot.md#retained-drive-selection) explains the
 recognition test, interrupted cold boot and recovery from an interrupted
@@ -408,11 +408,11 @@ service installation.
 A card changed on a PC needs a reset when returned to the board. Warm boot
 retains cached card blocks and the drives' free-space state so it does not
 reinitialise the card or discard those old copies. Only cold boot starts the
-card again. Do not let TEC-OS and a PC write the same card at the same time.
+card again. Do not let Tecos and a PC write the same card at the same time.
 
 ## Programs and resident services
 
-SAMPLE.COM and BANNER.COM run as *transient* programs. TEC-OS loads
+SAMPLE.COM and BANNER.COM run as *transient* programs. Tecos loads
 the COM file into program memory and starts it. After it ends, the
 command prompt returns and the program's code need not remain in memory.
 
@@ -513,7 +513,7 @@ SHELL 17
 A:SYSTEM>
 ```
 
-Removing an active graphics LCD driver selects the PICO9918 if TEC-OS
+Removing an active graphics LCD driver selects the PICO9918 if Tecos
 started that console. Otherwise output returns to serial.
 [Chapter 7](07-choose-a-console.md) has the full selection/removal example
 and [Chapter 8](08-commands-at-startup.md) explains quiet startup results
@@ -526,7 +526,7 @@ are in [Chapter 25](25-loading-and-removing-services.md).
 `MON3.SVC` runs programs written for the TEC-1G's MON-3 monitor. These
 programs call monitor routines through restart instructions. HELLO3 in
 [Chapter 1](01-first-session.md) is an example, assembled to run at `4000h`.
-The service supplies supported MON-3 calls while retaining TEC-OS's card
+The service supplies supported MON-3 calls while retaining Tecos's card
 access and BDOS.
 
 First build the source-only example with `TAS HELLO3 HELLO3.BIN` at the
@@ -594,8 +594,8 @@ reduces program memory from 41,984 to 37,120 bytes. Adding
 GLCD.SVC gives `8F00h` and 36,352 bytes
 (`TEC-OS 1cded94eed6a077bd0cddea4554c2a2245c40a5a:docs/mon3.md:47-58`).
 
-The return-to-prompt key handling uses TEC-OS's `KBLAST` state. Each
-MON3 matrix read stores the detected key there. A later TEC-OS scan
+The return-to-prompt key handling uses Tecos's `KBLAST` state. Each
+MON3 matrix read stores the detected key there. A later Tecos scan
 therefore recognises a held key instead of generating another press.
 The display-console wait scans the matrix on each pass. It ends when
 KBLAST indicates no matrix key and MON-3's key-press byte indicates
@@ -603,7 +603,7 @@ no keypad key.
 
 The service gives a program MON-3's restarts and 46 of the 63 calls
 reached through `RST 10h`. Of those, 42 behave as MON-3's own and 4,
-including `setCaps` and `setProtect`, are translated onto TEC-OS's state.
+including `setCaps` and `setProtect`, are translated onto Tecos's state.
 It also gives calls 0 to 20 of the 34 graphics calls through `RST 18h`,
 which are MON-3's own routines moved into the service. With the matrix
 keyboard fitted, the keyboard calls read it as MON-3 does, and not the
@@ -613,7 +613,7 @@ are not translated to CP/M files.
 
 Each entry by `MON3.SVC` sets MON-3's workspace at `0800h` and its graphics
 workspace as a MON-3 reset leaves them. `GO` also takes a checksum of the
-service and of TEC-OS's BIOS table in RAM, and the program's return
+service and of Tecos's BIOS table in RAM, and the program's return
 compares it. A difference prints `Tables damaged: EXIT and reset`, and
 later loads are refused until a reset. When the GLCD is the console, the
 return also sets the panel's modes again, so the console's text shows again
@@ -621,7 +621,7 @@ whatever mode the program left the panel in.
 
 The service cannot recover a program that hangs: the reset button is the
 way out. A program that writes `B6C8h–BFFFh`, which holds the BDOS entry,
-the allocation vectors, TEC-OS's workspace and its BIOS table, can damage
-TEC-OS's disk tables. The service writes pending changes before `GO` and
+the allocation vectors, Tecos's workspace and its BIOS table, can damage
+Tecos's disk tables. The service writes pending changes before `GO` and
 resets the drives after each return to limit that. Its messages are in
 [Appendix D](appendix-d-error-messages.md#the-mon-3-session).

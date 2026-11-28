@@ -1,8 +1,8 @@
 ---
 title: The history ring
-parent: TEC-OS
+parent: Tecos
 nav_order: 23
-nav_group: "Inside TEC-OS"
+nav_group: "Inside Tecos"
 ---
 
 # 23. The history ring

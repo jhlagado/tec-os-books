@@ -1,6 +1,6 @@
 ---
 title: J. Command reference
-parent: TEC-OS
+parent: Tecos
 nav_order: 110
 nav_group: "Reference"
 ---
@@ -19,7 +19,7 @@ nav_group: "Reference"
      labelled separately from console captures. -->
 
 At the prompt you name an operation and its arguments. The exact form
-determines how TEC-OS handles a built-in command, a program or a resident
+determines how Tecos handles a built-in command, a program or a resident
 service. The entries below give those forms and their boundary
 cases. [Work with files](04-work-with-files.md) explains ordinary use and
 [The first session](01-first-session.md) gives editing and recall keys.
@@ -409,7 +409,7 @@ execution record whose enter-on-install bit is set. The starter card's
 application's command tail. No switch is parsed.
 
 An installed service with a matching ready record is entered without reading the
-card. Otherwise TEC-OS loads the file from the named or current drive,
+card. Otherwise Tecos loads the file from the named or current drive,
 installs it and enters it once `INIT` marks the record ready. An install
 that never becomes ready is removed and the command is rejected.
 

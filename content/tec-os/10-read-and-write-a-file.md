@@ -1,6 +1,6 @@
 ---
 title: Read and write a file
-parent: TEC-OS
+parent: Tecos
 nav_order: 10
 nav_group: "Writing programs"
 ---

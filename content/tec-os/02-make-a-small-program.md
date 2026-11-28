@@ -1,6 +1,6 @@
 ---
 title: Make a small program
-parent: TEC-OS
+parent: Tecos
 nav_order: 2
 nav_group: "Using the machine"
 ---
@@ -150,7 +150,7 @@ The greeting is stored in the program alongside the instructions that
 print it. TAS translates the instructions into bytes for the Z80 processor
 and includes the message as data.
 
-`org $0100` sets the program's start address to `0100h`, where TEC-OS
+`org $0100` sets the program's start address to `0100h`, where Tecos
 loads a COM program. The `$` prefix denotes hexadecimal in TAS source.
 `START:` and `MSG:` are labels for positions in the assembled program.
 START names the first instruction. MSG names the message bytes that follow.
@@ -161,10 +161,10 @@ loads the address of the message, leaving its text in memory. `ld c,9`
 loads the number 9. The printing routine uses that number to select an
 operation and DE to locate the text.
 
-Programs call TEC-OS's console and file interface, the BDOS, through
+Programs call Tecos's console and file interface, the BDOS, through
 address `0005h`. Here `call 5` invokes function 9 to print the text at DE.
 Execution continues at the following instruction after the function
-returns. The final `ret` ends BANNER through TEC-OS's command processor,
+returns. The final `ret` ends BANNER through Tecos's command processor,
 the CCP. Its warm boot displays a command prompt.
 
 `db` includes literal bytes in the program. The greeting supplies character bytes. The following 13 and 10 end
@@ -173,7 +173,7 @@ This `"$"` is a data character, unlike the hexadecimal prefix in `$0100`.
 Changing the greeting requires keeping its quotes and final `,13,10,"$"`.
 
 A BDOS call may change register values. BANNER needs no earlier register
-values after printing because its next instruction returns to TEC-OS.
+values after printing because its next instruction returns to Tecos.
 
 ## A changed greeting
 
@@ -182,7 +182,7 @@ status message and restores TED's position display while moving normally.
 Left at the start of this file leaves the cursor at `L1 C1`.
 
 From `L1 C1`, twelve Down presses reach `L13 C1`, the MSG line. Twenty-six
-Right presses move to `L13 C27`, just before the quote after TEC-OS. Typing
+Right presses move to `L13 C27`, just before the quote after Tecos. Typing
 `!` inserts it inside the quoted greeting. The cursor moves to `L13 C28`
 and the `*` returns. Only this line changes:
 
@@ -296,4 +296,4 @@ column 129, whether it holds one statement or several. A line much longer
 than that can be cut by TAS's source window first and then gives the error of
 its cut text, but it is rejected either way. A comment may be any length.
 
-_Screens checked against TEC-OS `1e35854` with TED `b2f98bc`, on the starter card in the emulated TEC-1G, 27 November 2026._
+_Screens checked against Tecos `1e35854` with TED `b2f98bc`, on the starter card in the emulated TEC-1G, 27 November 2026._

@@ -1,6 +1,6 @@
 ---
 title: E. The container format
-parent: TEC-OS
+parent: Tecos
 nav_order: 105
 nav_group: "Reference"
 ---
@@ -19,7 +19,7 @@ nav_group: "Reference"
      labelled separately from console captures. -->
 
 The ROM must locate a volume before it can read that volume's CP/M disk.
-A TEC-OS card starts with a container at block 0. Its header identifies
+A Tecos card starts with a container at block 0. Its header identifies
 each volume's location and geometry. The bytes and validation rules below
 support image decoders and diagnosis of rejected cards.
 [Cards on the PC](06-cards-on-the-pc.md) explains image operations and
@@ -111,7 +111,7 @@ A drive letter identifies the volume currently assigned to that drive.
 The descriptor's drive byte makes the initial assignment at cold boot.
 The volume id stays with the volume when the drive assignment changes.
 
-Byte 15 is reserved. It once marked one volume written behind. TEC-OS now
+Byte 15 is reserved. It once marked one volume written behind. Tecos now
 allows multiple dirty blocks on the logged drive and one pending boundary
 off it. Ordinary outer calls also attempt queued work, so this no longer
 promises cross-call batching (`0701241:docs/recovery.md:33-52`).
@@ -267,7 +267,7 @@ vector. The card is not removable media in CP/M's sense.
 | 1 | G8M | 8 MiB | 16,384 | 4 KiB | 512 | 256 bytes |
 | 2 | G1M | 1 MiB | 2,048 | 2 KiB | 256 | 64 bytes |
 
-The allocation vector is the drive's map of free space in TEC-OS's memory,
+The allocation vector is the drive's map of free space in Tecos's memory,
 one bit for each allocation block. Its size is `floor(DSM / 8) + 1` bytes.
 [State and memory](15-state-and-memory.md) explains their placement for a
 particular card.

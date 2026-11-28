@@ -1,11 +1,11 @@
 ---
-title: TEC-OS
+title: Tecos
 nav_order: 13
 has_children: true
 nav_exclude: true
 ---
 
-# TEC-OS on the TEC-1G
+# Tecos on the TEC-1G
 
 <!-- Checked against TEC-OS 57a8c38 (retained recovery baseline), ROM ac86ad23:
      15,312 bytes used and 1,072 free. Basic CD recovery is in ROM;
@@ -16,7 +16,7 @@ nav_exclude: true
      Explicit historical source/test excerpts retain their stated pins.
      Viewer 1ad270f, published as 69e21e6, receives this firmware. -->
 
-TEC-OS is a CP/M-compatible disk operating system for the TEC-1G. It provides
+Tecos is a CP/M-compatible disk operating system for the TEC-1G. It provides
 a working environment for developing and running software on the machine
 itself, with an SD card for storing programs and data.
 
@@ -28,7 +28,7 @@ source, building a program and testing the result. Keeping that work on the
 machine requires storage that survives power-off and a way to organise and
 retrieve it.
 
-TEC-OS uses the SD card as a disk containing source files, executable programs
+Tecos uses the SD card as a disk containing source files, executable programs
 and data. From its command prompt you can find and run a program or open a
 file for editing. Programs use operating-system calls to read and write files
 on the card. TED supplies the text editor, TAS the assembler and BAZC the
@@ -37,12 +37,12 @@ transferring each revision from a PC.
 
 CP/M was the standard disk operating system on many microcomputers in the late
 1970s and early 1980s. A large collection of applications, programming tools
-and utilities was written for it. TEC-OS implements the CP/M 2.2 interface so
+and utilities was written for it. Tecos implements the CP/M 2.2 interface so
 existing software can run alongside programs written specifically for the
 TEC-1G. Compatibility depends on the memory available and the operating-system
 calls, terminal features and hardware a program uses.
 
-The current cooperative housekeeping implementation is qualified at TEC-OS
+The current cooperative housekeeping implementation is qualified at Tecos
 `b95b2a9`: operating-system calls give pending data a bounded chance to reach
 the card, and failed acknowledged data remains available for retry. The
 current source-only starter has fifteen files, including the BASIC Caverns source.
@@ -61,7 +61,7 @@ not stand in for physical-board qualification.
 
 The examples use a 40-column PICO9918 display and the matrix keyboard
 with the Matrix switch enabled. The board needs a 32,768-byte RAM chip in U9,
-the 4 MHz FAST setting, the TEC-OS ROM and a prepared starter card. The keypad
+the 4 MHz FAST setting, the Tecos ROM and a prepared starter card. The keypad
 non-maskable interrupt (NMI) jumper is off. SYSTEM is on drive A and WORK is on
 drive B. [Appendix G](appendix-g-tec-1g.md) describes the hardware preparation.
 
@@ -70,7 +70,7 @@ the [greeting program](02-make-a-small-program.md) without prior assembly
 experience.
 The explanation beside the listing covers the instructions and data it uses.
 The later programming chapters assume you can read a short Z80 listing with
-labels, registers and branches. Each TEC-OS call, buffer and stack contract
+labels, registers and branches. Each Tecos call, buffer and stack contract
 is explained before an example depends on it.
 
 Other displays and serial terminals have a separate configuration chapter.
@@ -94,14 +94,14 @@ card-saving rules are in [Appendix I](appendix-i-web-page.md).
 
 | Chapter | Use |
 | --- | --- |
-| [9. Call TEC-OS](09-call-tec-os.md) | Read keys and print through the BDOS |
+| [9. Call Tecos](09-call-tec-os.md) | Read keys and print through the BDOS |
 | [10. Read and write a file](10-read-and-write-a-file.md) | Use file control blocks and record buffers |
 | [11. Memory for programs](11-memory-for-programs.md) | Allocate program space and stacks and use raw BIOS calls |
 | [12. Use the board's devices](12-use-the-boards-devices.md) | Call hardware services and share the display |
 | [13. Results and command chains](13-results-and-command-chains.md) | Report a result and start the next command |
 | [14. Write a resident service](14-write-a-resident-service.md) | Install a hook, publish routines and remove the service |
 
-## Inside TEC-OS
+## Inside Tecos
 
 | Chapter | Mechanism |
 | --- | --- |

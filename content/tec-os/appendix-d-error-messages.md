@@ -1,6 +1,6 @@
 ---
 title: D. Error messages
-parent: TEC-OS
+parent: Tecos
 nav_order: 104
 nav_group: "Reference"
 ---
@@ -34,7 +34,7 @@ are a separate program that MON-3 loads, described in
 ## Cold boot
 
 Cold boot checks the RAM once before the banner. This message goes straight to
-the serial port and TEC-OS then stops in a loop. It doesn't appear on a
+the serial port and Tecos then stops in a loop. It doesn't appear on a
 display or on the LCD.
 
 | Message | Cause | Remedy | See |
@@ -135,7 +135,7 @@ container bound (`b95b2a9:host/machine.mjs:49`, `b95b2a9:web/src/main.mjs:604-63
 ## The LCD's words
 
 A board without a terminal can still report a boot or display problem on
-the 20 × 4 LCD. TEC-OS uses its last row for the two words below.
+the 20 × 4 LCD. Tecos uses its last row for the two words below.
 [Chapter 26](26-startup-inside-the-ccp.md#recovery-words-and-row-ownership)
 explains when they are written and cleared.
 
@@ -184,7 +184,7 @@ service gives a distinct cause.
 
 | Word or command | Cause | Remedy | See |
 | --- | --- | --- | --- |
-| A program's name | No `NAME.COM` was found on the named/current drive. A command with no explicit drive can also fall back to A. An unsupported explicit type also produces this error before any COM load, so `PICO.DRV` cannot run `PICO.COM` (`9428374:src/cpm/ccp.asm`). | Check the name and drive or use an explicit drive such as `B:NAME`. See the [old-card procedure](#a-card-from-an-older-tec-os) for obsolete display files. | [Chapter 21](21-from-prompt-to-program.md), `b95b2a9:src/cpm/ccp.asm:468-486`, `b95b2a9:src/cpm/ccp.asm:648-673` |
+| A program's name | No `NAME.COM` was found on the named/current drive. A command with no explicit drive can also fall back to A. An unsupported explicit type also produces this error before any COM load, so `PICO.DRV` cannot run `PICO.COM` (`9428374:src/cpm/ccp.asm`). | Check the name and drive or use an explicit drive such as `B:NAME`. See the [old-card procedure](#a-card-from-an-older-tecos) for obsolete display files. | [Chapter 21](21-from-prompt-to-program.md), `b95b2a9:src/cpm/ccp.asm:468-486`, `b95b2a9:src/cpm/ccp.asm:648-673` |
 | A program's name | An ambiguous, empty, overlong or invalid name or a drive beyond P. | Correct the name. | [Appendix J](appendix-j-command-reference.md), `b95b2a9:src/cpm/ccpcmd.asm:457-592`, `b95b2a9:src/cpm/ccpcmd.asm:618-636` |
 | A program's name | The COM image would extend into the page containing the BDOS entry at `0006h`. | Remove a removable service with `UNLOAD` if that provides enough space or use a smaller program. | `b95b2a9:src/cpm/ccp.asm:681-730` |
 | `NAME.SVC` | The file is missing or its load returns a failure before installation. A default-mode BDOS disk error instead prints its disk message and aborts through `CHDROP`. | Check the name, drive and card. Services have no area-0 or drive-A lookup fallback. | [Chapter 25](25-loading-and-removing-services.md), `b95b2a9:src/loader.asm:901-907`, `b95b2a9:src/cpm/ccp.asm:431-455`, `b95b2a9:src/cpm/bdoscon.asm:47-64` |
@@ -197,7 +197,7 @@ service gives a distinct cause.
 | `COPY` | A missing/ambiguous name, identical source and destination or text after the destination. The shell checks these conditions. Without the shell `COPY` is an unknown program name. | Give one source and a different destination with no further operand. | `b95b2a9:drivers/shellcmd.asm:54-92` |
 | `ERA` | A missing, extra or invalid name. `DEL`, the shell's other name for ERA, fails on the same conditions with the same output. | `ERA NAME` or `DEL NAME`. | `b95b2a9:src/cpm/ccpmut.asm:10-14`, `b95b2a9:drivers/shell.asm:543-552` |
 | `&WORD` | A typed, script or startup line whose first piece starts with `&`. None of the line runs. | Remove the `&`: a new line runs whatever the last line returned. | `b95b2a9:docs/shell.md:75-77` |
-| `:WORD` | A piece starting with CP/M 3's `:` prefix, which TEC-OS does not provide. | Join the pieces with ` &` instead. | `b95b2a9:docs/shell.md:91-96` |
+| `:WORD` | A piece starting with CP/M 3's `:` prefix, which Tecos does not provide. | Join the pieces with ` &` instead. | `b95b2a9:docs/shell.md:91-96` |
 | `NAME.CMD` | Under the shell: no such script in user area 0 of the named or current drive, a script named inside another script, or a script name with further pieces after it. With no shell an explicit `.CMD` is unsupported and produces this error before any COM load (`9428374:src/cpm/ccp.asm`). | Check the name and drive, and run a script from its own line. | `b95b2a9:docs/shell.md:98-120`, `b95b2a9:drivers/shell.asm:609-645` |
 | `REN` | Invalid `NEW=OLD` syntax, a missing/ambiguous name or two different explicit drives. | Put a drive on one name or the same drive on both. | `b95b2a9:src/cpm/ccpmut.asm:81-116` |
 | `CON` | The device name is not TTY, CRT, BAT, UC1, PICO or GLCD, optionally followed by a colon, or the remaining text is invalid. CRT/PICO may take a separated width. | Use a supported name and width form. | [Chapter 7](07-choose-a-console.md), `b95b2a9:src/cpm/ccpcmd.asm:55-211` |
@@ -225,7 +225,7 @@ The typed equivalent prints the width with `?`
 derives both conditions. The browser's missing-driver notice is a separate
 host check, described in [Appendix I](appendix-i-web-page.md).
 
-### A card from an older TEC-OS
+### A card from an older Tecos
 
 Older cards hold their services in files of type `.DRV` and this ROM doesn't
 load them. The CCP takes `GLCD.DRV` as the name of a program and prints it
@@ -424,7 +424,7 @@ gives for entering a service.
 | `RST 38 held: no interrupts` | `0038h` held a `JP` at entry, which the session leaves alone. A program's interrupts through MON-3's `USER_INT` are not delivered. | The session runs without them. | `b95b2a9:docs/mon3.md:185`, `b95b2a9:docs/mon3.md:232` |
 | `MON3 active` | A program in a session called the service's entry. The call returns to the program with FF00h. | None. | `b95b2a9:docs/mon3.md:202-203` |
 | `BRK nnnn` | The program ran `RST 30h`, MON-3's breakpoint. The session prints `BRK` with the address and returns to `MON3>`. There is no resume. | None: the session is at `MON3>`. | `b95b2a9:docs/mon3.md:138-140`, `b95b2a9:docs/mon3.md:231` |
-| `Tables damaged: EXIT and reset` | After the program returned, the checksum over the service and TEC-OS's RAM BIOS table differed from the one `GO` took. Every later `LOAD` prints it again and is refused without opening the file, and each re-entry prints it. `GO` and `EXIT` still run. | `EXIT`, then press reset, which also removes the service. | `b95b2a9:docs/mon3.md:146-160`, `b95b2a9:drivers/mon3.asm:1191-1192` |
+| `Tables damaged: EXIT and reset` | After the program returned, the checksum over the service and Tecos's RAM BIOS table differed from the one `GO` took. Every later `LOAD` prints it again and is refused without opening the file, and each re-entry prints it. `GO` and `EXIT` still run. | `EXIT`, then press reset, which also removes the service. | `b95b2a9:docs/mon3.md:146-160`, `b95b2a9:drivers/mon3.asm:1191-1192` |
 | MON-3's error display on the digits | The program called an `RST 10h` or `RST 18h` function that the session does not build, or a number beyond MON-3's calls. The call's outputs are not written. | Press a key. The call returns to the program as a key press would. | [Chapter 5](05-drives-and-user-areas.md#a-mon-3-session), `b95b2a9:docs/mon3.md:227-228`, `b95b2a9:docs/mon3.md:264-274`, `b95b2a9:docs/mon3.md:320-329` |
 
 ## Lines that report no fault

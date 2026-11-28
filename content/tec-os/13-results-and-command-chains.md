@@ -1,6 +1,6 @@
 ---
 title: Results and command chains
-parent: TEC-OS
+parent: Tecos
 nav_order: 13
 nav_group: "Writing programs"
 ---
@@ -19,7 +19,7 @@ nav_group: "Writing programs"
      labelled separately from console captures. -->
 
 A build sequence should run a program only after a successful build. An editor
-must also reopen after the build tool ends. TEC-OS supports both through
+must also reopen after the build tool ends. Tecos supports both through
 command chains and program return codes. The starter card installs `SHELL.SVC`
 to interpret several commands on a line. Without it the ROM prompt executes a
 single command per line as CP/M 2.2 does.
@@ -157,7 +157,7 @@ remains conditional.
 
 A new line starts independently of the preceding result. It cannot begin with
 `&` because that would depend on the previous line. Such a line is rejected in
-full. TEC-OS also omits CP/M 3's `:` conditional prefix and rejects a first
+full. Tecos also omits CP/M 3's `:` conditional prefix and rejects a first
 piece beginning with `:` as a bad name:
 
 <!-- TEC-OS 1e35854, ROM bb429d10, starter card 24801956: node tools/capture.mjs '&DIR *.CMD' ':DIR *.CMD'. Complete captured console transcript. -->
@@ -446,7 +446,7 @@ The replacement may contain up to 127 characters including `!` and `&`. Its
 first piece executes independently of the departing program's result. The
 shell then applies the ordinary piece rules. An initial `&` is rejected.
 Immediate copying permits source text in memory that the next program will
-reuse. TEC-OS ignores the E parameter used by CP/M 3's function 47. The
+reuse. Tecos ignores the E parameter used by CP/M 3's function 47. The
 drive comes from `0004h` as on an ordinary exit.
 
 Without SHELL.SVC the ROM echoes and executes the supplied line as a single

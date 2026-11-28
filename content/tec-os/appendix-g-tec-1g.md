@@ -1,11 +1,11 @@
 ---
-title: G. The TEC-1G as TEC-OS uses it
-parent: TEC-OS
+title: G. The TEC-1G as Tecos uses it
+parent: Tecos
 nav_order: 107
 nav_group: "Reference"
 ---
 
-# Appendix G. The TEC-1G as TEC-OS uses it
+# Appendix G. The TEC-1G as Tecos uses it
 
 <!-- Checked against TEC-OS 57a8c38b7f341433285e39c4bec14ecc486ffe26 (retained recovery baseline),
      ROM SHA-256 ac86ad233696d22a46b4f98a4119c53b718bfe89881952a08e9f92223f3fa1c3.
@@ -19,7 +19,7 @@ nav_group: "Reference"
      labelled separately from console captures. -->
 
 Board preparation and port use need separate checks. The configuration
-below identifies the RAM, clock and input settings TEC-OS requires.
+below identifies the RAM, clock and input settings Tecos requires.
 The port tables then identify the connections its code uses and the places
 where the host model differs from board documentation. Source inspection
 establishes the ROM's operations, not the response of an untested board.
@@ -35,7 +35,7 @@ log that records what a particular board did.
 The shared port names are in `b95b2a9:src/layout.asm:9-17`, `b95b2a9:src/abi.inc:300-323`. The individual drivers
 define their other ports.
 
-| Port | Direction | Device | TEC-OS's use |
+| Port | Direction | Device | Tecos's use |
 | --- | --- | --- | --- |
 | `00h` | in | Hex-keypad encoder | Read and discarded during serial waits |
 | `01h` | out | Digit select, serial and speaker | Bits 0–5 select the six digits, bit 6 sends serial data and bit 7 drives the speaker |
@@ -51,7 +51,7 @@ define their other ports.
 | `FEh` | in | Matrix keyboard and joystick | Keyboard scan, `KEYS` and `JOY` |
 | `FFh` | out | System latch | Boot overlay, RAM banks and Caps lamp |
 
-Reading `00h` does not supply a TEC-OS keypad character. In the Debug80 model
+Reading `00h` does not supply a Tecos keypad character. In the Debug80 model
 that read starts the next queued serial input byte. On the board it reads the
 keypad encoder and the ROM discards the value. It is a model input trigger,
 not a hardware serial buffer (`b95b2a9:src/console.asm:10-18`,
@@ -91,7 +91,7 @@ polling and the separate one-byte software reserves.
 
 ## Port 03h and the switches
 
-TEC-OS reads these three input bits:
+Tecos reads these three input bits:
 
 | Bit | Meaning | When read | Effect |
 | ---: | --- | --- | --- |
@@ -113,19 +113,19 @@ diagnostics ROM's T11 recorded the port's readings
 (`eee9f64:docs/diagnostics.md:166-169`). The current board diagnostics do not
 read it, and which description is true on the board is still open
 (`b95b2a9:docs/diagnostics.md:388-391`). The physical Protect and
-Expand switches are not input conditions checked by TEC-OS. They are distinct
+Expand switches are not input conditions checked by Tecos. They are distinct
 from the similarly named bits it writes to the system latch.
 
 ## The system latch
 
-The board documents describe `FFh` as write-only. TEC-OS keeps its last value
+The board documents describe `FFh` as write-only. Tecos keeps its last value
 at `0040h`, named `LATCHV`, and constructs later writes from that copy
 (`b95b2a9:src/layout.asm:19-28`, `b95b2a9:src/abi.inc:302-305`, `b95b2a9:src/layout.asm:64-69`, `b95b2a9:src/abi.inc:307-309`).
 
-| Bit | Value | Name | TEC-OS's use |
+| Bit | Value | Name | Tecos's use |
 | ---: | ---: | --- | --- |
 | 0 | `01h` | SHADOW | Set at cold boot to remove the boot overlay and not cleared afterwards |
-| 1 | `02h` | PROTECT | Not set by TEC-OS. A program setting it protects `4000h–7FFFh` against writes |
+| 1 | `02h` | PROTECT | Not set by Tecos. A program setting it protects `4000h–7FFFh` against writes |
 | 2 | `04h` | EXPAND | Selects EXPAND 1 in the `8000h–BFFFh` bank window for access to the block cache |
 | 3 | `08h` | MAIN | Not set |
 | 7 | `80h` | CAPS | Toggled by matrix Caps Lock, with the Caps lamp |
@@ -139,15 +139,15 @@ which writes `01h` to remove the overlay (`b95b2a9:src/reset.asm:1-13`,
 the reset entry while EXPAND 1 is selected.
 
 The latch shadow must be updated whenever a program writes the latch.
-Otherwise a later TEC-OS write uses an obsolete value from `0040h`.
-Cold boot tests and clears EXPAND 1. During normal operation TEC-OS uses
+Otherwise a later Tecos write uses an obsolete value from `0040h`.
+Cold boot tests and clears EXPAND 1. During normal operation Tecos uses
 it only for the cache. Cache accesses restore the recorded value afterwards
 and perform no stack operation while that bank hides the
 resident EXPAND 0 stacks (`b95b2a9:src/cache.asm:16-44`,
 `b95b2a9:docs/memory-map.md:83-96`). Chapter 15 explains the memory boundary.
 
 The model decodes bits 3–6 as a further bank field. The board documents
-show them unconnected to U9. TEC-OS uses only bit 2 among bits 2–6.
+show them unconnected to U9. Tecos uses only bit 2 among bits 2–6.
 The retired diagnostics ROM's T12 mapped what those bits select
 (`eee9f64:docs/diagnostics.md:185-190`). The current board diagnostics change
 only bit 2 and do not probe bits 3–6, so how a board decodes them remains
@@ -157,7 +157,7 @@ unrecorded (`b95b2a9:docs/diagnostics.md:397-399`).
 
 The board's fixed RAM provides `0000h–7FFFh`. A 32 KiB chip in U9 supplies
 two 16 KiB halves behind `8000h–BFFFh`, called EXPAND 0 and EXPAND 1.
-TEC-OS needs both, for 64 KiB of physical RAM in total. The board's recommended
+Tecos needs both, for 64 KiB of physical RAM in total. The board's recommended
 build leaves U9 empty. The prepared setup therefore adds a 62256 or similar
 and sets the EXPAND jumpers for a 32 KiB chip. That setting is recorded in
 the earlier board checklist (`eee9f64:docs/board-run.md:45-47`). The current
@@ -172,17 +172,17 @@ program and resident layouts once this check succeeds.
 
 ## The hex keypad and its NMI
 
-TEC-OS reads no hex-keypad key codes. It uses only the key-down bit for the
+Tecos reads no hex-keypad key codes. It uses only the key-down bit for the
 startup bypass. Hold a key through reset with the NMI jumper off to cover
 that single sample. Chapter 8 gives the recovery procedure.
 
 With the keypad NMI jumper fitted, a press raises a non-maskable interrupt. The
 CPU pushes its return address and enters `0066h`, inside the default file
-control block (FCB) at `005Ch–007Fh`. TEC-OS installs no NMI handler there. The
+control block (FCB) at `005Ch–007Fh`. Tecos installs no NMI handler there. The
 bytes can be file metadata rather than instructions so a press can crash the
-machine. The supported TEC-OS setup leaves the jumper off. The board
+machine. The supported Tecos setup leaves the jumper off. The board
 diagnostics run under MON-3 and use the keypad through MON-3. Their keypad
-instructions must not be applied to an ordinary TEC-OS session.
+instructions must not be applied to an ordinary Tecos session.
 
 ## The 20 × 4 LCD
 
@@ -279,7 +279,7 @@ block transfers and the container checks.
 For cache transfers the block loop selects EXPAND 1 and restores the recorded
 latch afterwards. It uses no stack while the bank is visible
 (`b95b2a9:src/sd.asm:469-478`, `b95b2a9:src/sd.asm:566-591`, `b95b2a9:src/sd.asm:646-655`). The retained `57a8c38` host-model
-measurement of TEC-OS's `SDREAD` is 219,232 T-states a block, about 55 ms
+measurement of Tecos's `SDREAD` is 219,232 T-states a block, about 55 ms
 at 4 MHz, as [Chapter 18](18-card-blocks-and-volumes.md) gives. The retired
 diagnostics ROM's documents at `b706f61` give 354,216 T-states per block
 plus 678 for each token poll, about 89 ms, for that ROM's separate driver.

@@ -76,13 +76,13 @@ Because TBUG restores the original opcode at every stop, stepping past a breakpo
 
 Sometimes you hit `F5` and realise the program has wandered into an endless loop with no breakpoint ahead of it. Hold `Ctrl+Esc` while the program runs.
 
-TBUG catches the program at its next call to TEC-OS through `0005h` (the BDOS entry) before that call executes. The LCD stops at `PC 0005`, with the caller's return address sitting at the top of Stack. From there you can press `S` to see which routine called the BDOS, jump to Code with `C`, inspect registers or plant a breakpoint. Press `F5` to continue right into the OS call.
+TBUG catches the program at its next call to Tecos through `0005h` (the BDOS entry) before that call executes. The LCD stops at `PC 0005`, with the caller's return address sitting at the top of Stack. From there you can press `S` to see which routine called the BDOS, jump to Code with `C`, inspect registers or plant a breakpoint. Press `F5` to continue right into the OS call.
 
 Two boundaries limit `Ctrl+Esc`:
 
-- **Buffered line input:** While a program sits inside a BDOS line read (function 10), TEC-OS owns the keyboard and ignores `Ctrl+Esc`. Finish the line with `Enter`, then hold `Ctrl+Esc`, and TBUG stops at the program's next BDOS call.
+- **Buffered line input:** While a program sits inside a BDOS line read (function 10), Tecos owns the keyboard and ignores `Ctrl+Esc`. Finish the line with `Enter`, then hold `Ctrl+Esc`, and TBUG stops at the program's next BDOS call.
 - **Tight CPU loops:** Any program printing, reading a file or polling the console hits `0005h` and stops straight away. A pure calculation loop that never calls `0005h` cannot be caught this way. Set a breakpoint inside the loop and run again.
 
 ![Three ways to stop a running program: one-shot F5 off PC, persistent Space breakpoints and Ctrl+Esc at the next BDOS call.](/images/tbug/stop-paths.svg)
 
-_Checked against TEC-OS `8a7e24e` with TBUG `167f7f0`, on the starter card in the emulated TEC-1G, 28 November 2026._
+_Checked against Tecos `8a7e24e` with TBUG `167f7f0`, on the starter card in the emulated TEC-1G, 28 November 2026._

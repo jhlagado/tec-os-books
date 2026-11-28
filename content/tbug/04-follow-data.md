@@ -117,4 +117,4 @@ In **Memory**, put `>` on a byte and press `E`. The top right tag switches to `E
 
 One safety fence guards `EDT` mode: TBUG only writes inside program memory, from `0100h` up to the lowest resident service. Page zero (`0000h–00FFh`), TBUG itself and ROM are off limits. Trying to write there prints `Not writable` or `End of range` and leaves the byte alone so a stray hex digit cannot knock the debugger out from under you.
 
-_Checked against TEC-OS `8a7e24e` with TBUG `167f7f0`, on the starter card in the emulated TEC-1G, 28 November 2026._
+_Checked against Tecos `8a7e24e` with TBUG `167f7f0`, on the starter card in the emulated TEC-1G, 28 November 2026._

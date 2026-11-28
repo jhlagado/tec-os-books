@@ -18,7 +18,7 @@ A:SYSTEM>b:
 B:WORK>
 ```
 
-When you type a bare command on drive B, TEC-OS checks drive B first and then falls back to drive A, for `.COM` programs and for services such as `TBUG.SVC`. You can run `ted`, `tas` and `tbug` directly from `B:WORK>` without typing `a:` in front of them, and your source and `.COM` files stay right on drive B without `b:` either. TEC-OS takes commands in any case; this book types them in lowercase.
+When you type a bare command on drive B, Tecos checks drive B first and then falls back to drive A, for `.COM` programs and for services such as `TBUG.SVC`. You can run `ted`, `tas` and `tbug` directly from `B:WORK>` without typing `a:` in front of them, and your source and `.COM` files stay right on drive B without `b:` either. Tecos takes commands in any case; this book types them in lowercase.
 
 Open a new source file called `HELLO.ASM`:
 
@@ -60,13 +60,13 @@ Hello from TEC-OS
 B:WORK>
 ```
 
-Four Z80 instructions just ran in a fraction of a millisecond. `LD DE,MSG` pointed `DE` at the greeting at `0109h`. `LD C,9` selected BDOS string print. `CALL $0005` handed control to TEC-OS to write every character up to `$`, and `RET` returned to the prompt. All you saw was the finished line.
+Four Z80 instructions just ran in a fraction of a millisecond. `LD DE,MSG` pointed `DE` at the greeting at `0109h`. `LD C,9` selected BDOS string print. `CALL $0005` handed control to Tecos to write every character up to `$`, and `RET` returned to the prompt. All you saw was the finished line.
 
 ## Resident memory and the LCD
 
-Ordinary `.COM` programs load at `0100h` and grow upwards into free RAM. Resident services load from the top down, right below the TEC-OS ROM at `C000h`, and lower the address stored at `0006h` so transient programs stay underneath them.
+Ordinary `.COM` programs load at `0100h` and grow upwards into free RAM. Resident services load from the top down, right below the Tecos ROM at `C000h`, and lower the address stored at `0006h` so transient programs stay underneath them.
 
-On the starter card, `SHELL.SVC` is already loaded at boot. TBUG fits beside it: TBUG takes 32 pages of 256 bytes, about 8 KiB, and the shell 9. If your card loads other services at boot and TEC-OS answers `TBUG?`, unload one of them to make room.
+On the starter card, `SHELL.SVC` is already loaded at boot. TBUG fits beside it: TBUG takes 32 pages of 256 bytes, about 8 KiB, and the shell 9. If your card loads other services at boot and Tecos answers `TBUG?`, unload one of them to make room.
 
 ![TBUG is loaded at the top of RAM below the ROM and uses only the 20 × 4 character LCD and matrix keyboard while the program keeps the console.](/images/tbug/first-stop.svg)
 
@@ -144,4 +144,4 @@ NAME.COM
 unload tbug removes
 ```
 
-_Checked against TEC-OS `8a7e24e` with TBUG `167f7f0`, on the starter card in the emulated TEC-1G, 28 November 2026._
+_Checked against Tecos `8a7e24e` with TBUG `167f7f0`, on the starter card in the emulated TEC-1G, 28 November 2026._

@@ -1,8 +1,8 @@
 ---
 title: Loading and removing services
-parent: TEC-OS
+parent: Tecos
 nav_order: 25
-nav_group: "Inside TEC-OS"
+nav_group: "Inside Tecos"
 ---
 
 # 25. Loading and removing services

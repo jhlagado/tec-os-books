@@ -1,8 +1,8 @@
 ---
 title: Card blocks and volumes
-parent: TEC-OS
+parent: Tecos
 nav_order: 18
-nav_group: "Inside TEC-OS"
+nav_group: "Inside Tecos"
 ---
 
 # 18. Card blocks and volumes
@@ -33,7 +33,7 @@ tables (`b95b2a9:src/tables.asm:23-31`, `b95b2a9:src/cache.asm:179-207`, `b95b2a
 ## Container blocks and validation
 
 The BIOS needs a range for each volume before it can locate any file
-record. TEC-OS obtains those ranges from a single container on the card.
+record. Tecos obtains those ranges from a single container on the card.
 Block 0 begins with `TECOSVOL`, major and minor versions, header and
 descriptor sizes, volume count, container length in blocks and a checksum.
 Format 1.1 adds a drives field and an extra-table sum. Each descriptor uses
@@ -241,7 +241,7 @@ their payload sizes and allocation layout
 | `CKS` / `OFF` | 0 / 0 | 0 / 0 |
 
 Fixed-media handling leaves `CKS` zero. CP/M uses that check vector to
-detect disk changes on removable floppy drives. TEC-OS uses the DPH scratch
+detect disk changes on removable floppy drives. Tecos uses the DPH scratch
 words for directory state retained across warm boot. Their changed flag and
 scan mark determine how much of the allocation vector needs rebuilding
 (`b95b2a9:src/cpm/bdosfile.asm:19-107`). Cold-boot placement is described under

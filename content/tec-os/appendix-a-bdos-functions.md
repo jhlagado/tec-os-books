@@ -1,6 +1,6 @@
 ---
 title: A. BDOS functions
-parent: TEC-OS
+parent: Tecos
 nav_order: 101
 nav_group: "Reference"
 ---
@@ -20,7 +20,7 @@ nav_group: "Reference"
 
 BDOS calls give a program a common interface to files and the console.
 The table identifies the registers for each function number. The numbered
-entries then give its effects and failure results. TEC-OS implements the
+entries then give its effects and failure results. Tecos implements the
 CP/M 2.2 interface with selected additions numbered 44 to 48, 99 and 108.
 Those additions do not establish general CP/M 3 compatibility.
 [Chapter 20](20-a-file-through-the-bdos.md) explains the file machinery and
@@ -178,7 +178,7 @@ Returns the character in `A` or 0 if none is waiting. The values `FEh` and
 Returns it in `A`.
 
 **8 Set IOBYTE.** Writes `E` to `0003h` (`b95b2a9:src/cpm/bdos.asm:364-366`). Returns
-nothing. TEC-OS acts only on the IOBYTE's console field
+nothing. Tecos acts only on the IOBYTE's console field
 (`b95b2a9:src/console.asm:75-133`).
 
 **9 Print string.** Prints the characters from `DE` up to a `$`, which is not
@@ -400,7 +400,7 @@ if the BDOS returns a write error in the mode set by function 45. Returns as
 function 34 does.
 
 **44 Set multi-sector count.** With `E` = 1 returns 0. With any other `E`
-makes no change to the one-record count mode and returns `FFh` in `A` (`b95b2a9:src/cpm/bdos.asm:189-203`). TEC-OS
+makes no change to the one-record count mode and returns `FFh` in `A` (`b95b2a9:src/cpm/bdos.asm:189-203`). Tecos
 reads and writes one record a call so 1 is the only count.
 
 **45 Set BDOS error mode.** Sets the mode to `E` (`b95b2a9:src/cpm/bdos.asm:234-237`).
@@ -446,7 +446,7 @@ through its own return value; queue notices preserve that functional result
 (`0701241:src/cache.asm:265-306`, `0701241:src/hk.asm:204-237`).
 
 **99 Truncate file.** Performs no truncation (`b95b2a9:src/cpm/bdos.asm:81-82`,
-`b95b2a9:src/cpm/bdos.asm:144-145`). Returns `FFh` in `A`. TEC-OS has no truncate.
+`b95b2a9:src/cpm/bdos.asm:144-145`). Returns `FFh` in `A`. Tecos has no truncate.
 
 **108 Get or set program return code.** With `DE` = `FFFFh`, reads the code.
 With any other `DE`, sets the code to `DE` (`b95b2a9:src/cpm/bdos.asm:259-274`). All
@@ -468,7 +468,7 @@ through its jump table, whose warm boot entry is the address at `0001h`
 
 ## Differences from Digital Research's BDOS
 
-TEC-OS reports CP/M 2.2 through function 12. Its BDOS derives from Portable
+Tecos reports CP/M 2.2 through function 12. Its BDOS derives from Portable
 CP/M, an independent implementation of that interface
 (`b95b2a9:src/cpm/PROVENANCE.md:1-7`). Programs written for Digital Research's BDOS
 encounter the following differences.
@@ -486,7 +486,7 @@ encounter the following differences.
   A program's function 13 resets every drive
   (`b95b2a9:src/cpm/bdosfile.asm:19-107`).
 - `^P` during output toggles the list copy. Digital Research's BDOS retains
-  that key for input and handles the toggle in line input. TEC-OS also
+  that key for input and handles the toggle in line input. Tecos also
   echoes every character in function 1, including control characters,
   rather than restricting the echo to printing characters, CR, LF, tab and
   backspace (`b95b2a9:src/cpm/bdos.asm:282-288`, `b95b2a9:src/cpm/bdoscon.asm:253-265`,
@@ -499,6 +499,6 @@ encounter the following differences.
   BIOS and BDOS character input retain their byte behaviour
   (`44dda1e:src/cpm/bdos.asm:722-762`).
 - Neither geometry uses the check vector: both set CKS to 0. This mechanism
-  therefore does not detect a card exchanged while TEC-OS is running
+  therefore does not detect a card exchanged while Tecos is running
   (`b95b2a9:format/format.json:51`, `b95b2a9:format/format.json:58`). Follow the card-change procedure in
   [Chapter 6](06-cards-on-the-pc.md#writing-the-physical-card).

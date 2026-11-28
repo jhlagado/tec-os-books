@@ -1,8 +1,8 @@
 ---
 title: From prompt to program
-parent: TEC-OS
+parent: Tecos
 nav_order: 21
-nav_group: "Inside TEC-OS"
+nav_group: "Inside Tecos"
 ---
 
 # 21. From prompt to program
@@ -18,7 +18,7 @@ nav_group: "Inside TEC-OS"
      Baza is the qualified 5f6b58d payload. Source-derived excerpts are
      labelled separately from console captures. -->
 
-Running a command requires more than finding its file. TEC-OS must retain
+Running a command requires more than finding its file. Tecos must retain
 the selected drive, prepare the arguments and provide a return to
 the prompt. The console command processor, or CCP, obtains a line through the BDOS.
 It parses a name then runs a built-in or loads a file. Program execution begins at `0100h` after page zero is ready.

@@ -1,11 +1,11 @@
 ---
-title: Call TEC-OS
-parent: TEC-OS
+title: Call Tecos
+parent: Tecos
 nav_order: 9
 nav_group: "Writing programs"
 ---
 
-# 9. Call TEC-OS
+# 9. Call Tecos
 
 <!-- Checked against TEC-OS 57a8c38b7f341433285e39c4bec14ecc486ffe26 (retained recovery baseline),
      ROM SHA-256 ac86ad233696d22a46b4f98a4119c53b718bfe89881952a08e9f92223f3fa1c3.
@@ -58,7 +58,7 @@ returned so the final `RET` reaches the CCP's word.
 
 Save a value before calling the BDOS if you still need it afterwards. CP/M 2.2
 guarantees no register across every BDOS call. Only the result documented for
-the particular function can be used without a save. TEC-OS switches to an
+the particular function can be used without a save. Tecos switches to an
 internal stack during the call and restores your `SP` on return. That
 preserves your stack position while allowing register contents to change.
 
@@ -179,7 +179,7 @@ a program's function-10 call.
 
 Functions 1, 2, 9 and 10 expand tabs to the next eight-column stop measured
 from the last carriage return. They also copy output to the list device while
-`^P` enables that copy. The list device is CP/M's printer interface. TEC-OS
+`^P` enables that copy. The list device is CP/M's printer interface. Tecos
 normally discards its bytes so toggling the copy has no visible effect unless
 that routine has been replaced.
 

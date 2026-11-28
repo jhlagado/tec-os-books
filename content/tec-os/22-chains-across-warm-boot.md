@@ -1,8 +1,8 @@
 ---
 title: Chains across a warm boot
-parent: TEC-OS
+parent: Tecos
 nav_order: 22
-nav_group: "Inside TEC-OS"
+nav_group: "Inside Tecos"
 ---
 
 # 22. Chains across a warm boot

@@ -1,9 +1,9 @@
-# The TEC-OS books
+# The Tecos books
 
 The books published at [tec-os.org](https://tec-os.org/). The site is a
 VitePress package at the root of this repository, and its output is
-`.vitepress/dist`. The books were kept in TEC-OS's `documentation/` folder until
-27 November 2026; this repository carries that history. TEC-OS itself, its
+`.vitepress/dist`. The books were kept in Tecos's `documentation/` folder until
+27 November 2026; this repository carries that history. Tecos itself, its
 design notes in `docs/` and its build are in jhlagado/tec-os.
 
 ## Local use
@@ -28,7 +28,7 @@ the original forty imported manuscript files against their recorded hashes.
 
 ## Books and navigation
 
-`content/tec-os/` contains the TEC-OS book. Its introduction, 29 chapters and
+`content/tec-os/` contains the Tecos book. Its introduction, 29 chapters and
 ten appendices were originally imported without wording changes. Subsequent
 prose revisions are maintained here. `provenance.json` records the original
 import revision and hashes, not the identities of later authored text. The
@@ -65,7 +65,7 @@ The theme retains the reference's numbered figures and image previews.
 
 ## Book illustrations
 
-The TEC-OS schematics use the same SVG plates, numbered captions and image
+The Tecos schematics use the same SVG plates, numbered captions and image
 previews as the TBUG book and debug80-docs. Each diagram has an accessible title
 and description. The Markdown image text supplies its caption and alternative
 text. These drawings explain the adjacent text and are not screen captures.
@@ -82,14 +82,14 @@ The existing image preview supports a larger view.
 
 ## Capturing screens
 
-Screens and transcripts in the books are captured from TEC-OS's host model,
+Screens and transcripts in the books are captured from Tecos's host model,
 never typed by hand. Each block's comment gives its recipe and the commits it
-was taken on. The recipes are TEC-OS's own `tools/capture.mjs`, run in a
-TEC-OS checkout built with `npm run build && npm run media`.
+was taken on. The recipes are Tecos's own `tools/capture.mjs`, run in a
+Tecos checkout built with `npm run build && npm run media`.
 
 A recipe that presses a function key or an arrow key uses `capture.mjs`'s
 `@fn D` (Fn held with digit D, as F1 to F10 are on the matrix keyboard) and
-`@arrow` (the matrix arrows), from TEC-OS a738e2d on. Both need
+`@arrow` (the matrix arrows), from Tecos a738e2d on. Both need
 `--board pico` or `--board glcd`. On those boards `^C` to `^F` are typed as
 arrow keys, so a recipe that needs them uses the serial board, the default.
 
@@ -100,7 +100,7 @@ node tools/capture.mjs --board pico --screen '@start A:TED B:BANNER.ASM' '@fn 9'
 TBUG reads the matrix keyboard itself, so the TBUG book's screens come from
 `scripts/tbug-capture.mjs`. It types commands at the prompt, holds each TBUG
 key for a tenth of a second and prints the LCD 2 s later, after a view's
-title has cleared. It runs the machine model of the TEC-OS checkout named by
+title has cleared. It runs the machine model of the Tecos checkout named by
 `TECOS`:
 
 ```sh
@@ -108,7 +108,7 @@ TECOS=../tec-os node scripts/tbug-capture.mjs --card tbug.img '>b:' '>tas step' 
 ```
 
 A recipe's `--card NAME.img` is the checkout's `dist/starter.img` with the
-chapter's files added by TEC-OS's `tecvol`. For example, the BANNER cards in
+chapter's files added by Tecos's `tecvol`. For example, the BANNER cards in
 chapter 2 hold that chapter's listing on B:, put there with
 `tecvol put banner-plain.img B BANNER.ASM --text`.
 

@@ -1,6 +1,6 @@
 ---
 title: Memory for programs
-parent: TEC-OS
+parent: Tecos
 nav_order: 11
 nav_group: "Writing programs"
 ---
@@ -33,7 +33,7 @@ in U9. The Z80 sees only half of U9 at a time:
 | --- | --- | --- |
 | `0000h–7FFFh` | 32 KiB | the board's fixed RAM |
 | `8000h–BFFFh` | 16 KiB | EXPAND 0 or EXPAND 1, the two halves of the RAM in socket U9 |
-| `C000h–FFFFh` | 16 KiB | the TEC-OS ROM |
+| `C000h–FFFFh` | 16 KiB | the Tecos ROM |
 
 The window at `8000h–BFFFh` selects a half through system-latch bit 2 at port
 `FFh`. Program entry selects EXPAND 0, giving 48 KiB of RAM below the ROM.
@@ -52,7 +52,7 @@ and BDOS state and stacks. The RAM BIOS table is at `BF00h`. Overwriting these
 regions can damage file allocation or crash the machine.
 
 The CCP and BDOS code occupies ROM. Some CP/M 2.2 programs reclaimed the CCP's
-RAM because warm boot would reload it from disk. TEC-OS has no additional CCP
+RAM because warm boot would reload it from disk. Tecos has no additional CCP
 RAM to reclaim. All available program memory is already included below the TPA
 ceiling.
 
@@ -192,8 +192,8 @@ limits:
 | --- | --- |
 | `0000h–00FFh` | Page zero, with the CP/M jumps and buffers |
 | `0100h–B6C7h` | Your program, up to 46,536 bytes on the starter card |
-| `B6C8h–BFFFh` | TEC-OS's working memory |
-| `C000h–FFFFh` | The ROM, which holds TEC-OS itself |
+| `B6C8h–BFFFh` | Tecos's working memory |
+| `C000h–FFFFh` | The ROM, which holds Tecos itself |
 
 The card and services give the boundaries below. The first two rows use the
 starter card without startup and the next two include it. The four-drive
@@ -338,7 +338,7 @@ also provide exit jumps, console selection and BIOS scratch:
 | `0005h–0007h` | BDOS jump, with the TPA boundary in its address word |
 | `0008h–0037h` | Restart vectors for `RST 08h` through `RST 30h` |
 | `0038h–003Ah` | Default `EI`/`RETI` for interrupt mode 1, unless a qualifying jump is retained |
-| `0040h` | TEC-OS's copy of the system latch |
+| `0040h` | Tecos's copy of the system latch |
 | `0041h–004Fh` | Unused after cold boot |
 | `0050h` | The drive from which the CCP loaded the program |
 | `005Ch–007Fh` | Default FCB parsed from the first argument |
@@ -381,7 +381,7 @@ enter at `0038h`. The default returns without device work while a retained
 handler performs its own operation.
 
 Warm boot starts programs with maskable interrupts disabled. Programs may
-enable them. TEC-OS temporarily masks them for card-block I/O, serial-byte
+enable them. Tecos temporarily masks them for card-block I/O, serial-byte
 transfers and PICO9918 control-port byte pairs. It restores the entry state
 afterwards. The shell's history occupies its resident pages and requires no
 bank switch.
@@ -393,12 +393,12 @@ distinguishes NMI from maskable interrupts.
 
 ## The bank window and latch copy
 
-A write-only latch needs a RAM copy for later updates. TEC-OS keeps the last
+A write-only latch needs a RAM copy for later updates. Tecos keeps the last
 system-latch value at `0040h` in fixed BIOS scratch RAM. Cache routines can
 read it even while EXPAND 1 hides the workspace. Any program writing port
 `FFh` must write the same value to `0040h` or later latch updates will reuse
 stale bits. Leave both untouched unless changing the latch. Cold boot clears
-page zero and initialises the copy. TEC-OS leaves `0041h–004Fh` unused
+page zero and initialises the copy. Tecos leaves `0041h–004Fh` unused
 afterwards. MON3.SVC reserves those bytes during a session and releases them
 at `EXIT` or warm boot (`b95b2a9:docs/memory-map.md:34-41`).
 
@@ -414,7 +414,7 @@ Cold boot clears EXPAND 1 and prepares the following cache storage
 The 256-byte command-history ring occupies SHELL.SVC's last page rather than
 this bank.
 
-Unused bank storage is not additional TPA. TEC-OS supplies no program
+Unused bank storage is not additional TPA. Tecos supplies no program
 bank-allocation interface for the free range.
 
 Selecting EXPAND 1 hides the BDOS entry, BIOS table, workspace and program

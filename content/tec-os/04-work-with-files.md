@@ -1,6 +1,6 @@
 ---
 title: Work with files
-parent: TEC-OS
+parent: Tecos
 nav_order: 4
 nav_group: "Using the machine"
 ---
@@ -37,7 +37,7 @@ Names follow the same form as BANNER.ASM: up to eight characters, a full
 stop and a type of up to three characters. You can omit the full stop and
 type. A drive prefix selects another location, so `A:SAMPLE.ASM` refers
 to the supplied source on A. Without a prefix, the current drive applies.
-TEC-OS processes DIR as a command without loading a program file.
+Tecos processes DIR as a command without loading a program file.
 Running TAS instead reads its COM file from the card.
 
 Wildcards select a group of files for a listing. `DIR B:*.ASM` lists B's
@@ -165,7 +165,7 @@ files unchanged.
 COPY creates a second file. Its destination can specify a new name, a
 drive or both. A drive alone, as in `COPY STARTUP.CMD B:`, keeps the
 source's name. COPY and the DEL command below require the startup shell.
-Without it, TEC-OS searches for programs with those names and normally
+Without it, Tecos searches for programs with those names and normally
 prints `COPY?` or `DEL?`. An existing destination of that name is erased before the
 replacement is made. Check the source and destination before copying over work
 you need to keep.

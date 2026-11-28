@@ -1,8 +1,8 @@
 ---
 title: Startup inside the CCP
-parent: TEC-OS
+parent: Tecos
 nav_order: 26
-nav_group: "Inside TEC-OS"
+nav_group: "Inside Tecos"
 ---
 
 # 26. Startup inside the CCP
@@ -19,7 +19,7 @@ nav_group: "Inside TEC-OS"
      labelled separately from console captures. -->
 
 Startup must survive a program's normal warm boot yet avoid repeating a
-boot command that fails during file I/O. TEC-OS divides this work between
+boot command that fails during file I/O. Tecos divides this work between
 two readers. The ROM reads the first record of `A:STARTUP.CMD` once after
 cold boot and executes its first line. If that line installs `SHELL.SVC`,
 the resident shell reads the remaining file across all its records.

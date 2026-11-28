@@ -1,6 +1,6 @@
 ---
 title: "F. `tecvol`"
-parent: TEC-OS
+parent: Tecos
 nav_order: 106
 nav_group: "Reference"
 ---
@@ -75,13 +75,13 @@ unchanged. The temporary file is neither reread nor explicitly synchronised
 to durable storage. `install` has a different failure boundary because it
 writes directly to the device (`b95b2a9:tools/tecvol.mjs:63-69`).
 
-Never change a card on the PC while TEC-OS is using it. At the board's command
+Never change a card on the PC while Tecos is using it. At the board's command
 prompt, close files and await successful writes before removal. A prompt after
 Write pending is insufficient: resolve the original backend refusal and wait
 for Cache clear. Warm boot retains acknowledged data, while cold reset discards
 it. Queue clearance is not FCB closure or browser storage
 (`0701241:docs/recovery.md:69-117`). Reset after returning a PC-changed card because
-TEC-OS's cached blocks and allocation maps otherwise describe its old contents.
+Tecos's cached blocks and allocation maps otherwise describe its old contents.
 Chapter 6 gives the copy-first procedure.
 
 The examples construct a separate worked card in `build/my.img`. They use
@@ -104,7 +104,7 @@ one descriptor in the given order:
 | `:ro` | Read-only volume |
 
 Any other flag, `:wb` among them, is refused. No volume is marked written
-behind: TEC-OS writes behind the drive you are on, and descriptor byte 15 is
+behind: Tecos writes behind the drive you are on, and descriptor byte 15 is
 reserved and written zero
 ([Appendix E](appendix-e-container-format.md#the-header))
 
@@ -408,7 +408,7 @@ node tools/tecvol.mjs dir build/my.img A
  0 STARTUP.CMD       128
 ```
 
-The same card's TEC-OS capture reads the text and lists all volumes:
+The same card's Tecos capture reads the text and lists all volumes:
 
 <!-- TEC-OS with the sized DIR (ROM c9586263, starter card 1cdc614e): node tools/capture.mjs --card build/my.img DIR 'TYPE HELLO.TXT' 'CD ?'. Complete captured console transcript. -->
 ```text

@@ -1,8 +1,8 @@
 ---
 title: Reset and boot
-parent: TEC-OS
+parent: Tecos
 nav_order: 16
-nav_group: "Inside TEC-OS"
+nav_group: "Inside Tecos"
 ---
 
 # 16. Reset and boot
@@ -29,7 +29,7 @@ usable at each step.
 
 ## The reset instruction
 
-Reset begins at `0000h` while TEC-OS code lives at `C000h`. The latch resets
+Reset begins at `0000h` while Tecos code lives at `C000h`. The latch resets
 to `00h`, mapping the first 2 KiB of ROM into `0000h–07FFh` as well as
 `C000h–C7FFh`. Bit 0 controls that overlay. The initial JP RSTENT enters high
 ROM before the overlay is removed so execution continues from unchanged
@@ -170,7 +170,7 @@ before return (`b95b2a9:src/boot.asm:231-256`, `b95b2a9:src/layout.asm:39-42`).
 ## Retained drive selection
 
 Power-on and button reset produce the same CPU reset signal. Power-on RAM is
-arbitrary but a button reset can leave valid TEC-OS state. RSLCAP reads page
+arbitrary but a button reset can leave valid Tecos state. RSLCAP reads page
 zero, STUBAD, the three bytes it addresses and the drive table to recognise
 that state. It executes no old RAM (`b95b2a9:src/boot.asm:158-169`,
 `b95b2a9:src/boot.asm:171-229`).
@@ -383,7 +383,7 @@ not inside recovery. Cold mount's R retry diagnostic remains separate.
 
 ## Boot costs
 
-The retained measurements below use TEC-OS `be50c71` with the host model,
+The retained measurements below use Tecos `be50c71` with the host model,
 serial board and starter card. They predate the current stack reservations.
 At 4 MHz each 4,000,000 T-states represents a second.
 

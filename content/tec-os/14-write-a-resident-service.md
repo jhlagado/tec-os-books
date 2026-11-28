@@ -1,6 +1,6 @@
 ---
 title: Write a resident service
-parent: TEC-OS
+parent: Tecos
 nav_order: 14
 nav_group: "Writing programs"
 ---
