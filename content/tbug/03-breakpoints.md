@@ -13,11 +13,11 @@ TBUG gives you three ways to catch a full-speed program, moving from the lightes
 
 ## Run freely or stop once at a line
 
-From Registers, Stack, Memory or Symbols, pressing `F5` (`Fn+5` on the TEC-1G) lets the program run freely until exit or a breakpoint. In Code, `F5` has a handy twist that saves you from setting and clearing throwaway breakpoints.
+From Registers, Stack, Memory or Labels, pressing `F5` (`Fn+5` on the TEC-1G) lets the program run freely until exit or a breakpoint. In Code, `F5` has a handy twist that saves you from setting and clearing throwaway breakpoints.
 
 When `>` sits on the same row as `→` (`PC`), `F5` runs freely. Scroll `>` off `PC` onto another instruction and press `F5` instead, and TBUG places an invisible temporary stop on that row and runs to it. Once the CPU halts there, the temporary stop vanishes with no `□` mark left behind. Any persistent breakpoint sitting along the way still fires first.
 
-That single habit makes jumping past a loop effortless: scroll `>` to the instruction right after `DJNZ`, hit `F5` and land there in one move. Watch the flip side too. If `F5` in Code stops sooner than you expected, check whether `>` had been scrolled away from `→`. `Left` snaps `>` back to `PC` so `F5` runs freely again.
+That single habit makes jumping past a loop effortless: scroll `>` to the instruction right after `DJNZ`, hit `F5` and land there in one move. Watch the flip side too. If `F5` in Code stops sooner than you expected, check whether `>` had been scrolled away from `→`. `P` puts `>` back on `PC` so `F5` runs freely again.
 
 ## Persistent breakpoints
 
@@ -25,7 +25,7 @@ When you want to stop at the same line on every pass through a loop or every cal
 
 Start `tbug step` from `B:WORK>`. The stop opens in Code, with `>` and `→` together on `0100 LD HL,1234`. Move `>` down twice to `0104 POP DE`, leaving `→` back at `0100`:
 
-<!-- Tecos 8c12c9f with TBUG 167f7f0, starter card e2f124e9: TECOS=<checkout> node scripts/tbug-capture.mjs --card tbug.img '>b:' '>tas step' '!tbug step' down down Space R F5 C, where tbug.img holds this book's HELLO.ASM, STEP.ASM and FILL.ASM on B. The LCD after the second down. -->
+<!-- Tecos 4c555ff with TBUG 1215559, starter card 48a9309f: TECOS=<checkout> node scripts/tbug-capture.mjs --card tbug.img '>b:' '>tas step' '!tbug step' down down Space R F5 C, where tbug.img holds this book's HELLO.ASM, STEP.ASM and FILL.ASM on B. The LCD after the second down. -->
 ```text
 START:
  →0100 LD HL,1234
@@ -35,7 +35,7 @@ START:
 
 Press `Space`. A hollow box `□` appears in column 2 beside `0104`, and the top row reports `BP SET 0104` in place of the label:
 
-<!-- Tecos 8c12c9f with TBUG 167f7f0, starter card e2f124e9: TECOS=<checkout> node scripts/tbug-capture.mjs --card tbug.img '>b:' '>tas step' '!tbug step' down down Space R F5 C, where tbug.img holds this book's HELLO.ASM, STEP.ASM and FILL.ASM on B. The LCD after Space. -->
+<!-- Tecos 4c555ff with TBUG 1215559, starter card 48a9309f: TECOS=<checkout> node scripts/tbug-capture.mjs --card tbug.img '>b:' '>tas step' '!tbug step' down down Space R F5 C, where tbug.img holds this book's HELLO.ASM, STEP.ASM and FILL.ASM on B. The LCD after Space. -->
 ```text
 BP SET 0104
  →0100 LD HL,1234
@@ -43,19 +43,19 @@ BP SET 0104
 >□0104 POP DE
 ```
 
-`Space` toggles breakpoints in Code and in Symbols. Elsewhere, TBUG prints `Select in Code first`. Pressing `Space` a second time on a marked row clears the breakpoint and prints `BP REMOVED 0104`.
+`Space` toggles breakpoints in Code and in Labels. Elsewhere, TBUG prints `Select in Code first`. Pressing `Space` a second time on a marked row clears the breakpoint and prints `BP REMOVED 0104`.
 
 Jump back to Registers with `R` and press `F5`. The Z80 runs `LD HL,$1234` and `PUSH HL` at full speed and halts right before `POP DE`:
 
-<!-- Tecos 8c12c9f with TBUG 167f7f0, starter card e2f124e9: TECOS=<checkout> node scripts/tbug-capture.mjs --card tbug.img '>b:' '>tas step' '!tbug step' down down Space R F5 C, where tbug.img holds this book's HELLO.ASM, STEP.ASM and FILL.ASM on B. The LCD after F5. -->
+<!-- Tecos 4c555ff with TBUG 1215559, starter card 48a9309f: TECOS=<checkout> node scripts/tbug-capture.mjs --card tbug.img '>b:' '>tas step' '!tbug step' down down Space R F5 C, where tbug.img holds this book's HELLO.ASM, STEP.ASM and FILL.ASM on B. The LCD after F5. -->
 ```text
->PC 0104  SP 8DFC BP
+>PC 0104  SP 8CFC BP
  AF 0000  BC 0000 SY
  DE 0000  HL 1234 ..
  IX 0000  IY 0000 ..
 ```
 
-`BP` on row 1 confirms a breakpoint hit. `HL` already holds `1234` and `SP` has already dropped to `8DFC`, proving `PUSH HL` ran while `POP DE` is still waiting. Press `C` to view Code and column 2 on `0104` now shows a solid block `█`, meaning `PC` is stopped on a user breakpoint.
+`BP` on row 1 confirms a breakpoint hit. `HL` already holds `1234` and `SP` has already dropped to `8CFC`, proving `PUSH HL` ran while `POP DE` is still waiting. Press `C` to view Code and column 2 on `0104` now shows a solid block `█`, meaning `PC` is stopped on a user breakpoint.
 
 ## Patching and restoring with `RST 30h`
 
@@ -74,7 +74,7 @@ Because TBUG restores the original opcode at every stop, stepping past a breakpo
 
 ## Breaking into a running program
 
-Sometimes you hit `F5` and realise the program has wandered into an endless loop with no breakpoint ahead of it. Hold `Ctrl+Esc` while the program runs.
+Sometimes you hit `F5` and realise the program has wandered into an endless loop with no breakpoint ahead of it. Hold `Ctrl+Esc` while the program runs. The same works while `F7` steps over a call, while `F6` steps out and while `F5` runs to a line, so a step over a call that loops on the BDOS can be stopped too.
 
 TBUG catches the program at its next call to Tecos through `0005h` (the BDOS entry) before that call executes. The LCD stops at `PC 0005`, with the caller's return address sitting at the top of Stack. From there you can press `S` to see which routine called the BDOS, jump to Code with `C`, inspect registers or plant a breakpoint. Press `F5` to continue right into the OS call.
 
@@ -85,4 +85,4 @@ Two boundaries limit `Ctrl+Esc`:
 
 ![Three ways to stop a running program: one-shot F5 off PC, persistent Space breakpoints and Ctrl+Esc at the next BDOS call.](/images/tbug/stop-paths.svg)
 
-_Checked against Tecos `8c12c9f` with TBUG `167f7f0`, on the starter card in the emulated TEC-1G, 28 November 2026._
+_Checked against Tecos `4c555ff` with TBUG `1215559`, on the starter card in the emulated TEC-1G, 28 November 2026._

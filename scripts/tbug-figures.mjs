@@ -314,7 +314,7 @@ add(
 add(
   'views',
   'Switching views and stepping with F6 to F8',
-  'C, R, Y, S and M jump straight to Code, Registers, Symbols, Stack and Memory, and Tab cycles through them in that order. Every stop opens in Code. Enter opens the target of a register, stack slot or branch, Esc steps back and Q quits. F8 steps into, F7 steps over and F6 steps out (Fn+8, Fn+7 and Fn+6 on the TEC-1G).',
+  'C, R, L, S and M jump straight to Code, Registers, Labels, Stack and Memory, and Tab cycles through them in that order. Every stop opens in Code. A opens Memory at the selection\'s address, Enter follows a branch or opens a stack slot, Esc goes back and Q quits. F8 steps into, F7 steps over and F6 steps out (Fn+8, Fn+7 and Fn+6 on the TEC-1G).',
   434,
   [
     eyebrow(40, 30, 'Five views · press key to jump or Tab / Shift+Tab to cycle'),
@@ -344,9 +344,9 @@ add(
       y: 48,
       w: 198,
       h: 86,
-      key: 'Y',
-      title: 'Symbols',
-      lines: ['Global labels', 'Loaded from .TBG'],
+      key: 'L',
+      title: 'Labels',
+      lines: ['Labels and symbols', 'Loaded from .TBG'],
     }),
 
     // Row 2: 2 cards centred neatly below (w=220, gap=28 => 126, 374 .. 594)
@@ -366,7 +366,7 @@ add(
       h: 86,
       key: 'M',
       title: 'Memory',
-      lines: ['16-byte hex window', 'FIX or register follow'],
+      lines: ['16-byte hex window', 'Fixed, moved by A or G'],
     }),
 
     hrule(264),
@@ -417,7 +417,7 @@ add(
 add(
   'stack-step',
   'PUSH HL in Stack view and in little-endian Memory',
-  'In STEP.COM, LD HL,$1234 loads HL, then PUSH HL moves SP down by two bytes from 8DFEh to 8DFCh and stores 34h at 8DFCh and 12h at 8DFDh. Stack view shows the word 1234 while Memory shows the bytes in address order as 34 12.',
+  'In STEP.COM, LD HL,$1234 loads HL, then PUSH HL moves SP down by two bytes from 8CFEh to 8CFCh and stores 34h at 8CFCh and 12h at 8CFDh. Stack view shows the word 1234 while Memory shows the bytes in address order as 34 12.',
   354,
   [
     eyebrow(40, 30, 'STEP.COM · three consecutive states'),
@@ -431,7 +431,7 @@ add(
       title: 'Before PUSH HL',
       lines: [
         { text: 'PC 0103 · HL 1234', mono: true },
-        { text: 'SP = 8DFEh', mono: true },
+        { text: 'SP = 8CFEh', mono: true },
       ],
     }),
     line('ln', 230, 87, 261, 87, 'ar'),
@@ -443,7 +443,7 @@ add(
       h: 82,
       title: 'After PUSH HL',
       lines: [
-        { text: 'PC 0104 · SP 8DFCh', mono: true },
+        { text: 'PC 0104 · SP 8CFCh', mono: true },
         { text: 'Top word = 1234', mono: true },
       ],
       hi: true,
@@ -458,7 +458,7 @@ add(
       title: 'After POP DE',
       lines: [
         { text: 'PC 0105 · DE 1234', mono: true },
-        { text: 'SP = 8DFEh', mono: true },
+        { text: 'SP = 8CFEh', mono: true },
       ],
     }),
 
@@ -474,11 +474,11 @@ add(
     line('sline', 64, 234, 98, 234, 'arS'),
 
     rect('bx', 102, 254, 190, 40, 0),
-    text('dim', 120, 278, '8DFE'),
-    text('t', 274, 278.5, '9102', 'end'),
+    text('dim', 120, 278, '8CFE'),
+    text('t', 274, 278.5, '9005', 'end'),
 
     rect('bxs', 102, 214, 190, 40, 0),
-    text('dim on-sig', 120, 238, '8DFC'),
+    text('dim on-sig', 120, 238, '8CFC'),
     text('tb on-sig', 274, 238.5, '1234', 'end'),
 
     text('dimn', 102, 312, 'High byte paired with low'),
@@ -493,10 +493,10 @@ add(
       cw: 76,
       ch: 40,
       cells: [
-        { addr: '8DFC', val: '34', hi: true, sub: 'low byte' },
-        { addr: '8DFD', val: '12', hi: true, sub: 'high byte' },
-        { addr: '8DFE', val: '02', hi: false },
-        { addr: '8DFF', val: '91', hi: false },
+        { addr: '8CFC', val: '34', hi: true, sub: 'low byte' },
+        { addr: '8CFD', val: '12', hi: true, sub: 'high byte' },
+        { addr: '8CFE', val: '05', hi: false },
+        { addr: '8CFF', val: '90', hi: false },
       ],
     }),
 
@@ -651,16 +651,16 @@ add(
 );
 
 /* ============================================================
-   6. Chapter 4: Fixed vs register-following Memory and writable range
+   6. Chapter 4: Memory moved to HL by H, and the writable range
    ============================================================ */
 add(
   'memory-follow',
-  'Following HL across the FILL.COM buffer in Memory',
-  'In FILL.COM, opening Memory via Enter on HL locks the display to HL at 010Ah. When LD (HL),B writes 04h and INC HL advances HL to 010Bh, Memory moves to 010Bh automatically. Scrolling away appends + (HL+). Editing with E writes only from 0100h up to the lowest resident service.',
+  'Moving Memory to HL across the FILL.COM buffer',
+  'In FILL.COM, A on HL in Registers opens Memory at 010Ah, marked FIX. LD (HL),B writes 04h there. INC HL advances HL to 010Bh while Memory stays at 010Ah, until H moves it to 010Bh. Editing with E or Enter writes only from 0100h up to the lowest resident service.',
   354,
   [
-    eyebrow(40, 30, 'After LD (HL),B · locked to HL'),
-    eyebrow(416, 30, 'After INC HL · window advances'),
+    eyebrow(40, 30, 'After LD (HL),B · fixed at 010A'),
+    eyebrow(416, 30, 'After INC HL, then H · moved to HL'),
 
     // Left byte strip: 4 cells x 66px = 264px (x=40..304)
     strip({
@@ -675,10 +675,10 @@ add(
         { addr: '010D', val: '00', hi: false },
       ],
     }),
-    text('tb on-sig', 172, 132, '010A>04 00 00 00 HL', 'middle'),
+    text('tb on-sig', 172, 132, '010A>04 00 00 00 FIX', 'middle'),
 
     // Wide 112px gutter between strips for clean arrow + instruction label
-    text('dim', 360, 74, 'INC HL', 'middle'),
+    text('dim', 360, 74, 'INC HL, H', 'middle'),
     line('sline', 318, 86, 402, 86, 'arS'),
 
     // Right byte strip: 4 cells x 66px = 264px (x=416..680)
@@ -694,12 +694,12 @@ add(
         { addr: '010E', val: '00', hi: false },
       ],
     }),
-    text('tb on-sig', 548, 132, '010B>00 00 00 00 HL', 'middle'),
+    text('tb on-sig', 548, 132, '010B>00 00 00 00 FIX', 'middle'),
 
     hrule(158),
 
     // Bottom section: writable range bar (x=40..680, w=640, flush drafting segments)
-    eyebrow(40, 184, 'Writable range for E (Edit mode)'),
+    eyebrow(40, 184, 'Writable range for E or Enter (edit mode)'),
 
     rect('bxq', 40, 202, 122, 62, 0),
     text('ns', 101, 228, 'Page zero', 'middle'),
@@ -710,14 +710,14 @@ add(
     text('dim', 599, 248, 'Protected', 'middle'),
 
     rect('bxs', 162, 202, 356, 62, 0),
-    text('nb on-sig', 340, 228, 'Writable with E (0100h to lowest service)', 'middle'),
+    text('nb on-sig', 340, 228, 'Writable (0100h to lowest service)', 'middle'),
     text('ns', 340, 248, 'Program code, data and stack · EDT mode', 'middle'),
 
     text(
       'dimn',
       40,
       298,
-      'Scrolling away from a followed register appends + (HL+). Opening via M, Tab or G uses FIX.',
+      'Memory never follows a register: A, G, P or B, D, H, X, Y moves it once.',
     ),
     text(
       'dimn',
@@ -734,7 +734,7 @@ add(
 add(
   'symbols-load',
   'Automatic symbol loading from NAME.TBG inside TBUG.SVC',
-  'TAS writes NAME.TBG beside NAME.COM. When TBUG.SVC stops a program at launch, its built-in symbol loader checks NAME.TBG against the image end address and 16-bit checksum. A match lights up SY on Registers, shows labels in Code and enables the Symbols view on Y.',
+  'TAS writes NAME.TBG beside NAME.COM. When TBUG.SVC stops a program at launch, its built-in symbol loader checks NAME.TBG against the image end address and 16-bit checksum. A match lights up SY on Registers, shows labels in Code and enables the Labels view on L.',
   312,
   [
     eyebrow(40, 30, 'Automatic symbol loading · built into TBUG.SVC'),
@@ -773,10 +773,10 @@ add(
       w: 190,
       h: 96,
       step: 3,
-      title: 'Symbols active',
+      title: 'Labels active',
       lines: [
         'SY flag · Code labels',
-        'Symbols view on Y',
+        'Labels view on L',
       ],
       hi: true,
     }),

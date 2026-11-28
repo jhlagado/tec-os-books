@@ -43,7 +43,7 @@ Save with `^S`. Once `Saved` appears on the status row, quit with `^Q` to return
 
 Assemble `HELLO.ASM` into a `.COM` executable:
 
-<!-- Tecos 8c12c9f with TBUG 167f7f0, starter card e2f124e9: TECOS=<checkout> node scripts/tbug-capture.mjs --card tbug.img '>b:' '>tas hello' '>hello' '!tbug hello' r F8 F8 F5 q y '>services', where tbug.img holds this book's HELLO.ASM, STEP.ASM and FILL.ASM on B. Console text; TAS's progress mark is overwritten. -->
+<!-- Tecos 4c555ff with TBUG 1215559, starter card 48a9309f: TECOS=<checkout> node scripts/tbug-capture.mjs --card tbug.img '>b:' '>tas hello' '>hello' '!tbug hello' r F8 F8 F5 q y '>services', where tbug.img holds this book's HELLO.ASM, STEP.ASM and FILL.ASM on B. Console text; TAS's progress mark is overwritten. -->
 ```text
 B:WORK>tas hello
 HELLO.COM written
@@ -53,7 +53,7 @@ Beside `HELLO.COM`, `TAS` also writes `HELLO.TBG` containing your labels. TBUG l
 
 Run the program normally first so you have a baseline:
 
-<!-- Tecos 8c12c9f with TBUG 167f7f0, starter card e2f124e9: TECOS=<checkout> node scripts/tbug-capture.mjs --card tbug.img '>b:' '>tas hello' '>hello', where tbug.img holds this book's HELLO.ASM, STEP.ASM and FILL.ASM on B. Console text. -->
+<!-- Tecos 4c555ff with TBUG 1215559, starter card 48a9309f: TECOS=<checkout> node scripts/tbug-capture.mjs --card tbug.img '>b:' '>tas hello' '>hello', where tbug.img holds this book's HELLO.ASM, STEP.ASM and FILL.ASM on B. Console text. -->
 ```text
 B:WORK>hello
 Hello from Tecos
@@ -67,7 +67,7 @@ Four Z80 instructions just ran in a fraction of a millisecond. `LD DE,MSG` point
 
 Ordinary `.COM` programs load at `0100h` and grow upwards into free RAM. Resident services load from the top down, right below the Tecos ROM at `C000h`, and lower the address stored at `0006h` so transient programs stay underneath them.
 
-On the starter card, `SHELL.SVC` is already loaded at boot. TBUG fits beside it: TBUG takes 32 pages of 256 bytes, about 8 KiB, and the shell 9. If your card loads other services at boot and Tecos answers `TBUG?`, unload one of them to make room.
+On the starter card, `SHELL.SVC` is already loaded at boot. TBUG fits beside it: TBUG takes 33 pages of 256 bytes, about 8 KiB, and the shell 9. If your card loads other services at boot and Tecos answers `TBUG?`, unload one of them to make room.
 
 ![TBUG is loaded at the top of RAM below the ROM and uses only the 20 × 4 character LCD and matrix keyboard while the program keeps the console.](/images/tbug/first-stop.svg)
 
@@ -81,23 +81,23 @@ Start `HELLO` under TBUG from drive B:
 B:WORK>tbug hello
 ```
 
-`tbug hello` loads TBUG from drive A, if it is not resident already, and hands `hello` back to the command processor. That loads `HELLO.COM` at `0100h` itself, and TBUG catches the launch before the first instruction runs. On the console the command processor echoes the line it runs, `B:WORK>HELLO`, and no greeting follows. On the LCD, TBUG opens the stop in Code, its disassembly view, with `TBUG Tab Next H Help` on the bottom row for a moment:
+`tbug hello` loads TBUG from drive A, if it is not resident already, and hands `hello` back to the command processor. That loads `HELLO.COM` at `0100h` itself, and TBUG catches the launch before the first instruction runs. On the console the command processor echoes the line it runs, `B:WORK>HELLO`, and no greeting follows. On the LCD, TBUG opens the stop in Code, its disassembly view, with `TBUG Tab F1 Help` on the bottom row for a moment:
 
-<!-- Tecos 8c12c9f with TBUG 167f7f0, starter card e2f124e9: TECOS=<checkout> node scripts/tbug-capture.mjs --card tbug.img '>b:' '>tas hello' '>hello' '!tbug hello' r F8 F8 F5 q y '>services', where tbug.img holds this book's HELLO.ASM, STEP.ASM and FILL.ASM on B. The LCD's four rows at the first stop. -->
+<!-- Tecos 4c555ff with TBUG 1215559, starter card 48a9309f: TECOS=<checkout> node scripts/tbug-capture.mjs --card tbug.img '>b:' '>tas hello' '>hello' '!tbug hello' r F8 F8 F5 q y '>services', where tbug.img holds this book's HELLO.ASM, STEP.ASM and FILL.ASM on B. The LCD's four rows at the first stop. -->
 ```text
 START:
 >→0100 LD DE,0109
   0103 LD C,09
-TBUG Tab Next H Help
+  TBUG Tab F1 Help
 ```
 
-The hint then gives way to the next instruction, `0105 CALL 0005`. `→` marks `PC`, the instruction about to run, and `>` marks the row you have selected. `START:` is a label from `HELLO.TBG`, which sits beside `HELLO.COM`. Chapter 2 tours Code properly.
+The hint then gives way to the next instruction, `0105 CALL 0005`. `F1` (`Fn+1`) opens help for the view you are in at any stop: `Right` and `Left` turn its pages, and `F1` or `Esc` closes it. `→` marks `PC`, the instruction about to run, and `>` marks the row you have selected. `START:` is a label from `HELLO.TBG`, which sits beside `HELLO.COM`. Chapter 2 tours Code properly.
 
 Press `R` to open Registers, the CPU's state:
 
-<!-- Tecos 8c12c9f with TBUG 167f7f0, starter card e2f124e9: TECOS=<checkout> node scripts/tbug-capture.mjs --card tbug.img '>b:' '>tas hello' '>hello' '!tbug hello' r F8 F8 F5 q y '>services', where tbug.img holds this book's HELLO.ASM, STEP.ASM and FILL.ASM on B. The LCD after r. -->
+<!-- Tecos 4c555ff with TBUG 1215559, starter card 48a9309f: TECOS=<checkout> node scripts/tbug-capture.mjs --card tbug.img '>b:' '>tas hello' '>hello' '!tbug hello' r F8 F8 F5 q y '>services', where tbug.img holds this book's HELLO.ASM, STEP.ASM and FILL.ASM on B. The LCD after r. -->
 ```text
->PC 0100  SP 8DFE ST
+>PC 0100  SP 8CFE ST
  AF 0000  BC 0000 SY
  DE 0000  HL 0000 ..
  IX 0000  IY 0000 ..
@@ -121,9 +121,9 @@ Tap `F8` once and let it go. The Z80 executes `LD DE,MSG` at `0100h` and halts a
 
 Tap `F8` a second time. `LD C,9` runs, moving `PC` to `0105` and setting the low byte of `BC` to `09`:
 
-<!-- Tecos 8c12c9f with TBUG 167f7f0, starter card e2f124e9: TECOS=<checkout> node scripts/tbug-capture.mjs --card tbug.img '>b:' '>tas hello' '>hello' '!tbug hello' r F8 F8 F5 q y '>services', where tbug.img holds this book's HELLO.ASM, STEP.ASM and FILL.ASM on B. The LCD after the second F8. -->
+<!-- Tecos 4c555ff with TBUG 1215559, starter card 48a9309f: TECOS=<checkout> node scripts/tbug-capture.mjs --card tbug.img '>b:' '>tas hello' '>hello' '!tbug hello' r F8 F8 F5 q y '>services', where tbug.img holds this book's HELLO.ASM, STEP.ASM and FILL.ASM on B. The LCD after the second F8. -->
 ```text
->PC 0105  SP 8DFE ST
+>PC 0105  SP 8CFE ST
  AF 0000  BC 0009 SY
  DE 0109  HL 0000 ..
  IX 0000  IY 0000 ..
@@ -131,13 +131,13 @@ Tap `F8` a second time. `LD C,9` runs, moving `PC` to `0105` and setting the low
 
 Both arguments for BDOS function 9 are now sitting in the CPU, with `CALL $0005` lined up next at `0105h`.
 
-Now press `F5` to let the program finish at full speed. `CALL $0005` prints `Hello from Tecos` onto the console just as it did in your standalone run. Then `RET` pops TBUG's exit return address off the stack, raising `SP` from `8DFE` to `8E00`. Instead of vanishing back to CP/M, TBUG catches the exit and shows `>PC ----  SP 8E00 EX` on row 1.
+Now press `F5` to let the program finish at full speed. `CALL $0005` prints `Hello from Tecos` onto the console just as it did in your standalone run. Then `RET` pops TBUG's exit return address off the stack, raising `SP` from `8CFE` to `8D00`. Instead of vanishing back to CP/M, TBUG catches the exit and shows `>PC ----  SP 8D00 EX` on row 1.
 
-Press `Q` to leave TBUG. The LCD displays `Quit TBUG? Y/N`. Press `Y` or `Q` to confirm (any other key keeps you inside TBUG). Your `B:WORK>` prompt returns on the console, and TBUG stays resident at the top of RAM for the next run: `services` now lists `TBUG 32` above `SHELL 9`. When you want the memory back, `unload tbug` removes it.
+Press `Q` to leave TBUG. The LCD displays `Quit TBUG? Y/N`. Press `Y` or `Q` to confirm (any other key keeps you inside TBUG). Your `B:WORK>` prompt returns on the console, and TBUG stays resident at the top of RAM for the next run: `services` now lists `TBUG 33` above `SHELL 9`. When you want the memory back, `unload tbug` removes it.
 
 Typing `tbug` alone shows how to start a program and loads nothing:
 
-<!-- Tecos 8c12c9f with TBUG 167f7f0, starter card e2f124e9: node tools/capture.mjs --board pico --lcd tbug services. The LCD's four rows; services then lists SHELL 9 alone. -->
+<!-- Tecos 4c555ff with TBUG 1215559, starter card 48a9309f: node tools/capture.mjs --board pico --lcd tbug services. The LCD's four rows; services then lists SHELL 9 alone. -->
 ```text
 TBUG 0.3 ready
 tbug name debugs
@@ -145,4 +145,4 @@ NAME.COM
 unload tbug removes
 ```
 
-_Checked against Tecos `8c12c9f` with TBUG `167f7f0`, on the starter card in the emulated TEC-1G, 28 November 2026._
+_Checked against Tecos `4c555ff` with TBUG `1215559`, on the starter card in the emulated TEC-1G, 28 November 2026._

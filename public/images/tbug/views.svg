@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="720" height="434" viewBox="0 0 720 434" role="img" aria-labelledby="figTitle figDesc">
   <title id="figTitle">Switching views and stepping with F6 to F8</title>
-  <desc id="figDesc">C, R, Y, S and M jump straight to Code, Registers, Symbols, Stack and Memory, and Tab cycles through them in that order. Every stop opens in Code. Enter opens the target of a register, stack slot or branch, Esc steps back and Q quits. F8 steps into, F7 steps over and F6 steps out (Fn+8, Fn+7 and Fn+6 on the TEC-1G).</desc>
+  <desc id="figDesc">C, R, L, S and M jump straight to Code, Registers, Labels, Stack and Memory, and Tab cycles through them in that order. Every stop opens in Code. A opens Memory at the selection's address, Enter follows a branch or opens a stack slot, Esc goes back and Q quits. F8 steps into, F7 steps over and F6 steps out (Fn+8, Fn+7 and Fn+6 on the TEC-1G).</desc>
   <defs>
     <style>
       :root {
@@ -76,9 +76,9 @@
   <text class="ns" x="279" y="121" text-anchor="start" xml:space="preserve">Flags and stop reason</text>
   <rect class="bx" x="482" y="48" width="198" height="86" rx="5"/>
   <rect class="pill" x="500" y="62" width="24" height="22" rx="3"/>
-  <text class="pill-t" x="512" y="77" text-anchor="middle" xml:space="preserve">Y</text>
-  <text class="nb" x="534" y="77.5" text-anchor="start" xml:space="preserve">Symbols</text>
-  <text class="ns" x="500" y="102" text-anchor="start" xml:space="preserve">Global labels</text>
+  <text class="pill-t" x="512" y="77" text-anchor="middle" xml:space="preserve">L</text>
+  <text class="nb" x="534" y="77.5" text-anchor="start" xml:space="preserve">Labels</text>
+  <text class="ns" x="500" y="102" text-anchor="start" xml:space="preserve">Labels and symbols</text>
   <text class="ns" x="500" y="121" text-anchor="start" xml:space="preserve">Loaded from .TBG</text>
   <rect class="bx" x="126" y="154" width="220" height="86" rx="5"/>
   <rect class="pill" x="144" y="168" width="24" height="22" rx="3"/>
@@ -91,7 +91,7 @@
   <text class="pill-t" x="404" y="183" text-anchor="middle" xml:space="preserve">M</text>
   <text class="nb" x="426" y="183.5" text-anchor="start" xml:space="preserve">Memory</text>
   <text class="ns" x="392" y="208" text-anchor="start" xml:space="preserve">16-byte hex window</text>
-  <text class="ns" x="392" y="227" text-anchor="start" xml:space="preserve">FIX or register follow</text>
+  <text class="ns" x="392" y="227" text-anchor="start" xml:space="preserve">Fixed, moved by A or G</text>
   <line class="rule" x1="40" y1="264" x2="680" y2="264"/>
   <text class="cap" x="40" y="290" text-anchor="start" xml:space="preserve">STEPPING KEYS · F8, F7 AND F6 (FN+8, FN+7, FN+6 ON TEC-1G)</text>
   <rect class="bx" x="40" y="308" width="198" height="86" rx="5"/>

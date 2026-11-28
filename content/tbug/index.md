@@ -16,9 +16,9 @@ TBUG puts a resident debugger right inside Tecos. It loads at the top of RAM bel
 
 TBUG runs through the TEC-1G's 20 × 4 character LCD and matrix keyboard, treating the LCD as a second display dedicated to the debugger. Nothing TBUG draws ever touches your normal console. Whatever display or terminal your session uses, the program under test writes to it undisturbed and behaves as if no debugger were present. You watch the program on the console and steer it from the LCD.
 
-## Built-in symbols
+## Built-in labels and symbols
 
-By itself, TBUG can debug any `.COM` binary using hexadecimal addresses. Whenever a matching `NAME.TBG` symbol file written by `TAS` sits beside `NAME.COM`, TBUG loads it automatically. Your own assembly labels appear in the disassembly, branch targets display by name and a fifth Symbols view lists every global label in address order.
+By itself, TBUG can debug any `.COM` binary using hexadecimal addresses. Whenever a matching `NAME.TBG` symbol file written by `TAS` sits beside `NAME.COM`, TBUG loads it automatically. Your own assembly labels appear in the disassembly, branch targets display by name and a fifth view, Labels, lists the labels and symbols in address order.
 
 ## Before you start
 
@@ -32,5 +32,5 @@ Addresses and bytes use hexadecimal with a trailing `h`, such as `0100h`, and si
 2. [Stepping through code, registers and the stack](02-watch-the-stack.md)
 3. [Breakpoints, running to a target and catching live programs](03-breakpoints.md)
 4. [Following and editing data in memory](04-follow-data.md)
-5. [Debugging with source symbols](05-symbols.md)
+5. [Debugging with labels and symbols](05-symbols.md)
 6. [Reference, diagnostics and building TBUG](06-reference.md)
