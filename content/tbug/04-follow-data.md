@@ -11,7 +11,7 @@ Registers hold counters and pointers, while most of your program's real state si
 
 ## A buffer-filling target
 
-On drive B, open `FILL.ASM` (`TED FILL.ASM`), enter this ten-byte loop, save with `^S` and quit with `^Q`:
+On drive B, open `FILL.ASM` (`ted fill.asm`), enter this ten-byte loop, save with `^S` and quit with `^Q`:
 
 ```asm
         ORG $0100
@@ -26,10 +26,14 @@ BUF:    DS 4
 
 Assemble it and bring it up in TBUG:
 
+<!-- TEC-OS 8a7e24e with TBUG 167f7f0, starter card de6b5ff6: TECOS=<checkout> node scripts/tbug-capture.mjs --card tbug.img '>b:' '>tas fill' '!tbug fill' R F8 down down right Enter F8 F8 F8 C down F5 M G 1 0 A Enter, where tbug.img holds this book's HELLO.ASM, STEP.ASM and FILL.ASM on B. Console text; TAS's progress mark is overwritten. -->
 ```text
-B:WORK>TAS FILL
+B:WORK>tas fill
 FILL.COM written
-B:WORK>TBUG.SVC FILL
+
+B:WORK>tbug fill
+
+B:WORK>FILL
 ```
 
 `FILL.COM` points `HL` at the four-byte `BUF` reservation at `010Ah`, loads `4` into `B` and loops four times. Each pass stores `B` at `(HL)`, advances `HL` and decrements `B` with `DJNZ`. At `RET`, `BUF` should hold `04 03 02 01`.
@@ -46,6 +50,7 @@ Try it on `FILL`. At the entry stop (`PC 0100`), press `R` for Registers and tap
 
 In Registers, move `>` onto `HL` (`Down` twice, `Right` once) and hit `Enter`. Memory opens straight at `010Ah` with `HL` in the top right corner:
 
+<!-- TEC-OS 8a7e24e with TBUG 167f7f0, starter card de6b5ff6: TECOS=<checkout> node scripts/tbug-capture.mjs --card tbug.img '>b:' '>tas fill' '!tbug fill' R F8 down down right Enter F8 F8 F8 C down F5 M G 1 0 A Enter, where tbug.img holds this book's HELLO.ASM, STEP.ASM and FILL.ASM on B. The LCD after Enter on HL. -->
 ```text
 010A>00 00 00 00 HL
 010E 00 00 00 00
@@ -55,6 +60,7 @@ In Registers, move `>` onto `HL` (`Down` twice, `Right` once) and hit `Enter`. M
 
 Tap `F8` twice. `LD B,4` loads the counter, then `LD (HL),B` writes `04` right under the cursor at `010Ah`:
 
+<!-- TEC-OS 8a7e24e with TBUG 167f7f0, starter card de6b5ff6: TECOS=<checkout> node scripts/tbug-capture.mjs --card tbug.img '>b:' '>tas fill' '!tbug fill' R F8 down down right Enter F8 F8 F8 C down F5 M G 1 0 A Enter, where tbug.img holds this book's HELLO.ASM, STEP.ASM and FILL.ASM on B. The LCD after the second F8 in Memory. -->
 ```text
 010A>04 00 00 00 HL
 010E 00 00 00 00
@@ -64,6 +70,7 @@ Tap `F8` twice. `LD B,4` loads the counter, then `LD (HL),B` writes `04` right u
 
 Tap `F8` once more for `INC HL`. `HL` moves to `010Bh`, and Memory steps forward to `010Bh` with it:
 
+<!-- TEC-OS 8a7e24e with TBUG 167f7f0, starter card de6b5ff6: TECOS=<checkout> node scripts/tbug-capture.mjs --card tbug.img '>b:' '>tas fill' '!tbug fill' R F8 down down right Enter F8 F8 F8 C down F5 M G 1 0 A Enter, where tbug.img holds this book's HELLO.ASM, STEP.ASM and FILL.ASM on B. The LCD after the third F8 in Memory. -->
 ```text
 010B>00 00 00 00 HL
 010F 00 00 00 00
@@ -110,4 +117,4 @@ In **Memory**, put `>` on a byte and press `E`. The top right tag switches to `E
 
 One safety fence guards `EDT` mode: TBUG only writes inside program memory, from `0100h` up to the lowest resident service. Page zero (`0000h–00FFh`), TBUG itself and ROM are off limits. Trying to write there prints `Not writable` or `End of range` and leaves the byte alone so a stray hex digit cannot knock the debugger out from under you.
 
-_Checked against TEC-OS `b5af505` with TBUG `a4d1da8`, on the starter card in the emulated TEC-1G, 27 November 2026._
+_Checked against TEC-OS `8a7e24e` with TBUG `167f7f0`, on the starter card in the emulated TEC-1G, 28 November 2026._

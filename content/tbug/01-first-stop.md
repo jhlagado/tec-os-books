@@ -14,16 +14,16 @@ A debugger makes the most sense on a program whose normal output you already kno
 Make sure `TBUG.SVC` and `TBUG.HLP` sit on drive A alongside `TED.COM` and `TAS.COM`. Switch to drive B so your own files stay on the working volume:
 
 ```text
-A:SYSTEM>B:
+A:SYSTEM>b:
 B:WORK>
 ```
 
-When you type a bare command on drive B, TEC-OS checks drive B first and then falls back to drive A for `.COM` programs. You can run `TED` and `TAS` directly from `B:WORK>` without typing `A:` in front of them, and your source and `.COM` files stay right on drive B without `B:` either.
+When you type a bare command on drive B, TEC-OS checks drive B first and then falls back to drive A, for `.COM` programs and for services such as `TBUG.SVC`. You can run `ted`, `tas` and `tbug` directly from `B:WORK>` without typing `a:` in front of them, and your source and `.COM` files stay right on drive B without `b:` either. TEC-OS takes commands in any case; this book types them in lowercase.
 
 Open a new source file called `HELLO.ASM`:
 
 ```text
-B:WORK>TED HELLO.ASM
+B:WORK>ted hello.asm
 ```
 
 `TED` clears the console and shows the filename and cursor position on the bottom row. Enter this nine-byte program and its message string, using two leading spaces so every line sits cleanly inside 40 columns:
@@ -43,8 +43,9 @@ Save with `^S`. Once `Saved` appears on the status row, quit with `^Q` to return
 
 Assemble `HELLO.ASM` into a `.COM` executable:
 
+<!-- TEC-OS 8a7e24e with TBUG 167f7f0, starter card de6b5ff6: TECOS=<checkout> node scripts/tbug-capture.mjs --card tbug.img '>b:' '>tas hello' '>hello' '!tbug hello' r F8 F8 F5 q y '>services', where tbug.img holds this book's HELLO.ASM, STEP.ASM and FILL.ASM on B. Console text; TAS's progress mark is overwritten. -->
 ```text
-B:WORK>TAS HELLO
+B:WORK>tas hello
 HELLO.COM written
 ```
 
@@ -53,7 +54,7 @@ Beside `HELLO.COM`, `TAS` also writes `HELLO.TBG` containing your labels. TBUG l
 Run the program normally first so you have a baseline:
 
 ```text
-B:WORK>HELLO
+B:WORK>hello
 Hello from TEC-OS
 
 B:WORK>
@@ -65,40 +66,23 @@ Four Z80 instructions just ran in a fraction of a millisecond. `LD DE,MSG` point
 
 Ordinary `.COM` programs load at `0100h` and grow upwards into free RAM. Resident services load from the top down, right below the TEC-OS ROM at `C000h`, and lower the address stored at `0006h` so transient programs stay underneath them.
 
-On the starter card, `SHELL.SVC` is already loaded at boot and uses enough upper RAM that TBUG may not fit beside it. Switch back to drive A and run `UNLOAD` to drop the shell and return to the bare `A:SYSTEM>` prompt. If your card loads other services at boot, unload or omit them when you need space for TBUG.
+On the starter card, `SHELL.SVC` is already loaded at boot. TBUG fits beside it: TBUG takes 32 pages of 256 bytes, about 8 KiB, and the shell 9. If your card loads other services at boot and TEC-OS answers `TBUG?`, unload one of them to make room.
 
 ![TBUG is loaded at the top of RAM below the ROM and uses only the 20 × 4 character LCD and matrix keyboard while the program keeps the console.](/images/tbug/first-stop.svg)
 
 Once resident, TBUG survives warm boots and works transparently alongside the rest of the computer. Whenever a debugged program stops, TBUG draws on the 20 × 4 character LCD and reads the matrix keyboard. Your console stays untouched, so any text or graphics your program draws remains exactly where the program put it.
 
-## Install TBUG and catch the first stop
+## Catch the first stop
 
-At the `A:SYSTEM>` prompt, type `TBUG.SVC` on its own to install the service:
-
-```text
-A:SYSTEM>TBUG.SVC
-```
-
-The LCD displays the ready screen and the prompt returns on the console:
+Start `HELLO` under TBUG from drive B:
 
 ```text
-TBUG 0.3 ready
-Not armed
-TBUG.SVC NAME debug
-TBUG.SVC ARM arms
+B:WORK>tbug hello
 ```
 
-That screen confirms TBUG is resident, shows its version and tells you whether an armed launch is active. From now on, `TBUG.SVC` from any drive enters the resident copy straight away without reading disk again. When you eventually want the memory back, `UNLOAD TBUG` removes the service.
+`tbug hello` loads TBUG from drive A, if it is not resident already, and hands `hello` back to the command processor. That loads `HELLO.COM` at `0100h` itself, and TBUG catches the launch before the first instruction runs. On the console the command processor echoes the line it runs, `B:WORK>HELLO`, and no greeting follows. On the LCD, TBUG opens the stop in Code, its disassembly view, with `TBUG Tab Next H Help` on the bottom row for a moment:
 
-Switch back to drive B and start `HELLO` under TBUG:
-
-```text
-A:SYSTEM>B:
-B:WORK>TBUG.SVC HELLO
-```
-
-`TBUG.SVC HELLO` arms the debugger and hands the command line back to the command processor, which locates and loads `HELLO.COM` at `0100h` itself. TBUG then catches the launch before the first instruction runs. On the console, the command processor echoes the line it runs, `B:WORK> HELLO`, and no greeting follows. On the LCD, TBUG opens the stop in Code, its disassembly view, with `TBUG Tab Next H Help` on the bottom row for a moment:
-
+<!-- TEC-OS 8a7e24e with TBUG 167f7f0, starter card de6b5ff6: TECOS=<checkout> node scripts/tbug-capture.mjs --card tbug.img '>b:' '>tas hello' '>hello' '!tbug hello' r F8 F8 F5 q y '>services', where tbug.img holds this book's HELLO.ASM, STEP.ASM and FILL.ASM on B. The LCD's four rows at the first stop. -->
 ```text
 START:
 >→0100 LD DE,0109
@@ -110,8 +94,9 @@ The hint then gives way to the next instruction, `0105 CALL 0005`. `→` marks `
 
 Press `R` to open Registers, the CPU's state:
 
+<!-- TEC-OS 8a7e24e with TBUG 167f7f0, starter card de6b5ff6: TECOS=<checkout> node scripts/tbug-capture.mjs --card tbug.img '>b:' '>tas hello' '>hello' '!tbug hello' r F8 F8 F5 q y '>services', where tbug.img holds this book's HELLO.ASM, STEP.ASM and FILL.ASM on B. The LCD after r. -->
 ```text
->PC 0100  SP 96FE ST
+>PC 0100  SP 8DFE ST
  AF 0000  BC 0000 SY
  DE 0000  HL 0000 ..
  IX 0000  IY 0000 ..
@@ -135,8 +120,9 @@ Tap `F8` once and let it go. The Z80 executes `LD DE,MSG` at `0100h` and halts a
 
 Tap `F8` a second time. `LD C,9` runs, moving `PC` to `0105` and setting the low byte of `BC` to `09`:
 
+<!-- TEC-OS 8a7e24e with TBUG 167f7f0, starter card de6b5ff6: TECOS=<checkout> node scripts/tbug-capture.mjs --card tbug.img '>b:' '>tas hello' '>hello' '!tbug hello' r F8 F8 F5 q y '>services', where tbug.img holds this book's HELLO.ASM, STEP.ASM and FILL.ASM on B. The LCD after the second F8. -->
 ```text
->PC 0105  SP 96FE ST
+>PC 0105  SP 8DFE ST
  AF 0000  BC 0009 SY
  DE 0109  HL 0000 ..
  IX 0000  IY 0000 ..
@@ -144,8 +130,18 @@ Tap `F8` a second time. `LD C,9` runs, moving `PC` to `0105` and setting the low
 
 Both arguments for BDOS function 9 are now sitting in the CPU, with `CALL $0005` lined up next at `0105h`.
 
-Now press `F5` to let the program finish at full speed. `CALL $0005` prints `Hello from TEC-OS` onto the console just as it did in your standalone run. Then `RET` pops TBUG's exit return address off the stack, raising `SP` from `96FE` to `9700`. Instead of vanishing back to CP/M, TBUG catches the exit and shows `>PC ----  SP 9700 EX` on row 1.
+Now press `F5` to let the program finish at full speed. `CALL $0005` prints `Hello from TEC-OS` onto the console just as it did in your standalone run. Then `RET` pops TBUG's exit return address off the stack, raising `SP` from `8DFE` to `8E00`. Instead of vanishing back to CP/M, TBUG catches the exit and shows `>PC ----  SP 8E00 EX` on row 1.
 
-Press `Q` to leave TBUG. The LCD displays `Quit TBUG? Y/N`. Press `Y` or `Q` to confirm (any other key keeps you inside TBUG). Your `B:WORK>` prompt returns on the console, and TBUG stays resident at the top of RAM for the next run.
+Press `Q` to leave TBUG. The LCD displays `Quit TBUG? Y/N`. Press `Y` or `Q` to confirm (any other key keeps you inside TBUG). Your `B:WORK>` prompt returns on the console, and TBUG stays resident at the top of RAM for the next run: `services` now lists `TBUG 32` above `SHELL 9`. When you want the memory back, `unload tbug` removes it.
 
-_Checked against TEC-OS `b5af505` with TBUG `a4d1da8`, on the starter card in the emulated TEC-1G, 27 November 2026._
+Typing `tbug` alone shows how to start a program and loads nothing:
+
+<!-- TEC-OS 8a7e24e with TBUG 167f7f0, starter card de6b5ff6: node tools/capture.mjs --board pico --lcd tbug services. The LCD's four rows; services then lists SHELL 9 alone. -->
+```text
+TBUG 0.3 ready
+tbug name debugs
+NAME.COM
+unload tbug removes
+```
+
+_Checked against TEC-OS `8a7e24e` with TBUG `167f7f0`, on the starter card in the emulated TEC-1G, 28 November 2026._

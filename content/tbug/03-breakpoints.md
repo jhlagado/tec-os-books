@@ -9,7 +9,7 @@ nav_group: Using TBUG
 
 Single-stepping gets you through six instructions. The moment a program fills a table, clears a screen or loops a hundred times before hitting the broken line, tapping `F8` stops being practical. You want the Z80 running at full speed right up to the spot you want to inspect and halting cleanly there.
 
-TBUG gives you four ways to catch a full-speed program, moving from the lightest touch to the widest reach: a disposable one-shot run to a line, persistent breakpoints, breaking into a live program at its next OS call and arming TBUG to catch a normal launch from the prompt.
+TBUG gives you three ways to catch a full-speed program, moving from the lightest touch to the widest reach: a disposable one-shot run to a line, persistent breakpoints and breaking into a live program at its next OS call.
 
 ## Run freely or stop once at a line
 
@@ -23,8 +23,9 @@ That single habit makes jumping past a loop effortless: scroll `>` to the instru
 
 When you want to stop at the same line on every pass through a loop or every call to a routine, set a persistent breakpoint with `Space`.
 
-Start `TBUG.SVC STEP` from `B:WORK>`. The stop opens in Code, with `>` and `→` together on `0100 LD HL,1234`. Move `>` down twice to `0104 POP DE`, leaving `→` back at `0100`:
+Start `tbug step` from `B:WORK>`. The stop opens in Code, with `>` and `→` together on `0100 LD HL,1234`. Move `>` down twice to `0104 POP DE`, leaving `→` back at `0100`:
 
+<!-- TEC-OS 8a7e24e with TBUG 167f7f0, starter card de6b5ff6: TECOS=<checkout> node scripts/tbug-capture.mjs --card tbug.img '>b:' '>tas step' '!tbug step' down down Space R F5 C, where tbug.img holds this book's HELLO.ASM, STEP.ASM and FILL.ASM on B. The LCD after the second down. -->
 ```text
 START:
  →0100 LD HL,1234
@@ -34,6 +35,7 @@ START:
 
 Press `Space`. A hollow box `□` appears in column 2 beside `0104`, and the top row reports `BP SET 0104` in place of the label:
 
+<!-- TEC-OS 8a7e24e with TBUG 167f7f0, starter card de6b5ff6: TECOS=<checkout> node scripts/tbug-capture.mjs --card tbug.img '>b:' '>tas step' '!tbug step' down down Space R F5 C, where tbug.img holds this book's HELLO.ASM, STEP.ASM and FILL.ASM on B. The LCD after Space. -->
 ```text
 BP SET 0104
  →0100 LD HL,1234
@@ -45,14 +47,15 @@ BP SET 0104
 
 Jump back to Registers with `R` and press `F5`. The Z80 runs `LD HL,$1234` and `PUSH HL` at full speed and halts right before `POP DE`:
 
+<!-- TEC-OS 8a7e24e with TBUG 167f7f0, starter card de6b5ff6: TECOS=<checkout> node scripts/tbug-capture.mjs --card tbug.img '>b:' '>tas step' '!tbug step' down down Space R F5 C, where tbug.img holds this book's HELLO.ASM, STEP.ASM and FILL.ASM on B. The LCD after F5. -->
 ```text
->PC 0104  SP 96FC BP
+>PC 0104  SP 8DFC BP
  AF 0000  BC 0000 SY
  DE 0000  HL 1234 ..
  IX 0000  IY 0000 ..
 ```
 
-`BP` on row 1 confirms a breakpoint hit. `HL` already holds `1234` and `SP` has already dropped to `96FC`, proving `PUSH HL` ran while `POP DE` is still waiting. Press `C` to view Code and column 2 on `0104` now shows a solid block `█`, meaning `PC` is stopped on a user breakpoint.
+`BP` on row 1 confirms a breakpoint hit. `HL` already holds `1234` and `SP` has already dropped to `8DFC`, proving `PUSH HL` ran while `POP DE` is still waiting. Press `C` to view Code and column 2 on `0104` now shows a solid block `█`, meaning `PC` is stopped on a user breakpoint.
 
 ## Patching and restoring with `RST 30h`
 
@@ -80,22 +83,6 @@ Two boundaries limit `Ctrl+Esc`:
 - **Buffered line input:** While a program sits inside a BDOS line read (function 10), TEC-OS owns the keyboard and ignores `Ctrl+Esc`. Finish the line with `Enter`, then hold `Ctrl+Esc`, and TBUG stops at the program's next BDOS call.
 - **Tight CPU loops:** Any program printing, reading a file or polling the console hits `0005h` and stops straight away. A pure calculation loop that never calls `0005h` cannot be caught this way. Set a breakpoint inside the loop and run again.
 
-## Catching a normal launch with `ARM`
+![Three ways to stop a running program: one-shot F5 off PC, persistent Space breakpoints and Ctrl+Esc at the next BDOS call.](/images/tbug/stop-paths.svg)
 
-`TBUG.SVC STEP` hands the command line back to the command processor, which loads the program itself. When you want to run a command normally later in the session, or catch a program launched from `STARTUP.CMD`, arm TBUG explicitly first:
-
-```text
-B:WORK>TBUG.SVC ARM
-```
-
-Now run any `.COM` program normally, such as `STEP` or `HELLO`. TEC-OS routes the launch through `COMVEC` (added in TEC-OS ABI 5.3) and stops the program at `0100h` with its ordinary command tail intact in page zero (`0080h`).
-
-![Four ways to stop a running program: one-shot F5 off PC, persistent Space breakpoints, Ctrl+Esc at the next BDOS call and TBUG.SVC ARM via COMVEC.](/images/tbug/stop-paths.svg)
-
-A few details keep `ARM` predictable:
-
-- Typing `TBUG.SVC` alone prints `Next launch: armed` on row 2 of the ready screen so you can check whether the trap is set.
-- Putting `TBUG.SVC ARM` in `STARTUP.CMD` arms every cold boot automatically.
-- On a ROM older than ABI 5.3, `TBUG.SVC ARM` prints `ARM needs ABI 5.3` and arms nothing. Update the ROM to use `ARM`.
-
-_Checked against TEC-OS `b5af505` with TBUG `a4d1da8`, on the starter card in the emulated TEC-1G, 27 November 2026._
+_Checked against TEC-OS `8a7e24e` with TBUG `167f7f0`, on the starter card in the emulated TEC-1G, 28 November 2026._

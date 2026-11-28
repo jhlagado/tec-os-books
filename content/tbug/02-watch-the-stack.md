@@ -11,7 +11,7 @@ Stepping through `HELLO.COM` proved you could watch registers change while the c
 
 ## A six-byte stack target
 
-Still on drive B (`B:WORK>`), open `STEP.ASM` in `TED` (`TED STEP.ASM`), type these six bytes of Z80 code, save with `^S` and quit with `^Q`:
+Still on drive B (`B:WORK>`), open `STEP.ASM` in `TED` (`ted step.asm`), type these six bytes of Z80 code, save with `^S` and quit with `^Q`:
 
 ```asm
         ORG $0100
@@ -21,12 +21,12 @@ TAKE:   POP DE
         RET
 ```
 
-Assemble it with `TAS STEP` so `STEP.COM` and `STEP.TBG` land on drive B. If you run `STEP` on its own, nothing prints and `B:WORK>` comes right back. All of its work happens inside the CPU and on the stack, which gives you a quiet, clean target where every instruction alters one visible piece of state.
+Assemble it with `tas step` so `STEP.COM` and `STEP.TBG` land on drive B. If you run `step` on its own, nothing prints and `B:WORK>` comes right back. All of its work happens inside the CPU and on the stack, which gives you a quiet, clean target where every instruction alters one visible piece of state.
 
-Launch it under TBUG (if you rebooted since Chapter 1, unload `SHELL.SVC` and run `TBUG.SVC` on `A:SYSTEM>` first, then switch to `B:`):
+Launch it under TBUG:
 
 ```text
-B:WORK>TBUG.SVC STEP
+B:WORK>tbug step
 ```
 
 TBUG stops before the first instruction and opens Code, with `>→0100 LD HL,1234` under the `START:` label.
@@ -60,7 +60,7 @@ START:
 
 `STEP.TBG` also names `0104` as `TAKE:`, but a label row never takes the bottom row, so it waits until the window scrolls. Press `Left`. It puts `PC` on Code's top row, and `TAKE:` appears right above `0104`:
 
-<!-- TEC-OS b8dcb8f with TBUG f31249a, starter card c9352a42: node tools/capture.mjs --card step.img --board pico --lcd UNLOAD TBUG.SVC B: 'TAS STEP' '@start TBUG.SVC STEP' '@run 20' '@fn 8' '@run 10' '@arrow L' '@run 10', where step.img holds this chapter's STEP.ASM on B. The LCD's four rows; the LCD shows → as 7Eh. -->
+<!-- TEC-OS 8a7e24e with TBUG 167f7f0, starter card de6b5ff6: TECOS=<checkout> node scripts/tbug-capture.mjs --card tbug.img '>b:' '>tas step' '!tbug step' F8 left down down S F8 Enter Esc C F8 R F5 Q Y, where tbug.img holds this book's HELLO.ASM, STEP.ASM and FILL.ASM on B. The LCD after F8 and Left. -->
 ```text
 >→0103 PUSH HL
 TAKE:
@@ -82,40 +82,43 @@ Scroll one row past `0105 RET` and you will see `0106 NOP`. A Z80 keeps code and
 
 With `PUSH HL` lined up at `0103h`, press `S` to open Stack:
 
+<!-- TEC-OS 8a7e24e with TBUG 167f7f0, starter card de6b5ff6: TECOS=<checkout> node scripts/tbug-capture.mjs --card tbug.img '>b:' '>tas step' '!tbug step' F8 left down down S F8 Enter Esc C F8 R F5 Q Y, where tbug.img holds this book's HELLO.ASM, STEP.ASM and FILL.ASM on B. The LCD after S. -->
 ```text
->SP 96FE  99FC
-    9700  39C3
-    9702  01E6
-    9704  003D
+>SP 8DFE  9102
+    8E00  39C3
+    8E02  01E6
+    8E04  0042
 ```
 
-Stack displays four 16-bit words starting at `SP`. That top word, `99FC` at `96FEh`, is the exit address TBUG pushed before starting `STEP.COM` so `RET` lands back inside TBUG. Your exact address depends on the build and resident services, so keep an eye on your own starting `SP`.
+Stack displays four 16-bit words starting at `SP`. That top word, `9102` at `8DFEh`, is the exit address TBUG pushed before starting `STEP.COM` so `RET` lands back inside TBUG. Your exact address depends on the build and resident services, so keep an eye on your own starting `SP`.
 
 You do not need to switch back to Registers to step. Tap `F8` right here in Stack and watch `PUSH HL` execute in place:
 
+<!-- TEC-OS 8a7e24e with TBUG 167f7f0, starter card de6b5ff6: TECOS=<checkout> node scripts/tbug-capture.mjs --card tbug.img '>b:' '>tas step' '!tbug step' F8 left down down S F8 Enter Esc C F8 R F5 Q Y, where tbug.img holds this book's HELLO.ASM, STEP.ASM and FILL.ASM on B. The LCD after the F8 in Stack. -->
 ```text
->SP 96FC  1234
-    96FE  99FC
-    9700  39C3
-    9702  01E6
+>SP 8DFC  1234
+    8DFE  9102
+    8E00  39C3
+    8E02  01E6
 ```
 
-On a Z80, the stack grows downwards. Pushing a 16-bit pair subtracts two from `SP` and stores the value at the new lower address. `SP` dropped from `96FE` to `96FC`, `1234` appeared on row 1 and TBUG's return address `99FC` slid down to row 2. Whenever `SP` moves, Stack resets `>` to the top slot so pushes and pops jump out at you.
+On a Z80, the stack grows downwards. Pushing a 16-bit pair subtracts two from `SP` and stores the value at the new lower address. `SP` dropped from `8DFE` to `8DFC`, `1234` appeared on row 1 and TBUG's return address `9102` slid down to row 2. Whenever `SP` moves, Stack resets `>` to the top slot so pushes and pops jump out at you.
 
-Now hit `Enter` on that top slot to open Memory at `96FCh`:
+Now hit `Enter` on that top slot to open Memory at `8DFCh`:
 
+<!-- TEC-OS 8a7e24e with TBUG 167f7f0, starter card de6b5ff6: TECOS=<checkout> node scripts/tbug-capture.mjs --card tbug.img '>b:' '>tas step' '!tbug step' F8 left down down S F8 Enter Esc C F8 R F5 Q Y, where tbug.img holds this book's HELLO.ASM, STEP.ASM and FILL.ASM on B. The LCD after Enter. -->
 ```text
-96FC>34 12 FC 99 FIX
-9700 C3 39 E6 01
-9704 3D 00 4F BB
-9708 00 00 DE 03
+8DFC>34 12 02 91 FIX
+8E00 C3 39 E6 01
+8E04 42 00 4F BB
+8E08 AE 00 DD 03
 ```
 
-The first two bytes read `34 12`, not `12 34`. Because the Z80 is little-endian, the low byte (`34h`) sits at the lower address (`96FCh`) and the high byte (`12h`) sits above it (`96FDh`). Stack pairs those bytes back into 16-bit words because `PUSH`, `POP`, `CALL` and `RET` work on words. Memory shows raw bytes in ascending address order. Both views read the exact same RAM through two different lenses.
+The first two bytes read `34 12`, not `12 34`. Because the Z80 is little-endian, the low byte (`34h`) sits at the lower address (`8DFCh`) and the high byte (`12h`) sits above it (`8DFDh`). Stack pairs those bytes back into 16-bit words because `PUSH`, `POP`, `CALL` and `RET` work on words. Memory shows raw bytes in ascending address order. Both views read the exact same RAM through two different lenses.
 
-![F8 executes PUSH HL, moving SP down two bytes from 96FEh to 96FCh. Stack displays the word 1234 while Memory displays the bytes in address order as 34 12.](/images/tbug/stack-step.svg)
+![F8 executes PUSH HL, moving SP down two bytes from 8DFEh to 8DFCh. Stack displays the word 1234 while Memory displays the bytes in address order as 34 12.](/images/tbug/stack-step.svg)
 
-Hit `Esc` to step back to Stack, then press `C` to return to Code, where `→` now sits on `0104 POP DE`. Tap `F8` to execute the pop, then press `R` to return to Registers. `DE` holds `1234`, `HL` still holds `1234` and `SP` has returned to `96FE`. Press `F5` to let `RET` end `STEP.COM` (`PC ----`, `SP 9700`, `EX`), then `Q` and `Y` to return to `B:WORK>`.
+Hit `Esc` to step back to Stack, then press `C` to return to Code, where `→` now sits on `0104 POP DE`. Tap `F8` to execute the pop, then press `R` to return to Registers. `DE` holds `1234`, `HL` still holds `1234` and `SP` has returned to `8DFE`. Press `F5` to let `RET` end `STEP.COM` (`PC ----`, `SP 8E00`, `EX`), then `Q` and `Y` to return to `B:WORK>`.
 
 ## Stepping into, over and out of calls
 
@@ -127,4 +130,4 @@ Tapping `F8` one instruction at a time works on six bytes, not when your code ca
 
 `F5` to `F8` all wait for every key to be released before resuming the CPU. That release guard prevents a debugger keypress from leaking into a program polling the matrix keyboard.
 
-_Checked against TEC-OS `b5af505` with TBUG `a4d1da8`, and the Code screens after `Left` against TEC-OS `0160b48` with TBUG `f31249a`, on the starter card in the emulated TEC-1G, 27 November 2026._
+_Checked against TEC-OS `8a7e24e` with TBUG `167f7f0`, on the starter card in the emulated TEC-1G, 28 November 2026._

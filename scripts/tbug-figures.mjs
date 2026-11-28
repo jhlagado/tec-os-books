@@ -417,7 +417,7 @@ add(
 add(
   'stack-step',
   'PUSH HL in Stack view and in little-endian Memory',
-  'In STEP.COM, LD HL,$1234 loads HL, then PUSH HL moves SP down by two bytes from 96FEh to 96FCh and stores 34h at 96FCh and 12h at 96FDh. Stack view shows the word 1234 while Memory shows the bytes in address order as 34 12.',
+  'In STEP.COM, LD HL,$1234 loads HL, then PUSH HL moves SP down by two bytes from 8DFEh to 8DFCh and stores 34h at 8DFCh and 12h at 8DFDh. Stack view shows the word 1234 while Memory shows the bytes in address order as 34 12.',
   354,
   [
     eyebrow(40, 30, 'STEP.COM · three consecutive states'),
@@ -431,7 +431,7 @@ add(
       title: 'Before PUSH HL',
       lines: [
         { text: 'PC 0103 · HL 1234', mono: true },
-        { text: 'SP = 96FEh', mono: true },
+        { text: 'SP = 8DFEh', mono: true },
       ],
     }),
     line('ln', 230, 87, 261, 87, 'ar'),
@@ -443,7 +443,7 @@ add(
       h: 82,
       title: 'After PUSH HL',
       lines: [
-        { text: 'PC 0104 · SP 96FCh', mono: true },
+        { text: 'PC 0104 · SP 8DFCh', mono: true },
         { text: 'Top word = 1234', mono: true },
       ],
       hi: true,
@@ -458,7 +458,7 @@ add(
       title: 'After POP DE',
       lines: [
         { text: 'PC 0105 · DE 1234', mono: true },
-        { text: 'SP = 96FEh', mono: true },
+        { text: 'SP = 8DFEh', mono: true },
       ],
     }),
 
@@ -474,11 +474,11 @@ add(
     line('sline', 64, 234, 98, 234, 'arS'),
 
     rect('bx', 102, 254, 190, 40, 0),
-    text('dim', 120, 278, '96FE'),
-    text('t', 274, 278.5, '99FC', 'end'),
+    text('dim', 120, 278, '8DFE'),
+    text('t', 274, 278.5, '9102', 'end'),
 
     rect('bxs', 102, 214, 190, 40, 0),
-    text('dim on-sig', 120, 238, '96FC'),
+    text('dim on-sig', 120, 238, '8DFC'),
     text('tb on-sig', 274, 238.5, '1234', 'end'),
 
     text('dimn', 102, 312, 'High byte paired with low'),
@@ -493,10 +493,10 @@ add(
       cw: 76,
       ch: 40,
       cells: [
-        { addr: '96FC', val: '34', hi: true, sub: 'low byte' },
-        { addr: '96FD', val: '12', hi: true, sub: 'high byte' },
-        { addr: '96FE', val: 'FC', hi: false },
-        { addr: '96FF', val: '99', hi: false },
+        { addr: '8DFC', val: '34', hi: true, sub: 'low byte' },
+        { addr: '8DFD', val: '12', hi: true, sub: 'high byte' },
+        { addr: '8DFE', val: '02', hi: false },
+        { addr: '8DFF', val: '91', hi: false },
       ],
     }),
 
@@ -598,17 +598,17 @@ add(
 );
 
 /* ============================================================
-   5. Chapter 3: Four ways to stop a running program
+   5. Chapter 3: Three ways to stop a running program
    ============================================================ */
 add(
   'stop-paths',
-  'Four ways to stop a program at full speed',
-  'Comparison of four stop methods: F5 in Code with selection off PC runs once with no breakpoint left behind; Space sets a persistent RST 30h breakpoint; holding Ctrl+Esc breaks at the next BDOS call (0005h); TBUG.SVC ARM catches the next COM launch via ABI 5.3 COMVEC.',
+  'Three ways to stop a program at full speed',
+  'Comparison of three stop methods: F5 in Code with selection off PC runs once with no breakpoint left behind; Space sets a persistent RST 30h breakpoint; holding Ctrl+Esc breaks at the next BDOS call (0005h).',
   316,
   [
-    eyebrow(40, 30, 'Four ways to stop a running program'),
+    eyebrow(40, 30, 'Three ways to stop a running program'),
 
-    // 2x2 airy grid (w=306, col gap=28 => x=40, 374 .. 680; row h=104, row gap=20)
+    // Two cards on the first row (w=306, col gap=28 => x=40, 374 .. 680), one across the second (row h=104, row gap=20)
     card({
       x: 40,
       y: 48,
@@ -633,22 +633,12 @@ add(
     card({
       x: 40,
       y: 172,
-      w: 306,
+      w: 640,
       h: 104,
       key: 'Ctrl+Esc',
       tag: 'Break in',
       title: 'Hold to interrupt',
       lines: ['Stops at the next CALL 0005h', 'Caller return address sits on stack'],
-    }),
-    card({
-      x: 374,
-      y: 172,
-      w: 306,
-      h: 104,
-      key: 'TBUG.SVC ARM',
-      tag: 'Next launch',
-      title: 'Catch the next COM',
-      lines: ['Traps next launch via COMVEC', 'Requires TEC-OS ABI 5.3 or newer'],
     }),
 
     text(

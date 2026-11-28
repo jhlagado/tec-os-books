@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="720" height="316" viewBox="0 0 720 316" role="img" aria-labelledby="figTitle figDesc">
-  <title id="figTitle">Four ways to stop a program at full speed</title>
-  <desc id="figDesc">Comparison of four stop methods: F5 in Code with selection off PC runs once with no breakpoint left behind; Space sets a persistent RST 30h breakpoint; holding Ctrl+Esc breaks at the next BDOS call (0005h); TBUG.SVC ARM catches the next COM launch via ABI 5.3 COMVEC.</desc>
+  <title id="figTitle">Three ways to stop a program at full speed</title>
+  <desc id="figDesc">Comparison of three stop methods: F5 in Code with selection off PC runs once with no breakpoint left behind; Space sets a persistent RST 30h breakpoint; holding Ctrl+Esc breaks at the next BDOS call (0005h).</desc>
   <defs>
     <style>
       :root {
@@ -61,7 +61,7 @@
       <path d="M0,0.8 L10,5 L0,9.2 Z" fill="var(--sig)"/>
     </marker>
   </defs>
-  <text class="cap" x="40" y="30" text-anchor="start" xml:space="preserve">FOUR WAYS TO STOP A RUNNING PROGRAM</text>
+  <text class="cap" x="40" y="30" text-anchor="start" xml:space="preserve">THREE WAYS TO STOP A RUNNING PROGRAM</text>
   <rect class="bx" x="40" y="48" width="306" height="104" rx="5"/>
   <rect class="pill" x="58" y="62" width="74" height="22" rx="3"/>
   <text class="pill-t" x="95" y="77" text-anchor="middle" xml:space="preserve">F5 off PC</text>
@@ -76,19 +76,12 @@
   <text class="nb on-sig" x="392" y="102" text-anchor="start" xml:space="preserve">User breakpoint in Code</text>
   <text class="ns" x="392" y="122" text-anchor="start" xml:space="preserve">Up to 8 RST 30h traps in RAM</text>
   <text class="ns" x="392" y="140" text-anchor="start" xml:space="preserve">Address must sit inside the COM</text>
-  <rect class="bx" x="40" y="172" width="306" height="104" rx="5"/>
+  <rect class="bx" x="40" y="172" width="640" height="104" rx="5"/>
   <rect class="pill" x="58" y="186" width="67" height="22" rx="3"/>
   <text class="pill-t" x="91.5" y="201" text-anchor="middle" xml:space="preserve">Ctrl+Esc</text>
-  <text class="dim-cap" x="328" y="201" text-anchor="end" xml:space="preserve">BREAK IN</text>
+  <text class="dim-cap" x="662" y="201" text-anchor="end" xml:space="preserve">BREAK IN</text>
   <text class="nb" x="58" y="226" text-anchor="start" xml:space="preserve">Hold to interrupt</text>
   <text class="ns" x="58" y="246" text-anchor="start" xml:space="preserve">Stops at the next CALL 0005h</text>
   <text class="ns" x="58" y="264" text-anchor="start" xml:space="preserve">Caller return address sits on stack</text>
-  <rect class="bx" x="374" y="172" width="306" height="104" rx="5"/>
-  <rect class="pill" x="392" y="186" width="94" height="22" rx="3"/>
-  <text class="pill-t" x="439" y="201" text-anchor="middle" xml:space="preserve">TBUG.SVC ARM</text>
-  <text class="dim-cap" x="662" y="201" text-anchor="end" xml:space="preserve">NEXT LAUNCH</text>
-  <text class="nb" x="392" y="226" text-anchor="start" xml:space="preserve">Catch the next COM</text>
-  <text class="ns" x="392" y="246" text-anchor="start" xml:space="preserve">Traps next launch via COMVEC</text>
-  <text class="ns" x="392" y="264" text-anchor="start" xml:space="preserve">Requires TEC-OS ABI 5.3 or newer</text>
   <text class="dimn" x="40" y="302" text-anchor="start" xml:space="preserve">Every stop lands in the same TBUG inspection loop, where you can step, inspect or press F5.</text>
 </svg>

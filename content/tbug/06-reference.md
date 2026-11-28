@@ -52,16 +52,15 @@ On the TEC-1G matrix keyboard, `Fn+5` through `Fn+8` send `F5` through `F8`.
 
 | Command | Effect |
 | --- | --- |
-| `TBUG.SVC` | Install TBUG on drive A if absent, or show `TBUG 0.3 ready` with version and arm state. |
-| `TBUG.SVC NAME [tail]` | Arm TBUG and hand the command line back to the command processor, which loads `NAME.COM` at `0100h` and stops before its first instruction. |
-| `TBUG.SVC ARM` | Catch the next `.COM` launch from the CCP (requires TEC-OS ABI 5.3 or later). |
-| `UNLOAD TBUG` | Remove the resident TBUG service and free its upper RAM. |
+| `tbug name [tail]` | Load TBUG if it is not resident, then hand `name [tail]` back to the command processor, which loads `NAME.COM` at `0100h`. TBUG stops it before its first instruction. TEC-OS finds `TBUG.SVC` on the current drive or on A, as it finds a `.COM`. |
+| `tbug` | Show `TBUG 0.3 ready` and how to start a program. Loads nothing. |
+| `unload tbug` | Remove the resident TBUG service and free its upper RAM. |
 
 ## Troubleshooting
 
 | Symptom | Cause and fix |
 | --- | --- |
-| CP/M prints `TBUG.SVC?` | Install `TBUG.SVC` from drive A, or free RAM above `8000h` by unloading `SHELL.SVC` or other services. |
+| TEC-OS prints `TBUG?` | `TBUG.SVC` is not on the current drive or on A. Put it on A, where the starter card keeps it. If it is there, free upper RAM by unloading another service. |
 | `H` prints `No help: TBUG.HLP` | Copy `TBUG.HLP` beside `TBUG.SVC` or onto drive A. |
 | `Space` prints `Select in Code first` | Press `C` (or `Y`), move `>` onto an instruction or label and press `Space`. |
 | Code does not show the stopped instruction | Press `Left` in Code: it brings `>` back to `PC` on the top row. |
@@ -73,7 +72,6 @@ On the TEC-1G matrix keyboard, `Fn+5` through `Fn+8` send `F5` through `F8`.
 | `F6` runs for a long time | Press any key to stop the trace. A routine with a long loop before `RET` takes many steps. |
 | `Ctrl+Esc` does not stop a running program | It breaks at the next BDOS call (`0005h`). A tight loop that never calls the OS needs a breakpoint. During a line read, finish the line with `Enter`, then hold `Ctrl+Esc`, and TBUG stops at the next BDOS call. |
 | `SY` is absent and Code shows no labels | Reassemble with `TAS` so `NAME.TBG` matches `NAME.COM` and sits beside it on the same drive. |
-| `TBUG.SVC ARM` prints `ARM needs ABI 5.3` | The ROM lacks `COMVEC`. Update to TEC-OS ABI 5.3 or later. |
 | Program fails to load | Check the program name, drive and available TPA. |
 
 ## Building TBUG from source
@@ -83,9 +81,9 @@ TBUG lives in its own repository, [`jhlagado/tbug`](https://github.com/jhlagado/
 - `build/TBUG.SVC`: the resident LCD debugger with built-in symbol support
 - `build/TBUG.HLP`: the context-sensitive help pages opened by `H`
 
-Copy both files to your TEC-OS disk. `TBUG.SVC ARM` and `TBUG.SVC NAME` require TEC-OS ABI 5.3 or later.
+Copy both files to drive A of your TEC-OS card. TBUG needs TEC-OS ABI 5.3 or later, whose `COMVEC` word hands each launch to TBUG.
 
 [TBUG source](https://github.com/jhlagado/tbug) ·
 [Origo P8 test evidence](https://github.com/jhlagado/origo/tree/main/studies/p8-tbg/evidence)
 
-_Checked against TEC-OS `b5af505` with TBUG `a4d1da8`, and `Left` in Code against TEC-OS `0160b48` with TBUG `f31249a`, on the starter card in the emulated TEC-1G, 27 November 2026._
+_Checked against TEC-OS `8a7e24e` with TBUG `167f7f0`, on the starter card in the emulated TEC-1G, 28 November 2026._

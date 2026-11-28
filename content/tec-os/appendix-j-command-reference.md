@@ -480,7 +480,7 @@ and HELLO3.BIN is built from HELLO3.ASM before loading it at `MON3>`
 | `BAZ.COM` | `BAZ [d:]NAME` runs `NAME.BAS` in the BASIC interpreter |
 | `BAZC.COM` | `BAZC NAME` compiles `NAME.BAS` to `NAME.COM` on the same drive; `BAZC NAME.TYP` compiles that file as named |
 | `BAZC.RTL` | BAZC's runtime library, read from the current drive or from the drive `BAZC.COM` was loaded from |
-| `TBUG.SVC`, `TBUG.HLP` | `TBUG.SVC NAME` installs the debugger and stops `NAME.COM` at its first instruction; the [TBUG book](../tbug/index.md) explains it |
+| `TBUG.SVC`, `TBUG.HLP` | `tbug name` loads the debugger, if it is not resident, and stops `NAME.COM` at its first instruction; the [TBUG book](../tbug/index.md) explains it |
 | `SAMPLE.ASM` | Assembly source for `TAS SAMPLE`, then `SAMPLE` |
 | `TIMES.BAS` | BASIC source for `BAZC TIMES`, then `TIMES` |
 | `BOUNCE.BAS` | A sprite game for the PICO9918, which it needs. `BAZC BOUNCE`, then `BOUNCE`. Tap W, A, S and D, or the arrow keys, to steer and Q to quit |
