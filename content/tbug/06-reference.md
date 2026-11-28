@@ -72,7 +72,7 @@ On the TEC-1G matrix keyboard, `Fn+5` through `Fn+8` send `F5` through `F8`.
 | `F6` runs for a long time | Press any key to stop the trace. A routine with a long loop before `RET` takes many steps. |
 | `Ctrl+Esc` does not stop a running program | It breaks at the next BDOS call (`0005h`). A tight loop that never calls the OS needs a breakpoint. During a line read, finish the line with `Enter`, then hold `Ctrl+Esc`, and TBUG stops at the next BDOS call. |
 | `SY` is absent and Code shows no labels | Reassemble with `TAS` so `NAME.TBG` matches `NAME.COM` and sits beside it on the same drive. |
-| `tbug name` prints `TBUG needs ABI 5.3` | The ROM lacks `COMVEC`, the word that hands a launch to TBUG. Update to TEC-OS ABI 5.3 or later. |
+| After `tbug name`, the LCD shows `TBUG needs ABI 5.3` | The ROM lacks `COMVEC`, the word that hands a launch to TBUG. Update to TEC-OS ABI 5.3 or later. |
 | Program fails to load | Check the program name, drive and available TPA. |
 
 ## Building TBUG from source

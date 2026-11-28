@@ -70,7 +70,7 @@ That mechanism explains two limits you will run into:
 - **Inside the `.COM` only:** Breakpoints must lie inside the loaded program image. Trying to set one in ROM or outside the `.COM` prints `Not in the COM`.
 - **Eight slots:** Up to eight user breakpoints can be active at once. A ninth prints `BP FULL (8)` until you toggle one off with `Space`.
 
-Because TBUG restores the original opcode at every stop, stepping past a breakpoint with `F8` or continuing with `F5` runs the real instruction cleanly and re-arms the trap automatically.
+Because TBUG restores the original opcode at every stop, stepping past a breakpoint with `F8` or continuing with `F5` runs the real instruction cleanly and sets the trap again automatically.
 
 ## Breaking into a running program
 
