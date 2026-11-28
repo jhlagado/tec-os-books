@@ -90,7 +90,7 @@ returns. The shell folds command pieces afterwards (`57a8c38:src/cpm/bdos.asm:65
 `57a8c38:drivers/shell.asm:426-429`, `57a8c38:drivers/shell.asm:498-518`). Recalling `con`
 in this PICO9918 capture therefore retains lowercase text:
 
-<!-- Tecos 8c12c9f, ROM 04ab62be, starter card e2f124e9: node tools/capture.mjs --board pico --screen con $'@start \x17'. Full screen; trailing empty rows omitted. -->
+<!-- Tecos fe23fa7, ROM 04ab62be, starter card e42afd4a: node tools/capture.mjs --board pico --screen con $'@start \x17'. Full screen; trailing empty rows omitted. -->
 ```text
 
 Tecos 0.1 for TEC-1G
@@ -219,7 +219,7 @@ text, advancing pointer and count until zero or capacity
 After two typed commands, two `^W` presses and Return select CON in this
 capture:
 
-<!-- Tecos 8c12c9f, ROM 04ab62be, starter card e2f124e9: node tools/capture.mjs --board pico --screen CON 'TYPE STARTUP.CMD' $'@start \x17\x17'. Full screen; trailing empty rows omitted. -->
+<!-- Tecos fe23fa7, ROM 04ab62be, starter card e42afd4a: node tools/capture.mjs --board pico --screen CON 'TYPE STARTUP.CMD' $'@start \x17\x17'. Full screen; trailing empty rows omitted. -->
 ```text
 
 Tecos 0.1 for TEC-1G
@@ -258,7 +258,7 @@ Normal exit, function 0 and `^C` at an empty prompt all use warm boot
 (`57a8c38:src/cpm/bdos.asm:216-221`, `57a8c38:src/cpm/bdos.asm:521-533`). Here, `^W` after
 `^C` still recalls CON:
 
-<!-- Tecos 8c12c9f, ROM 04ab62be, starter card e2f124e9: node tools/capture.mjs CON '^C' $'@start \x17'. Complete captured console transcript. -->
+<!-- Tecos fe23fa7, ROM 04ab62be, starter card e42afd4a: node tools/capture.mjs CON '^C' $'@start \x17'. Complete captured console transcript. -->
 ```text
 Tecos 0.1 for TEC-1G
 A: SYSTEM
@@ -283,7 +283,7 @@ establishing the empty boundary preserved by insertion. Recognised reset
 retains only drive selection, so history is still lost. In this capture,
 `^W` and Return after reset produce empty input:
 
-<!-- Tecos 8c12c9f, ROM 04ab62be, starter card e2f124e9: node tools/capture.mjs CON @reset $'@start \x17'. Complete captured console transcript. -->
+<!-- Tecos fe23fa7, ROM 04ab62be, starter card e42afd4a: node tools/capture.mjs CON @reset $'@start \x17'. Complete captured console transcript. -->
 ```text
 Tecos 0.1 for TEC-1G
 A: SYSTEM

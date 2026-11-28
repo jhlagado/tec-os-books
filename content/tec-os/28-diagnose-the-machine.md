@@ -49,7 +49,7 @@ Without active PICO or an attached terminal, only LCD `CARD?` is visible.
 The following empty-socket model capture uses PICO9918 and its matrix
 keyboard. H repeats the prompt and no serial output is produced:
 
-<!-- Tecos 8c12c9f, ROM 04ab62be, starter card e2f124e9: node tools/capture.mjs --card none --board pico --screen H. Full screen; trailing empty rows omitted. -->
+<!-- Tecos fe23fa7, ROM 04ab62be, starter card e42afd4a: node tools/capture.mjs --card none --board pico --screen H. Full screen; trailing empty rows omitted. -->
 ```text
 
 Tecos 0.1 for TEC-1G

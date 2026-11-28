@@ -116,7 +116,7 @@ The distinction is visible when output switches to GLCD. These captures
 use matrix input and graphics LCD without PICO9918. Console bytes include
 boot and later CON output after GLCD selection:
 
-<!-- Tecos 8c12c9f, ROM 04ab62be, starter card e2f124e9: node tools/capture.mjs --board glcd CON. Complete captured console transcript. -->
+<!-- Tecos fe23fa7, ROM 04ab62be, starter card e42afd4a: node tools/capture.mjs --board glcd CON. Complete captured console transcript. -->
 ```text
 Tecos 0.1 for TEC-1G
 A: SYSTEM
@@ -133,7 +133,7 @@ A:SYSTEM>
 
 Serial bytes stop at the console switch, before the later command:
 
-<!-- Tecos 8c12c9f, ROM 04ab62be, starter card e2f124e9: node tools/capture.mjs --board glcd --serial CON. Complete serial transcript. -->
+<!-- Tecos fe23fa7, ROM 04ab62be, starter card e42afd4a: node tools/capture.mjs --board glcd --serial CON. Complete serial transcript. -->
 ```text
 Tecos 0.1 for TEC-1G
 A: SYSTEM
@@ -147,7 +147,7 @@ A:SYSTEM>GLCD.SVC
 The decoded GLCD screen instead contains only the later command. Driver
 startup cleared the earlier display contents:
 
-<!-- Tecos 8c12c9f, ROM 04ab62be, starter card e2f124e9: node tools/capture.mjs --board glcd --screen CON. Full screen; trailing empty rows omitted. -->
+<!-- Tecos fe23fa7, ROM 04ab62be, starter card e42afd4a: node tools/capture.mjs --board glcd --screen CON. Full screen; trailing empty rows omitted. -->
 ```text
 
 A:SYSTEM>CON

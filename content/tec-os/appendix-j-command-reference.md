@@ -66,7 +66,7 @@ command also requires one name.
 The following retained capture shows an overlong name, a pattern where TYPE
 requires one file and a second argument where DIR accepts only one.
 
-<!-- Tecos 8c12c9f, ROM 04ab62be, starter card e2f124e9: node tools/capture.mjs 'DIR VERYLONGNAME.TXT' 'TYPE *.CMD' 'DIR A: B:'. Complete captured console transcript. -->
+<!-- Tecos fe23fa7, ROM 04ab62be, starter card e42afd4a: node tools/capture.mjs 'DIR VERYLONGNAME.TXT' 'TYPE *.CMD' 'DIR A: B:'. Complete captured console transcript. -->
 ```text
 Tecos 0.1 for TEC-1G
 A: SYSTEM
@@ -211,7 +211,7 @@ in hexadecimal (`b95b2a9:drivers/shellcmd.asm:54-154`).
 The type-only destination and self-copy cases below were captured on A
 with the starter card.
 
-<!-- Tecos 8c12c9f, ROM 04ab62be, starter card e2f124e9: node tools/capture.mjs 'COPY STARTUP.CMD B:.DOC' 'DIR B:' 'COPY A:STARTUP.CMD STARTUP.CMD' 'COPY STARTUP.CMD'. Complete captured console transcript. -->
+<!-- Tecos fe23fa7, ROM 04ab62be, starter card e42afd4a: node tools/capture.mjs 'COPY STARTUP.CMD B:.DOC' 'DIR B:' 'COPY A:STARTUP.CMD STARTUP.CMD' 'COPY STARTUP.CMD'. Complete captured console transcript. -->
 ```text
 Tecos 0.1 for TEC-1G
 A: SYSTEM
@@ -285,7 +285,7 @@ disposable file there. It records an `n` answer that leaves the file and a `y`
 answer that erases it. This is a separate demonstration, not the card
 used for BANNER in Chapter 2. `ERA *.*` would erase BANNER too on that card.
 
-<!-- Tecos 8c12c9f, ROM 04ab62be, starter card e2f124e9: node tools/capture.mjs 'COPY STARTUP.CMD B:' B: '@start ERA *.*' $'@key n\x0d' DIR '@start ERA *.*' $'@key y\x0d' DIR. Complete captured console transcript. -->
+<!-- Tecos fe23fa7, ROM 04ab62be, starter card e42afd4a: node tools/capture.mjs 'COPY STARTUP.CMD B:' B: '@start ERA *.*' $'@key n\x0d' DIR '@start ERA *.*' $'@key y\x0d' DIR. Complete captured console transcript. -->
 ```text
 Tecos 0.1 for TEC-1G
 A: SYSTEM

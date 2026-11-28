@@ -303,7 +303,7 @@ before cancellation (`b95b2a9:src/cpm/bdos.asm:103-105`, `b95b2a9:src/cpm/bdos.a
 Prompt input uses function 10 through either the shell's LINE entry or the
 bare CCP. An empty-prompt `^C` therefore takes the same exit:
 
-<!-- Tecos 8c12c9f, ROM 04ab62be, starter card e2f124e9: node tools/capture.mjs '^C'. Complete captured console transcript. -->
+<!-- Tecos fe23fa7, ROM 04ab62be, starter card e42afd4a: node tools/capture.mjs '^C'. Complete captured console transcript. -->
 ```text
 Tecos 0.1 for TEC-1G
 A: SYSTEM

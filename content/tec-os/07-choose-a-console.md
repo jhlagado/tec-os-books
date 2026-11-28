@@ -87,7 +87,7 @@ to the serial terminal. The command appears on the old display. Its
 reply and next prompt appear on the new one. Only serial output is
 included in this capture:
 
-<!-- Tecos 8c12c9f, ROM 04ab62be, starter card e2f124e9: node tools/capture.mjs --board pico --serial 'CON TTY'. Complete serial transcript. -->
+<!-- Tecos fe23fa7, ROM 04ab62be, starter card e42afd4a: node tools/capture.mjs --board pico --serial 'CON TTY'. Complete serial transcript. -->
 ```text
 CON: TTY:
 A:SYSTEM>
@@ -104,7 +104,7 @@ until its claim ends, as Chapter 12 explains. Bare `CON CRT` and
 `CON PICO` retain the width and any active claim. Returning to the
 PICO9918 produces only this reply and prompt:
 
-<!-- Tecos 8c12c9f, ROM 04ab62be, starter card e2f124e9: node tools/capture.mjs --board pico --screen 'CON TTY' 'CON CRT'. Full screen; trailing empty rows omitted. -->
+<!-- Tecos fe23fa7, ROM 04ab62be, starter card e42afd4a: node tools/capture.mjs --board pico --screen 'CON TTY' 'CON CRT'. Full screen; trailing empty rows omitted. -->
 ```text
 CON: CRT:
 A:SYSTEM>
@@ -113,7 +113,7 @@ A:SYSTEM>
 An invalid console name is printed with a question mark. The selection
 remains unchanged, as this separate capture shows:
 
-<!-- Tecos 8c12c9f, ROM 04ab62be, starter card e2f124e9: node tools/capture.mjs 'CON XYZ'. Complete captured console transcript. -->
+<!-- Tecos fe23fa7, ROM 04ab62be, starter card e42afd4a: node tools/capture.mjs 'CON XYZ'. Complete captured console transcript. -->
 ```text
 Tecos 0.1 for TEC-1G
 A: SYSTEM
@@ -168,7 +168,7 @@ files therefore occupy eight rows.
 An unsupported width, a width after another device name or a number joined to
 `CRT` without a space produces a question mark. The console remains as it was:
 
-<!-- Tecos 8c12c9f, ROM 04ab62be, starter card e2f124e9: node tools/capture.mjs --board pico 'CON CRT80' 'CON TTY 40' 'CON PICO 50'. Complete captured console transcript. -->
+<!-- Tecos fe23fa7, ROM 04ab62be, starter card e42afd4a: node tools/capture.mjs --board pico 'CON CRT80' 'CON TTY 40' 'CON PICO 50'. Complete captured console transcript. -->
 ```text
 Tecos 0.1 for TEC-1G
 A: SYSTEM
@@ -209,7 +209,7 @@ explains the memory boundary.
 leaves the console where it was and shows `GLCD?` on the 20 × 4 LCD. Here both
 display selections leave a serial-only board on the terminal:
 
-<!-- Tecos 8c12c9f, ROM 04ab62be, starter card e2f124e9: node tools/capture.mjs CON 'CON CRT' 'CON UC1' CON. Complete captured console transcript. -->
+<!-- Tecos fe23fa7, ROM 04ab62be, starter card e42afd4a: node tools/capture.mjs CON 'CON CRT' 'CON UC1' CON. Complete captured console transcript. -->
 ```text
 Tecos 0.1 for TEC-1G
 A: SYSTEM
@@ -235,7 +235,7 @@ startup `GLCD.SVC` line installs nothing. `CON UC1` then loads the
 driver and selects the graphics LCD. This host-model text capture used
 both displays and the matrix keyboard:
 
-<!-- Tecos 8c12c9f, ROM 04ab62be, starter card e2f124e9: node tools/capture.mjs --board pico --screen 'CON UC1' CON. Full screen; trailing empty rows omitted. -->
+<!-- Tecos fe23fa7, ROM 04ab62be, starter card e42afd4a: node tools/capture.mjs --board pico --screen 'CON UC1' CON. Full screen; trailing empty rows omitted. -->
 ```text
 CON: UC1:
 A:SYSTEM>CON
@@ -289,7 +289,7 @@ but commands typed on the serial terminal still run.
 matrix keyboard is not the input device in `BAT:`. In this run `DIR`
 ran between the two `CON` commands but printed nothing on the terminal:
 
-<!-- Tecos 8c12c9f, ROM 04ab62be, starter card e2f124e9: node tools/capture.mjs --serial '@start CON BAT' '@start DIR' 'CON TTY'. Complete serial transcript. -->
+<!-- Tecos fe23fa7, ROM 04ab62be, starter card e42afd4a: node tools/capture.mjs --serial '@start CON BAT' '@start DIR' 'CON TTY'. Complete serial transcript. -->
 ```text
 Tecos 0.1 for TEC-1G
 A: SYSTEM

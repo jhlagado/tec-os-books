@@ -125,7 +125,7 @@ PICO run the banner, startup, first CON reply and typed `CON TTY` went to
 PICO. The serial capture begins with the changed console's reply and contains
 later input:
 
-<!-- Tecos 8c12c9f, ROM 04ab62be, starter card e2f124e9: node tools/capture.mjs --board pico --serial CON 'CON TTY' CON. Complete serial transcript. -->
+<!-- Tecos fe23fa7, ROM 04ab62be, starter card e42afd4a: node tools/capture.mjs --board pico --serial CON 'CON TTY' CON. Complete serial transcript. -->
 ```text
 CON: TTY:
 A:SYSTEM>CON

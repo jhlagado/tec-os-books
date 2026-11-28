@@ -42,7 +42,7 @@ with this configuration. Unused blank rows are omitted from the excerpts.
 Power-on starts Tecos and displays the system name. The two names below
 it identify the card volumes on the drives:
 
-<!-- Tecos 8c12c9f, ROM 04ab62be, starter card e2f124e9: node tools/capture.mjs --board pico --screen. The PICO9918's 40-column screen; right-hand blanks and empty bottom rows omitted. -->
+<!-- Tecos fe23fa7, ROM 04ab62be, starter card e42afd4a: node tools/capture.mjs --board pico --screen. The PICO9918's 40-column screen; right-hand blanks and empty bottom rows omitted. -->
 ```text
 
 Tecos 0.1 for TEC-1G
@@ -73,7 +73,7 @@ graphics LCD. In this session it leaves the PICO9918 selected as the
 after the prompt and press Return. The prompt is already on screen, so it
 is not part of the command you enter. The same session produced:
 
-<!-- Tecos 8c12c9f, ROM 04ab62be, starter card e2f124e9: node tools/capture.mjs --board pico --screen DIR. The PICO9918's 40-column screen from the DIR line; right-hand blanks and empty bottom rows omitted. -->
+<!-- Tecos fe23fa7, ROM 04ab62be, starter card e42afd4a: node tools/capture.mjs --board pico --screen DIR. The PICO9918's 40-column screen from the DIR line; right-hand blanks and empty bottom rows omitted. -->
 ```text
 B: WORK
 
@@ -156,7 +156,7 @@ A drive letter followed by a colon changes the current drive. `B:` selects
 WORK and `A:` returns to SYSTEM. This screen follows the listing above
 with both drive commands:
 
-<!-- Tecos 8c12c9f, ROM 04ab62be, starter card e2f124e9: node tools/capture.mjs --board pico --screen DIR B: A:. Full screen; trailing empty rows omitted. -->
+<!-- Tecos fe23fa7, ROM 04ab62be, starter card e42afd4a: node tools/capture.mjs --board pico --screen DIR B: A:. Full screen; trailing empty rows omitted. -->
 ```text
 A:SYSTEM>SHELL.SVC
 
@@ -194,7 +194,7 @@ SAMPLE and the assembler for the next command.
 The command needs only SAMPLE because TAS supplies the file types.
 A completed assembly produces this message:
 
-<!-- Tecos 8c12c9f, ROM 04ab62be, starter card e2f124e9: node tools/capture.mjs --board pico --screen 'TAS SAMPLE'. Full screen; trailing empty rows omitted. -->
+<!-- Tecos fe23fa7, ROM 04ab62be, starter card e42afd4a: node tools/capture.mjs --board pico --screen 'TAS SAMPLE'. Full screen; trailing empty rows omitted. -->
 ```text
 
 Tecos 0.1 for TEC-1G
@@ -218,7 +218,7 @@ only after you assemble it again.
 The command `SAMPLE` loads and starts `SAMPLE.COM`. Its greeting and screen
 size appear before it returns to the prompt:
 
-<!-- Tecos 8c12c9f, ROM 04ab62be, starter card e2f124e9: node tools/capture.mjs --board pico --screen 'TAS SAMPLE' SAMPLE. Full screen; trailing empty rows omitted. -->
+<!-- Tecos fe23fa7, ROM 04ab62be, starter card e42afd4a: node tools/capture.mjs --board pico --screen 'TAS SAMPLE' SAMPLE. Full screen; trailing empty rows omitted. -->
 ```text
 
 Tecos 0.1 for TEC-1G
@@ -233,7 +233,7 @@ A:SYSTEM>TAS SAMPLE
 SAMPLE.COM written
 
 A:SYSTEM>SAMPLE
-Hello from TEC-OS.
+Hello from Tecos.
 Screen: 40 by 24
 Back to the prompt.
 
@@ -302,10 +302,9 @@ HELLO3.ASM with `TAS HELLO3 HELLO3.BIN`. Then `MON3.SVC` installs the service an
 `GO` runs it. HELLO3 prints four lines on the 20 × 4 LCD through MON-3's
 calls, then beeps:
 
-<!-- Tecos 9ade2fe test/starter.test.mjs:219, the LCD rows the host-model
-     test checks, trailing spaces removed. Not a separate capture. -->
+<!-- Tecos fe23fa7, ROM 04ab62be, starter card e42afd4a: node tools/capture.mjs --board pico --lcd 'CD A:MON3' 'TAS HELLO3 HELLO3.BIN' '@start MON3.SVC' '@start LOAD HELLO3.BIN' '@start GO' '@run 100'. The LCD's four rows, trailing spaces removed. -->
 ```text
-MON-3 ON TEC-OS
+MON-3 ON TECOS
 LCD BY RST 10H
 DIGITS BY RST 20H
 KEY BEEPS, AD QUITS
@@ -319,4 +318,4 @@ to the prompt, `A:MON3>`. The starter supplies the source. The binary is the fil
 you built above. [Chapter 5](05-drives-and-user-areas.md) explains
 the service and its reserved memory.
 
-_Screens checked against Tecos `8c12c9f` on the starter card in the emulated TEC-1G, 28 November 2026._
+_Screens checked against Tecos `fe23fa7` on the starter card in the emulated TEC-1G, 28 November 2026._

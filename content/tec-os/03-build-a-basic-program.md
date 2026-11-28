@@ -33,13 +33,13 @@ TIMES.BAS is on A beside the supplied tools. `TYPE TIMES.BAS` displays
 the file at `A:SYSTEM>`. Chapter 4 explains this command and its page
 controls. The complete source is:
 
-<!-- Tecos de6216f programs/TIMES.BAS, lines 1-22, complete. The starter
+<!-- Tecos fe23fa7 programs/TIMES.BAS, lines 1-22, complete. The starter
      card stores it with CRLF line ends and a final ^Z (tools/media.mjs). -->
 ```text
 10 REM TIMES.BAS, a first BASIC program
 20 REM Build it with BAZC TIMES,
 30 REM then type TIMES to run it.
-40 PRINT "HELLO FROM BASIC ON TEC-OS."
+40 PRINT "HELLO FROM BASIC ON Tecos."
 50 INPUT "WHAT IS YOUR NAME"; n$
 60 PRINT "HI, "; n$; "."
 70 INPUT "PICK A NUMBER, 1 TO 12"; n
@@ -91,7 +91,7 @@ cycles through `|`, `/`, `-` and `\` at the start of the line. Each is
 followed by a backspace. Completion prints `COM written` over the last
 mark and returns to the prompt:
 
-<!-- Tecos 8c12c9f, ROM 04ab62be, starter card e2f124e9: node tools/capture.mjs --board pico --screen 'BAZC TIMES'. Full screen; trailing empty rows omitted. -->
+<!-- Tecos fe23fa7, ROM 04ab62be, starter card e42afd4a: node tools/capture.mjs --board pico --screen 'BAZC TIMES'. Full screen; trailing empty rows omitted. -->
 ```text
 
 Tecos 0.1 for TEC-1G
@@ -114,9 +114,9 @@ with or without them (`Baza 5f6b58d:README.md:26-30`).
 The command `TIMES` runs TIMES.COM. This 40-column screen answers `TEC`,
 13 and then 7. The starting `A:SYSTEM>TIMES` line is omitted:
 
-<!-- Tecos 8c12c9f, ROM 04ab62be, starter card e2f124e9: node tools/capture.mjs --board pico --screen 'BAZC TIMES' '@start TIMES' '@press TEC' $'@press \r' '@run 100' $'@press 13\r' '@run 100' $'@press 7\r' '@run 300'. The PICO9918's screen from the program's first line; trailing empty rows omitted. -->
+<!-- Tecos fe23fa7, ROM 04ab62be, starter card e42afd4a: node tools/capture.mjs --board pico --screen 'BAZC TIMES' '@start TIMES' '@press TEC' $'@press \r' '@run 100' $'@press 13\r' '@run 100' $'@press 7\r' '@run 300'. The PICO9918's screen from the program's first line; trailing empty rows omitted. -->
 ```text
-HELLO FROM BASIC ON TEC-OS.
+HELLO FROM BASIC ON Tecos.
 WHAT IS YOUR NAME? TEC
 HI, TEC.
 PICK A NUMBER, 1 TO 12? 13
@@ -378,4 +378,4 @@ The host-model test checks each of these steps
 (`57a8c38:tools/media.mjs:218-221`, `57a8c38:test/starter.test.mjs:103-184`,
 `Baza 5f6b58d:examples/BOUNCE.BAS:84`, `103-115`).
 
-_Screens checked against Tecos `8c12c9f` with TED `b2f98bc` and BAZ and BAZC from Baza `3f31488`, on the starter card in the emulated TEC-1G, 28 November 2026._
+_Screens checked against Tecos `fe23fa7` with TED `b2f98bc` and BAZ and BAZC from Baza `3f31488`, on the starter card in the emulated TEC-1G, 28 November 2026._

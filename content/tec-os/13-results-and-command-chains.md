@@ -69,7 +69,7 @@ before capitalising them. The displayed `dir b:` therefore executes as
 Each piece executes as a complete command. A drive change carries
 into later pieces. Here `B:` makes B current before COPY creates `NOTES.TXT`:
 
-<!-- Tecos 8c12c9f, ROM 04ab62be, starter card e2f124e9: node tools/capture.mjs 'B:!COPY A:STARTUP.CMD NOTES.TXT!DIR'. Complete captured console transcript. -->
+<!-- Tecos fe23fa7, ROM 04ab62be, starter card e42afd4a: node tools/capture.mjs 'B:!COPY A:STARTUP.CMD NOTES.TXT!DIR'. Complete captured console transcript. -->
 ```text
 Tecos 0.1 for TEC-1G
 A: SYSTEM
@@ -160,7 +160,7 @@ A new line starts independently of the preceding result. It cannot begin with
 full. Tecos also omits CP/M 3's `:` conditional prefix and rejects a first
 piece beginning with `:` as a bad name:
 
-<!-- Tecos 8c12c9f, ROM 04ab62be, starter card e2f124e9: node tools/capture.mjs '&DIR *.CMD' ':DIR *.CMD'. Complete captured console transcript. -->
+<!-- Tecos fe23fa7, ROM 04ab62be, starter card e42afd4a: node tools/capture.mjs '&DIR *.CMD' ':DIR *.CMD'. Complete captured console transcript. -->
 ```text
 Tecos 0.1 for TEC-1G
 A: SYSTEM
@@ -337,7 +337,7 @@ lines available.
 Here D has no mounted volume. The key `x` ends the default BDOS error and the
 following CD is cancelled:
 
-<!-- Tecos 8c12c9f, ROM 04ab62be, starter card e2f124e9: node tools/capture.mjs '@start DIR D:!CD' '@key x'. Complete captured console transcript. -->
+<!-- Tecos fe23fa7, ROM 04ab62be, starter card e42afd4a: node tools/capture.mjs '@start DIR D:!CD' '@key x'. Complete captured console transcript. -->
 ```text
 Tecos 0.1 for TEC-1G
 A: SYSTEM

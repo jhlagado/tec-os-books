@@ -59,7 +59,7 @@ contains the two automatic startup commands from Chapter 1. This serial
 terminal run is separate from both your BANNER session and the later
 40-column capture:
 
-<!-- Tecos 8c12c9f, ROM 04ab62be, starter card e2f124e9: node tools/capture.mjs 'TYPE STARTUP.CMD'. Complete captured console transcript. -->
+<!-- Tecos fe23fa7, ROM 04ab62be, starter card e42afd4a: node tools/capture.mjs 'TYPE STARTUP.CMD'. Complete captured console transcript. -->
 ```text
 Tecos 0.1 for TEC-1G
 A: SYSTEM
@@ -93,7 +93,7 @@ pausing.
 The first paused screen contains these 24 rows. The typed command has
 already scrolled off the display:
 
-<!-- Tecos 8c12c9f, ROM 04ab62be, starter card e2f124e9: node tools/capture.mjs --board pico --screen 'TYPE A:SAMPLE.ASM'. Full screen; trailing empty rows omitted. -->
+<!-- Tecos fe23fa7, ROM 04ab62be, starter card e42afd4a: node tools/capture.mjs --board pico --screen 'TYPE A:SAMPLE.ASM'. Full screen; trailing empty rows omitted. -->
 ```text
 ; A first program for Tecos. Build it
 ; with TAS SAMPLE. Run it with SAMPLE.
@@ -124,7 +124,7 @@ ABICALL   EQU   $C008
 Space clears the pause and displays the next rows. The complete next
 paused screen is:
 
-<!-- Tecos 8c12c9f, ROM 04ab62be, starter card e2f124e9: node tools/capture.mjs --board pico --screen 'TYPE A:SAMPLE.ASM' '@key  '. Full screen; trailing empty rows omitted. -->
+<!-- Tecos fe23fa7, ROM 04ab62be, starter card e42afd4a: node tools/capture.mjs --board pico --screen 'TYPE A:SAMPLE.ASM' '@key  '. Full screen; trailing empty rows omitted. -->
 ```text
 
 TNINFO    EQU   0
@@ -178,7 +178,7 @@ This capture uses a fresh starter card with B empty. It is separate
 from the BANNER session. The command writes only B:SAMPLE.ASM, whose
 name differs from the BANNER files on your working card:
 
-<!-- Tecos 8c12c9f, ROM 04ab62be, starter card e2f124e9: node tools/capture.mjs --board pico --screen 'COPY A:SAMPLE.ASM B:SAMPLE.ASM'. Full screen; trailing empty rows omitted. -->
+<!-- Tecos fe23fa7, ROM 04ab62be, starter card e42afd4a: node tools/capture.mjs --board pico --screen 'COPY A:SAMPLE.ASM B:SAMPLE.ASM'. Full screen; trailing empty rows omitted. -->
 ```text
 
 Tecos 0.1 for TEC-1G
@@ -212,7 +212,7 @@ that separate session, not as a sequence to repeat on your current card. It
 copies A's STARTUP.CMD under two names, renames one copy and erases only
 NOTES.TXT. The listings and free-space figures belong to that card:
 
-<!-- Tecos 8c12c9f, ROM 04ab62be, starter card e2f124e9: node tools/capture.mjs 'COPY STARTUP.CMD B:' 'COPY STARTUP.CMD B:COPY.TXT' B: DIR 'REN NOTES.TXT=COPY.TXT' 'REN NOTES.TXT=STARTUP.CMD' DIR 'ERA NOTES.TXT' 'ERA NOTES.TXT' DIR. Complete captured console transcript. -->
+<!-- Tecos fe23fa7, ROM 04ab62be, starter card e42afd4a: node tools/capture.mjs 'COPY STARTUP.CMD B:' 'COPY STARTUP.CMD B:COPY.TXT' B: DIR 'REN NOTES.TXT=COPY.TXT' 'REN NOTES.TXT=STARTUP.CMD' DIR 'ERA NOTES.TXT' 'ERA NOTES.TXT' DIR. Complete captured console transcript. -->
 ```text
 Tecos 0.1 for TEC-1G
 A: SYSTEM
