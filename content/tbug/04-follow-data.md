@@ -7,7 +7,7 @@ nav_group: Using TBUG
 
 # 4. Following and editing data in memory
 
-Registers hold counters and pointers, while most of your program's real state sits in RAM buffers, strings and tables. When a loop writes one byte too far or copies a string backwards, staring at a fixed address stops helping the moment the pointer moves on. You want Memory locked onto the register walking the buffer, and sometimes you want to patch a register or byte right in live RAM to test a fix before going back to `TED`.
+Registers hold counters and pointers, while most of your program's real state sits in RAM buffers, strings and tables. When a loop writes one byte too far or copies a string backwards, staring at a fixed address stops helping the moment the pointer moves on. You want to see the bytes a register points at, and jump again as it moves on, and sometimes you want to patch a register or byte right in live RAM to test a fix before going back to `TED`.
 
 ## A buffer-filling target
 

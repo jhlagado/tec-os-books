@@ -79,7 +79,7 @@ On the TEC-1G matrix keyboard, `Fn+1` and `Fn+5` through `Fn+8` send `F1` and `F
 | After `tbug name`, the LCD shows `TBUG needs ABI 5.3` | The ROM lacks `COMVEC`, the word that hands a launch to TBUG. Update to Tecos ABI 5.3 or later. |
 | `Esc` does nothing | Nothing is left to go back to. Press `Q` to quit. |
 | `F` prints `No label` | No label starts with what you typed. Type only the part of a name before any underscore. |
-| Program fails to load | Check the program name, drive and available TPA. |
+| The LCD's bottom row shows `TBUG: no COM NAME` | `NAME.COM` was not found. Check the program's name and drive, and that it fits the TPA. |
 
 ## Building TBUG from source
 

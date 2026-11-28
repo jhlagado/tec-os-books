@@ -51,7 +51,7 @@ Three details jump out on those four lines:
 
 ## The fifth view: Labels and symbols
 
-Whenever TBUG matches a `.TBG` file, a fifth view, **Labels**, becomes active. It lists the program's labels and symbols, an `EQU` among them, though in a program like this one they are all labels. Jump straight to it with `L` (or with `Tab` from Registers) on `FILL`:
+Whenever TBUG matches a `.TBG` file, a fifth view, **Labels**, becomes active. It lists the program's labels. An `EQU` is a symbol too, but TBUG doesn't list it, and Find and Code's operand names leave it out as well. Jump straight to it with `L` (or with `Tab` from Registers) on `FILL`:
 
 <!-- Tecos 4c555ff with TBUG 1215559, starter card 48a9309f: TECOS=<checkout> node scripts/tbug-capture.mjs --card tbug.img '>b:' '>tas fill' '!tbug fill' R F8 F8 F8 F8 C L R Tab L F B Enter F X Enter Esc, where tbug.img holds this book's HELLO.ASM, STEP.ASM and FILL.ASM on B. The LCD after L; Tab from Registers shows the same. -->
 ```text
