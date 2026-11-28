@@ -92,6 +92,13 @@ In the order they are written:
 - **The house style.** The prose follows the existing books: plain
   sentences, the active voice, hexadecimal with a trailing `h`, and file
   names in capitals.
+- **Commands in lowercase.** A command the reader types is written in
+  lowercase: `tas step`, `ted step.asm`, `unload`, `b:`. TEC-OS takes
+  commands in any case, and lowercase reads more kindly beside the
+  interface's capitals. File names stay as TEC-OS lists them (`STEP.COM`,
+  `TBUG.SVC`, `NAME.TBG`), and screen text stays as captured, so a screen
+  shows a lowercase command only when its capture typed one. Chapters move
+  to lowercase as they are captured again.
 
 ## Order of work
 
