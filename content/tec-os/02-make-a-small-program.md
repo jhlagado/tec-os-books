@@ -264,31 +264,40 @@ demonstration used this layout on an earlier starter card. Its main part
 can be entered in TED in the same way:
 
 ```asm
+; Count five lines, numbered from 1.
+
 START:
-  ld b,5 \ ld c,'1'             ; count five lines, numbered from 1
+  ld b,5 \ ld c,'1'
+
+; Keep the count and print "LINE ",
+; then the line's digit. End the line,
+; get the count back and go round
+; again, or return to the CCP.
 
 LINE:
-  push bc \ ld de,TEXT          ; keep the count, point at "LINE "
-  ld c,PRINT \ call BDOS        ; print it
-  pop bc \ push bc \ ld e,c     ; take the line's digit
-  ld c,CONOUT \ call BDOS       ; print it
-  ld de,CRLF \ ld c,PRINT       ; point at CR LF
-  call BDOS \ pop bc            ; end the line, get the count back
-  inc c \ djnz LINE \ ret       ; the next line, or back to the CCP
+  push bc \ ld de,TEXT
+  ld c,PRINT \ call BDOS
+  pop bc \ push bc \ ld e,c
+  ld c,CONOUT \ call BDOS
+  ld de,CRLF \ ld c,PRINT
+  call BDOS \ pop bc
+  inc c \ djnz LINE \ ret
 ```
 
 Each `\` ends one statement and starts the next, so the first line of the
 loop is `push bc` followed by `ld de,TEXT`. A label stands alone on its
 line, as `START:` and `LINE:` do here, or begins the line. A label or an
 `EQU` cannot follow a `\`. A comment still runs from the semicolon to the end
-of the line, and here it describes the whole line's step rather than each
-instruction. Inside quotes a backslash is still an escape, as in `'\\'`
+of the line. Lines as long as these take no comment of their own: the house
+style keeps an inline comment to code that ends by column 18, so a comment
+block above each label explains its group instead. Inside quotes a backslash is still an escape, as in `'\\'`
 for the backslash character, and does not separate statements.
 
 Both layouts assemble to the same bytes. On the earlier card,
 `TAS CHAIN` wrote 43 bytes and `CHAIN` printed `LINE 1` to `LINE 5`.
 The recommended layout has labels on their own lines. An instruction
-line contains at most three statements with a comment for the group.
+line contains at most three statements, and a comment block above the
+group explains it.
 
 A line's code, before its comment, can be at most 128 characters long,
 blanks included. A longer line is rejected, normally as `line too long` at
