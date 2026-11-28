@@ -6,6 +6,13 @@ VitePress package at the root of this repository, and its output is
 27 November 2026; this repository carries that history. Tecos itself, its
 design notes in `docs/` and its build are in jhlagado/tec-os.
 
+## Planning
+
+The library's plan, its decisions and the requests other sessions send for
+the books are kept in Origo, John's planning repository, as study P11, the
+Tecos books (`studies/p11-books/`). The plan that was `library-plan.md` here
+is its `roadmap.md`.
+
 ## Local use
 
 Requires Node.js 22 or later.
