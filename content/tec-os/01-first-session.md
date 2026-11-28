@@ -101,7 +101,8 @@ BAZ.COM        22272
 A:SYSTEM>
 ```
 
-Each row after the blank line names a file and gives its size in bytes.
+Each row after the blank line names a file and gives its size in bytes,
+counted in whole 128-byte records, so a file always shows a multiple of 128.
 A file name has up to eight characters and a type of up to three characters.
 The listing shows them as you type them, separated by a full stop. In `SAMPLE.ASM`,
 SAMPLE is the name and ASM is the type. The `.ASM` file contains source
