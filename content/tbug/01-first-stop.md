@@ -36,7 +36,7 @@ START: LD DE,MSG
   CALL $0005
   RET
 
-MSG: DB "Hello from TEC-OS",13,10,"$"
+MSG: DB "Hello from Tecos",13,10,"$"
 ```
 
 Save with `^S`. Once `Saved` appears on the status row, quit with `^Q` to return to `B:WORK>`.
@@ -116,7 +116,7 @@ A 20 × 4 LCD gives you eighty character cells, so every column earns its keep:
 
 On the TEC-1G matrix keyboard, `Fn+5` through `Fn+8` send the function keys `F5` through `F8`. Here `F8` (`Fn+8`) steps one instruction into the program and `F5` (`Fn+5`) runs at full speed.
 
-Tap `F8` once and let it go. The Z80 executes `LD DE,MSG` at `0100h` and halts again before `0103h`. On the LCD, `PC` advances to `0103` and `DE` becomes `0109`, the address of `"Hello from TEC-OS"`. Over on the console, nothing has moved.
+Tap `F8` once and let it go. The Z80 executes `LD DE,MSG` at `0100h` and halts again before `0103h`. On the LCD, `PC` advances to `0103` and `DE` becomes `0109`, the address of `"Hello from Tecos"`. Over on the console, nothing has moved.
 
 Tap `F8` a second time. `LD C,9` runs, moving `PC` to `0105` and setting the low byte of `BC` to `09`:
 
@@ -130,7 +130,7 @@ Tap `F8` a second time. `LD C,9` runs, moving `PC` to `0105` and setting the low
 
 Both arguments for BDOS function 9 are now sitting in the CPU, with `CALL $0005` lined up next at `0105h`.
 
-Now press `F5` to let the program finish at full speed. `CALL $0005` prints `Hello from TEC-OS` onto the console just as it did in your standalone run. Then `RET` pops TBUG's exit return address off the stack, raising `SP` from `8DFE` to `8E00`. Instead of vanishing back to CP/M, TBUG catches the exit and shows `>PC ----  SP 8E00 EX` on row 1.
+Now press `F5` to let the program finish at full speed. `CALL $0005` prints `Hello from Tecos` onto the console just as it did in your standalone run. Then `RET` pops TBUG's exit return address off the stack, raising `SP` from `8DFE` to `8E00`. Instead of vanishing back to CP/M, TBUG catches the exit and shows `>PC ----  SP 8E00 EX` on row 1.
 
 Press `Q` to leave TBUG. The LCD displays `Quit TBUG? Y/N`. Press `Y` or `Q` to confirm (any other key keeps you inside TBUG). Your `B:WORK>` prompt returns on the console, and TBUG stays resident at the top of RAM for the next run: `services` now lists `TBUG 32` above `SHELL 9`. When you want the memory back, `unload tbug` removes it.
 

@@ -76,7 +76,7 @@ Without a `.TBG` file, `0104 POP DE` sits directly below `0103 PUSH HL`. Numbers
 
 Long instructions that run past twenty columns end with `>` at the right edge. `Shift+Right` pans the text sideways to reveal the rest (marking the left edge with `<`), and `Shift+Left` pans back. `Up` and `Down` carry that sideways offset from line to line while any other key resets it.
 
-Scroll one row past `0105 RET` and you will see `0106 NOP`. A Z80 keeps code and data in the same flat address space, so a disassembler keeps turning whatever bytes follow your program into instructions. Zeros come out as `NOP`, and in `HELLO.COM` the `'H'` (`48h`) of `"Hello from TEC-OS"` comes out as `LD C,B`. Keeping track of where your code ends keeps trailing bytes from throwing you off.
+Scroll one row past `0105 RET` and you will see `0106 NOP`. A Z80 keeps code and data in the same flat address space, so a disassembler keeps turning whatever bytes follow your program into instructions. Zeros come out as `NOP`, and in `HELLO.COM` the `'H'` (`48h`) of `"Hello from Tecos"` comes out as `LD C,B`. Keeping track of where your code ends keeps trailing bytes from throwing you off.
 
 ## Watching the stack move
 

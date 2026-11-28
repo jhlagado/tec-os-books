@@ -57,7 +57,7 @@ START:
   call 5
   ret            ; CCP warm boot.
 
-MSG: db "Hello from TEC-OS",13,10,"$"
+MSG: db "Hello from Tecos",13,10,"$"
 ```
 
 The final Return leaves the cursor at `L14 C1`. Blank lines count in
@@ -181,14 +181,14 @@ You can now change the text that BANNER prints. An arrow key clears a
 status message and restores TED's position display while moving normally.
 Left at the start of this file leaves the cursor at `L1 C1`.
 
-From `L1 C1`, twelve Down presses reach `L13 C1`, the MSG line. Twenty-six
-Right presses move to `L13 C27`, just before the quote after Tecos. Typing
-`!` inserts it inside the quoted greeting. The cursor moves to `L13 C28`
+From `L1 C1`, twelve Down presses reach `L13 C1`, the MSG line. Twenty-five
+Right presses move to `L13 C26`, just before the quote after Tecos. Typing
+`!` inserts it inside the quoted greeting. The cursor moves to `L13 C27`
 and the `*` returns. Only this line changes:
 
 <!-- The edited source's MSG line. -->
 ```asm
-MSG: db "Hello from TEC-OS!",13,10,"$"
+MSG: db "Hello from Tecos!",13,10,"$"
 ```
 
 `^S` saves the new text. F9 then rebuilds BANNER.COM from that text.

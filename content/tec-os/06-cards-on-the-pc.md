@@ -218,7 +218,7 @@ START:
   call 5
   ret            ; CCP warm boot.
 
-MSG: db "Hello from TEC-OS!",13,10,"$"
+MSG: db "Hello from Tecos!",13,10,"$"
 ```
 
 The saved user-0 listing has no `MISSING.ASM`. Requesting that absent
