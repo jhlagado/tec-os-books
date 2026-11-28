@@ -97,6 +97,16 @@ arrow keys, so a recipe that needs them uses the serial board, the default.
 node tools/capture.mjs --board pico --screen '@start A:TED B:BANNER.ASM' '@fn 9' '@run 400'
 ```
 
+TBUG reads the matrix keyboard itself, so the TBUG book's screens come from
+`scripts/tbug-capture.mjs`. It types commands at the prompt, holds each TBUG
+key for a tenth of a second and prints the LCD 2 s later, after a view's
+title has cleared. It runs the machine model of the TEC-OS checkout named by
+`TECOS`:
+
+```sh
+TECOS=../tec-os node scripts/tbug-capture.mjs --card tbug.img '>b:' '>tas step' '!tbug step' F8 left
+```
+
 A recipe's `--card NAME.img` is the checkout's `dist/starter.img` with the
 chapter's files added by TEC-OS's `tecvol`. For example, the BANNER cards in
 chapter 2 hold that chapter's listing on B:, put there with
